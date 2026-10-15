@@ -50,7 +50,12 @@ namespace Adviverse.Api.Model
         /// <param name="height">height.</param>
         /// <param name="weight">weight.</param>
         /// <param name="carouselItems">carouselItems.</param>
-        public CreateCreativeDto(string campaignId = default(string), string type = default(string), string assetUrl = default(string), string landingUrl = default(string), string title = default(string), string description = default(string), string iconUrl = default(string), string mainImageUrl = default(string), string cta = default(string), string brandName = default(string), decimal starRating = default(decimal), decimal width = default(decimal), decimal height = default(decimal), decimal weight = default(decimal), List<CarouselItemDto> carouselItems = default(List<CarouselItemDto>))
+        /// <param name="duration">duration.</param>
+        /// <param name="skipOffsetSec">&gt;0 makes the linear ad skippable after N seconds (VAST skipoffset)..</param>
+        /// <param name="vpaidUrl">Interactive VPAID (application/javascript) creative file, https..</param>
+        /// <param name="companions">Companion banners (VAST CompanionAds), max 5..</param>
+        /// <param name="vastTagUrl">Third-party VAST tag (the advertiser&#39;s own ad server), https. Only valid for type video/audio. Makes assetUrl optional: with no assetUrl the engine serves a VAST &lt;Wrapper&gt; pointing at this tag; when both are set the inline asset wins..</param>
+        public CreateCreativeDto(string campaignId = default(string), string type = default(string), string assetUrl = default(string), string landingUrl = default(string), string title = default(string), string description = default(string), string iconUrl = default(string), string mainImageUrl = default(string), string cta = default(string), string brandName = default(string), decimal starRating = default(decimal), decimal width = default(decimal), decimal height = default(decimal), decimal weight = default(decimal), List<CarouselItemDto> carouselItems = default(List<CarouselItemDto>), decimal duration = default(decimal), decimal skipOffsetSec = default(decimal), string vpaidUrl = default(string), List<CompanionDto> companions = default(List<CompanionDto>), string vastTagUrl = default(string))
         {
             this.CampaignId = campaignId;
             this.Type = type;
@@ -67,6 +72,11 @@ namespace Adviverse.Api.Model
             this.Height = height;
             this.Weight = weight;
             this.CarouselItems = carouselItems;
+            this.Duration = duration;
+            this.SkipOffsetSec = skipOffsetSec;
+            this.VpaidUrl = vpaidUrl;
+            this.Companions = companions;
+            this.VastTagUrl = vastTagUrl;
         }
 
         /// <summary>
@@ -160,6 +170,40 @@ namespace Adviverse.Api.Model
         public List<CarouselItemDto> CarouselItems { get; set; }
 
         /// <summary>
+        /// Gets or Sets Duration
+        /// </summary>
+        [DataMember(Name = "duration", EmitDefaultValue = false)]
+        public decimal Duration { get; set; }
+
+        /// <summary>
+        /// &gt;0 makes the linear ad skippable after N seconds (VAST skipoffset).
+        /// </summary>
+        /// <value>&gt;0 makes the linear ad skippable after N seconds (VAST skipoffset).</value>
+        [DataMember(Name = "skipOffsetSec", EmitDefaultValue = false)]
+        public decimal SkipOffsetSec { get; set; }
+
+        /// <summary>
+        /// Interactive VPAID (application/javascript) creative file, https.
+        /// </summary>
+        /// <value>Interactive VPAID (application/javascript) creative file, https.</value>
+        [DataMember(Name = "vpaidUrl", EmitDefaultValue = false)]
+        public string VpaidUrl { get; set; }
+
+        /// <summary>
+        /// Companion banners (VAST CompanionAds), max 5.
+        /// </summary>
+        /// <value>Companion banners (VAST CompanionAds), max 5.</value>
+        [DataMember(Name = "companions", EmitDefaultValue = false)]
+        public List<CompanionDto> Companions { get; set; }
+
+        /// <summary>
+        /// Third-party VAST tag (the advertiser&#39;s own ad server), https. Only valid for type video/audio. Makes assetUrl optional: with no assetUrl the engine serves a VAST &lt;Wrapper&gt; pointing at this tag; when both are set the inline asset wins.
+        /// </summary>
+        /// <value>Third-party VAST tag (the advertiser&#39;s own ad server), https. Only valid for type video/audio. Makes assetUrl optional: with no assetUrl the engine serves a VAST &lt;Wrapper&gt; pointing at this tag; when both are set the inline asset wins.</value>
+        [DataMember(Name = "vastTagUrl", EmitDefaultValue = false)]
+        public string VastTagUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -182,6 +226,11 @@ namespace Adviverse.Api.Model
             sb.Append("  Height: ").Append(Height).Append("\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("  CarouselItems: ").Append(CarouselItems).Append("\n");
+            sb.Append("  Duration: ").Append(Duration).Append("\n");
+            sb.Append("  SkipOffsetSec: ").Append(SkipOffsetSec).Append("\n");
+            sb.Append("  VpaidUrl: ").Append(VpaidUrl).Append("\n");
+            sb.Append("  Companions: ").Append(Companions).Append("\n");
+            sb.Append("  VastTagUrl: ").Append(VastTagUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -202,6 +251,42 @@ namespace Adviverse.Api.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Duration (decimal) maximum
+            if (this.Duration > (decimal)600)
+            {
+                yield return new ValidationResult("Invalid value for Duration, must be a value less than or equal to 600.", new [] { "Duration" });
+            }
+
+            // Duration (decimal) minimum
+            if (this.Duration < (decimal)1)
+            {
+                yield return new ValidationResult("Invalid value for Duration, must be a value greater than or equal to 1.", new [] { "Duration" });
+            }
+
+            // SkipOffsetSec (decimal) maximum
+            if (this.SkipOffsetSec > (decimal)600)
+            {
+                yield return new ValidationResult("Invalid value for SkipOffsetSec, must be a value less than or equal to 600.", new [] { "SkipOffsetSec" });
+            }
+
+            // SkipOffsetSec (decimal) minimum
+            if (this.SkipOffsetSec < (decimal)0)
+            {
+                yield return new ValidationResult("Invalid value for SkipOffsetSec, must be a value greater than or equal to 0.", new [] { "SkipOffsetSec" });
+            }
+
+            // VpaidUrl (string) maxLength
+            if (this.VpaidUrl != null && this.VpaidUrl.Length > 2048)
+            {
+                yield return new ValidationResult("Invalid value for VpaidUrl, length must be less than 2048.", new [] { "VpaidUrl" });
+            }
+
+            // VastTagUrl (string) maxLength
+            if (this.VastTagUrl != null && this.VastTagUrl.Length > 2048)
+            {
+                yield return new ValidationResult("Invalid value for VastTagUrl, length must be less than 2048.", new [] { "VastTagUrl" });
+            }
+
             yield break;
         }
     }

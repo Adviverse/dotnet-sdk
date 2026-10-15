@@ -74,6 +74,7 @@ src/Adviverse.Api/Model/ClaimScreenDto.cs
 src/Adviverse.Api/Model/ClaimSurfaceDto.cs
 src/Adviverse.Api/Model/ClientPingDto.cs
 src/Adviverse.Api/Model/ComboUnitDto.cs
+src/Adviverse.Api/Model/CompanionDto.cs
 src/Adviverse.Api/Model/ConsentConfigDto.cs
 src/Adviverse.Api/Model/ConsentDto.cs
 src/Adviverse.Api/Model/CreateAppDto.cs
@@ -87,6 +88,7 @@ src/Adviverse.Api/Model/CreateDestinationDto.cs
 src/Adviverse.Api/Model/CreateFeedDto.cs
 src/Adviverse.Api/Model/CreateGuideDto.cs
 src/Adviverse.Api/Model/CreateKeyDto.cs
+src/Adviverse.Api/Model/CreateOnchainPoolDto.cs
 src/Adviverse.Api/Model/CreatePlacementDto.cs
 src/Adviverse.Api/Model/CreatePortalConfigDto.cs
 src/Adviverse.Api/Model/CreatePostDto.cs

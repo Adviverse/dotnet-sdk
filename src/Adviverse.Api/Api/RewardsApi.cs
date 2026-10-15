@@ -49,6 +49,24 @@ namespace Adviverse.Api.Api
         /// 
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <returns></returns>
+        void RewardsControllerCreateOnchainPool(CreateOnchainPoolDto createOnchainPoolDto);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> RewardsControllerCreateOnchainPoolWithHttpInfo(CreateOnchainPoolDto createOnchainPoolDto);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
         /// <returns></returns>
         void RewardsControllerFundPool(FundPoolDto fundPoolDto);
@@ -155,6 +173,24 @@ namespace Adviverse.Api.Api
         /// <param name="setWorldWebhookDto"></param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> RewardsControllerSetWorldWebhookWithHttpInfo(SetWorldWebhookDto setWorldWebhookDto);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
+        void RewardsControllerVoucherSecret(string campaignId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> RewardsControllerVoucherSecretWithHttpInfo(string campaignId);
         #endregion Synchronous Operations
     }
 
@@ -187,6 +223,29 @@ namespace Adviverse.Api.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerAdminPayoutsWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task RewardsControllerCreateOnchainPoolAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerCreateOnchainPoolWithHttpInfoAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -327,6 +386,29 @@ namespace Adviverse.Api.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerSetWorldWebhookWithHttpInfoAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task RewardsControllerVoucherSecretAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerVoucherSecretWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -645,6 +727,119 @@ namespace Adviverse.Api.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RewardsControllerAdminPayouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <returns></returns>
+        public void RewardsControllerCreateOnchainPool(CreateOnchainPoolDto createOnchainPoolDto)
+        {
+            RewardsControllerCreateOnchainPoolWithHttpInfo(createOnchainPoolDto);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerCreateOnchainPoolWithHttpInfo(CreateOnchainPoolDto createOnchainPoolDto)
+        {
+            // verify the required parameter 'createOnchainPoolDto' is set
+            if (createOnchainPoolDto == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'createOnchainPoolDto' when calling RewardsApi->RewardsControllerCreateOnchainPool");
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createOnchainPoolDto;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/v1/rewards/pools/onchain", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RewardsControllerCreateOnchainPool", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task RewardsControllerCreateOnchainPoolAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            await RewardsControllerCreateOnchainPoolWithHttpInfoAsync(createOnchainPoolDto, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerCreateOnchainPoolWithHttpInfoAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'createOnchainPoolDto' is set
+            if (createOnchainPoolDto == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'createOnchainPoolDto' when calling RewardsApi->RewardsControllerCreateOnchainPool");
+
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createOnchainPoolDto;
+
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/rewards/pools/onchain", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RewardsControllerCreateOnchainPool", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1331,6 +1526,117 @@ namespace Adviverse.Api.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RewardsControllerSetWorldWebhook", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
+        public void RewardsControllerVoucherSecret(string campaignId)
+        {
+            RewardsControllerVoucherSecretWithHttpInfo(campaignId);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerVoucherSecretWithHttpInfo(string campaignId)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'campaignId' when calling RewardsApi->RewardsControllerVoucherSecret");
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<Object>("/v1/rewards/pools/{campaignId}/voucher-secret", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RewardsControllerVoucherSecret", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task RewardsControllerVoucherSecretAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            await RewardsControllerVoucherSecretWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerVoucherSecretWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'campaignId' when calling RewardsApi->RewardsControllerVoucherSecret");
+
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/rewards/pools/{campaignId}/voucher-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RewardsControllerVoucherSecret", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
