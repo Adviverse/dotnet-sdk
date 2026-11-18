@@ -28,63 +28,72 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="varClient"></param>
-        /// <param name="days"></param>
-        /// <returns></returns>
-        void IntegrityControllerLiveness(string varClient, string days);
-
-        /// <summary>
-        /// 
+        /// Get per-install liveness for your tags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IntegrityControllerLivenessWithHttpInfo(string varClient, string days);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="clientPingDto"></param>
-        /// <returns></returns>
-        void IntegrityControllerPing(ClientPingDto clientPingDto);
+        /// <returns>IntegrityControllerLiveness200Response</returns>
+        IntegrityControllerLiveness200Response IntegrityControllerLiveness(string varClient, string days);
 
         /// <summary>
-        /// 
+        /// Get per-install liveness for your tags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="varClient"></param>
+        /// <param name="days"></param>
+        /// <returns>ApiResponse of IntegrityControllerLiveness200Response</returns>
+        ApiResponse<IntegrityControllerLiveness200Response> IntegrityControllerLivenessWithHttpInfo(string varClient, string days);
+        /// <summary>
+        /// Report a client integrity ping
+        /// </summary>
+        /// <remarks>
+        /// Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientPingDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IntegrityControllerPingWithHttpInfo(ClientPingDto clientPingDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="varClient"></param>
-        /// <param name="days"></param>
-        /// <returns></returns>
-        void IntegrityControllerReport(string varClient, string days);
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response IntegrityControllerPing(ClientPingDto clientPingDto);
 
         /// <summary>
-        /// 
+        /// Report a client integrity ping
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="clientPingDto"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> IntegrityControllerPingWithHttpInfo(ClientPingDto clientPingDto);
+        /// <summary>
+        /// Get the terminal integrity report
+        /// </summary>
+        /// <remarks>
+        /// Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IntegrityControllerReportWithHttpInfo(string varClient, string days);
+        /// <returns>IntegrityControllerReport200Response</returns>
+        IntegrityControllerReport200Response IntegrityControllerReport(string varClient, string days);
+
+        /// <summary>
+        /// Get the terminal integrity report
+        /// </summary>
+        /// <remarks>
+        /// Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="varClient"></param>
+        /// <param name="days"></param>
+        /// <returns>ApiResponse of IntegrityControllerReport200Response</returns>
+        ApiResponse<IntegrityControllerReport200Response> IntegrityControllerReportWithHttpInfo(string varClient, string days);
         #endregion Synchronous Operations
     }
 
@@ -95,78 +104,78 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get per-install liveness for your tags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IntegrityControllerLivenessAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of IntegrityControllerLiveness200Response</returns>
+        System.Threading.Tasks.Task<IntegrityControllerLiveness200Response> IntegrityControllerLivenessAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get per-install liveness for your tags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IntegrityControllerLivenessWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (IntegrityControllerLiveness200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<IntegrityControllerLiveness200Response>> IntegrityControllerLivenessWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Report a client integrity ping
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientPingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IntegrityControllerPingAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> IntegrityControllerPingAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Report a client integrity ping
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientPingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IntegrityControllerPingWithHttpInfoAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> IntegrityControllerPingWithHttpInfoAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the terminal integrity report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IntegrityControllerReportAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of IntegrityControllerReport200Response</returns>
+        System.Threading.Tasks.Task<IntegrityControllerReport200Response> IntegrityControllerReportAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the terminal integrity report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IntegrityControllerReportWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (IntegrityControllerReport200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<IntegrityControllerReport200Response>> IntegrityControllerReportWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -381,25 +390,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-install liveness for your tags Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
-        /// <returns></returns>
-        public void IntegrityControllerLiveness(string varClient, string days)
+        /// <returns>IntegrityControllerLiveness200Response</returns>
+        public IntegrityControllerLiveness200Response IntegrityControllerLiveness(string varClient, string days)
         {
-            IntegrityControllerLivenessWithHttpInfo(varClient, days);
+            Adviverse.Api.Client.ApiResponse<IntegrityControllerLiveness200Response> localVarResponse = IntegrityControllerLivenessWithHttpInfo(varClient, days);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-install liveness for your tags Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IntegrityControllerLivenessWithHttpInfo(string varClient, string days)
+        /// <returns>ApiResponse of IntegrityControllerLiveness200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<IntegrityControllerLiveness200Response> IntegrityControllerLivenessWithHttpInfo(string varClient, string days)
         {
             // verify the required parameter 'varClient' is set
             if (varClient == null)
@@ -416,6 +426,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -427,9 +438,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "client", varClient));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/liveness", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<IntegrityControllerLiveness200Response>("/v1/publisher/liveness", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -441,27 +463,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-install liveness for your tags Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IntegrityControllerLivenessAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of IntegrityControllerLiveness200Response</returns>
+        public async System.Threading.Tasks.Task<IntegrityControllerLiveness200Response> IntegrityControllerLivenessAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IntegrityControllerLivenessWithHttpInfoAsync(varClient, days, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<IntegrityControllerLiveness200Response> localVarResponse = await IntegrityControllerLivenessWithHttpInfoAsync(varClient, days, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-install liveness for your tags Lists up to 500 installs that pinged any of your tags in the last &#x60;days&#x60; (default 7, max 30), with last-seen time, latest tag/uid, whether ads are enabled, and &#x60;alive&#x60; (pinged within ~95 minutes). Optional &#x60;?client&#x3D;&#x60; scopes to one client id. The summary counts alive-and-enabled, alive-but-disabled, and stale installs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IntegrityControllerLivenessWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (IntegrityControllerLiveness200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<IntegrityControllerLiveness200Response>> IntegrityControllerLivenessWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'varClient' is set
             if (varClient == null)
@@ -479,6 +502,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -491,10 +515,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "client", varClient));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/liveness", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<IntegrityControllerLiveness200Response>("/v1/publisher/liveness", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -506,23 +541,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Report a client integrity ping Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientPingDto"></param>
-        /// <returns></returns>
-        public void IntegrityControllerPing(ClientPingDto clientPingDto)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response IntegrityControllerPing(ClientPingDto clientPingDto)
         {
-            IntegrityControllerPingWithHttpInfo(clientPingDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = IntegrityControllerPingWithHttpInfo(clientPingDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Report a client integrity ping Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientPingDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IntegrityControllerPingWithHttpInfo(ClientPingDto clientPingDto)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> IntegrityControllerPingWithHttpInfo(ClientPingDto clientPingDto)
         {
             // verify the required parameter 'clientPingDto' is set
             if (clientPingDto == null)
@@ -536,6 +572,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -548,7 +585,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/track/client", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerResendVerification201Response>("/v1/track/client", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -560,25 +597,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Report a client integrity ping Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientPingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IntegrityControllerPingAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> IntegrityControllerPingAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IntegrityControllerPingWithHttpInfoAsync(clientPingDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await IntegrityControllerPingWithHttpInfoAsync(clientPingDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Report a client integrity ping Public, rate-limited endpoint the terminal SDK calls about hourly per install with the &#x60;tag&#x60; it serves, its &#x60;client&#x60; id, &#x60;install_id&#x60;/&#x60;installId&#x60;, machine &#x60;uid&#x60; and &#x60;enabled&#x60; state. The ping is recorded against the tag&#39;s publisher for integrity and liveness reports. For placements with a signing secret, &#x60;ts&#x60; and &#x60;sig&#x60; (HMAC-SHA256 of &#x60;tag|uid|ts&#x60;, within 300s) are required or the ping is ignored. Always returns &#x60;{ ok: true }&#x60;, even for unknown tags or failures, so it never affects serving.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientPingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IntegrityControllerPingWithHttpInfoAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> IntegrityControllerPingWithHttpInfoAsync(ClientPingDto clientPingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'clientPingDto' is set
             if (clientPingDto == null)
@@ -593,6 +631,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -607,7 +646,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/track/client", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerResendVerification201Response>("/v1/track/client", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -619,25 +658,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the terminal integrity report Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
-        /// <returns></returns>
-        public void IntegrityControllerReport(string varClient, string days)
+        /// <returns>IntegrityControllerReport200Response</returns>
+        public IntegrityControllerReport200Response IntegrityControllerReport(string varClient, string days)
         {
-            IntegrityControllerReportWithHttpInfo(varClient, days);
+            Adviverse.Api.Client.ApiResponse<IntegrityControllerReport200Response> localVarResponse = IntegrityControllerReportWithHttpInfo(varClient, days);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the terminal integrity report Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IntegrityControllerReportWithHttpInfo(string varClient, string days)
+        /// <returns>ApiResponse of IntegrityControllerReport200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<IntegrityControllerReport200Response> IntegrityControllerReportWithHttpInfo(string varClient, string days)
         {
             // verify the required parameter 'varClient' is set
             if (varClient == null)
@@ -654,6 +694,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -665,9 +706,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "client", varClient));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/integrity", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<IntegrityControllerReport200Response>("/v1/publisher/integrity", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -679,27 +731,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the terminal integrity report Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IntegrityControllerReportAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of IntegrityControllerReport200Response</returns>
+        public async System.Threading.Tasks.Task<IntegrityControllerReport200Response> IntegrityControllerReportAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IntegrityControllerReportWithHttpInfoAsync(varClient, days, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<IntegrityControllerReport200Response> localVarResponse = await IntegrityControllerReportWithHttpInfoAsync(varClient, days, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the terminal integrity report Over the last &#x60;days&#x60; (default 7, max 30) of client pings, lists machines running one of your tags that also run a foreign tag (&#x60;competing&#x60;), and, when &#x60;?client&#x3D;&#x60; is given, installs reporting your client id while serving a tag you don&#39;t own (&#x60;swapped&#x60;). Also returns your tag keys and distinct install/machine counts. Empty result if you have no placements.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varClient"></param>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IntegrityControllerReportWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (IntegrityControllerReport200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<IntegrityControllerReport200Response>> IntegrityControllerReportWithHttpInfoAsync(string varClient, string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'varClient' is set
             if (varClient == null)
@@ -717,6 +770,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -729,10 +783,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "client", varClient));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/integrity", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<IntegrityControllerReport200Response>("/v1/publisher/integrity", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

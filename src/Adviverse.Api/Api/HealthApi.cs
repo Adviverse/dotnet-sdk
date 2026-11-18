@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,37 +28,43 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void HealthControllerHealth();
-
-        /// <summary>
-        /// 
+        /// Control-plane health check
         /// </summary>
         /// <remarks>
-        /// 
+        /// Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> HealthControllerHealthWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void HealthControllerMetrics();
+        /// <returns>HealthControllerHealth200Response</returns>
+        HealthControllerHealth200Response HealthControllerHealth();
 
         /// <summary>
-        /// 
+        /// Control-plane health check
         /// </summary>
         /// <remarks>
-        /// 
+        /// Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> HealthControllerMetricsWithHttpInfo();
+        /// <returns>ApiResponse of HealthControllerHealth200Response</returns>
+        ApiResponse<HealthControllerHealth200Response> HealthControllerHealthWithHttpInfo();
+        /// <summary>
+        /// Prometheus metrics
+        /// </summary>
+        /// <remarks>
+        /// Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>string</returns>
+        string HealthControllerMetrics();
+
+        /// <summary>
+        /// Prometheus metrics
+        /// </summary>
+        /// <remarks>
+        /// Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> HealthControllerMetricsWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -68,47 +75,47 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Control-plane health check
         /// </summary>
         /// <remarks>
-        /// 
+        /// Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task HealthControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of HealthControllerHealth200Response</returns>
+        System.Threading.Tasks.Task<HealthControllerHealth200Response> HealthControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Control-plane health check
         /// </summary>
         /// <remarks>
-        /// 
+        /// Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> HealthControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (HealthControllerHealth200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<HealthControllerHealth200Response>> HealthControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Prometheus metrics
         /// </summary>
         /// <remarks>
-        /// 
+        /// Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task HealthControllerMetricsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> HealthControllerMetricsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Prometheus metrics
         /// </summary>
         /// <remarks>
-        /// 
+        /// Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> HealthControllerMetricsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> HealthControllerMetricsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -323,21 +330,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Control-plane health check Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void HealthControllerHealth()
+        /// <returns>HealthControllerHealth200Response</returns>
+        public HealthControllerHealth200Response HealthControllerHealth()
         {
-            HealthControllerHealthWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<HealthControllerHealth200Response> localVarResponse = HealthControllerHealthWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Control-plane health check Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> HealthControllerHealthWithHttpInfo()
+        /// <returns>ApiResponse of HealthControllerHealth200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<HealthControllerHealth200Response> HealthControllerHealthWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -346,6 +354,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -357,7 +366,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/healthz", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<HealthControllerHealth200Response>("/healthz", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -369,23 +378,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Control-plane health check Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task HealthControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of HealthControllerHealth200Response</returns>
+        public async System.Threading.Tasks.Task<HealthControllerHealth200Response> HealthControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await HealthControllerHealthWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<HealthControllerHealth200Response> localVarResponse = await HealthControllerHealthWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Control-plane health check Liveness check that also runs &#x60;SELECT 1&#x60; against Postgres. Returns &#x60;status: \&quot;ok\&quot;&#x60; when the database answers, otherwise &#x60;degraded&#x60; with &#x60;db: false&#x60; (still HTTP 200). No authentication.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> HealthControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (HealthControllerHealth200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<HealthControllerHealth200Response>> HealthControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -395,6 +405,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -408,7 +419,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/healthz", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<HealthControllerHealth200Response>("/healthz", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -420,21 +431,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Prometheus metrics Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void HealthControllerMetrics()
+        /// <returns>string</returns>
+        public string HealthControllerMetrics()
         {
-            HealthControllerMetricsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = HealthControllerMetricsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Prometheus metrics Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> HealthControllerMetricsWithHttpInfo()
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> HealthControllerMetricsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -443,6 +455,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -454,7 +467,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/metrics", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/metrics", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -466,23 +479,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Prometheus metrics Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task HealthControllerMetricsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> HealthControllerMetricsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await HealthControllerMetricsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await HealthControllerMetricsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Prometheus metrics Prometheus text exposition of control-plane process metrics (prefixed &#x60;control_plane_&#x60;). When the server has a metrics token configured it must be sent as a Bearer token or &#x60;?token&#x3D;&#x60;, otherwise 403; without one the endpoint is open.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> HealthControllerMetricsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> HealthControllerMetricsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -492,6 +506,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
 
@@ -505,7 +520,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/metrics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/metrics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

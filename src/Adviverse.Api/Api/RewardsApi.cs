@@ -28,169 +28,196 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"></param>
-        /// <returns></returns>
-        void RewardsControllerAdminPayouts(string limit);
-
-        /// <summary>
-        /// 
+        /// List recent reward payouts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerAdminPayoutsWithHttpInfo(string limit);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOnchainPoolDto"></param>
-        /// <returns></returns>
-        void RewardsControllerCreateOnchainPool(CreateOnchainPoolDto createOnchainPoolDto);
+        /// <returns>List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;</returns>
+        List<RewardsControllerAdminPayouts200ResponseInner> RewardsControllerAdminPayouts(string limit);
 
         /// <summary>
-        /// 
+        /// List recent reward payouts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit"></param>
+        /// <returns>ApiResponse of List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;</returns>
+        ApiResponse<List<RewardsControllerAdminPayouts200ResponseInner>> RewardsControllerAdminPayoutsWithHttpInfo(string limit);
+        /// <summary>
+        /// Create an on-chain (advertiser-custodied) reward pool
+        /// </summary>
+        /// <remarks>
+        /// Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createOnchainPoolDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerCreateOnchainPoolWithHttpInfo(CreateOnchainPoolDto createOnchainPoolDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fundPoolDto"></param>
-        /// <returns></returns>
-        void RewardsControllerFundPool(FundPoolDto fundPoolDto);
+        /// <returns>RewPool</returns>
+        RewPool RewardsControllerCreateOnchainPool(CreateOnchainPoolDto createOnchainPoolDto);
 
         /// <summary>
-        /// 
+        /// Create an on-chain (advertiser-custodied) reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createOnchainPoolDto"></param>
+        /// <returns>ApiResponse of RewPool</returns>
+        ApiResponse<RewPool> RewardsControllerCreateOnchainPoolWithHttpInfo(CreateOnchainPoolDto createOnchainPoolDto);
+        /// <summary>
+        /// Fund or top up a campaign reward pool
+        /// </summary>
+        /// <remarks>
+        /// Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerFundPoolWithHttpInfo(FundPoolDto fundPoolDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <returns></returns>
-        void RewardsControllerGetPool(string campaignId);
+        /// <returns>RewPool</returns>
+        RewPool RewardsControllerFundPool(FundPoolDto fundPoolDto);
 
         /// <summary>
-        /// 
+        /// Fund or top up a campaign reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fundPoolDto"></param>
+        /// <returns>ApiResponse of RewPool</returns>
+        ApiResponse<RewPool> RewardsControllerFundPoolWithHttpInfo(FundPoolDto fundPoolDto);
+        /// <summary>
+        /// Get a campaign reward pool
+        /// </summary>
+        /// <remarks>
+        /// Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerGetPoolWithHttpInfo(string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void RewardsControllerListPools();
+        /// <returns>RewPool</returns>
+        RewPool RewardsControllerGetPool(string campaignId);
 
         /// <summary>
-        /// 
+        /// Get a campaign reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerListPoolsWithHttpInfo();
+        /// <param name="campaignId"></param>
+        /// <returns>ApiResponse of RewPool</returns>
+        ApiResponse<RewPool> RewardsControllerGetPoolWithHttpInfo(string campaignId);
         /// <summary>
-        /// 
+        /// List your reward pools
         /// </summary>
+        /// <remarks>
+        /// Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;RewPool&gt;</returns>
+        List<RewPool> RewardsControllerListPools();
+
+        /// <summary>
+        /// List your reward pools
+        /// </summary>
+        /// <remarks>
+        /// Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;RewPool&gt;</returns>
+        ApiResponse<List<RewPool>> RewardsControllerListPoolsWithHttpInfo();
+        /// <summary>
+        /// Get your reward payout report
+        /// </summary>
+        /// <remarks>
+        /// Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        void RewardsControllerReport(string from, string to);
+        /// <returns>RewardsControllerReport200Response</returns>
+        RewardsControllerReport200Response RewardsControllerReport(string from, string to);
 
         /// <summary>
-        /// 
+        /// Get your reward payout report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerReportWithHttpInfo(string from, string to);
+        /// <returns>ApiResponse of RewardsControllerReport200Response</returns>
+        ApiResponse<RewardsControllerReport200Response> RewardsControllerReportWithHttpInfo(string from, string to);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="setPoolStatusDto"></param>
-        /// <returns></returns>
-        void RewardsControllerSetPoolStatus(string campaignId, SetPoolStatusDto setPoolStatusDto);
-
-        /// <summary>
-        /// 
+        /// Pause or resume a reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="setPoolStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerSetPoolStatusWithHttpInfo(string campaignId, SetPoolStatusDto setPoolStatusDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="setWorldWebhookDto"></param>
-        /// <returns></returns>
-        void RewardsControllerSetWorldWebhook(SetWorldWebhookDto setWorldWebhookDto);
+        /// <returns>RewardsControllerSetPoolStatus201Response</returns>
+        RewardsControllerSetPoolStatus201Response RewardsControllerSetPoolStatus(string campaignId, SetPoolStatusDto setPoolStatusDto);
 
         /// <summary>
-        /// 
+        /// Pause or resume a reward pool
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="setWorldWebhookDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerSetWorldWebhookWithHttpInfo(SetWorldWebhookDto setWorldWebhookDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <returns></returns>
-        void RewardsControllerVoucherSecret(string campaignId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RewardsControllerVoucherSecretWithHttpInfo(string campaignId);
+        /// <param name="setPoolStatusDto"></param>
+        /// <returns>ApiResponse of RewardsControllerSetPoolStatus201Response</returns>
+        ApiResponse<RewardsControllerSetPoolStatus201Response> RewardsControllerSetPoolStatusWithHttpInfo(string campaignId, SetPoolStatusDto setPoolStatusDto);
+        /// <summary>
+        /// Set a world&#39;s reward-payout webhook
+        /// </summary>
+        /// <remarks>
+        /// Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWorldWebhookDto"></param>
+        /// <returns>RewardsControllerSetWorldWebhook201Response</returns>
+        RewardsControllerSetWorldWebhook201Response RewardsControllerSetWorldWebhook(SetWorldWebhookDto setWorldWebhookDto);
+
+        /// <summary>
+        /// Set a world&#39;s reward-payout webhook
+        /// </summary>
+        /// <remarks>
+        /// Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWorldWebhookDto"></param>
+        /// <returns>ApiResponse of RewardsControllerSetWorldWebhook201Response</returns>
+        ApiResponse<RewardsControllerSetWorldWebhook201Response> RewardsControllerSetWorldWebhookWithHttpInfo(SetWorldWebhookDto setWorldWebhookDto);
+        /// <summary>
+        /// Get the voucher secret for an on-chain pool
+        /// </summary>
+        /// <remarks>
+        /// Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <returns>RewardsControllerVoucherSecret200Response</returns>
+        RewardsControllerVoucherSecret200Response RewardsControllerVoucherSecret(string campaignId);
+
+        /// <summary>
+        /// Get the voucher secret for an on-chain pool
+        /// </summary>
+        /// <remarks>
+        /// Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"></param>
+        /// <returns>ApiResponse of RewardsControllerVoucherSecret200Response</returns>
+        ApiResponse<RewardsControllerVoucherSecret200Response> RewardsControllerVoucherSecretWithHttpInfo(string campaignId);
         #endregion Synchronous Operations
     }
 
@@ -201,214 +228,214 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List recent reward payouts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerAdminPayoutsAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<RewardsControllerAdminPayouts200ResponseInner>> RewardsControllerAdminPayoutsAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List recent reward payouts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerAdminPayoutsWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<RewardsControllerAdminPayouts200ResponseInner>>> RewardsControllerAdminPayoutsWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create an on-chain (advertiser-custodied) reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createOnchainPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerCreateOnchainPoolAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewPool</returns>
+        System.Threading.Tasks.Task<RewPool> RewardsControllerCreateOnchainPoolAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create an on-chain (advertiser-custodied) reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createOnchainPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerCreateOnchainPoolWithHttpInfoAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewPool)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewPool>> RewardsControllerCreateOnchainPoolWithHttpInfoAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Fund or top up a campaign reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerFundPoolAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewPool</returns>
+        System.Threading.Tasks.Task<RewPool> RewardsControllerFundPoolAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Fund or top up a campaign reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerFundPoolWithHttpInfoAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewPool)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewPool>> RewardsControllerFundPoolWithHttpInfoAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a campaign reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerGetPoolAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewPool</returns>
+        System.Threading.Tasks.Task<RewPool> RewardsControllerGetPoolAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a campaign reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerGetPoolWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewPool)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewPool>> RewardsControllerGetPoolWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your reward pools
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerListPoolsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;RewPool&gt;</returns>
+        System.Threading.Tasks.Task<List<RewPool>> RewardsControllerListPoolsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your reward pools
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerListPoolsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;RewPool&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<RewPool>>> RewardsControllerListPoolsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get your reward payout report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerReportAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewardsControllerReport200Response</returns>
+        System.Threading.Tasks.Task<RewardsControllerReport200Response> RewardsControllerReportAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get your reward payout report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerReportWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewardsControllerReport200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewardsControllerReport200Response>> RewardsControllerReportWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Pause or resume a reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="setPoolStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerSetPoolStatusAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewardsControllerSetPoolStatus201Response</returns>
+        System.Threading.Tasks.Task<RewardsControllerSetPoolStatus201Response> RewardsControllerSetPoolStatusAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Pause or resume a reward pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="setPoolStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerSetPoolStatusWithHttpInfoAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewardsControllerSetPoolStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewardsControllerSetPoolStatus201Response>> RewardsControllerSetPoolStatusWithHttpInfoAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set a world&#39;s reward-payout webhook
         /// </summary>
         /// <remarks>
-        /// 
+        /// Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setWorldWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerSetWorldWebhookAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewardsControllerSetWorldWebhook201Response</returns>
+        System.Threading.Tasks.Task<RewardsControllerSetWorldWebhook201Response> RewardsControllerSetWorldWebhookAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set a world&#39;s reward-payout webhook
         /// </summary>
         /// <remarks>
-        /// 
+        /// Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setWorldWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerSetWorldWebhookWithHttpInfoAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewardsControllerSetWorldWebhook201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewardsControllerSetWorldWebhook201Response>> RewardsControllerSetWorldWebhookWithHttpInfoAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the voucher secret for an on-chain pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RewardsControllerVoucherSecretAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewardsControllerVoucherSecret200Response</returns>
+        System.Threading.Tasks.Task<RewardsControllerVoucherSecret200Response> RewardsControllerVoucherSecretAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the voucher secret for an on-chain pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RewardsControllerVoucherSecretWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewardsControllerVoucherSecret200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewardsControllerVoucherSecret200Response>> RewardsControllerVoucherSecretWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -623,23 +650,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent reward payouts Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns></returns>
-        public void RewardsControllerAdminPayouts(string limit)
+        /// <returns>List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;</returns>
+        public List<RewardsControllerAdminPayouts200ResponseInner> RewardsControllerAdminPayouts(string limit)
         {
-            RewardsControllerAdminPayoutsWithHttpInfo(limit);
+            Adviverse.Api.Client.ApiResponse<List<RewardsControllerAdminPayouts200ResponseInner>> localVarResponse = RewardsControllerAdminPayoutsWithHttpInfo(limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent reward payouts Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerAdminPayoutsWithHttpInfo(string limit)
+        /// <returns>ApiResponse of List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<RewardsControllerAdminPayouts200ResponseInner>> RewardsControllerAdminPayoutsWithHttpInfo(string limit)
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -652,6 +680,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -662,9 +691,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/rewards/payouts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<RewardsControllerAdminPayouts200ResponseInner>>("/v1/admin/rewards/payouts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -676,25 +716,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent reward payouts Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerAdminPayoutsAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<RewardsControllerAdminPayouts200ResponseInner>> RewardsControllerAdminPayoutsAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerAdminPayoutsWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<RewardsControllerAdminPayouts200ResponseInner>> localVarResponse = await RewardsControllerAdminPayoutsWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent reward payouts Admin view of the most recent reward payouts across all pools, including delivery attempts and last error. &#x60;?limit&#x3D;&#x60; defaults to 200 (max 1000).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerAdminPayoutsWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;RewardsControllerAdminPayouts200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<RewardsControllerAdminPayouts200ResponseInner>>> RewardsControllerAdminPayoutsWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -708,6 +749,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -719,10 +761,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/rewards/payouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<RewardsControllerAdminPayouts200ResponseInner>>("/v1/admin/rewards/payouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -734,23 +787,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an on-chain (advertiser-custodied) reward pool Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createOnchainPoolDto"></param>
-        /// <returns></returns>
-        public void RewardsControllerCreateOnchainPool(CreateOnchainPoolDto createOnchainPoolDto)
+        /// <returns>RewPool</returns>
+        public RewPool RewardsControllerCreateOnchainPool(CreateOnchainPoolDto createOnchainPoolDto)
         {
-            RewardsControllerCreateOnchainPoolWithHttpInfo(createOnchainPoolDto);
+            Adviverse.Api.Client.ApiResponse<RewPool> localVarResponse = RewardsControllerCreateOnchainPoolWithHttpInfo(createOnchainPoolDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an on-chain (advertiser-custodied) reward pool Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createOnchainPoolDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerCreateOnchainPoolWithHttpInfo(CreateOnchainPoolDto createOnchainPoolDto)
+        /// <returns>ApiResponse of RewPool</returns>
+        public Adviverse.Api.Client.ApiResponse<RewPool> RewardsControllerCreateOnchainPoolWithHttpInfo(CreateOnchainPoolDto createOnchainPoolDto)
         {
             // verify the required parameter 'createOnchainPoolDto' is set
             if (createOnchainPoolDto == null)
@@ -764,6 +818,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -774,9 +829,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createOnchainPoolDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/rewards/pools/onchain", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<RewPool>("/v1/rewards/pools/onchain", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -788,25 +854,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an on-chain (advertiser-custodied) reward pool Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createOnchainPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerCreateOnchainPoolAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewPool</returns>
+        public async System.Threading.Tasks.Task<RewPool> RewardsControllerCreateOnchainPoolAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerCreateOnchainPoolWithHttpInfoAsync(createOnchainPoolDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewPool> localVarResponse = await RewardsControllerCreateOnchainPoolWithHttpInfoAsync(createOnchainPoolDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an on-chain (advertiser-custodied) reward pool Creates or converts a campaign&#39;s pool to &#x60;onchain_creative&#x60; mode: no escrow and no ledger movement, because your own contract pays users on-chain. Adviverse verifies each completion and issues the creative a signed single-use eligibility voucher. &#x60;perCompletion&#x60;, &#x60;token&#x60; and optional &#x60;chain&#x60; are display/report values. The response includes &#x60;voucher_secret&#x60;, used to verify vouchers before disbursing (empty if the platform voucher key is not configured). 404 if the campaign is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createOnchainPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerCreateOnchainPoolWithHttpInfoAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewPool)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewPool>> RewardsControllerCreateOnchainPoolWithHttpInfoAsync(CreateOnchainPoolDto createOnchainPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createOnchainPoolDto' is set
             if (createOnchainPoolDto == null)
@@ -821,6 +888,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -832,10 +900,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createOnchainPoolDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/rewards/pools/onchain", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RewPool>("/v1/rewards/pools/onchain", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -847,23 +926,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Fund or top up a campaign reward pool Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
-        /// <returns></returns>
-        public void RewardsControllerFundPool(FundPoolDto fundPoolDto)
+        /// <returns>RewPool</returns>
+        public RewPool RewardsControllerFundPool(FundPoolDto fundPoolDto)
         {
-            RewardsControllerFundPoolWithHttpInfo(fundPoolDto);
+            Adviverse.Api.Client.ApiResponse<RewPool> localVarResponse = RewardsControllerFundPoolWithHttpInfo(fundPoolDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Fund or top up a campaign reward pool Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerFundPoolWithHttpInfo(FundPoolDto fundPoolDto)
+        /// <returns>ApiResponse of RewPool</returns>
+        public Adviverse.Api.Client.ApiResponse<RewPool> RewardsControllerFundPoolWithHttpInfo(FundPoolDto fundPoolDto)
         {
             // verify the required parameter 'fundPoolDto' is set
             if (fundPoolDto == null)
@@ -877,6 +957,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -887,9 +968,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = fundPoolDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/rewards/pools", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<RewPool>("/v1/rewards/pools", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -901,25 +993,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Fund or top up a campaign reward pool Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerFundPoolAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewPool</returns>
+        public async System.Threading.Tasks.Task<RewPool> RewardsControllerFundPoolAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerFundPoolWithHttpInfoAsync(fundPoolDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewPool> localVarResponse = await RewardsControllerFundPoolWithHttpInfoAsync(fundPoolDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Fund or top up a campaign reward pool Creates the reward pool for one of your campaigns, or adds to it, and escrows &#x60;amount&#x60; from your available balance in the same transaction (a &#x60;reward_fund&#x60; ledger entry). &#x60;perCompletion&#x60; is the fixed reward per verified completion; &#x60;token&#x60; defaults to your account currency; &#x60;perUserDailyCap&#x60;/&#x60;perWalletDailyCap&#x60; default to 5. 404 if the campaign is not yours; fails with insufficient funds if your balance cannot cover &#x60;amount&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fundPoolDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerFundPoolWithHttpInfoAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewPool)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewPool>> RewardsControllerFundPoolWithHttpInfoAsync(FundPoolDto fundPoolDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'fundPoolDto' is set
             if (fundPoolDto == null)
@@ -934,6 +1027,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -945,10 +1039,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = fundPoolDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/rewards/pools", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RewPool>("/v1/rewards/pools", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -960,23 +1065,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign reward pool Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns></returns>
-        public void RewardsControllerGetPool(string campaignId)
+        /// <returns>RewPool</returns>
+        public RewPool RewardsControllerGetPool(string campaignId)
         {
-            RewardsControllerGetPoolWithHttpInfo(campaignId);
+            Adviverse.Api.Client.ApiResponse<RewPool> localVarResponse = RewardsControllerGetPoolWithHttpInfo(campaignId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign reward pool Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerGetPoolWithHttpInfo(string campaignId)
+        /// <returns>ApiResponse of RewPool</returns>
+        public Adviverse.Api.Client.ApiResponse<RewPool> RewardsControllerGetPoolWithHttpInfo(string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -989,6 +1095,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -999,9 +1106,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/rewards/pools/{campaignId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<RewPool>("/v1/rewards/pools/{campaignId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1013,25 +1131,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign reward pool Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerGetPoolAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewPool</returns>
+        public async System.Threading.Tasks.Task<RewPool> RewardsControllerGetPoolAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerGetPoolWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewPool> localVarResponse = await RewardsControllerGetPoolWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign reward pool Returns the reward pool for &#x60;campaignId&#x60;; on-chain pools also include &#x60;voucher_secret&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerGetPoolWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewPool)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewPool>> RewardsControllerGetPoolWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1045,6 +1164,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1056,10 +1176,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/rewards/pools/{campaignId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<RewPool>("/v1/rewards/pools/{campaignId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1071,21 +1202,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your reward pools Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void RewardsControllerListPools()
+        /// <returns>List&lt;RewPool&gt;</returns>
+        public List<RewPool> RewardsControllerListPools()
         {
-            RewardsControllerListPoolsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<RewPool>> localVarResponse = RewardsControllerListPoolsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your reward pools Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerListPoolsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;RewPool&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<RewPool>> RewardsControllerListPoolsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1094,6 +1226,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1103,9 +1236,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/rewards/pools", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<RewPool>>("/v1/rewards/pools", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1117,23 +1261,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your reward pools Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerListPoolsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;RewPool&gt;</returns>
+        public async System.Threading.Tasks.Task<List<RewPool>> RewardsControllerListPoolsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerListPoolsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<RewPool>> localVarResponse = await RewardsControllerListPoolsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your reward pools Returns all of your campaign reward pools, newest first. Voucher secrets are not included here.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerListPoolsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;RewPool&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<RewPool>>> RewardsControllerListPoolsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1143,6 +1288,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1153,10 +1299,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/rewards/pools", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<RewPool>>("/v1/rewards/pools", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1168,25 +1325,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your reward payout report Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        public void RewardsControllerReport(string from, string to)
+        /// <returns>RewardsControllerReport200Response</returns>
+        public RewardsControllerReport200Response RewardsControllerReport(string from, string to)
         {
-            RewardsControllerReportWithHttpInfo(from, to);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerReport200Response> localVarResponse = RewardsControllerReportWithHttpInfo(from, to);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your reward payout report Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerReportWithHttpInfo(string from, string to)
+        /// <returns>ApiResponse of RewardsControllerReport200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<RewardsControllerReport200Response> RewardsControllerReportWithHttpInfo(string from, string to)
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -1203,6 +1361,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1214,9 +1373,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/rewards/report", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<RewardsControllerReport200Response>("/v1/rewards/report", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1228,27 +1398,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your reward payout report Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerReportAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewardsControllerReport200Response</returns>
+        public async System.Threading.Tasks.Task<RewardsControllerReport200Response> RewardsControllerReportAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerReportWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerReport200Response> localVarResponse = await RewardsControllerReportWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your reward payout report Reports reward payouts on your pools between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): totals by status (sent, pending, failed, on-chain, on-chain with a tx hash), amount paid and distinct recipient wallets, a per-campaign breakdown, current pool balances, and up to 2000 payout rows.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerReportWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewardsControllerReport200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewardsControllerReport200Response>> RewardsControllerReportWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -1266,6 +1437,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1278,10 +1450,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/rewards/report", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<RewardsControllerReport200Response>("/v1/rewards/report", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1293,25 +1476,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pause or resume a reward pool Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="setPoolStatusDto"></param>
-        /// <returns></returns>
-        public void RewardsControllerSetPoolStatus(string campaignId, SetPoolStatusDto setPoolStatusDto)
+        /// <returns>RewardsControllerSetPoolStatus201Response</returns>
+        public RewardsControllerSetPoolStatus201Response RewardsControllerSetPoolStatus(string campaignId, SetPoolStatusDto setPoolStatusDto)
         {
-            RewardsControllerSetPoolStatusWithHttpInfo(campaignId, setPoolStatusDto);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerSetPoolStatus201Response> localVarResponse = RewardsControllerSetPoolStatusWithHttpInfo(campaignId, setPoolStatusDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pause or resume a reward pool Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="setPoolStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerSetPoolStatusWithHttpInfo(string campaignId, SetPoolStatusDto setPoolStatusDto)
+        /// <returns>ApiResponse of RewardsControllerSetPoolStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<RewardsControllerSetPoolStatus201Response> RewardsControllerSetPoolStatusWithHttpInfo(string campaignId, SetPoolStatusDto setPoolStatusDto)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1329,6 +1513,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1340,9 +1525,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
             localVarRequestOptions.Data = setPoolStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/rewards/pools/{campaignId}/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<RewardsControllerSetPoolStatus201Response>("/v1/rewards/pools/{campaignId}/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1354,27 +1550,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pause or resume a reward pool Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="setPoolStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerSetPoolStatusAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewardsControllerSetPoolStatus201Response</returns>
+        public async System.Threading.Tasks.Task<RewardsControllerSetPoolStatus201Response> RewardsControllerSetPoolStatusAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerSetPoolStatusWithHttpInfoAsync(campaignId, setPoolStatusDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerSetPoolStatus201Response> localVarResponse = await RewardsControllerSetPoolStatusWithHttpInfoAsync(campaignId, setPoolStatusDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pause or resume a reward pool Sets the pool &#x60;status&#x60; to &#x60;paused&#x60; (stops accruing completions) or &#x60;active&#x60;. 404 if you have no pool for that campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="setPoolStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerSetPoolStatusWithHttpInfoAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewardsControllerSetPoolStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewardsControllerSetPoolStatus201Response>> RewardsControllerSetPoolStatusWithHttpInfoAsync(string campaignId, SetPoolStatusDto setPoolStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1393,6 +1590,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1405,10 +1603,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
             localVarRequestOptions.Data = setPoolStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/rewards/pools/{campaignId}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RewardsControllerSetPoolStatus201Response>("/v1/rewards/pools/{campaignId}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1420,23 +1629,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s reward-payout webhook Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setWorldWebhookDto"></param>
-        /// <returns></returns>
-        public void RewardsControllerSetWorldWebhook(SetWorldWebhookDto setWorldWebhookDto)
+        /// <returns>RewardsControllerSetWorldWebhook201Response</returns>
+        public RewardsControllerSetWorldWebhook201Response RewardsControllerSetWorldWebhook(SetWorldWebhookDto setWorldWebhookDto)
         {
-            RewardsControllerSetWorldWebhookWithHttpInfo(setWorldWebhookDto);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerSetWorldWebhook201Response> localVarResponse = RewardsControllerSetWorldWebhookWithHttpInfo(setWorldWebhookDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s reward-payout webhook Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setWorldWebhookDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerSetWorldWebhookWithHttpInfo(SetWorldWebhookDto setWorldWebhookDto)
+        /// <returns>ApiResponse of RewardsControllerSetWorldWebhook201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<RewardsControllerSetWorldWebhook201Response> RewardsControllerSetWorldWebhookWithHttpInfo(SetWorldWebhookDto setWorldWebhookDto)
         {
             // verify the required parameter 'setWorldWebhookDto' is set
             if (setWorldWebhookDto == null)
@@ -1450,6 +1660,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1460,9 +1671,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = setWorldWebhookDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/rewards/world-webhook", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<RewardsControllerSetWorldWebhook201Response>("/v1/rewards/world-webhook", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1474,25 +1696,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s reward-payout webhook Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setWorldWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerSetWorldWebhookAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewardsControllerSetWorldWebhook201Response</returns>
+        public async System.Threading.Tasks.Task<RewardsControllerSetWorldWebhook201Response> RewardsControllerSetWorldWebhookAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerSetWorldWebhookWithHttpInfoAsync(setWorldWebhookDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerSetWorldWebhook201Response> localVarResponse = await RewardsControllerSetWorldWebhookWithHttpInfoAsync(setWorldWebhookDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s reward-payout webhook Points one of your world integrations at &#x60;url&#x60;. Pending reward payouts for that operator are POSTed there as signed &#x60;reward.payout&#x60; webhooks (HMAC with the world&#39;s signing secret) so the operator can pay the user; delivery is retried up to 8 times. 404 if the world is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setWorldWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerSetWorldWebhookWithHttpInfoAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewardsControllerSetWorldWebhook201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewardsControllerSetWorldWebhook201Response>> RewardsControllerSetWorldWebhookWithHttpInfoAsync(SetWorldWebhookDto setWorldWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'setWorldWebhookDto' is set
             if (setWorldWebhookDto == null)
@@ -1507,6 +1730,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1518,10 +1742,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = setWorldWebhookDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/rewards/world-webhook", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RewardsControllerSetWorldWebhook201Response>("/v1/rewards/world-webhook", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1533,23 +1768,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the voucher secret for an on-chain pool Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns></returns>
-        public void RewardsControllerVoucherSecret(string campaignId)
+        /// <returns>RewardsControllerVoucherSecret200Response</returns>
+        public RewardsControllerVoucherSecret200Response RewardsControllerVoucherSecret(string campaignId)
         {
-            RewardsControllerVoucherSecretWithHttpInfo(campaignId);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerVoucherSecret200Response> localVarResponse = RewardsControllerVoucherSecretWithHttpInfo(campaignId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the voucher secret for an on-chain pool Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RewardsControllerVoucherSecretWithHttpInfo(string campaignId)
+        /// <returns>ApiResponse of RewardsControllerVoucherSecret200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<RewardsControllerVoucherSecret200Response> RewardsControllerVoucherSecretWithHttpInfo(string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1562,6 +1798,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1572,9 +1809,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/rewards/pools/{campaignId}/voucher-secret", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<RewardsControllerVoucherSecret200Response>("/v1/rewards/pools/{campaignId}/voucher-secret", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1586,25 +1834,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the voucher secret for an on-chain pool Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RewardsControllerVoucherSecretAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewardsControllerVoucherSecret200Response</returns>
+        public async System.Threading.Tasks.Task<RewardsControllerVoucherSecret200Response> RewardsControllerVoucherSecretAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RewardsControllerVoucherSecretWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewardsControllerVoucherSecret200Response> localVarResponse = await RewardsControllerVoucherSecretWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the voucher secret for an on-chain pool Returns the HMAC voucher secret for the campaign&#39;s on-chain reward pool. 404 if you have no pool for the campaign, 400 if the pool is not in on-chain mode.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RewardsControllerVoucherSecretWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewardsControllerVoucherSecret200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewardsControllerVoucherSecret200Response>> RewardsControllerVoucherSecretWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1618,6 +1867,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1629,10 +1879,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("campaignId", Adviverse.Api.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/rewards/pools/{campaignId}/voucher-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<RewardsControllerVoucherSecret200Response>("/v1/rewards/pools/{campaignId}/voucher-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -28,93 +28,108 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xSignatureSimple"></param>
-        /// <param name="xSignatureV2"></param>
-        /// <param name="xSignature"></param>
-        /// <returns></returns>
-        void AccountControllerDiditWebhook(string xSignatureSimple, string xSignatureV2, string xSignature);
-
-        /// <summary>
-        /// 
+        /// Receive Didit verification webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xSignatureSimple"></param>
         /// <param name="xSignatureV2"></param>
         /// <param name="xSignature"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AccountControllerDiditWebhookWithHttpInfo(string xSignatureSimple, string xSignatureV2, string xSignature);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AccountControllerKycStatus();
+        /// <returns>AccountControllerDiditWebhook201Response</returns>
+        AccountControllerDiditWebhook201Response AccountControllerDiditWebhook(string xSignatureSimple, string xSignatureV2, string xSignature);
 
         /// <summary>
-        /// 
+        /// Receive Didit verification webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AccountControllerKycStatusWithHttpInfo();
+        /// <param name="xSignatureSimple"></param>
+        /// <param name="xSignatureV2"></param>
+        /// <param name="xSignature"></param>
+        /// <returns>ApiResponse of AccountControllerDiditWebhook201Response</returns>
+        ApiResponse<AccountControllerDiditWebhook201Response> AccountControllerDiditWebhookWithHttpInfo(string xSignatureSimple, string xSignatureV2, string xSignature);
         /// <summary>
-        /// 
+        /// Get KYC verification status
         /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AccountControllerStartDidit();
+        /// <returns>AccountControllerKycStatus200Response</returns>
+        AccountControllerKycStatus200Response AccountControllerKycStatus();
 
         /// <summary>
-        /// 
+        /// Get KYC verification status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AccountControllerStartDiditWithHttpInfo();
+        /// <returns>ApiResponse of AccountControllerKycStatus200Response</returns>
+        ApiResponse<AccountControllerKycStatus200Response> AccountControllerKycStatusWithHttpInfo();
         /// <summary>
-        /// 
+        /// Start a hosted KYC session
         /// </summary>
+        /// <remarks>
+        /// Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AccountControllerStartDidit201Response</returns>
+        AccountControllerStartDidit201Response AccountControllerStartDidit();
+
+        /// <summary>
+        /// Start a hosted KYC session
+        /// </summary>
+        /// <remarks>
+        /// Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AccountControllerStartDidit201Response</returns>
+        ApiResponse<AccountControllerStartDidit201Response> AccountControllerStartDiditWithHttpInfo();
+        /// <summary>
+        /// Save onboarding profile answers
+        /// </summary>
+        /// <remarks>
+        /// Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
-        /// <returns></returns>
-        void OnboardingControllerSaveProfile(ProfileDto profileDto);
+        /// <returns>OnboardingControllerSaveProfile201Response</returns>
+        OnboardingControllerSaveProfile201Response OnboardingControllerSaveProfile(ProfileDto profileDto);
 
         /// <summary>
-        /// 
+        /// Save onboarding profile answers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OnboardingControllerSaveProfileWithHttpInfo(ProfileDto profileDto);
+        /// <returns>ApiResponse of OnboardingControllerSaveProfile201Response</returns>
+        ApiResponse<OnboardingControllerSaveProfile201Response> OnboardingControllerSaveProfileWithHttpInfo(ProfileDto profileDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void OnboardingControllerStatus();
-
-        /// <summary>
-        /// 
+        /// Get onboarding checklist progress
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OnboardingControllerStatusWithHttpInfo();
+        /// <returns>OnboardingControllerStatus200Response</returns>
+        OnboardingControllerStatus200Response OnboardingControllerStatus();
+
+        /// <summary>
+        /// Get onboarding checklist progress
+        /// </summary>
+        /// <remarks>
+        /// Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of OnboardingControllerStatus200Response</returns>
+        ApiResponse<OnboardingControllerStatus200Response> OnboardingControllerStatusWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -125,118 +140,118 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Receive Didit verification webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xSignatureSimple"></param>
         /// <param name="xSignatureV2"></param>
         /// <param name="xSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AccountControllerDiditWebhookAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AccountControllerDiditWebhook201Response</returns>
+        System.Threading.Tasks.Task<AccountControllerDiditWebhook201Response> AccountControllerDiditWebhookAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Receive Didit verification webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xSignatureSimple"></param>
         /// <param name="xSignatureV2"></param>
         /// <param name="xSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AccountControllerDiditWebhookWithHttpInfoAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AccountControllerDiditWebhook201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountControllerDiditWebhook201Response>> AccountControllerDiditWebhookWithHttpInfoAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get KYC verification status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AccountControllerKycStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AccountControllerKycStatus200Response</returns>
+        System.Threading.Tasks.Task<AccountControllerKycStatus200Response> AccountControllerKycStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get KYC verification status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AccountControllerKycStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AccountControllerKycStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountControllerKycStatus200Response>> AccountControllerKycStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start a hosted KYC session
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AccountControllerStartDiditAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AccountControllerStartDidit201Response</returns>
+        System.Threading.Tasks.Task<AccountControllerStartDidit201Response> AccountControllerStartDiditAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start a hosted KYC session
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AccountControllerStartDiditWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AccountControllerStartDidit201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountControllerStartDidit201Response>> AccountControllerStartDiditWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Save onboarding profile answers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OnboardingControllerSaveProfileAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of OnboardingControllerSaveProfile201Response</returns>
+        System.Threading.Tasks.Task<OnboardingControllerSaveProfile201Response> OnboardingControllerSaveProfileAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Save onboarding profile answers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OnboardingControllerSaveProfileWithHttpInfoAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (OnboardingControllerSaveProfile201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OnboardingControllerSaveProfile201Response>> OnboardingControllerSaveProfileWithHttpInfoAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get onboarding checklist progress
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OnboardingControllerStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of OnboardingControllerStatus200Response</returns>
+        System.Threading.Tasks.Task<OnboardingControllerStatus200Response> OnboardingControllerStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get onboarding checklist progress
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OnboardingControllerStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (OnboardingControllerStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OnboardingControllerStatus200Response>> OnboardingControllerStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -451,27 +466,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive Didit verification webhooks Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xSignatureSimple"></param>
         /// <param name="xSignatureV2"></param>
         /// <param name="xSignature"></param>
-        /// <returns></returns>
-        public void AccountControllerDiditWebhook(string xSignatureSimple, string xSignatureV2, string xSignature)
+        /// <returns>AccountControllerDiditWebhook201Response</returns>
+        public AccountControllerDiditWebhook201Response AccountControllerDiditWebhook(string xSignatureSimple, string xSignatureV2, string xSignature)
         {
-            AccountControllerDiditWebhookWithHttpInfo(xSignatureSimple, xSignatureV2, xSignature);
+            Adviverse.Api.Client.ApiResponse<AccountControllerDiditWebhook201Response> localVarResponse = AccountControllerDiditWebhookWithHttpInfo(xSignatureSimple, xSignatureV2, xSignature);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive Didit verification webhooks Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xSignatureSimple"></param>
         /// <param name="xSignatureV2"></param>
         /// <param name="xSignature"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AccountControllerDiditWebhookWithHttpInfo(string xSignatureSimple, string xSignatureV2, string xSignature)
+        /// <returns>ApiResponse of AccountControllerDiditWebhook201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AccountControllerDiditWebhook201Response> AccountControllerDiditWebhookWithHttpInfo(string xSignatureSimple, string xSignatureV2, string xSignature)
         {
             // verify the required parameter 'xSignatureSimple' is set
             if (xSignatureSimple == null)
@@ -492,6 +508,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -506,7 +523,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/account/kyc/didit/webhook", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AccountControllerDiditWebhook201Response>("/v1/account/kyc/didit/webhook", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -518,29 +535,30 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive Didit verification webhooks Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xSignatureSimple"></param>
         /// <param name="xSignatureV2"></param>
         /// <param name="xSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AccountControllerDiditWebhookAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AccountControllerDiditWebhook201Response</returns>
+        public async System.Threading.Tasks.Task<AccountControllerDiditWebhook201Response> AccountControllerDiditWebhookAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AccountControllerDiditWebhookWithHttpInfoAsync(xSignatureSimple, xSignatureV2, xSignature, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AccountControllerDiditWebhook201Response> localVarResponse = await AccountControllerDiditWebhookWithHttpInfoAsync(xSignatureSimple, xSignatureV2, xSignature, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive Didit verification webhooks Public callback for Didit, authenticated by HMAC signature (&#x60;x-signature-simple&#x60;, &#x60;x-signature-v2&#x60; or &#x60;x-signature&#x60; over the raw body) plus a &#x60;created_at&#x60; within 5 minutes. Updates the KYC session and maps the decision onto the account&#39;s KYC status, never downgrading a verified account. Returns 401 on a bad or stale signature, otherwise 200 so Didit does not retry.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xSignatureSimple"></param>
         /// <param name="xSignatureV2"></param>
         /// <param name="xSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AccountControllerDiditWebhookWithHttpInfoAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AccountControllerDiditWebhook201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AccountControllerDiditWebhook201Response>> AccountControllerDiditWebhookWithHttpInfoAsync(string xSignatureSimple, string xSignatureV2, string xSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'xSignatureSimple' is set
             if (xSignatureSimple == null)
@@ -562,6 +580,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -578,7 +597,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/account/kyc/didit/webhook", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AccountControllerDiditWebhook201Response>("/v1/account/kyc/didit/webhook", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -590,21 +609,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get KYC verification status Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AccountControllerKycStatus()
+        /// <returns>AccountControllerKycStatus200Response</returns>
+        public AccountControllerKycStatus200Response AccountControllerKycStatus()
         {
-            AccountControllerKycStatusWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AccountControllerKycStatus200Response> localVarResponse = AccountControllerKycStatusWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get KYC verification status Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AccountControllerKycStatusWithHttpInfo()
+        /// <returns>ApiResponse of AccountControllerKycStatus200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AccountControllerKycStatus200Response> AccountControllerKycStatusWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -613,6 +633,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -622,9 +643,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/account/kyc", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AccountControllerKycStatus200Response>("/v1/account/kyc", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -636,23 +668,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get KYC verification status Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AccountControllerKycStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AccountControllerKycStatus200Response</returns>
+        public async System.Threading.Tasks.Task<AccountControllerKycStatus200Response> AccountControllerKycStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AccountControllerKycStatusWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AccountControllerKycStatus200Response> localVarResponse = await AccountControllerKycStatusWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get KYC verification status Returns the account&#39;s identity verification status (&#x60;none&#x60;, &#x60;submitted&#x60;, &#x60;verified&#x60; or &#x60;rejected&#x60;) and &#x60;instantProvider&#x60;, which is &#x60;didit&#x60; when hosted verification is configured and null otherwise. There is no manual document upload path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AccountControllerKycStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AccountControllerKycStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AccountControllerKycStatus200Response>> AccountControllerKycStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -662,6 +695,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -672,10 +706,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/account/kyc", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AccountControllerKycStatus200Response>("/v1/account/kyc", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -687,21 +732,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a hosted KYC session Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AccountControllerStartDidit()
+        /// <returns>AccountControllerStartDidit201Response</returns>
+        public AccountControllerStartDidit201Response AccountControllerStartDidit()
         {
-            AccountControllerStartDiditWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AccountControllerStartDidit201Response> localVarResponse = AccountControllerStartDiditWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a hosted KYC session Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AccountControllerStartDiditWithHttpInfo()
+        /// <returns>ApiResponse of AccountControllerStartDidit201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AccountControllerStartDidit201Response> AccountControllerStartDiditWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -710,6 +756,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -719,9 +766,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/account/kyc/didit/start", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AccountControllerStartDidit201Response>("/v1/account/kyc/didit/start", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -733,23 +791,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a hosted KYC session Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AccountControllerStartDiditAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AccountControllerStartDidit201Response</returns>
+        public async System.Threading.Tasks.Task<AccountControllerStartDidit201Response> AccountControllerStartDiditAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AccountControllerStartDiditWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AccountControllerStartDidit201Response> localVarResponse = await AccountControllerStartDiditWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a hosted KYC session Creates a Didit verification session and returns the URL to send the user to. Documents are captured and reviewed by Didit; Adviverse never receives them. Records the session and sets the account to &#x60;submitted&#x60; unless already verified. Returns 400 if the provider is not configured or the session could not be created.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AccountControllerStartDiditWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AccountControllerStartDidit201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AccountControllerStartDidit201Response>> AccountControllerStartDiditWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -759,6 +818,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -769,10 +829,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/account/kyc/didit/start", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AccountControllerStartDidit201Response>("/v1/account/kyc/didit/start", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -784,23 +855,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save onboarding profile answers Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
-        /// <returns></returns>
-        public void OnboardingControllerSaveProfile(ProfileDto profileDto)
+        /// <returns>OnboardingControllerSaveProfile201Response</returns>
+        public OnboardingControllerSaveProfile201Response OnboardingControllerSaveProfile(ProfileDto profileDto)
         {
-            OnboardingControllerSaveProfileWithHttpInfo(profileDto);
+            Adviverse.Api.Client.ApiResponse<OnboardingControllerSaveProfile201Response> localVarResponse = OnboardingControllerSaveProfileWithHttpInfo(profileDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save onboarding profile answers Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OnboardingControllerSaveProfileWithHttpInfo(ProfileDto profileDto)
+        /// <returns>ApiResponse of OnboardingControllerSaveProfile201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<OnboardingControllerSaveProfile201Response> OnboardingControllerSaveProfileWithHttpInfo(ProfileDto profileDto)
         {
             // verify the required parameter 'profileDto' is set
             if (profileDto == null)
@@ -814,6 +886,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -824,9 +897,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = profileDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/onboarding/profile", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<OnboardingControllerSaveProfile201Response>("/v1/onboarding/profile", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -838,25 +922,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save onboarding profile answers Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OnboardingControllerSaveProfileAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of OnboardingControllerSaveProfile201Response</returns>
+        public async System.Threading.Tasks.Task<OnboardingControllerSaveProfile201Response> OnboardingControllerSaveProfileAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OnboardingControllerSaveProfileWithHttpInfoAsync(profileDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<OnboardingControllerSaveProfile201Response> localVarResponse = await OnboardingControllerSaveProfileWithHttpInfoAsync(profileDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save onboarding profile answers Stores the onboarding wizard answers. &#x60;company&#x60; and &#x60;country&#x60; (2 letters) update the account columns; &#x60;currency&#x60; updates the account currency when it is a 2-12 character code; &#x60;goal&#x60; (advertiser|publisher|both, default both) sets the default landing side. &#x60;name&#x60;, &#x60;timezone&#x60;, &#x60;marketingOptIn&#x60; and an onboarding-completed flag are merged into account metadata. Idempotent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OnboardingControllerSaveProfileWithHttpInfoAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (OnboardingControllerSaveProfile201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<OnboardingControllerSaveProfile201Response>> OnboardingControllerSaveProfileWithHttpInfoAsync(ProfileDto profileDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'profileDto' is set
             if (profileDto == null)
@@ -871,6 +956,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -882,10 +968,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = profileDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/onboarding/profile", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<OnboardingControllerSaveProfile201Response>("/v1/onboarding/profile", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -897,21 +994,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get onboarding checklist progress Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void OnboardingControllerStatus()
+        /// <returns>OnboardingControllerStatus200Response</returns>
+        public OnboardingControllerStatus200Response OnboardingControllerStatus()
         {
-            OnboardingControllerStatusWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<OnboardingControllerStatus200Response> localVarResponse = OnboardingControllerStatusWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get onboarding checklist progress Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OnboardingControllerStatusWithHttpInfo()
+        /// <returns>ApiResponse of OnboardingControllerStatus200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<OnboardingControllerStatus200Response> OnboardingControllerStatusWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -920,6 +1018,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -929,9 +1028,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/onboarding", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<OnboardingControllerStatus200Response>("/v1/onboarding", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -943,23 +1053,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get onboarding checklist progress Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OnboardingControllerStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of OnboardingControllerStatus200Response</returns>
+        public async System.Threading.Tasks.Task<OnboardingControllerStatus200Response> OnboardingControllerStatusAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OnboardingControllerStatusWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<OnboardingControllerStatus200Response> localVarResponse = await OnboardingControllerStatusWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get onboarding checklist progress Returns onboarding checklist booleans for both sides, derived from real account state in one query: properties, verified properties, placements and tax form for the publisher side; a completed deposit, campaigns, creatives and an active campaign for the advertiser side.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OnboardingControllerStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (OnboardingControllerStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<OnboardingControllerStatus200Response>> OnboardingControllerStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -969,6 +1080,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -979,10 +1091,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/onboarding", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<OnboardingControllerStatus200Response>("/v1/onboarding", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,41 +28,47 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void MfaControllerOwn(string id);
-
-        /// <summary>
-        /// 
+        /// Get my property&#39;s MFA score
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MfaControllerOwnWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"></param>
-        /// <returns></returns>
-        void MfaControllerRanked(string limit);
+        /// <returns>MfaControllerOwn200Response</returns>
+        MfaControllerOwn200Response MfaControllerOwn(string id);
 
         /// <summary>
-        /// 
+        /// Get my property&#39;s MFA score
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of MfaControllerOwn200Response</returns>
+        ApiResponse<MfaControllerOwn200Response> MfaControllerOwnWithHttpInfo(string id);
+        /// <summary>
+        /// Rank properties by MFA score (admin)
+        /// </summary>
+        /// <remarks>
+        /// Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MfaControllerRankedWithHttpInfo(string limit);
+        /// <returns>List&lt;MfaControllerRanked200ResponseInner&gt;</returns>
+        List<MfaControllerRanked200ResponseInner> MfaControllerRanked(string limit);
+
+        /// <summary>
+        /// Rank properties by MFA score (admin)
+        /// </summary>
+        /// <remarks>
+        /// Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit"></param>
+        /// <returns>ApiResponse of List&lt;MfaControllerRanked200ResponseInner&gt;</returns>
+        ApiResponse<List<MfaControllerRanked200ResponseInner>> MfaControllerRankedWithHttpInfo(string limit);
         #endregion Synchronous Operations
     }
 
@@ -72,51 +79,51 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get my property&#39;s MFA score
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MfaControllerOwnAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of MfaControllerOwn200Response</returns>
+        System.Threading.Tasks.Task<MfaControllerOwn200Response> MfaControllerOwnAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get my property&#39;s MFA score
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MfaControllerOwnWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (MfaControllerOwn200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MfaControllerOwn200Response>> MfaControllerOwnWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Rank properties by MFA score (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MfaControllerRankedAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;MfaControllerRanked200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<MfaControllerRanked200ResponseInner>> MfaControllerRankedAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Rank properties by MFA score (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MfaControllerRankedWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;MfaControllerRanked200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<MfaControllerRanked200ResponseInner>>> MfaControllerRankedWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -331,23 +338,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get my property&#39;s MFA score Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void MfaControllerOwn(string id)
+        /// <returns>MfaControllerOwn200Response</returns>
+        public MfaControllerOwn200Response MfaControllerOwn(string id)
         {
-            MfaControllerOwnWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<MfaControllerOwn200Response> localVarResponse = MfaControllerOwnWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get my property&#39;s MFA score Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MfaControllerOwnWithHttpInfo(string id)
+        /// <returns>ApiResponse of MfaControllerOwn200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<MfaControllerOwn200Response> MfaControllerOwnWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -360,6 +368,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -370,9 +379,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/properties/{id}/mfa", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<MfaControllerOwn200Response>("/v1/publisher/properties/{id}/mfa", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -384,25 +404,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get my property&#39;s MFA score Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MfaControllerOwnAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of MfaControllerOwn200Response</returns>
+        public async System.Threading.Tasks.Task<MfaControllerOwn200Response> MfaControllerOwnAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MfaControllerOwnWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<MfaControllerOwn200Response> localVarResponse = await MfaControllerOwnWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get my property&#39;s MFA score Returns the latest MFA score for one of the caller&#39;s properties, whether it crosses the flag threshold, the reasons, raw signals and improvement tips. If no score has been stored yet it is computed on the fly (not persisted) and &#x60;computedAt&#x60; is null. Returns 404 for an unknown property and 403 if it belongs to another publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MfaControllerOwnWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (MfaControllerOwn200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<MfaControllerOwn200Response>> MfaControllerOwnWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -416,6 +437,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -427,10 +449,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/properties/{id}/mfa", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<MfaControllerOwn200Response>("/v1/publisher/properties/{id}/mfa", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -442,23 +475,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rank properties by MFA score (admin) Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns></returns>
-        public void MfaControllerRanked(string limit)
+        /// <returns>List&lt;MfaControllerRanked200ResponseInner&gt;</returns>
+        public List<MfaControllerRanked200ResponseInner> MfaControllerRanked(string limit)
         {
-            MfaControllerRankedWithHttpInfo(limit);
+            Adviverse.Api.Client.ApiResponse<List<MfaControllerRanked200ResponseInner>> localVarResponse = MfaControllerRankedWithHttpInfo(limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rank properties by MFA score (admin) Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MfaControllerRankedWithHttpInfo(string limit)
+        /// <returns>ApiResponse of List&lt;MfaControllerRanked200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<MfaControllerRanked200ResponseInner>> MfaControllerRankedWithHttpInfo(string limit)
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -471,6 +505,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -481,9 +516,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/mfa", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<MfaControllerRanked200ResponseInner>>("/v1/admin/mfa", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -495,25 +541,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rank properties by MFA score (admin) Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MfaControllerRankedAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;MfaControllerRanked200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<MfaControllerRanked200ResponseInner>> MfaControllerRankedAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MfaControllerRankedWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<MfaControllerRanked200ResponseInner>> localVarResponse = await MfaControllerRankedWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rank properties by MFA score (admin) Lists properties with their latest made-for-advertising (MFA) score, highest first, including the stored signal breakdown and manual &#x60;mfa_flag&#x60;. &#x60;limit&#x60; defaults to 200 (max 1000). Properties never scored are omitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MfaControllerRankedWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;MfaControllerRanked200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<MfaControllerRanked200ResponseInner>>> MfaControllerRankedWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -527,6 +574,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -538,10 +586,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/mfa", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<MfaControllerRanked200ResponseInner>>("/v1/admin/mfa", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,125 +28,146 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MembersControllerAccept();
-
-        /// <summary>
-        /// 
+        /// Accept a team invitation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MembersControllerAcceptWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MembersControllerInvite();
+        /// <returns>MembersControllerAccept201Response</returns>
+        MembersControllerAccept201Response MembersControllerAccept();
 
         /// <summary>
-        /// 
+        /// Accept a team invitation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MembersControllerInviteWithHttpInfo();
+        /// <returns>ApiResponse of MembersControllerAccept201Response</returns>
+        ApiResponse<MembersControllerAccept201Response> MembersControllerAcceptWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        void MembersControllerInviteInfo(string token);
-
-        /// <summary>
-        /// 
+        /// Invite a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AdvTeamMember</returns>
+        AdvTeamMember MembersControllerInvite();
+
+        /// <summary>
+        /// Invite a team member
+        /// </summary>
+        /// <remarks>
+        /// Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AdvTeamMember</returns>
+        ApiResponse<AdvTeamMember> MembersControllerInviteWithHttpInfo();
+        /// <summary>
+        /// Look up an invitation by token
+        /// </summary>
+        /// <remarks>
+        /// Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MembersControllerInviteInfoWithHttpInfo(string token);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MembersControllerList();
+        /// <returns>MembersControllerInviteInfo200Response</returns>
+        MembersControllerInviteInfo200Response MembersControllerInviteInfo(string token);
 
         /// <summary>
-        /// 
+        /// Look up an invitation by token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MembersControllerListWithHttpInfo();
+        /// <param name="token"></param>
+        /// <returns>ApiResponse of MembersControllerInviteInfo200Response</returns>
+        ApiResponse<MembersControllerInviteInfo200Response> MembersControllerInviteInfoWithHttpInfo(string token);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void MembersControllerRemove(string id);
-
-        /// <summary>
-        /// 
+        /// List team members
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MembersControllerRemoveWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void MembersControllerResend(string id);
+        /// <returns>List&lt;AdvTeamMember&gt;</returns>
+        List<AdvTeamMember> MembersControllerList();
 
         /// <summary>
-        /// 
+        /// List team members
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdvTeamMember&gt;</returns>
+        ApiResponse<List<AdvTeamMember>> MembersControllerListWithHttpInfo();
+        /// <summary>
+        /// Remove a team member
+        /// </summary>
+        /// <remarks>
+        /// Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MembersControllerResendWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void MembersControllerUpdate(string id);
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted MembersControllerRemove(string id);
 
         /// <summary>
-        /// 
+        /// Remove a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MembersControllerUpdateWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> MembersControllerRemoveWithHttpInfo(string id);
+        /// <summary>
+        /// Resend a team invitation
+        /// </summary>
+        /// <remarks>
+        /// Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response MembersControllerResend(string id);
+
+        /// <summary>
+        /// Resend a team invitation
+        /// </summary>
+        /// <remarks>
+        /// Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> MembersControllerResendWithHttpInfo(string id);
+        /// <summary>
+        /// Update a team member
+        /// </summary>
+        /// <remarks>
+        /// Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AdvTeamMember</returns>
+        AdvTeamMember MembersControllerUpdate(string id);
+
+        /// <summary>
+        /// Update a team member
+        /// </summary>
+        /// <remarks>
+        /// Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvTeamMember</returns>
+        ApiResponse<AdvTeamMember> MembersControllerUpdateWithHttpInfo(string id);
         #endregion Synchronous Operations
     }
 
@@ -156,160 +178,160 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Accept a team invitation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MembersControllerAcceptAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of MembersControllerAccept201Response</returns>
+        System.Threading.Tasks.Task<MembersControllerAccept201Response> MembersControllerAcceptAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Accept a team invitation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MembersControllerAcceptWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (MembersControllerAccept201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MembersControllerAccept201Response>> MembersControllerAcceptWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Invite a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MembersControllerInviteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvTeamMember</returns>
+        System.Threading.Tasks.Task<AdvTeamMember> MembersControllerInviteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Invite a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MembersControllerInviteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvTeamMember)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvTeamMember>> MembersControllerInviteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Look up an invitation by token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MembersControllerInviteInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of MembersControllerInviteInfo200Response</returns>
+        System.Threading.Tasks.Task<MembersControllerInviteInfo200Response> MembersControllerInviteInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Look up an invitation by token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MembersControllerInviteInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (MembersControllerInviteInfo200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MembersControllerInviteInfo200Response>> MembersControllerInviteInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List team members
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MembersControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvTeamMember&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvTeamMember>> MembersControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List team members
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MembersControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvTeamMember&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvTeamMember>>> MembersControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Remove a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MembersControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> MembersControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Remove a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MembersControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> MembersControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Resend a team invitation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MembersControllerResendAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> MembersControllerResendAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Resend a team invitation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MembersControllerResendWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> MembersControllerResendWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MembersControllerUpdateAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvTeamMember</returns>
+        System.Threading.Tasks.Task<AdvTeamMember> MembersControllerUpdateAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a team member
         /// </summary>
         /// <remarks>
-        /// 
+        /// Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MembersControllerUpdateWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvTeamMember)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvTeamMember>> MembersControllerUpdateWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -524,21 +546,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Accept a team invitation Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MembersControllerAccept()
+        /// <returns>MembersControllerAccept201Response</returns>
+        public MembersControllerAccept201Response MembersControllerAccept()
         {
-            MembersControllerAcceptWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<MembersControllerAccept201Response> localVarResponse = MembersControllerAcceptWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Accept a team invitation Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MembersControllerAcceptWithHttpInfo()
+        /// <returns>ApiResponse of MembersControllerAccept201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<MembersControllerAccept201Response> MembersControllerAcceptWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -547,6 +570,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -558,7 +582,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/team/accept", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<MembersControllerAccept201Response>("/v1/team/accept", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -570,23 +594,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Accept a team invitation Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MembersControllerAcceptAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of MembersControllerAccept201Response</returns>
+        public async System.Threading.Tasks.Task<MembersControllerAccept201Response> MembersControllerAcceptAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MembersControllerAcceptWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<MembersControllerAccept201Response> localVarResponse = await MembersControllerAcceptWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Accept a team invitation Public endpoint. Sets the member&#39;s password (minimum 8 characters) and optional &#x60;name&#x60;, activates the seat, consumes the invite token, and returns a new session token so the dashboard can log in straight away. Responds 400 for a short password or an invalid or expired token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MembersControllerAcceptWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (MembersControllerAccept201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<MembersControllerAccept201Response>> MembersControllerAcceptWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -596,6 +621,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -609,7 +635,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/team/accept", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<MembersControllerAccept201Response>("/v1/team/accept", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -621,21 +647,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Invite a team member Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MembersControllerInvite()
+        /// <returns>AdvTeamMember</returns>
+        public AdvTeamMember MembersControllerInvite()
         {
-            MembersControllerInviteWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AdvTeamMember> localVarResponse = MembersControllerInviteWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Invite a team member Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MembersControllerInviteWithHttpInfo()
+        /// <returns>ApiResponse of AdvTeamMember</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvTeamMember> MembersControllerInviteWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -644,6 +671,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -653,9 +681,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/team", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvTeamMember>("/v1/advertiser/team", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -667,23 +706,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Invite a team member Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MembersControllerInviteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvTeamMember</returns>
+        public async System.Threading.Tasks.Task<AdvTeamMember> MembersControllerInviteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MembersControllerInviteWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvTeamMember> localVarResponse = await MembersControllerInviteWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Invite a team member Creates (or refreshes) an invited seat and emails a single-use accept link valid for 7 days. Body: &#x60;email&#x60;, &#x60;name&#x60;, &#x60;role&#x60; (admin, manager or analyst; anything else becomes analyst), &#x60;allPixels&#x60; and &#x60;pixelIds&#x60;. Admins always get all pixels. Responds 400 for an invalid email, an email that already has an Adviverse account or a seat on another account, or a pixel id the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MembersControllerInviteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvTeamMember)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvTeamMember>> MembersControllerInviteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -693,6 +733,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -703,10 +744,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/team", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvTeamMember>("/v1/advertiser/team", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -718,23 +770,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Look up an invitation by token Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns></returns>
-        public void MembersControllerInviteInfo(string token)
+        /// <returns>MembersControllerInviteInfo200Response</returns>
+        public MembersControllerInviteInfo200Response MembersControllerInviteInfo(string token)
         {
-            MembersControllerInviteInfoWithHttpInfo(token);
+            Adviverse.Api.Client.ApiResponse<MembersControllerInviteInfo200Response> localVarResponse = MembersControllerInviteInfoWithHttpInfo(token);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Look up an invitation by token Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MembersControllerInviteInfoWithHttpInfo(string token)
+        /// <returns>ApiResponse of MembersControllerInviteInfo200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<MembersControllerInviteInfo200Response> MembersControllerInviteInfoWithHttpInfo(string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -747,6 +800,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -759,7 +813,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/team/invite", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<MembersControllerInviteInfo200Response>("/v1/team/invite", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -771,25 +825,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Look up an invitation by token Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MembersControllerInviteInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of MembersControllerInviteInfo200Response</returns>
+        public async System.Threading.Tasks.Task<MembersControllerInviteInfo200Response> MembersControllerInviteInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MembersControllerInviteInfoWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<MembersControllerInviteInfo200Response> localVarResponse = await MembersControllerInviteInfoWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Look up an invitation by token Public endpoint for the accept-invite page. Returns the invited email, role and agency name for the &#x60;token&#x60; query parameter. Responds 404 when the token is invalid or expired.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MembersControllerInviteInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (MembersControllerInviteInfo200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<MembersControllerInviteInfo200Response>> MembersControllerInviteInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -803,6 +858,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -817,7 +873,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/team/invite", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<MembersControllerInviteInfo200Response>("/v1/team/invite", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -829,21 +885,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List team members Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MembersControllerList()
+        /// <returns>List&lt;AdvTeamMember&gt;</returns>
+        public List<AdvTeamMember> MembersControllerList()
         {
-            MembersControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvTeamMember>> localVarResponse = MembersControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List team members Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MembersControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvTeamMember&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvTeamMember>> MembersControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -852,6 +909,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -861,9 +919,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/team", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvTeamMember>>("/v1/advertiser/team", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -875,23 +944,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List team members Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MembersControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvTeamMember&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvTeamMember>> MembersControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MembersControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvTeamMember>> localVarResponse = await MembersControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List team members Returns every seat on the agency account with role, status and pixel grants. Team-management routes are for the account owner and admin seats only; manager and analyst seats cannot reach them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MembersControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvTeamMember&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvTeamMember>>> MembersControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -901,6 +971,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -911,10 +982,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/team", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvTeamMember>>("/v1/advertiser/team", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -926,23 +1008,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Remove a team member Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void MembersControllerRemove(string id)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted MembersControllerRemove(string id)
         {
-            MembersControllerRemoveWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = MembersControllerRemoveWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Remove a team member Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MembersControllerRemoveWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> MembersControllerRemoveWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -955,6 +1038,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -965,9 +1049,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -979,25 +1074,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Remove a team member Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MembersControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> MembersControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MembersControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await MembersControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Remove a team member Deletes the seat. Always returns &#x60;deleted: true&#x60;, even if no seat matched.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MembersControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> MembersControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1011,6 +1107,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1022,10 +1119,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1037,23 +1145,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resend a team invitation Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void MembersControllerResend(string id)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response MembersControllerResend(string id)
         {
-            MembersControllerResendWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = MembersControllerResendWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resend a team invitation Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MembersControllerResendWithHttpInfo(string id)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> MembersControllerResendWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1066,6 +1175,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1076,9 +1186,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/team/{id}/resend", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerResendVerification201Response>("/v1/advertiser/team/{id}/resend", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1090,25 +1211,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resend a team invitation Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MembersControllerResendAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> MembersControllerResendAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MembersControllerResendWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await MembersControllerResendWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resend a team invitation Issues a new invite token (invalidating the previous link), resets the 7-day expiry and emails it again. Responds 404 for an unknown member and 400 when the member is already active.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MembersControllerResendWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> MembersControllerResendWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1122,6 +1244,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1133,10 +1256,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/team/{id}/resend", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerResendVerification201Response>("/v1/advertiser/team/{id}/resend", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1148,23 +1282,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a team member Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void MembersControllerUpdate(string id)
+        /// <returns>AdvTeamMember</returns>
+        public AdvTeamMember MembersControllerUpdate(string id)
         {
-            MembersControllerUpdateWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvTeamMember> localVarResponse = MembersControllerUpdateWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a team member Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MembersControllerUpdateWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvTeamMember</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvTeamMember> MembersControllerUpdateWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1177,6 +1312,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1187,9 +1323,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvTeamMember>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1201,25 +1348,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a team member Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MembersControllerUpdateAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvTeamMember</returns>
+        public async System.Threading.Tasks.Task<AdvTeamMember> MembersControllerUpdateAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MembersControllerUpdateWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvTeamMember> localVarResponse = await MembersControllerUpdateWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a team member Changes a seat&#39;s &#x60;role&#x60;, &#x60;allPixels&#x60;, &#x60;pixelIds&#x60; (replaces the grants), &#x60;status&#x60; (active, disabled or invited) and/or &#x60;name&#x60;. Disabling a member revokes their live sessions immediately. Responds 404 for an unknown member and 400 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MembersControllerUpdateWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvTeamMember)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvTeamMember>> MembersControllerUpdateWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1233,6 +1381,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1244,10 +1393,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvTeamMember>("/v1/advertiser/team/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

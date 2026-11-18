@@ -28,741 +28,873 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">ISO end (inclusive). (optional)</param>
-        /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns></returns>
-        void PromoteCampaignReportingControllerReport(string? to = default(string?), string? from = default(string?));
-
-        /// <summary>
-        /// 
+        /// Get per-promote-campaign performance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PromoteCampaignReportingControllerReportWithHttpInfo(string? to = default(string?), string? from = default(string?));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">ISO end (inclusive). (optional)</param>
-        /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns></returns>
-        void PromoteCampaignReportingControllerSummary(string? to = default(string?), string? from = default(string?));
+        /// <returns>List&lt;ReportPromoteCampaignRow&gt;</returns>
+        List<ReportPromoteCampaignRow> PromoteCampaignReportingControllerReport(string? to = default(string?), string? from = default(string?));
 
         /// <summary>
-        /// 
+        /// Get per-promote-campaign performance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PromoteCampaignReportingControllerSummaryWithHttpInfo(string? to = default(string?), string? from = default(string?));
+        /// <returns>ApiResponse of List&lt;ReportPromoteCampaignRow&gt;</returns>
+        ApiResponse<List<ReportPromoteCampaignRow>> PromoteCampaignReportingControllerReportWithHttpInfo(string? to = default(string?), string? from = default(string?));
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerAdvertiser();
-
-        /// <summary>
-        /// 
+        /// Get totals across promote campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerAdvertiserWithHttpInfo();
+        /// <param name="to">ISO end (inclusive). (optional)</param>
+        /// <param name="from">ISO start (inclusive). (optional)</param>
+        /// <returns>PromoteCampaignReportingControllerSummary200Response</returns>
+        PromoteCampaignReportingControllerSummary200Response PromoteCampaignReportingControllerSummary(string? to = default(string?), string? from = default(string?));
+
         /// <summary>
-        /// 
+        /// Get totals across promote campaigns
         /// </summary>
+        /// <remarks>
+        /// Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="to">ISO end (inclusive). (optional)</param>
+        /// <param name="from">ISO start (inclusive). (optional)</param>
+        /// <returns>ApiResponse of PromoteCampaignReportingControllerSummary200Response</returns>
+        ApiResponse<PromoteCampaignReportingControllerSummary200Response> PromoteCampaignReportingControllerSummaryWithHttpInfo(string? to = default(string?), string? from = default(string?));
+        /// <summary>
+        /// Get advertiser spend and performance by dimension
+        /// </summary>
+        /// <remarks>
+        /// Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ReportAdvertiserStatsRow&gt;</returns>
+        List<ReportAdvertiserStatsRow> ReportingControllerAdvertiser();
+
+        /// <summary>
+        /// Get advertiser spend and performance by dimension
+        /// </summary>
+        /// <remarks>
+        /// Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ReportAdvertiserStatsRow&gt;</returns>
+        ApiResponse<List<ReportAdvertiserStatsRow>> ReportingControllerAdvertiserWithHttpInfo();
+        /// <summary>
+        /// Get affiliate sub-id funnel
+        /// </summary>
+        /// <remarks>
+        /// Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
-        /// <returns></returns>
-        void ReportingControllerAffiliate(string? to = default(string?), string? from = default(string?), string? sub = default(string?));
+        /// <returns>List&lt;ReportingControllerAffiliate200ResponseInner&gt;</returns>
+        List<ReportingControllerAffiliate200ResponseInner> ReportingControllerAffiliate(string? to = default(string?), string? from = default(string?), string? sub = default(string?));
 
         /// <summary>
-        /// 
+        /// Get affiliate sub-id funnel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerAffiliateWithHttpInfo(string? to = default(string?), string? from = default(string?), string? sub = default(string?));
+        /// <returns>ApiResponse of List&lt;ReportingControllerAffiliate200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerAffiliate200ResponseInner>> ReportingControllerAffiliateWithHttpInfo(string? to = default(string?), string? from = default(string?), string? sub = default(string?));
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerAntiAdblock();
-
-        /// <summary>
-        /// 
+        /// Get impressions recovered from adblock visitors
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerAntiAdblockWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerAuction();
+        /// <returns>ReportingControllerAntiAdblock200Response</returns>
+        ReportingControllerAntiAdblock200Response ReportingControllerAntiAdblock();
 
         /// <summary>
-        /// 
+        /// Get impressions recovered from adblock visitors
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerAuctionWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerAntiAdblock200Response</returns>
+        ApiResponse<ReportingControllerAntiAdblock200Response> ReportingControllerAntiAdblockWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get auction fill rate and top no-fill reasons
         /// </summary>
+        /// <remarks>
+        /// Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerBenchmark();
+        /// <returns>ReportingControllerAuction200Response</returns>
+        ReportingControllerAuction200Response ReportingControllerAuction();
 
         /// <summary>
-        /// 
+        /// Get auction fill rate and top no-fill reasons
         /// </summary>
         /// <remarks>
-        /// 
+        /// Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerBenchmarkWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerAuction200Response</returns>
+        ApiResponse<ReportingControllerAuction200Response> ReportingControllerAuctionWithHttpInfo();
         /// <summary>
-        /// 
+        /// Benchmark eCPM, fill and viewability against the network
         /// </summary>
+        /// <remarks>
+        /// Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerBidLandscape();
+        /// <returns>ReportingControllerBenchmark200Response</returns>
+        ReportingControllerBenchmark200Response ReportingControllerBenchmark();
 
         /// <summary>
-        /// 
+        /// Benchmark eCPM, fill and viewability against the network
         /// </summary>
         /// <remarks>
-        /// 
+        /// Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerBidLandscapeWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerBenchmark200Response</returns>
+        ApiResponse<ReportingControllerBenchmark200Response> ReportingControllerBenchmarkWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get clearing-price percentiles and estimated win curve
         /// </summary>
+        /// <remarks>
+        /// From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReportingControllerBidLandscape200Response</returns>
+        ReportingControllerBidLandscape200Response ReportingControllerBidLandscape();
+
+        /// <summary>
+        /// Get clearing-price percentiles and estimated win curve
+        /// </summary>
+        /// <remarks>
+        /// From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReportingControllerBidLandscape200Response</returns>
+        ApiResponse<ReportingControllerBidLandscape200Response> ReportingControllerBidLandscapeWithHttpInfo();
+        /// <summary>
+        /// Break down delivery by OS, browser, deal, page, app or sub-id
+        /// </summary>
+        /// <remarks>
+        /// Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
-        /// <returns></returns>
-        void ReportingControllerBreakdown(string? to = default(string?), string? from = default(string?), string? bdim = default(string?));
+        /// <returns>List&lt;ReportBreakdownRow&gt;</returns>
+        List<ReportBreakdownRow> ReportingControllerBreakdown(string? to = default(string?), string? from = default(string?), string? bdim = default(string?));
 
         /// <summary>
-        /// 
+        /// Break down delivery by OS, browser, deal, page, app or sub-id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerBreakdownWithHttpInfo(string? to = default(string?), string? from = default(string?), string? bdim = default(string?));
+        /// <returns>ApiResponse of List&lt;ReportBreakdownRow&gt;</returns>
+        ApiResponse<List<ReportBreakdownRow>> ReportingControllerBreakdownWithHttpInfo(string? to = default(string?), string? from = default(string?), string? bdim = default(string?));
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerCarousel();
-
-        /// <summary>
-        /// 
+        /// Get clicks per carousel card
         /// </summary>
         /// <remarks>
-        /// 
+        /// Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerCarouselWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerClosedLoop();
+        /// <returns>List&lt;ReportingControllerCarousel200ResponseInner&gt;</returns>
+        List<ReportingControllerCarousel200ResponseInner> ReportingControllerCarousel();
 
         /// <summary>
-        /// 
+        /// Get clicks per carousel card
         /// </summary>
         /// <remarks>
-        /// 
+        /// Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerClosedLoopWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerCarousel200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerCarousel200ResponseInner>> ReportingControllerCarouselWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get funnel for the account&#39;s house campaigns
         /// </summary>
+        /// <remarks>
+        /// Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerCohorts();
+        /// <returns>ReportingControllerClosedLoop200Response</returns>
+        ReportingControllerClosedLoop200Response ReportingControllerClosedLoop();
 
         /// <summary>
-        /// 
+        /// Get funnel for the account&#39;s house campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerCohortsWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerClosedLoop200Response</returns>
+        ApiResponse<ReportingControllerClosedLoop200Response> ReportingControllerClosedLoopWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get cohort retention and LTV triangle (admin)
         /// </summary>
+        /// <remarks>
+        /// Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerConsentRate();
+        /// <returns>ReportingControllerCohorts200Response</returns>
+        ReportingControllerCohorts200Response ReportingControllerCohorts();
 
         /// <summary>
-        /// 
+        /// Get cohort retention and LTV triangle (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerConsentRateWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerCohorts200Response</returns>
+        ApiResponse<ReportingControllerCohorts200Response> ReportingControllerCohortsWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get pixel consent rate (personalized vs aggregate-only)
         /// </summary>
+        /// <remarks>
+        /// Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReportingControllerConsentRate200Response</returns>
+        ReportingControllerConsentRate200Response ReportingControllerConsentRate();
+
+        /// <summary>
+        /// Get pixel consent rate (personalized vs aggregate-only)
+        /// </summary>
+        /// <remarks>
+        /// Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReportingControllerConsentRate200Response</returns>
+        ApiResponse<ReportingControllerConsentRate200Response> ReportingControllerConsentRateWithHttpInfo();
+        /// <summary>
+        /// Save a report definition
+        /// </summary>
+        /// <remarks>
+        /// Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
-        /// <returns></returns>
-        void ReportingControllerCreateSaved(CreateSavedReportDto createSavedReportDto);
+        /// <returns>ReportSavedReport</returns>
+        ReportSavedReport ReportingControllerCreateSaved(CreateSavedReportDto createSavedReportDto);
 
         /// <summary>
-        /// 
+        /// Save a report definition
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerCreateSavedWithHttpInfo(CreateSavedReportDto createSavedReportDto);
+        /// <returns>ApiResponse of ReportSavedReport</returns>
+        ApiResponse<ReportSavedReport> ReportingControllerCreateSavedWithHttpInfo(CreateSavedReportDto createSavedReportDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createScheduledReportDto"></param>
-        /// <returns></returns>
-        void ReportingControllerCreateScheduled(CreateScheduledReportDto createScheduledReportDto);
-
-        /// <summary>
-        /// 
+        /// Schedule an emailed report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createScheduledReportDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerCreateScheduledWithHttpInfo(CreateScheduledReportDto createScheduledReportDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerCreatives();
+        /// <returns>ReportScheduledReport</returns>
+        ReportScheduledReport ReportingControllerCreateScheduled(CreateScheduledReportDto createScheduledReportDto);
 
         /// <summary>
-        /// 
+        /// Schedule an emailed report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerCreativesWithHttpInfo();
+        /// <param name="createScheduledReportDto"></param>
+        /// <returns>ApiResponse of ReportScheduledReport</returns>
+        ApiResponse<ReportScheduledReport> ReportingControllerCreateScheduledWithHttpInfo(CreateScheduledReportDto createScheduledReportDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void ReportingControllerDeleteSaved(string id);
-
-        /// <summary>
-        /// 
+        /// Get per-creative performance and fatigue
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerDeleteSavedWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void ReportingControllerDeleteScheduled(string id);
+        /// <returns>ReportingControllerCreatives200Response</returns>
+        ReportingControllerCreatives200Response ReportingControllerCreatives();
 
         /// <summary>
-        /// 
+        /// Get per-creative performance and fatigue
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReportingControllerCreatives200Response</returns>
+        ApiResponse<ReportingControllerCreatives200Response> ReportingControllerCreativesWithHttpInfo();
+        /// <summary>
+        /// Delete a saved report
+        /// </summary>
+        /// <remarks>
+        /// Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerDeleteScheduledWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerDeliveryFunnel();
+        /// <returns>ReportingControllerDeleteSaved200Response</returns>
+        ReportingControllerDeleteSaved200Response ReportingControllerDeleteSaved(string id);
 
         /// <summary>
-        /// 
+        /// Delete a saved report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerDeliveryFunnelWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of ReportingControllerDeleteSaved200Response</returns>
+        ApiResponse<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteSavedWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Delete a scheduled report
         /// </summary>
+        /// <remarks>
+        /// Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerDeliveryPacing();
+        /// <param name="id"></param>
+        /// <returns>ReportingControllerDeleteSaved200Response</returns>
+        ReportingControllerDeleteSaved200Response ReportingControllerDeleteScheduled(string id);
 
         /// <summary>
-        /// 
+        /// Delete a scheduled report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerDeliveryPacingWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of ReportingControllerDeleteSaved200Response</returns>
+        ApiResponse<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteScheduledWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Get publisher delivery waterfall
         /// </summary>
+        /// <remarks>
+        /// Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerFill();
+        /// <returns>ReportingControllerDeliveryFunnel200Response</returns>
+        ReportingControllerDeliveryFunnel200Response ReportingControllerDeliveryFunnel();
 
         /// <summary>
-        /// 
+        /// Get publisher delivery waterfall
         /// </summary>
         /// <remarks>
-        /// 
+        /// Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerFillWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerDeliveryFunnel200Response</returns>
+        ApiResponse<ReportingControllerDeliveryFunnel200Response> ReportingControllerDeliveryFunnelWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get delivery pacing for booked and goal campaigns
         /// </summary>
+        /// <remarks>
+        /// For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerFunnel();
+        /// <returns>List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;</returns>
+        List<ReportingControllerDeliveryPacing200ResponseInner> ReportingControllerDeliveryPacing();
 
         /// <summary>
-        /// 
+        /// Get delivery pacing for booked and goal campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerFunnelWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerDeliveryPacing200ResponseInner>> ReportingControllerDeliveryPacingWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get publisher fill rate and no-fill reasons
         /// </summary>
+        /// <remarks>
+        /// Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerGeo();
+        /// <returns>ReportingControllerFill200Response</returns>
+        ReportingControllerFill200Response ReportingControllerFill();
 
         /// <summary>
-        /// 
+        /// Get publisher fill rate and no-fill reasons
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerGeoWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerFill200Response</returns>
+        ApiResponse<ReportingControllerFill200Response> ReportingControllerFillWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get advertiser impression-click-conversion funnel
         /// </summary>
+        /// <remarks>
+        /// Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerIncrementality();
+        /// <returns>ReportingControllerFunnel200Response</returns>
+        ReportingControllerFunnel200Response ReportingControllerFunnel();
 
         /// <summary>
-        /// 
+        /// Get advertiser impression-click-conversion funnel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerIncrementalityWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerFunnel200Response</returns>
+        ApiResponse<ReportingControllerFunnel200Response> ReportingControllerFunnelWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get per-country delivery breakdown
         /// </summary>
+        /// <remarks>
+        /// Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerIvt();
+        /// <returns>List&lt;ReportingControllerGeo200ResponseInner&gt;</returns>
+        List<ReportingControllerGeo200ResponseInner> ReportingControllerGeo();
 
         /// <summary>
-        /// 
+        /// Get per-country delivery breakdown
         /// </summary>
         /// <remarks>
-        /// 
+        /// Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerIvtWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerGeo200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerGeo200ResponseInner>> ReportingControllerGeoWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get per-campaign conversion lift vs holdout
         /// </summary>
+        /// <remarks>
+        /// For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerJourney();
+        /// <returns>List&lt;ReportingControllerIncrementality200ResponseInner&gt;</returns>
+        List<ReportingControllerIncrementality200ResponseInner> ReportingControllerIncrementality();
 
         /// <summary>
-        /// 
+        /// Get per-campaign conversion lift vs holdout
         /// </summary>
         /// <remarks>
-        /// 
+        /// For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerJourneyWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerIncrementality200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerIncrementality200ResponseInner>> ReportingControllerIncrementalityWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get invalid-traffic breakdown by reason (last 30 days)
         /// </summary>
+        /// <remarks>
+        /// Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerLiquidity();
+        /// <returns>List&lt;ReportingControllerIvt200ResponseInner&gt;</returns>
+        List<ReportingControllerIvt200ResponseInner> ReportingControllerIvt();
 
         /// <summary>
-        /// 
+        /// Get invalid-traffic breakdown by reason (last 30 days)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerLiquidityWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerIvt200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerIvt200ResponseInner>> ReportingControllerIvtWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get top cross-site user paths
         /// </summary>
+        /// <remarks>
+        /// Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerListSaved();
+        /// <returns>List&lt;ReportingControllerJourney200ResponseInner&gt;</returns>
+        List<ReportingControllerJourney200ResponseInner> ReportingControllerJourney();
 
         /// <summary>
-        /// 
+        /// Get top cross-site user paths
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerListSavedWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerJourney200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerJourney200ResponseInner>> ReportingControllerJourneyWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get network-wide marketplace liquidity (admin)
         /// </summary>
+        /// <remarks>
+        /// Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerListScheduled();
+        /// <returns>ReportingControllerLiquidity200Response</returns>
+        ReportingControllerLiquidity200Response ReportingControllerLiquidity();
 
         /// <summary>
-        /// 
+        /// Get network-wide marketplace liquidity (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerListScheduledWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerLiquidity200Response</returns>
+        ApiResponse<ReportingControllerLiquidity200Response> ReportingControllerLiquidityWithHttpInfo();
         /// <summary>
-        /// 
+        /// List saved reports
         /// </summary>
+        /// <remarks>
+        /// Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerMarketplace();
+        /// <returns>List&lt;ReportSavedReport&gt;</returns>
+        List<ReportSavedReport> ReportingControllerListSaved();
 
         /// <summary>
-        /// 
+        /// List saved reports
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerMarketplaceWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportSavedReport&gt;</returns>
+        ApiResponse<List<ReportSavedReport>> ReportingControllerListSavedWithHttpInfo();
         /// <summary>
-        /// 
+        /// List scheduled email reports
         /// </summary>
+        /// <remarks>
+        /// Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerPersonalNetwork();
+        /// <returns>List&lt;ReportScheduledReport&gt;</returns>
+        List<ReportScheduledReport> ReportingControllerListScheduled();
 
         /// <summary>
-        /// 
+        /// List scheduled email reports
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerPersonalNetworkWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportScheduledReport&gt;</returns>
+        ApiResponse<List<ReportScheduledReport>> ReportingControllerListScheduledWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get marketplace economics and concentration (admin)
         /// </summary>
+        /// <remarks>
+        /// Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerPivot();
+        /// <returns>ReportingControllerMarketplace200Response</returns>
+        ReportingControllerMarketplace200Response ReportingControllerMarketplace();
 
         /// <summary>
-        /// 
+        /// Get marketplace economics and concentration (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerPivotWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerMarketplace200Response</returns>
+        ApiResponse<ReportingControllerMarketplace200Response> ReportingControllerMarketplaceWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get Personal Network infra fees and house-ad delivery
         /// </summary>
+        /// <remarks>
+        /// Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerPublisher();
+        /// <returns>ReportingControllerPersonalNetwork200Response</returns>
+        ReportingControllerPersonalNetwork200Response ReportingControllerPersonalNetwork();
 
         /// <summary>
-        /// 
+        /// Get Personal Network infra fees and house-ad delivery
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerPublisherWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerPersonalNetwork200Response</returns>
+        ApiResponse<ReportingControllerPersonalNetwork200Response> ReportingControllerPersonalNetworkWithHttpInfo();
         /// <summary>
-        /// 
+        /// Pivot delivery over two dimensions
         /// </summary>
+        /// <remarks>
+        /// Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerPublisherConsent();
+        /// <returns>List&lt;ReportingControllerPivot200ResponseInner&gt;</returns>
+        List<ReportingControllerPivot200ResponseInner> ReportingControllerPivot();
 
         /// <summary>
-        /// 
+        /// Pivot delivery over two dimensions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerPublisherConsentWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerPivot200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerPivot200ResponseInner>> ReportingControllerPivotWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get publisher earnings grouped by a dimension
         /// </summary>
+        /// <remarks>
+        /// Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerPublisherPlacements();
+        /// <returns>List&lt;ReportPublisherStatsRow&gt;</returns>
+        List<ReportPublisherStatsRow> ReportingControllerPublisher();
 
         /// <summary>
-        /// 
+        /// Get publisher earnings grouped by a dimension
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerPublisherPlacementsWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportPublisherStatsRow&gt;</returns>
+        ApiResponse<List<ReportPublisherStatsRow>> ReportingControllerPublisherWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get publisher ad-serving consent rate
         /// </summary>
+        /// <remarks>
+        /// Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerReach();
+        /// <returns>ReportingControllerPublisherConsent200Response</returns>
+        ReportingControllerPublisherConsent200Response ReportingControllerPublisherConsent();
 
         /// <summary>
-        /// 
+        /// Get publisher ad-serving consent rate
         /// </summary>
         /// <remarks>
-        /// 
+        /// Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerReachWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerPublisherConsent200Response</returns>
+        ApiResponse<ReportingControllerPublisherConsent200Response> ReportingControllerPublisherConsentWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get per-placement earnings, fill and viewability
         /// </summary>
+        /// <remarks>
+        /// Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerRealtime();
+        /// <returns>List&lt;ReportPlacementRow&gt;</returns>
+        List<ReportPlacementRow> ReportingControllerPublisherPlacements();
 
         /// <summary>
-        /// 
+        /// Get per-placement earnings, fill and viewability
         /// </summary>
         /// <remarks>
-        /// 
+        /// Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerRealtimeWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportPlacementRow&gt;</returns>
+        ApiResponse<List<ReportPlacementRow>> ReportingControllerPublisherPlacementsWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get reach and frequency (unique users)
         /// </summary>
+        /// <remarks>
+        /// Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReportingControllerReach200Response</returns>
+        ReportingControllerReach200Response ReportingControllerReach();
+
+        /// <summary>
+        /// Get reach and frequency (unique users)
+        /// </summary>
+        /// <remarks>
+        /// Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReportingControllerReach200Response</returns>
+        ApiResponse<ReportingControllerReach200Response> ReportingControllerReachWithHttpInfo();
+        /// <summary>
+        /// Get last-15-minute impressions, clicks and amount
+        /// </summary>
+        /// <remarks>
+        /// Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReportRealtime</returns>
+        ReportRealtime ReportingControllerRealtime();
+
+        /// <summary>
+        /// Get last-15-minute impressions, clicks and amount
+        /// </summary>
+        /// <remarks>
+        /// Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReportRealtime</returns>
+        ApiResponse<ReportRealtime> ReportingControllerRealtimeWithHttpInfo();
+        /// <summary>
+        /// Stream the realtime report as Server-Sent Events
+        /// </summary>
+        /// <remarks>
+        /// Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
-        /// <returns></returns>
-        void ReportingControllerRealtimeStream(string scope);
+        /// <returns>string</returns>
+        string ReportingControllerRealtimeStream(string scope);
 
         /// <summary>
-        /// 
+        /// Stream the realtime report as Server-Sent Events
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerRealtimeStreamWithHttpInfo(string scope);
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> ReportingControllerRealtimeStreamWithHttpInfo(string scope);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerRoas();
-
-        /// <summary>
-        /// 
+        /// Get daily ROAS and conversion-value trend
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerRoasWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerServeLatency();
+        /// <returns>List&lt;ReportingControllerRoas200ResponseInner&gt;</returns>
+        List<ReportingControllerRoas200ResponseInner> ReportingControllerRoas();
 
         /// <summary>
-        /// 
+        /// Get daily ROAS and conversion-value trend
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerServeLatencyWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;ReportingControllerRoas200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerRoas200ResponseInner>> ReportingControllerRoasWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="periodDays"></param>
-        /// <returns></returns>
-        void ReportingControllerSustainability(string periodDays);
-
-        /// <summary>
-        /// 
+        /// Get ad-serving decision and render latency
         /// </summary>
         /// <remarks>
-        /// 
+        /// Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReportingControllerServeLatency200Response</returns>
+        ReportingControllerServeLatency200Response ReportingControllerServeLatency();
+
+        /// <summary>
+        /// Get ad-serving decision and render latency
+        /// </summary>
+        /// <remarks>
+        /// Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReportingControllerServeLatency200Response</returns>
+        ApiResponse<ReportingControllerServeLatency200Response> ReportingControllerServeLatencyWithHttpInfo();
+        /// <summary>
+        /// Estimate energy and carbon footprint of ad delivery
+        /// </summary>
+        /// <remarks>
+        /// Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="periodDays"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerSustainabilityWithHttpInfo(string periodDays);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerTimeToClick();
+        /// <returns>ReportingControllerSustainability200Response</returns>
+        ReportingControllerSustainability200Response ReportingControllerSustainability(string periodDays);
 
         /// <summary>
-        /// 
+        /// Estimate energy and carbon footprint of ad delivery
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerTimeToClickWithHttpInfo();
+        /// <param name="periodDays"></param>
+        /// <returns>ApiResponse of ReportingControllerSustainability200Response</returns>
+        ApiResponse<ReportingControllerSustainability200Response> ReportingControllerSustainabilityWithHttpInfo(string periodDays);
         /// <summary>
-        /// 
+        /// Get time-to-click latency distribution
         /// </summary>
+        /// <remarks>
+        /// Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerVideo();
+        /// <returns>ReportingControllerTimeToClick200Response</returns>
+        ReportingControllerTimeToClick200Response ReportingControllerTimeToClick();
 
         /// <summary>
-        /// 
+        /// Get time-to-click latency distribution
         /// </summary>
         /// <remarks>
-        /// 
+        /// Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerVideoWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerTimeToClick200Response</returns>
+        ApiResponse<ReportingControllerTimeToClick200Response> ReportingControllerTimeToClickWithHttpInfo();
         /// <summary>
-        /// 
+        /// Get video completion funnel and breakdown
         /// </summary>
+        /// <remarks>
+        /// Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReportingControllerViewability();
+        /// <returns>ReportingControllerVideo200Response</returns>
+        ReportingControllerVideo200Response ReportingControllerVideo();
 
         /// <summary>
-        /// 
+        /// Get video completion funnel and breakdown
         /// </summary>
         /// <remarks>
-        /// 
+        /// Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReportingControllerViewabilityWithHttpInfo();
+        /// <returns>ApiResponse of ReportingControllerVideo200Response</returns>
+        ApiResponse<ReportingControllerVideo200Response> ReportingControllerVideoWithHttpInfo();
+        /// <summary>
+        /// Get viewability by placement or campaign
+        /// </summary>
+        /// <remarks>
+        /// Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ReportingControllerViewability200ResponseInner&gt;</returns>
+        List<ReportingControllerViewability200ResponseInner> ReportingControllerViewability();
+
+        /// <summary>
+        /// Get viewability by placement or campaign
+        /// </summary>
+        /// <remarks>
+        /// Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ReportingControllerViewability200ResponseInner&gt;</returns>
+        ApiResponse<List<ReportingControllerViewability200ResponseInner>> ReportingControllerViewabilityWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -773,961 +905,961 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get per-promote-campaign performance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PromoteCampaignReportingControllerReportAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportPromoteCampaignRow&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportPromoteCampaignRow>> PromoteCampaignReportingControllerReportAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get per-promote-campaign performance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PromoteCampaignReportingControllerReportWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportPromoteCampaignRow&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportPromoteCampaignRow>>> PromoteCampaignReportingControllerReportWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get totals across promote campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PromoteCampaignReportingControllerSummaryAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PromoteCampaignReportingControllerSummary200Response</returns>
+        System.Threading.Tasks.Task<PromoteCampaignReportingControllerSummary200Response> PromoteCampaignReportingControllerSummaryAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get totals across promote campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PromoteCampaignReportingControllerSummaryWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PromoteCampaignReportingControllerSummary200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PromoteCampaignReportingControllerSummary200Response>> PromoteCampaignReportingControllerSummaryWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get advertiser spend and performance by dimension
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerAdvertiserAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportAdvertiserStatsRow&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportAdvertiserStatsRow>> ReportingControllerAdvertiserAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get advertiser spend and performance by dimension
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerAdvertiserWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportAdvertiserStatsRow&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportAdvertiserStatsRow>>> ReportingControllerAdvertiserWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get affiliate sub-id funnel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerAffiliateAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerAffiliate200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerAffiliate200ResponseInner>> ReportingControllerAffiliateAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get affiliate sub-id funnel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerAffiliateWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerAffiliate200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerAffiliate200ResponseInner>>> ReportingControllerAffiliateWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get impressions recovered from adblock visitors
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerAntiAdblockAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerAntiAdblock200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerAntiAdblock200Response> ReportingControllerAntiAdblockAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get impressions recovered from adblock visitors
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerAntiAdblockWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerAntiAdblock200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerAntiAdblock200Response>> ReportingControllerAntiAdblockWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get auction fill rate and top no-fill reasons
         /// </summary>
         /// <remarks>
-        /// 
+        /// Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerAuctionAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerAuction200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerAuction200Response> ReportingControllerAuctionAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get auction fill rate and top no-fill reasons
         /// </summary>
         /// <remarks>
-        /// 
+        /// Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerAuctionWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerAuction200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerAuction200Response>> ReportingControllerAuctionWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Benchmark eCPM, fill and viewability against the network
         /// </summary>
         /// <remarks>
-        /// 
+        /// Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerBenchmarkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerBenchmark200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerBenchmark200Response> ReportingControllerBenchmarkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Benchmark eCPM, fill and viewability against the network
         /// </summary>
         /// <remarks>
-        /// 
+        /// Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerBenchmarkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerBenchmark200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerBenchmark200Response>> ReportingControllerBenchmarkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get clearing-price percentiles and estimated win curve
         /// </summary>
         /// <remarks>
-        /// 
+        /// From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerBidLandscapeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerBidLandscape200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerBidLandscape200Response> ReportingControllerBidLandscapeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get clearing-price percentiles and estimated win curve
         /// </summary>
         /// <remarks>
-        /// 
+        /// From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerBidLandscapeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerBidLandscape200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerBidLandscape200Response>> ReportingControllerBidLandscapeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Break down delivery by OS, browser, deal, page, app or sub-id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerBreakdownAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportBreakdownRow&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportBreakdownRow>> ReportingControllerBreakdownAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Break down delivery by OS, browser, deal, page, app or sub-id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerBreakdownWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportBreakdownRow&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportBreakdownRow>>> ReportingControllerBreakdownWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get clicks per carousel card
         /// </summary>
         /// <remarks>
-        /// 
+        /// Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerCarouselAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerCarousel200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerCarousel200ResponseInner>> ReportingControllerCarouselAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get clicks per carousel card
         /// </summary>
         /// <remarks>
-        /// 
+        /// Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerCarouselWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerCarousel200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerCarousel200ResponseInner>>> ReportingControllerCarouselWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get funnel for the account&#39;s house campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerClosedLoopAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerClosedLoop200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerClosedLoop200Response> ReportingControllerClosedLoopAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get funnel for the account&#39;s house campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerClosedLoopWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerClosedLoop200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerClosedLoop200Response>> ReportingControllerClosedLoopWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get cohort retention and LTV triangle (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerCohortsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerCohorts200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerCohorts200Response> ReportingControllerCohortsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get cohort retention and LTV triangle (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerCohortsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerCohorts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerCohorts200Response>> ReportingControllerCohortsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get pixel consent rate (personalized vs aggregate-only)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerConsentRateAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerConsentRate200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerConsentRate200Response> ReportingControllerConsentRateAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get pixel consent rate (personalized vs aggregate-only)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerConsentRateWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerConsentRate200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerConsentRate200Response>> ReportingControllerConsentRateWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Save a report definition
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerCreateSavedAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportSavedReport</returns>
+        System.Threading.Tasks.Task<ReportSavedReport> ReportingControllerCreateSavedAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Save a report definition
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerCreateSavedWithHttpInfoAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportSavedReport)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportSavedReport>> ReportingControllerCreateSavedWithHttpInfoAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Schedule an emailed report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createScheduledReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerCreateScheduledAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportScheduledReport</returns>
+        System.Threading.Tasks.Task<ReportScheduledReport> ReportingControllerCreateScheduledAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Schedule an emailed report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createScheduledReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerCreateScheduledWithHttpInfoAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportScheduledReport)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportScheduledReport>> ReportingControllerCreateScheduledWithHttpInfoAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get per-creative performance and fatigue
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerCreatives200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerCreatives200Response> ReportingControllerCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get per-creative performance and fatigue
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerCreatives200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerCreatives200Response>> ReportingControllerCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a saved report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerDeleteSavedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerDeleteSaved200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteSavedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a saved report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerDeleteSavedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerDeleteSaved200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerDeleteSaved200Response>> ReportingControllerDeleteSavedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a scheduled report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerDeleteScheduledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerDeleteSaved200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteScheduledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a scheduled report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerDeleteScheduledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerDeleteSaved200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerDeleteSaved200Response>> ReportingControllerDeleteScheduledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get publisher delivery waterfall
         /// </summary>
         /// <remarks>
-        /// 
+        /// Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerDeliveryFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerDeliveryFunnel200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerDeliveryFunnel200Response> ReportingControllerDeliveryFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get publisher delivery waterfall
         /// </summary>
         /// <remarks>
-        /// 
+        /// Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerDeliveryFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerDeliveryFunnel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerDeliveryFunnel200Response>> ReportingControllerDeliveryFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get delivery pacing for booked and goal campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerDeliveryPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerDeliveryPacing200ResponseInner>> ReportingControllerDeliveryPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get delivery pacing for booked and goal campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerDeliveryPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerDeliveryPacing200ResponseInner>>> ReportingControllerDeliveryPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get publisher fill rate and no-fill reasons
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerFillAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerFill200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerFill200Response> ReportingControllerFillAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get publisher fill rate and no-fill reasons
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerFillWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerFill200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerFill200Response>> ReportingControllerFillWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get advertiser impression-click-conversion funnel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerFunnel200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerFunnel200Response> ReportingControllerFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get advertiser impression-click-conversion funnel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerFunnel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerFunnel200Response>> ReportingControllerFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get per-country delivery breakdown
         /// </summary>
         /// <remarks>
-        /// 
+        /// Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerGeoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerGeo200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerGeo200ResponseInner>> ReportingControllerGeoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get per-country delivery breakdown
         /// </summary>
         /// <remarks>
-        /// 
+        /// Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerGeoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerGeo200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerGeo200ResponseInner>>> ReportingControllerGeoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get per-campaign conversion lift vs holdout
         /// </summary>
         /// <remarks>
-        /// 
+        /// For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerIncrementalityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerIncrementality200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerIncrementality200ResponseInner>> ReportingControllerIncrementalityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get per-campaign conversion lift vs holdout
         /// </summary>
         /// <remarks>
-        /// 
+        /// For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerIncrementalityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerIncrementality200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerIncrementality200ResponseInner>>> ReportingControllerIncrementalityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get invalid-traffic breakdown by reason (last 30 days)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerIvtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerIvt200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerIvt200ResponseInner>> ReportingControllerIvtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get invalid-traffic breakdown by reason (last 30 days)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerIvtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerIvt200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerIvt200ResponseInner>>> ReportingControllerIvtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get top cross-site user paths
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerJourneyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerJourney200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerJourney200ResponseInner>> ReportingControllerJourneyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get top cross-site user paths
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerJourneyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerJourney200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerJourney200ResponseInner>>> ReportingControllerJourneyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get network-wide marketplace liquidity (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerLiquidityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerLiquidity200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerLiquidity200Response> ReportingControllerLiquidityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get network-wide marketplace liquidity (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerLiquidityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerLiquidity200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerLiquidity200Response>> ReportingControllerLiquidityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List saved reports
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerListSavedAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportSavedReport&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportSavedReport>> ReportingControllerListSavedAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List saved reports
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerListSavedWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportSavedReport&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportSavedReport>>> ReportingControllerListSavedWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List scheduled email reports
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerListScheduledAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportScheduledReport&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportScheduledReport>> ReportingControllerListScheduledAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List scheduled email reports
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerListScheduledWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportScheduledReport&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportScheduledReport>>> ReportingControllerListScheduledWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get marketplace economics and concentration (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerMarketplaceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerMarketplace200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerMarketplace200Response> ReportingControllerMarketplaceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get marketplace economics and concentration (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerMarketplaceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerMarketplace200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerMarketplace200Response>> ReportingControllerMarketplaceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get Personal Network infra fees and house-ad delivery
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerPersonalNetworkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerPersonalNetwork200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerPersonalNetwork200Response> ReportingControllerPersonalNetworkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get Personal Network infra fees and house-ad delivery
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerPersonalNetworkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerPersonalNetwork200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerPersonalNetwork200Response>> ReportingControllerPersonalNetworkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Pivot delivery over two dimensions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerPivotAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerPivot200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerPivot200ResponseInner>> ReportingControllerPivotAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Pivot delivery over two dimensions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerPivotWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerPivot200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerPivot200ResponseInner>>> ReportingControllerPivotWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get publisher earnings grouped by a dimension
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerPublisherAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportPublisherStatsRow&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportPublisherStatsRow>> ReportingControllerPublisherAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get publisher earnings grouped by a dimension
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerPublisherWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportPublisherStatsRow&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportPublisherStatsRow>>> ReportingControllerPublisherWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get publisher ad-serving consent rate
         /// </summary>
         /// <remarks>
-        /// 
+        /// Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerPublisherConsentAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerPublisherConsent200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerPublisherConsent200Response> ReportingControllerPublisherConsentAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get publisher ad-serving consent rate
         /// </summary>
         /// <remarks>
-        /// 
+        /// Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerPublisherConsentWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerPublisherConsent200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerPublisherConsent200Response>> ReportingControllerPublisherConsentWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get per-placement earnings, fill and viewability
         /// </summary>
         /// <remarks>
-        /// 
+        /// Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerPublisherPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportPlacementRow&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportPlacementRow>> ReportingControllerPublisherPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get per-placement earnings, fill and viewability
         /// </summary>
         /// <remarks>
-        /// 
+        /// Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerPublisherPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportPlacementRow&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportPlacementRow>>> ReportingControllerPublisherPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get reach and frequency (unique users)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerReachAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerReach200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerReach200Response> ReportingControllerReachAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get reach and frequency (unique users)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerReachWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerReach200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerReach200Response>> ReportingControllerReachWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get last-15-minute impressions, clicks and amount
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportRealtime</returns>
+        System.Threading.Tasks.Task<ReportRealtime> ReportingControllerRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get last-15-minute impressions, clicks and amount
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportRealtime)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportRealtime>> ReportingControllerRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Stream the realtime report as Server-Sent Events
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerRealtimeStreamAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> ReportingControllerRealtimeStreamAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Stream the realtime report as Server-Sent Events
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerRealtimeStreamWithHttpInfoAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> ReportingControllerRealtimeStreamWithHttpInfoAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get daily ROAS and conversion-value trend
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerRoasAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerRoas200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerRoas200ResponseInner>> ReportingControllerRoasAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get daily ROAS and conversion-value trend
         /// </summary>
         /// <remarks>
-        /// 
+        /// Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerRoasWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerRoas200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerRoas200ResponseInner>>> ReportingControllerRoasWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get ad-serving decision and render latency
         /// </summary>
         /// <remarks>
-        /// 
+        /// Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerServeLatencyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerServeLatency200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerServeLatency200Response> ReportingControllerServeLatencyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get ad-serving decision and render latency
         /// </summary>
         /// <remarks>
-        /// 
+        /// Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerServeLatencyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerServeLatency200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerServeLatency200Response>> ReportingControllerServeLatencyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Estimate energy and carbon footprint of ad delivery
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="periodDays"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerSustainabilityAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerSustainability200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerSustainability200Response> ReportingControllerSustainabilityAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Estimate energy and carbon footprint of ad delivery
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="periodDays"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerSustainabilityWithHttpInfoAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerSustainability200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerSustainability200Response>> ReportingControllerSustainabilityWithHttpInfoAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get time-to-click latency distribution
         /// </summary>
         /// <remarks>
-        /// 
+        /// Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerTimeToClickAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerTimeToClick200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerTimeToClick200Response> ReportingControllerTimeToClickAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get time-to-click latency distribution
         /// </summary>
         /// <remarks>
-        /// 
+        /// Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerTimeToClickWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerTimeToClick200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerTimeToClick200Response>> ReportingControllerTimeToClickWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get video completion funnel and breakdown
         /// </summary>
         /// <remarks>
-        /// 
+        /// Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerVideoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReportingControllerVideo200Response</returns>
+        System.Threading.Tasks.Task<ReportingControllerVideo200Response> ReportingControllerVideoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get video completion funnel and breakdown
         /// </summary>
         /// <remarks>
-        /// 
+        /// Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerVideoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReportingControllerVideo200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReportingControllerVideo200Response>> ReportingControllerVideoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get viewability by placement or campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReportingControllerViewabilityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ReportingControllerViewability200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ReportingControllerViewability200ResponseInner>> ReportingControllerViewabilityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get viewability by placement or campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReportingControllerViewabilityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerViewability200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ReportingControllerViewability200ResponseInner>>> ReportingControllerViewabilityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1942,25 +2074,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-promote-campaign performance Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns></returns>
-        public void PromoteCampaignReportingControllerReport(string? to = default(string?), string? from = default(string?))
+        /// <returns>List&lt;ReportPromoteCampaignRow&gt;</returns>
+        public List<ReportPromoteCampaignRow> PromoteCampaignReportingControllerReport(string? to = default(string?), string? from = default(string?))
         {
-            PromoteCampaignReportingControllerReportWithHttpInfo(to, from);
+            Adviverse.Api.Client.ApiResponse<List<ReportPromoteCampaignRow>> localVarResponse = PromoteCampaignReportingControllerReportWithHttpInfo(to, from);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-promote-campaign performance Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PromoteCampaignReportingControllerReportWithHttpInfo(string? to = default(string?), string? from = default(string?))
+        /// <returns>ApiResponse of List&lt;ReportPromoteCampaignRow&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportPromoteCampaignRow>> PromoteCampaignReportingControllerReportWithHttpInfo(string? to = default(string?), string? from = default(string?))
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1969,6 +2102,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1986,9 +2120,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/promote-campaigns/report", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportPromoteCampaignRow>>("/v1/advertiser/promote-campaigns/report", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2000,27 +2145,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-promote-campaign performance Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PromoteCampaignReportingControllerReportAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportPromoteCampaignRow&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportPromoteCampaignRow>> PromoteCampaignReportingControllerReportAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PromoteCampaignReportingControllerReportWithHttpInfoAsync(to, from, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportPromoteCampaignRow>> localVarResponse = await PromoteCampaignReportingControllerReportWithHttpInfoAsync(to, from, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-promote-campaign performance Returns one row for each of the caller&#39;s non-deleted promote (Sponsored Products) campaigns, including those with no traffic yet (zeros). Delivery and spend come from stats_hourly and revenue from attributed conversion_value, scoped to the caller&#39;s own promote campaign ids. Sorted by spend then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PromoteCampaignReportingControllerReportWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportPromoteCampaignRow&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportPromoteCampaignRow>>> PromoteCampaignReportingControllerReportWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2030,6 +2176,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2048,10 +2195,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/promote-campaigns/report", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportPromoteCampaignRow>>("/v1/advertiser/promote-campaigns/report", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2063,25 +2221,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get totals across promote campaigns Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns></returns>
-        public void PromoteCampaignReportingControllerSummary(string? to = default(string?), string? from = default(string?))
+        /// <returns>PromoteCampaignReportingControllerSummary200Response</returns>
+        public PromoteCampaignReportingControllerSummary200Response PromoteCampaignReportingControllerSummary(string? to = default(string?), string? from = default(string?))
         {
-            PromoteCampaignReportingControllerSummaryWithHttpInfo(to, from);
+            Adviverse.Api.Client.ApiResponse<PromoteCampaignReportingControllerSummary200Response> localVarResponse = PromoteCampaignReportingControllerSummaryWithHttpInfo(to, from);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get totals across promote campaigns Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PromoteCampaignReportingControllerSummaryWithHttpInfo(string? to = default(string?), string? from = default(string?))
+        /// <returns>ApiResponse of PromoteCampaignReportingControllerSummary200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PromoteCampaignReportingControllerSummary200Response> PromoteCampaignReportingControllerSummaryWithHttpInfo(string? to = default(string?), string? from = default(string?))
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2090,6 +2249,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2107,9 +2267,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/promote-campaigns/report/summary", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PromoteCampaignReportingControllerSummary200Response>("/v1/advertiser/promote-campaigns/report/summary", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2121,27 +2292,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get totals across promote campaigns Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PromoteCampaignReportingControllerSummaryAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PromoteCampaignReportingControllerSummary200Response</returns>
+        public async System.Threading.Tasks.Task<PromoteCampaignReportingControllerSummary200Response> PromoteCampaignReportingControllerSummaryAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PromoteCampaignReportingControllerSummaryWithHttpInfoAsync(to, from, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PromoteCampaignReportingControllerSummary200Response> localVarResponse = await PromoteCampaignReportingControllerSummaryWithHttpInfoAsync(to, from, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get totals across promote campaigns Rolls up the per-promote-campaign report into one totals object over the same window, with the campaign count and recomputed CTR and ROAS. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PromoteCampaignReportingControllerSummaryWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PromoteCampaignReportingControllerSummary200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PromoteCampaignReportingControllerSummary200Response>> PromoteCampaignReportingControllerSummaryWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2151,6 +2323,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2169,10 +2342,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/promote-campaigns/report/summary", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PromoteCampaignReportingControllerSummary200Response>("/v1/advertiser/promote-campaigns/report/summary", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2184,21 +2368,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser spend and performance by dimension Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerAdvertiser()
+        /// <returns>List&lt;ReportAdvertiserStatsRow&gt;</returns>
+        public List<ReportAdvertiserStatsRow> ReportingControllerAdvertiser()
         {
-            ReportingControllerAdvertiserWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportAdvertiserStatsRow>> localVarResponse = ReportingControllerAdvertiserWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser spend and performance by dimension Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerAdvertiserWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportAdvertiserStatsRow&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportAdvertiserStatsRow>> ReportingControllerAdvertiserWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2207,6 +2392,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2216,9 +2402,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/advertiser", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportAdvertiserStatsRow>>("/v1/reporting/advertiser", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2230,23 +2427,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser spend and performance by dimension Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerAdvertiserAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportAdvertiserStatsRow&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportAdvertiserStatsRow>> ReportingControllerAdvertiserAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerAdvertiserWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportAdvertiserStatsRow>> localVarResponse = await ReportingControllerAdvertiserWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser spend and performance by dimension Aggregates the caller&#39;s advertiser delivery from adnet.stats_hourly, grouped by &#x60;dim&#x60; (day default, hour, geo, device, format, placement_id, campaign_id), with eCPM, eCPC, eCPA and CTR. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerAdvertiserWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportAdvertiserStatsRow&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportAdvertiserStatsRow>>> ReportingControllerAdvertiserWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2256,6 +2454,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2266,10 +2465,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/advertiser", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportAdvertiserStatsRow>>("/v1/reporting/advertiser", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2281,27 +2491,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get affiliate sub-id funnel Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
-        /// <returns></returns>
-        public void ReportingControllerAffiliate(string? to = default(string?), string? from = default(string?), string? sub = default(string?))
+        /// <returns>List&lt;ReportingControllerAffiliate200ResponseInner&gt;</returns>
+        public List<ReportingControllerAffiliate200ResponseInner> ReportingControllerAffiliate(string? to = default(string?), string? from = default(string?), string? sub = default(string?))
         {
-            ReportingControllerAffiliateWithHttpInfo(to, from, sub);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerAffiliate200ResponseInner>> localVarResponse = ReportingControllerAffiliateWithHttpInfo(to, from, sub);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get affiliate sub-id funnel Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerAffiliateWithHttpInfo(string? to = default(string?), string? from = default(string?), string? sub = default(string?))
+        /// <returns>ApiResponse of List&lt;ReportingControllerAffiliate200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerAffiliate200ResponseInner>> ReportingControllerAffiliateWithHttpInfo(string? to = default(string?), string? from = default(string?), string? sub = default(string?))
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2310,6 +2521,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2331,9 +2543,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "sub", sub));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/affiliate", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerAffiliate200ResponseInner>>("/v1/reporting/affiliate", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2345,29 +2568,30 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get affiliate sub-id funnel Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerAffiliateAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerAffiliate200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerAffiliate200ResponseInner>> ReportingControllerAffiliateAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerAffiliateWithHttpInfoAsync(to, from, sub, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerAffiliate200ResponseInner>> localVarResponse = await ReportingControllerAffiliateWithHttpInfoAsync(to, from, sub, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get affiliate sub-id funnel Per sub-id value funnel (impressions, clicks, conversions) with CTR and CVR in percent, revenue (earnings or spend), CPA payout and conversion value. &#x60;sub&#x60; picks sub1..sub5 (default sub1). Conversions carry no publisher id, so publishers get impressions/clicks/revenue only. Top 100 by revenue. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to"> (optional)</param>
         /// <param name="from"> (optional)</param>
         /// <param name="sub">Which sub-id to group by (default sub1). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerAffiliateWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerAffiliate200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerAffiliate200ResponseInner>>> ReportingControllerAffiliateWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? sub = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2377,6 +2601,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2399,10 +2624,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "sub", sub));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/affiliate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerAffiliate200ResponseInner>>("/v1/reporting/affiliate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2414,21 +2650,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get impressions recovered from adblock visitors Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerAntiAdblock()
+        /// <returns>ReportingControllerAntiAdblock200Response</returns>
+        public ReportingControllerAntiAdblock200Response ReportingControllerAntiAdblock()
         {
-            ReportingControllerAntiAdblockWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerAntiAdblock200Response> localVarResponse = ReportingControllerAntiAdblockWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get impressions recovered from adblock visitors Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerAntiAdblockWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerAntiAdblock200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerAntiAdblock200Response> ReportingControllerAntiAdblockWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2437,6 +2674,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2446,9 +2684,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/publisher/anti-adblock", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerAntiAdblock200Response>("/v1/reporting/publisher/anti-adblock", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2460,23 +2709,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get impressions recovered from adblock visitors Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerAntiAdblockAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerAntiAdblock200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerAntiAdblock200Response> ReportingControllerAntiAdblockAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerAntiAdblockWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerAntiAdblock200Response> localVarResponse = await ReportingControllerAntiAdblockWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get impressions recovered from adblock visitors Reports valid impressions served to visitors the SDK detected as running an adblocker (for example via a first-party serving domain), as a daily series and a window total. recovered_pct is the share of valid impressions that came from adblock users. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerAntiAdblockWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerAntiAdblock200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerAntiAdblock200Response>> ReportingControllerAntiAdblockWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2486,6 +2736,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2496,10 +2747,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/publisher/anti-adblock", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerAntiAdblock200Response>("/v1/reporting/publisher/anti-adblock", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2511,21 +2773,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get auction fill rate and top no-fill reasons Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerAuction()
+        /// <returns>ReportingControllerAuction200Response</returns>
+        public ReportingControllerAuction200Response ReportingControllerAuction()
         {
-            ReportingControllerAuctionWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerAuction200Response> localVarResponse = ReportingControllerAuctionWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get auction fill rate and top no-fill reasons Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerAuctionWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerAuction200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerAuction200Response> ReportingControllerAuctionWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2534,6 +2797,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2543,9 +2807,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/auction", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerAuction200Response>("/v1/reporting/auction", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2557,23 +2832,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get auction fill rate and top no-fill reasons Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerAuctionAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerAuction200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerAuction200Response> ReportingControllerAuctionAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerAuctionWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerAuction200Response> localVarResponse = await ReportingControllerAuctionWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get auction fill rate and top no-fill reasons Request count, filled count and fill rate from adnet.ad_requests plus the top 10 no-fill reasons. Publishers see their own inventory; ad_requests has no advertiser column, so other accounts see network-wide auction health. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerAuctionWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerAuction200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerAuction200Response>> ReportingControllerAuctionWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2583,6 +2859,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2593,10 +2870,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/auction", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerAuction200Response>("/v1/reporting/auction", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2608,21 +2896,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Benchmark eCPM, fill and viewability against the network Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerBenchmark()
+        /// <returns>ReportingControllerBenchmark200Response</returns>
+        public ReportingControllerBenchmark200Response ReportingControllerBenchmark()
         {
-            ReportingControllerBenchmarkWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerBenchmark200Response> localVarResponse = ReportingControllerBenchmarkWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Benchmark eCPM, fill and viewability against the network Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerBenchmarkWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerBenchmark200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerBenchmark200Response> ReportingControllerBenchmarkWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2631,6 +2920,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2640,9 +2930,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/benchmark", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerBenchmark200Response>("/v1/reporting/benchmark", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2654,23 +2955,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Benchmark eCPM, fill and viewability against the network Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerBenchmarkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerBenchmark200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerBenchmark200Response> ReportingControllerBenchmarkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerBenchmarkWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerBenchmark200Response> localVarResponse = await ReportingControllerBenchmarkWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Benchmark eCPM, fill and viewability against the network Ranks the caller among publishers with enough volume in the window (&gt;&#x3D; 1000 impressions for eCPM, &gt;&#x3D; 1000 requests for fill, &gt;&#x3D; 500 measurable for viewability). Only the caller&#39;s own value plus the network median, percentile rank and sample size are returned, never another publisher&#39;s data. fillRate and viewableRate are percentages. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerBenchmarkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerBenchmark200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerBenchmark200Response>> ReportingControllerBenchmarkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2680,6 +2982,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2690,10 +2993,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/benchmark", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerBenchmark200Response>("/v1/reporting/benchmark", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2705,21 +3019,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get clearing-price percentiles and estimated win curve From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerBidLandscape()
+        /// <returns>ReportingControllerBidLandscape200Response</returns>
+        public ReportingControllerBidLandscape200Response ReportingControllerBidLandscape()
         {
-            ReportingControllerBidLandscapeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerBidLandscape200Response> localVarResponse = ReportingControllerBidLandscapeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get clearing-price percentiles and estimated win curve From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerBidLandscapeWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerBidLandscape200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerBidLandscape200Response> ReportingControllerBidLandscapeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2728,6 +3043,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2737,9 +3053,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/bid-landscape", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerBidLandscape200Response>("/v1/reporting/bid-landscape", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2751,23 +3078,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get clearing-price percentiles and estimated win curve From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerBidLandscapeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerBidLandscape200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerBidLandscape200Response> ReportingControllerBidLandscapeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerBidLandscapeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerBidLandscape200Response> localVarResponse = await ReportingControllerBidLandscapeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get clearing-price percentiles and estimated win curve From the caller&#39;s valid paid impressions over the last 30 days, returns clearing-price (price_paid) percentiles and a 10-point estimated win-rate curve: for each candidate bid, the fraction of observed won auctions that cleared at or below it. Only won auctions are seen, so the curve is optimistic at low bids. With no history the curve is empty and &#x60;note&#x60; is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerBidLandscapeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerBidLandscape200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerBidLandscape200Response>> ReportingControllerBidLandscapeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2777,6 +3105,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2787,10 +3116,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/bid-landscape", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerBidLandscape200Response>("/v1/reporting/bid-landscape", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2802,27 +3142,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Break down delivery by OS, browser, deal, page, app or sub-id Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
-        /// <returns></returns>
-        public void ReportingControllerBreakdown(string? to = default(string?), string? from = default(string?), string? bdim = default(string?))
+        /// <returns>List&lt;ReportBreakdownRow&gt;</returns>
+        public List<ReportBreakdownRow> ReportingControllerBreakdown(string? to = default(string?), string? from = default(string?), string? bdim = default(string?))
         {
-            ReportingControllerBreakdownWithHttpInfo(to, from, bdim);
+            Adviverse.Api.Client.ApiResponse<List<ReportBreakdownRow>> localVarResponse = ReportingControllerBreakdownWithHttpInfo(to, from, bdim);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Break down delivery by OS, browser, deal, page, app or sub-id Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerBreakdownWithHttpInfo(string? to = default(string?), string? from = default(string?), string? bdim = default(string?))
+        /// <returns>ApiResponse of List&lt;ReportBreakdownRow&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportBreakdownRow>> ReportingControllerBreakdownWithHttpInfo(string? to = default(string?), string? from = default(string?), string? bdim = default(string?))
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2831,6 +3172,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2852,9 +3194,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "bdim", bdim));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/breakdown", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportBreakdownRow>>("/v1/reporting/breakdown", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2866,29 +3219,30 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Break down delivery by OS, browser, deal, page, app or sub-id Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerBreakdownAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportBreakdownRow&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportBreakdownRow>> ReportingControllerBreakdownAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerBreakdownWithHttpInfoAsync(to, from, bdim, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportBreakdownRow>> localVarResponse = await ReportingControllerBreakdownWithHttpInfoAsync(to, from, bdim, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Break down delivery by OS, browser, deal, page, app or sub-id Groups valid raw impressions (and matching clicks) by &#x60;bdim&#x60;: os (default), browser, deal, page (host), page_url (host+path), app, property, region, make, model or sub1..sub5. Unknown values fall back to os. Returns at most 50 rows ordered by revenue (impression-only dims) or impressions (os/browser). Revenue is publisher earnings for publishers and spend for other accounts. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="to">ISO end (inclusive). (optional)</param>
         /// <param name="from">ISO start (inclusive). (optional)</param>
         /// <param name="bdim">Breakdown dimension (default os). &#39;page&#39;&#x3D;site (host), &#39;page_url&#39;&#x3D;individual page (host+path), &#39;app&#39;&#x3D;in-app/in-game app id, &#39;property&#39;&#x3D;owning property (app/site). &#39;region&#39;/&#39;make&#39;/&#39;model&#39; &#x3D; deployment region / device make / device model; &#39;sub1&#39;..&#39;sub5&#39; &#x3D; affiliate sub-ids. Use &#39;app&#39;/&#39;property&#39; for per-app earnings, &#39;sub*&#39; for affiliate performance. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerBreakdownWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportBreakdownRow&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportBreakdownRow>>> ReportingControllerBreakdownWithHttpInfoAsync(string? to = default(string?), string? from = default(string?), string? bdim = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2898,6 +3252,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2920,10 +3275,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "bdim", bdim));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/breakdown", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportBreakdownRow>>("/v1/reporting/breakdown", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2935,21 +3301,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get clicks per carousel card Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerCarousel()
+        /// <returns>List&lt;ReportingControllerCarousel200ResponseInner&gt;</returns>
+        public List<ReportingControllerCarousel200ResponseInner> ReportingControllerCarousel()
         {
-            ReportingControllerCarouselWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerCarousel200ResponseInner>> localVarResponse = ReportingControllerCarouselWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get clicks per carousel card Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerCarouselWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerCarousel200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerCarousel200ResponseInner>> ReportingControllerCarouselWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2958,6 +3325,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2967,9 +3335,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/carousel", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerCarousel200ResponseInner>>("/v1/reporting/carousel", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2981,23 +3360,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get clicks per carousel card Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerCarouselAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerCarousel200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerCarousel200ResponseInner>> ReportingControllerCarouselAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerCarouselWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerCarousel200ResponseInner>> localVarResponse = await ReportingControllerCarouselWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get clicks per carousel card Clicks per card (0-based index) of each of the caller&#39;s carousel creatives, with the card title and price taken from the creative&#39;s stored carousel_items (title defaults to &#39;Card N&#39;). Top 500 by clicks. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerCarouselWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerCarousel200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerCarousel200ResponseInner>>> ReportingControllerCarouselWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3007,6 +3387,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3017,10 +3398,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/carousel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerCarousel200ResponseInner>>("/v1/reporting/carousel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3032,21 +3424,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get funnel for the account&#39;s house campaigns Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerClosedLoop()
+        /// <returns>ReportingControllerClosedLoop200Response</returns>
+        public ReportingControllerClosedLoop200Response ReportingControllerClosedLoop()
         {
-            ReportingControllerClosedLoopWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerClosedLoop200Response> localVarResponse = ReportingControllerClosedLoopWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get funnel for the account&#39;s house campaigns Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerClosedLoopWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerClosedLoop200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerClosedLoop200Response> ReportingControllerClosedLoopWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3055,6 +3448,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3064,9 +3458,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/closed-loop", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerClosedLoop200Response>("/v1/reporting/closed-loop", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3078,23 +3483,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get funnel for the account&#39;s house campaigns Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerClosedLoopAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerClosedLoop200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerClosedLoop200Response> ReportingControllerClosedLoopAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerClosedLoopWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerClosedLoop200Response> localVarResponse = await ReportingControllerClosedLoopWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get funnel for the account&#39;s house campaigns Impressions, clicks, conversions and spend (returned as &#x60;revenue&#x60;) across the caller&#39;s house-ad campaigns from stats_hourly, with CTR, CVR and impression-to-conversion rate in percent. Returns zeros (with houseCampaigns) when there are no house campaigns or the query fails. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerClosedLoopWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerClosedLoop200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerClosedLoop200Response>> ReportingControllerClosedLoopWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3104,6 +3510,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3114,10 +3521,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/closed-loop", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerClosedLoop200Response>("/v1/reporting/closed-loop", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3129,21 +3547,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get cohort retention and LTV triangle (admin) Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerCohorts()
+        /// <returns>ReportingControllerCohorts200Response</returns>
+        public ReportingControllerCohorts200Response ReportingControllerCohorts()
         {
-            ReportingControllerCohortsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerCohorts200Response> localVarResponse = ReportingControllerCohortsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get cohort retention and LTV triangle (admin) Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerCohortsWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerCohorts200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerCohorts200Response> ReportingControllerCohortsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3152,6 +3571,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3161,9 +3581,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/admin/cohorts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerCohorts200Response>("/v1/reporting/admin/cohorts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3175,23 +3606,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get cohort retention and LTV triangle (admin) Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerCohortsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerCohorts200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerCohorts200Response> ReportingControllerCohortsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerCohortsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerCohorts200Response> localVarResponse = await ReportingControllerCohortsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get cohort retention and LTV triangle (admin) Groups accounts by signup month and, for months 0..12 after signup, reports retention (fraction of the cohort with delivery that month) and cumulative average revenue per account. &#x60;scope&#x3D;advertiser&#x60; uses spend; anything else (default) uses publisher earnings. Only accounts ever active on the chosen side are counted; cells in the future are null. No date window.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerCohortsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerCohorts200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerCohorts200Response>> ReportingControllerCohortsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3201,6 +3633,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3211,10 +3644,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/admin/cohorts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerCohorts200Response>("/v1/reporting/admin/cohorts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3226,21 +3670,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get pixel consent rate (personalized vs aggregate-only) Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerConsentRate()
+        /// <returns>ReportingControllerConsentRate200Response</returns>
+        public ReportingControllerConsentRate200Response ReportingControllerConsentRate()
         {
-            ReportingControllerConsentRateWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerConsentRate200Response> localVarResponse = ReportingControllerConsentRateWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get pixel consent rate (personalized vs aggregate-only) Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerConsentRateWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerConsentRate200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerConsentRate200Response> ReportingControllerConsentRateWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3249,6 +3694,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3258,9 +3704,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/consent-rate", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerConsentRate200Response>("/v1/reporting/consent-rate", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3272,23 +3729,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get pixel consent rate (personalized vs aggregate-only) Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerConsentRateAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerConsentRate200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerConsentRate200Response> ReportingControllerConsentRateAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerConsentRateWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerConsentRate200Response> localVarResponse = await ReportingControllerConsentRateWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get pixel consent rate (personalized vs aggregate-only) Share of the caller&#39;s pixel events (adnet.pixel_events) ingested in personalized mode (consent granted, no GPC) versus aggregate-only, as totals and a daily series. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerConsentRateWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerConsentRate200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerConsentRate200Response>> ReportingControllerConsentRateWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3298,6 +3756,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3308,10 +3767,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/consent-rate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerConsentRate200Response>("/v1/reporting/consent-rate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3323,23 +3793,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save a report definition Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
-        /// <returns></returns>
-        public void ReportingControllerCreateSaved(CreateSavedReportDto createSavedReportDto)
+        /// <returns>ReportSavedReport</returns>
+        public ReportSavedReport ReportingControllerCreateSaved(CreateSavedReportDto createSavedReportDto)
         {
-            ReportingControllerCreateSavedWithHttpInfo(createSavedReportDto);
+            Adviverse.Api.Client.ApiResponse<ReportSavedReport> localVarResponse = ReportingControllerCreateSavedWithHttpInfo(createSavedReportDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save a report definition Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerCreateSavedWithHttpInfo(CreateSavedReportDto createSavedReportDto)
+        /// <returns>ApiResponse of ReportSavedReport</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportSavedReport> ReportingControllerCreateSavedWithHttpInfo(CreateSavedReportDto createSavedReportDto)
         {
             // verify the required parameter 'createSavedReportDto' is set
             if (createSavedReportDto == null)
@@ -3353,6 +3824,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3363,9 +3835,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createSavedReportDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/reporting/saved", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ReportSavedReport>("/v1/reporting/saved", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3377,25 +3860,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save a report definition Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerCreateSavedAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportSavedReport</returns>
+        public async System.Threading.Tasks.Task<ReportSavedReport> ReportingControllerCreateSavedAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerCreateSavedWithHttpInfoAsync(createSavedReportDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportSavedReport> localVarResponse = await ReportingControllerCreateSavedWithHttpInfoAsync(createSavedReportDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save a report definition Stores a named report definition for the caller. Body: &#x60;name&#x60; (default &#39;Untitled report&#39;) and &#x60;config&#x60; (any JSON object, default {}).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSavedReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerCreateSavedWithHttpInfoAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportSavedReport)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportSavedReport>> ReportingControllerCreateSavedWithHttpInfoAsync(CreateSavedReportDto createSavedReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createSavedReportDto' is set
             if (createSavedReportDto == null)
@@ -3410,6 +3894,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3421,10 +3906,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createSavedReportDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/reporting/saved", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReportSavedReport>("/v1/reporting/saved", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3436,23 +3932,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Schedule an emailed report Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createScheduledReportDto"></param>
-        /// <returns></returns>
-        public void ReportingControllerCreateScheduled(CreateScheduledReportDto createScheduledReportDto)
+        /// <returns>ReportScheduledReport</returns>
+        public ReportScheduledReport ReportingControllerCreateScheduled(CreateScheduledReportDto createScheduledReportDto)
         {
-            ReportingControllerCreateScheduledWithHttpInfo(createScheduledReportDto);
+            Adviverse.Api.Client.ApiResponse<ReportScheduledReport> localVarResponse = ReportingControllerCreateScheduledWithHttpInfo(createScheduledReportDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Schedule an emailed report Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createScheduledReportDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerCreateScheduledWithHttpInfo(CreateScheduledReportDto createScheduledReportDto)
+        /// <returns>ApiResponse of ReportScheduledReport</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportScheduledReport> ReportingControllerCreateScheduledWithHttpInfo(CreateScheduledReportDto createScheduledReportDto)
         {
             // verify the required parameter 'createScheduledReportDto' is set
             if (createScheduledReportDto == null)
@@ -3466,6 +3963,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3476,9 +3974,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createScheduledReportDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ReportScheduledReport>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3490,25 +3999,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Schedule an emailed report Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createScheduledReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerCreateScheduledAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportScheduledReport</returns>
+        public async System.Threading.Tasks.Task<ReportScheduledReport> ReportingControllerCreateScheduledAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerCreateScheduledWithHttpInfoAsync(createScheduledReportDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportScheduledReport> localVarResponse = await ReportingControllerCreateScheduledWithHttpInfoAsync(createScheduledReportDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Schedule an emailed report Creates a scheduled report. Body: &#x60;name&#x60;, &#x60;config&#x60; (JSON; &#x60;scope&#x60; &#39;advertiser&#39;|&#39;publisher&#39; and &#x60;dim&#x60; select the stats query), &#x60;cadence&#x60; (&#39;daily&#39; default, or &#39;weekly&#39;) and &#x60;email&#x60;. next_run_at is set one day or one week from now; each run emails the stats for the last 1 or 7 days.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createScheduledReportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerCreateScheduledWithHttpInfoAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportScheduledReport)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportScheduledReport>> ReportingControllerCreateScheduledWithHttpInfoAsync(CreateScheduledReportDto createScheduledReportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createScheduledReportDto' is set
             if (createScheduledReportDto == null)
@@ -3523,6 +4033,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3534,10 +4045,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createScheduledReportDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReportScheduledReport>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3549,21 +4071,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-creative performance and fatigue For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerCreatives()
+        /// <returns>ReportingControllerCreatives200Response</returns>
+        public ReportingControllerCreatives200Response ReportingControllerCreatives()
         {
-            ReportingControllerCreativesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerCreatives200Response> localVarResponse = ReportingControllerCreativesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-creative performance and fatigue For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerCreativesWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerCreatives200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerCreatives200Response> ReportingControllerCreativesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3572,6 +4095,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3581,9 +4105,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/creatives", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerCreatives200Response>("/v1/reporting/creatives", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3595,23 +4130,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-creative performance and fatigue For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerCreatives200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerCreatives200Response> ReportingControllerCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerCreativesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerCreatives200Response> localVarResponse = await ReportingControllerCreativesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-creative performance and fatigue For the caller&#39;s creatives: valid impressions, clicks, CTR, conversions (attributed through the click that drove them) and CVR, sorted by impressions and capped at 50. Names come from the creative title or brand name. &#x60;fatigue&#x60; is the daily CTR series of the highest-volume creative so decay is visible. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerCreatives200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerCreatives200Response>> ReportingControllerCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3621,6 +4157,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3631,10 +4168,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerCreatives200Response>("/v1/reporting/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3646,23 +4194,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a saved report Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void ReportingControllerDeleteSaved(string id)
+        /// <returns>ReportingControllerDeleteSaved200Response</returns>
+        public ReportingControllerDeleteSaved200Response ReportingControllerDeleteSaved(string id)
         {
-            ReportingControllerDeleteSavedWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response> localVarResponse = ReportingControllerDeleteSavedWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a saved report Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerDeleteSavedWithHttpInfo(string id)
+        /// <returns>ApiResponse of ReportingControllerDeleteSaved200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteSavedWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3675,6 +4224,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3685,9 +4235,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/reporting/saved/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<ReportingControllerDeleteSaved200Response>("/v1/reporting/saved/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3699,25 +4260,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a saved report Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerDeleteSavedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerDeleteSaved200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteSavedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerDeleteSavedWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response> localVarResponse = await ReportingControllerDeleteSavedWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a saved report Deletes one of the caller&#39;s saved reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerDeleteSavedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerDeleteSaved200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response>> ReportingControllerDeleteSavedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3731,6 +4293,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3742,10 +4305,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/reporting/saved/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<ReportingControllerDeleteSaved200Response>("/v1/reporting/saved/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3757,23 +4331,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled report Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void ReportingControllerDeleteScheduled(string id)
+        /// <returns>ReportingControllerDeleteSaved200Response</returns>
+        public ReportingControllerDeleteSaved200Response ReportingControllerDeleteScheduled(string id)
         {
-            ReportingControllerDeleteScheduledWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response> localVarResponse = ReportingControllerDeleteScheduledWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled report Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerDeleteScheduledWithHttpInfo(string id)
+        /// <returns>ApiResponse of ReportingControllerDeleteSaved200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteScheduledWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3786,6 +4361,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3796,9 +4372,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/reporting/scheduled/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<ReportingControllerDeleteSaved200Response>("/v1/reporting/scheduled/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3810,25 +4397,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled report Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerDeleteScheduledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerDeleteSaved200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerDeleteSaved200Response> ReportingControllerDeleteScheduledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerDeleteScheduledWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response> localVarResponse = await ReportingControllerDeleteScheduledWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled report Deletes one of the caller&#39;s scheduled reports by id. Returns 404 if it does not exist or belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerDeleteScheduledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerDeleteSaved200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerDeleteSaved200Response>> ReportingControllerDeleteScheduledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3842,6 +4430,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3853,10 +4442,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/reporting/scheduled/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<ReportingControllerDeleteSaved200Response>("/v1/reporting/scheduled/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3868,21 +4468,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher delivery waterfall Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerDeliveryFunnel()
+        /// <returns>ReportingControllerDeliveryFunnel200Response</returns>
+        public ReportingControllerDeliveryFunnel200Response ReportingControllerDeliveryFunnel()
         {
-            ReportingControllerDeliveryFunnelWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerDeliveryFunnel200Response> localVarResponse = ReportingControllerDeliveryFunnelWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher delivery waterfall Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerDeliveryFunnelWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerDeliveryFunnel200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerDeliveryFunnel200Response> ReportingControllerDeliveryFunnelWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3891,6 +4492,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3900,9 +4502,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/delivery-funnel", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerDeliveryFunnel200Response>("/v1/reporting/delivery-funnel", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3914,23 +4527,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher delivery waterfall Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerDeliveryFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerDeliveryFunnel200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerDeliveryFunnel200Response> ReportingControllerDeliveryFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerDeliveryFunnelWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerDeliveryFunnel200Response> localVarResponse = await ReportingControllerDeliveryFunnelWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher delivery waterfall Requests and filled responses (ad_requests), rendered valid impressions (impressions) and measurable/viewable beacons (viewability) for the caller&#39;s inventory, with stage-to-stage rates. &#x60;discrepancy&#x60; is filled minus rendered (floored at 0). Rates are fractions 0..1. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerDeliveryFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerDeliveryFunnel200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerDeliveryFunnel200Response>> ReportingControllerDeliveryFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3940,6 +4554,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3950,10 +4565,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/delivery-funnel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerDeliveryFunnel200Response>("/v1/reporting/delivery-funnel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3965,21 +4591,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get delivery pacing for booked and goal campaigns For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerDeliveryPacing()
+        /// <returns>List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;</returns>
+        public List<ReportingControllerDeliveryPacing200ResponseInner> ReportingControllerDeliveryPacing()
         {
-            ReportingControllerDeliveryPacingWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerDeliveryPacing200ResponseInner>> localVarResponse = ReportingControllerDeliveryPacingWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get delivery pacing for booked and goal campaigns For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerDeliveryPacingWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerDeliveryPacing200ResponseInner>> ReportingControllerDeliveryPacingWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3988,6 +4615,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3997,9 +4625,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/delivery-pacing", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerDeliveryPacing200ResponseInner>>("/v1/reporting/delivery-pacing", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4011,23 +4650,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get delivery pacing for booked and goal campaigns For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerDeliveryPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerDeliveryPacing200ResponseInner>> ReportingControllerDeliveryPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerDeliveryPacingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerDeliveryPacing200ResponseInner>> localVarResponse = await ReportingControllerDeliveryPacingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get delivery pacing for booked and goal campaigns For each of the caller&#39;s campaigns with a delivery_goal or a guaranteed/sponsorship priority tier: the goal, all-time valid delivered impressions or clicks (per goal_type), percent to goal, percent of the flight elapsed, and whether delivery is keeping up (pctToGoal &gt;&#x3D; flightProgressPct). Open-ended flights count as 100% elapsed once started. No query params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerDeliveryPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerDeliveryPacing200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerDeliveryPacing200ResponseInner>>> ReportingControllerDeliveryPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4037,6 +4677,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4047,10 +4688,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/delivery-pacing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerDeliveryPacing200ResponseInner>>("/v1/reporting/delivery-pacing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4062,21 +4714,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher fill rate and no-fill reasons Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerFill()
+        /// <returns>ReportingControllerFill200Response</returns>
+        public ReportingControllerFill200Response ReportingControllerFill()
         {
-            ReportingControllerFillWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerFill200Response> localVarResponse = ReportingControllerFillWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher fill rate and no-fill reasons Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerFillWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerFill200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerFill200Response> ReportingControllerFillWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4085,6 +4738,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4094,9 +4748,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/publisher/fill", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerFill200Response>("/v1/reporting/publisher/fill", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4108,23 +4773,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher fill rate and no-fill reasons Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerFillAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerFill200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerFill200Response> ReportingControllerFillAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerFillWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerFill200Response> localVarResponse = await ReportingControllerFillWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher fill rate and no-fill reasons Counts the caller&#39;s ad requests from adnet.ad_requests, how many were filled, and the fill rate, plus a map of unfilled requests by no-fill reason (empty reasons bucketed as &#39;unknown&#39;). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerFillWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerFill200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerFill200Response>> ReportingControllerFillWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4134,6 +4800,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4144,10 +4811,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/publisher/fill", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerFill200Response>("/v1/reporting/publisher/fill", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4159,21 +4837,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser impression-click-conversion funnel Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerFunnel()
+        /// <returns>ReportingControllerFunnel200Response</returns>
+        public ReportingControllerFunnel200Response ReportingControllerFunnel()
         {
-            ReportingControllerFunnelWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerFunnel200Response> localVarResponse = ReportingControllerFunnelWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser impression-click-conversion funnel Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerFunnelWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerFunnel200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerFunnel200Response> ReportingControllerFunnelWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4182,6 +4861,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4191,9 +4871,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/funnel", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerFunnel200Response>("/v1/reporting/funnel", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4205,23 +4896,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser impression-click-conversion funnel Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerFunnel200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerFunnel200Response> ReportingControllerFunnelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerFunnelWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerFunnel200Response> localVarResponse = await ReportingControllerFunnelWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get advertiser impression-click-conversion funnel Totals impressions, clicks and conversions for the caller&#39;s campaigns from adnet.stats_hourly with CTR, CVR (conversions/clicks) and impression-to-conversion rate, all in percent. Returns zeros when there is no data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerFunnel200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerFunnel200Response>> ReportingControllerFunnelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4231,6 +4923,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4241,10 +4934,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/funnel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerFunnel200Response>("/v1/reporting/funnel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4256,21 +4960,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-country delivery breakdown Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerGeo()
+        /// <returns>List&lt;ReportingControllerGeo200ResponseInner&gt;</returns>
+        public List<ReportingControllerGeo200ResponseInner> ReportingControllerGeo()
         {
-            ReportingControllerGeoWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerGeo200ResponseInner>> localVarResponse = ReportingControllerGeoWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-country delivery breakdown Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerGeoWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerGeo200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerGeo200ResponseInner>> ReportingControllerGeoWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4279,6 +4984,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4288,9 +4994,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/geo", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerGeo200ResponseInner>>("/v1/reporting/geo", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4302,23 +5019,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-country delivery breakdown Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerGeoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerGeo200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerGeo200ResponseInner>> ReportingControllerGeoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerGeoWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerGeo200ResponseInner>> localVarResponse = await ReportingControllerGeoWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-country delivery breakdown Impressions, clicks and amount per country from adnet.stats_hourly, ordered by amount. Amount is publisher earnings for publisher accounts and spend for other accounts; rows with an empty geo are skipped. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerGeoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerGeo200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerGeo200ResponseInner>>> ReportingControllerGeoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4328,6 +5046,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4338,10 +5057,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/geo", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerGeo200ResponseInner>>("/v1/reporting/geo", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4353,21 +5083,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-campaign conversion lift vs holdout For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerIncrementality()
+        /// <returns>List&lt;ReportingControllerIncrementality200ResponseInner&gt;</returns>
+        public List<ReportingControllerIncrementality200ResponseInner> ReportingControllerIncrementality()
         {
-            ReportingControllerIncrementalityWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerIncrementality200ResponseInner>> localVarResponse = ReportingControllerIncrementalityWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-campaign conversion lift vs holdout For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerIncrementalityWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerIncrementality200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerIncrementality200ResponseInner>> ReportingControllerIncrementalityWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4376,6 +5107,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4385,9 +5117,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/incrementality", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerIncrementality200ResponseInner>>("/v1/reporting/incrementality", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4399,23 +5142,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-campaign conversion lift vs holdout For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerIncrementalityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerIncrementality200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerIncrementality200ResponseInner>> ReportingControllerIncrementalityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerIncrementalityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerIncrementality200ResponseInner>> localVarResponse = await ReportingControllerIncrementalityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-campaign conversion lift vs holdout For up to 200 of the caller&#39;s campaigns, compares the conversion rate of exposed users (served an impression) with a holdout group (adnet.holdouts). Conversions attribute to users via the click that drove them. lift &#x3D; (exposedCvr - holdoutCvr) / holdoutCvr; holdout figures and lift are 0 when there is no holdout data. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerIncrementalityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerIncrementality200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerIncrementality200ResponseInner>>> ReportingControllerIncrementalityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4425,6 +5169,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4435,10 +5180,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/incrementality", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerIncrementality200ResponseInner>>("/v1/reporting/incrementality", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4450,21 +5206,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get invalid-traffic breakdown by reason (last 30 days) Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerIvt()
+        /// <returns>List&lt;ReportingControllerIvt200ResponseInner&gt;</returns>
+        public List<ReportingControllerIvt200ResponseInner> ReportingControllerIvt()
         {
-            ReportingControllerIvtWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerIvt200ResponseInner>> localVarResponse = ReportingControllerIvtWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get invalid-traffic breakdown by reason (last 30 days) Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerIvtWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerIvt200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerIvt200ResponseInner>> ReportingControllerIvtWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4473,6 +5230,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4482,9 +5240,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/ivt", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerIvt200ResponseInner>>("/v1/reporting/ivt", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4496,23 +5265,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get invalid-traffic breakdown by reason (last 30 days) Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerIvtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerIvt200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerIvt200ResponseInner>> ReportingControllerIvtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerIvtWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerIvt200ResponseInner>> localVarResponse = await ReportingControllerIvtWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get invalid-traffic breakdown by reason (last 30 days) Counts impressions flagged invalid (is_valid &#x3D; 0) in the last 30 days, grouped by IVT reason and ordered by count. Publishers see IVT on their inventory; every other account sees IVT on its campaigns. Takes no window params.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerIvtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerIvt200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerIvt200ResponseInner>>> ReportingControllerIvtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4522,6 +5292,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4532,10 +5303,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/ivt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerIvt200ResponseInner>>("/v1/reporting/ivt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4547,21 +5329,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get top cross-site user paths Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerJourney()
+        /// <returns>List&lt;ReportingControllerJourney200ResponseInner&gt;</returns>
+        public List<ReportingControllerJourney200ResponseInner> ReportingControllerJourney()
         {
-            ReportingControllerJourneyWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerJourney200ResponseInner>> localVarResponse = ReportingControllerJourneyWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get top cross-site user paths Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerJourneyWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerJourney200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerJourney200ResponseInner>> ReportingControllerJourneyWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4570,6 +5353,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4579,9 +5363,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/journey", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerJourney200ResponseInner>>("/v1/reporting/journey", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4593,23 +5388,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get top cross-site user paths Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerJourneyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerJourney200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerJourney200ResponseInner>> ReportingControllerJourneyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerJourneyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerJourney200ResponseInner>> localVarResponse = await ReportingControllerJourneyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get top cross-site user paths Builds each user&#39;s time-ordered sequence of placements (first 6) from the caller&#39;s valid impressions and counts the most common paths, joined with &#39; &gt; &#39;. &#x60;topN&#x60; sets the result size (default 20, max 50); at most 50,000 users are scanned. Returns an empty list on query failure. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerJourneyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerJourney200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerJourney200ResponseInner>>> ReportingControllerJourneyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4619,6 +5415,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4629,10 +5426,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/journey", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerJourney200ResponseInner>>("/v1/reporting/journey", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4644,21 +5452,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get network-wide marketplace liquidity (admin) Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerLiquidity()
+        /// <returns>ReportingControllerLiquidity200Response</returns>
+        public ReportingControllerLiquidity200Response ReportingControllerLiquidity()
         {
-            ReportingControllerLiquidityWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerLiquidity200Response> localVarResponse = ReportingControllerLiquidityWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get network-wide marketplace liquidity (admin) Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerLiquidityWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerLiquidity200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerLiquidity200Response> ReportingControllerLiquidityWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4667,6 +5476,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4676,9 +5486,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/admin/liquidity", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerLiquidity200Response>("/v1/reporting/admin/liquidity", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4690,23 +5511,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get network-wide marketplace liquidity (admin) Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerLiquidityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerLiquidity200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerLiquidity200Response> ReportingControllerLiquidityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerLiquidityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerLiquidity200Response> localVarResponse = await ReportingControllerLiquidityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get network-wide marketplace liquidity (admin) Network-wide ad requests, filled and unmatched requests, fill rate, the top 12 no-fill reasons and a daily requests/filled series, from adnet.ad_requests. Not scoped to an account. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerLiquidityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerLiquidity200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerLiquidity200Response>> ReportingControllerLiquidityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4716,6 +5538,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4726,10 +5549,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/admin/liquidity", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerLiquidity200Response>("/v1/reporting/admin/liquidity", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4741,21 +5575,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List saved reports Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerListSaved()
+        /// <returns>List&lt;ReportSavedReport&gt;</returns>
+        public List<ReportSavedReport> ReportingControllerListSaved()
         {
-            ReportingControllerListSavedWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportSavedReport>> localVarResponse = ReportingControllerListSavedWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List saved reports Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerListSavedWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportSavedReport&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportSavedReport>> ReportingControllerListSavedWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4764,6 +5599,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4773,9 +5609,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/saved", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportSavedReport>>("/v1/reporting/saved", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4787,23 +5634,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List saved reports Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerListSavedAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportSavedReport&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportSavedReport>> ReportingControllerListSavedAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerListSavedWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportSavedReport>> localVarResponse = await ReportingControllerListSavedWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List saved reports Returns the caller&#39;s saved report definitions, newest first. The config is opaque JSON stored for the dashboard.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerListSavedWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportSavedReport&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportSavedReport>>> ReportingControllerListSavedWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4813,6 +5661,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4823,10 +5672,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/saved", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportSavedReport>>("/v1/reporting/saved", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4838,21 +5698,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List scheduled email reports Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerListScheduled()
+        /// <returns>List&lt;ReportScheduledReport&gt;</returns>
+        public List<ReportScheduledReport> ReportingControllerListScheduled()
         {
-            ReportingControllerListScheduledWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportScheduledReport>> localVarResponse = ReportingControllerListScheduledWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List scheduled email reports Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerListScheduledWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportScheduledReport&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportScheduledReport>> ReportingControllerListScheduledWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4861,6 +5722,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4870,9 +5732,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportScheduledReport>>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4884,23 +5757,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List scheduled email reports Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerListScheduledAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportScheduledReport&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportScheduledReport>> ReportingControllerListScheduledAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerListScheduledWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportScheduledReport>> localVarResponse = await ReportingControllerListScheduledWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List scheduled email reports Returns the caller&#39;s scheduled email reports with cadence, recipient and last/next run times, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerListScheduledWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportScheduledReport&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportScheduledReport>>> ReportingControllerListScheduledWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -4910,6 +5784,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4920,10 +5795,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportScheduledReport>>("/v1/reporting/scheduled", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4935,21 +5821,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get marketplace economics and concentration (admin) Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerMarketplace()
+        /// <returns>ReportingControllerMarketplace200Response</returns>
+        public ReportingControllerMarketplace200Response ReportingControllerMarketplace()
         {
-            ReportingControllerMarketplaceWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerMarketplace200Response> localVarResponse = ReportingControllerMarketplaceWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get marketplace economics and concentration (admin) Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerMarketplaceWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerMarketplace200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerMarketplace200Response> ReportingControllerMarketplaceWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -4958,6 +5845,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4967,9 +5855,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/admin/marketplace", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerMarketplace200Response>("/v1/reporting/admin/marketplace", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4981,23 +5880,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get marketplace economics and concentration (admin) Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerMarketplaceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerMarketplace200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerMarketplace200Response> ReportingControllerMarketplaceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerMarketplaceWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerMarketplace200Response> localVarResponse = await ReportingControllerMarketplaceWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get marketplace economics and concentration (admin) Gross advertiser spend, publisher payout, platform margin and take rate over the window (stats_hourly), the top 10 advertisers by spend and publishers by earnings with their share of the total, and monthly signup counts per account type from Postgres (cohorts ignore the window). Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerMarketplaceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerMarketplace200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerMarketplace200Response>> ReportingControllerMarketplaceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5007,6 +5907,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5017,10 +5918,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/admin/marketplace", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerMarketplace200Response>("/v1/reporting/admin/marketplace", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5032,21 +5944,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get Personal Network infra fees and house-ad delivery Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerPersonalNetwork()
+        /// <returns>ReportingControllerPersonalNetwork200Response</returns>
+        public ReportingControllerPersonalNetwork200Response ReportingControllerPersonalNetwork()
         {
-            ReportingControllerPersonalNetworkWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerPersonalNetwork200Response> localVarResponse = ReportingControllerPersonalNetworkWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get Personal Network infra fees and house-ad delivery Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerPersonalNetworkWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerPersonalNetwork200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerPersonalNetwork200Response> ReportingControllerPersonalNetworkWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5055,6 +5968,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5064,9 +5978,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/personal-network", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerPersonalNetwork200Response>("/v1/reporting/personal-network", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5078,23 +6003,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get Personal Network infra fees and house-ad delivery Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerPersonalNetworkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerPersonalNetwork200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerPersonalNetwork200Response> ReportingControllerPersonalNetworkAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerPersonalNetworkWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerPersonalNetwork200Response> localVarResponse = await ReportingControllerPersonalNetworkWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get Personal Network infra fees and house-ad delivery Sums the &#39;infra_fee&#39; ledger entries charged to the caller over the period (absolute value, total and per day) and counts valid impressions of the caller&#39;s house-ad campaigns. &#x60;from&#x60;/&#x60;to&#x60; are YYYY-MM-DD dates here (default: the last 30 days through today, inclusive). infraFeePct is read from platform_config (default 0.05).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerPersonalNetworkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerPersonalNetwork200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerPersonalNetwork200Response>> ReportingControllerPersonalNetworkWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5104,6 +6030,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5114,10 +6041,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/personal-network", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerPersonalNetwork200Response>("/v1/reporting/personal-network", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5129,21 +6067,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pivot delivery over two dimensions Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerPivot()
+        /// <returns>List&lt;ReportingControllerPivot200ResponseInner&gt;</returns>
+        public List<ReportingControllerPivot200ResponseInner> ReportingControllerPivot()
         {
-            ReportingControllerPivotWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerPivot200ResponseInner>> localVarResponse = ReportingControllerPivotWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pivot delivery over two dimensions Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerPivotWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerPivot200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerPivot200ResponseInner>> ReportingControllerPivotWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5152,6 +6091,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5161,9 +6101,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/pivot", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerPivot200ResponseInner>>("/v1/reporting/pivot", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5175,23 +6126,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pivot delivery over two dimensions Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerPivotAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerPivot200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerPivot200ResponseInner>> ReportingControllerPivotAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerPivotWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerPivot200ResponseInner>> localVarResponse = await ReportingControllerPivotWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pivot delivery over two dimensions Groups adnet.stats_hourly by &#x60;dim1&#x60; x &#x60;dim2&#x60;, each one of day, geo, device, os, browser, format, placement_id, campaign_id (os/browser are not in the rollup and resolve to a constant &#39;(n/a)&#39;). An unknown dimension returns 403 &#39;invalid pivot dimension&#39;. Amount is earnings (publisher) or spend (advertiser); max 1000 rows ordered by amount. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerPivotWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerPivot200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerPivot200ResponseInner>>> ReportingControllerPivotWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5201,6 +6153,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5211,10 +6164,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/pivot", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerPivot200ResponseInner>>("/v1/reporting/pivot", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5226,21 +6190,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher earnings grouped by a dimension Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerPublisher()
+        /// <returns>List&lt;ReportPublisherStatsRow&gt;</returns>
+        public List<ReportPublisherStatsRow> ReportingControllerPublisher()
         {
-            ReportingControllerPublisherWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportPublisherStatsRow>> localVarResponse = ReportingControllerPublisherWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher earnings grouped by a dimension Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerPublisherWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportPublisherStatsRow&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportPublisherStatsRow>> ReportingControllerPublisherWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5249,6 +6214,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5258,9 +6224,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/publisher", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportPublisherStatsRow>>("/v1/reporting/publisher", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5272,23 +6249,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher earnings grouped by a dimension Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerPublisherAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportPublisherStatsRow&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportPublisherStatsRow>> ReportingControllerPublisherAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerPublisherWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportPublisherStatsRow>> localVarResponse = await ReportingControllerPublisherWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher earnings grouped by a dimension Aggregates the caller&#39;s publisher earnings from the hourly rollup (adnet.stats_hourly). &#x60;dim&#x60; picks the grouping: day (default), hour, geo, device, format, placement_id or campaign_id; rows are ordered by the dimension. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerPublisherWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportPublisherStatsRow&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportPublisherStatsRow>>> ReportingControllerPublisherWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5298,6 +6276,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5308,10 +6287,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/publisher", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportPublisherStatsRow>>("/v1/reporting/publisher", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5323,21 +6313,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher ad-serving consent rate Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerPublisherConsent()
+        /// <returns>ReportingControllerPublisherConsent200Response</returns>
+        public ReportingControllerPublisherConsent200Response ReportingControllerPublisherConsent()
         {
-            ReportingControllerPublisherConsentWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerPublisherConsent200Response> localVarResponse = ReportingControllerPublisherConsentWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher ad-serving consent rate Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerPublisherConsentWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerPublisherConsent200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerPublisherConsent200Response> ReportingControllerPublisherConsentWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5346,6 +6337,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5355,9 +6347,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/publisher/consent", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerPublisherConsent200Response>("/v1/reporting/publisher/consent", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5369,23 +6372,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get publisher ad-serving consent rate Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerPublisherConsentAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerPublisherConsent200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerPublisherConsent200Response> ReportingControllerPublisherConsentAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerPublisherConsentWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerPublisherConsent200Response> localVarResponse = await ReportingControllerPublisherConsentWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get publisher ad-serving consent rate Share of the caller&#39;s valid impressions served with personalized-processing consent (impressions.consented, set by the engine from the request&#39;s privacy signals), as totals and a daily series. Distinct from the advertiser pixel consent rate. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerPublisherConsentWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerPublisherConsent200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerPublisherConsent200Response>> ReportingControllerPublisherConsentWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5395,6 +6399,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5405,10 +6410,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/publisher/consent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerPublisherConsent200Response>("/v1/reporting/publisher/consent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5420,21 +6436,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-placement earnings, fill and viewability Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerPublisherPlacements()
+        /// <returns>List&lt;ReportPlacementRow&gt;</returns>
+        public List<ReportPlacementRow> ReportingControllerPublisherPlacements()
         {
-            ReportingControllerPublisherPlacementsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportPlacementRow>> localVarResponse = ReportingControllerPublisherPlacementsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-placement earnings, fill and viewability Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerPublisherPlacementsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportPlacementRow&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportPlacementRow>> ReportingControllerPublisherPlacementsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5443,6 +6460,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5452,9 +6470,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/publisher/placements", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportPlacementRow>>("/v1/reporting/publisher/placements", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5466,23 +6495,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-placement earnings, fill and viewability Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerPublisherPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportPlacementRow&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportPlacementRow>> ReportingControllerPublisherPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerPublisherPlacementsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportPlacementRow>> localVarResponse = await ReportingControllerPublisherPlacementsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-placement earnings, fill and viewability Joins three ClickHouse aggregations by placement_id: earnings (stats_hourly), fill (ad_requests) and viewability (adnet.viewability), then resolves placement names from Postgres. A placement appears if it has activity in any of the three. Sorted by revenue then impressions. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerPublisherPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportPlacementRow&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportPlacementRow>>> ReportingControllerPublisherPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5492,6 +6522,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5502,10 +6533,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/publisher/placements", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportPlacementRow>>("/v1/reporting/publisher/placements", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5517,21 +6559,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get reach and frequency (unique users) Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerReach()
+        /// <returns>ReportingControllerReach200Response</returns>
+        public ReportingControllerReach200Response ReportingControllerReach()
         {
-            ReportingControllerReachWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerReach200Response> localVarResponse = ReportingControllerReachWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get reach and frequency (unique users) Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerReachWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerReach200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerReach200Response> ReportingControllerReachWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5540,6 +6583,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5549,9 +6593,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/reach", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerReach200Response>("/v1/reporting/reach", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5563,23 +6618,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get reach and frequency (unique users) Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerReachAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerReach200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerReach200Response> ReportingControllerReachAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerReachWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerReach200Response> localVarResponse = await ReportingControllerReachWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get reach and frequency (unique users) Computes unique users (by user_id_hash) from valid raw impressions, average frequency, a frequency histogram (buckets 1, 2, 3, 4, 5, 6-10, 11+ in fixed order) and a daily reach series. Publishers measure their inventory&#39;s audience; other accounts their campaigns&#39; reach. Impressions without a user hash are excluded. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerReachWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerReach200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerReach200Response>> ReportingControllerReachWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5589,6 +6645,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5599,10 +6656,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/reach", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerReach200Response>("/v1/reporting/reach", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5614,21 +6682,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get last-15-minute impressions, clicks and amount Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerRealtime()
+        /// <returns>ReportRealtime</returns>
+        public ReportRealtime ReportingControllerRealtime()
         {
-            ReportingControllerRealtimeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportRealtime> localVarResponse = ReportingControllerRealtimeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get last-15-minute impressions, clicks and amount Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerRealtimeWithHttpInfo()
+        /// <returns>ApiResponse of ReportRealtime</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportRealtime> ReportingControllerRealtimeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5637,6 +6706,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5646,9 +6716,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/realtime", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportRealtime>("/v1/reporting/realtime", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5660,23 +6741,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get last-15-minute impressions, clicks and amount Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportRealtime</returns>
+        public async System.Threading.Tasks.Task<ReportRealtime> ReportingControllerRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerRealtimeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportRealtime> localVarResponse = await ReportingControllerRealtimeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get last-15-minute impressions, clicks and amount Per-minute series of valid impressions and clicks over the last 15 minutes from the raw event tables, with totals. Publisher accounts see their inventory (earnings); other accounts their campaigns (spend).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportRealtime)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportRealtime>> ReportingControllerRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5686,6 +6768,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5696,10 +6779,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/realtime", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportRealtime>("/v1/reporting/realtime", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5711,23 +6805,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Stream the realtime report as Server-Sent Events Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
-        /// <returns></returns>
-        public void ReportingControllerRealtimeStream(string scope)
+        /// <returns>string</returns>
+        public string ReportingControllerRealtimeStream(string scope)
         {
-            ReportingControllerRealtimeStreamWithHttpInfo(scope);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = ReportingControllerRealtimeStreamWithHttpInfo(scope);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Stream the realtime report as Server-Sent Events Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerRealtimeStreamWithHttpInfo(string scope)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> ReportingControllerRealtimeStreamWithHttpInfo(string scope)
         {
             // verify the required parameter 'scope' is set
             if (scope == null)
@@ -5740,6 +6835,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/event-stream"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5752,7 +6848,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/realtime/stream", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/v1/reporting/realtime/stream", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5764,25 +6860,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Stream the realtime report as Server-Sent Events Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerRealtimeStreamAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> ReportingControllerRealtimeStreamAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerRealtimeStreamWithHttpInfoAsync(scope, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await ReportingControllerRealtimeStreamWithHttpInfoAsync(scope, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Stream the realtime report as Server-Sent Events Pushes the same payload as GET /v1/reporting/realtime as an SSE &#x60;data:&#x60; event immediately on connect and then every ~3 seconds (a server-side poll, not a sub-second event stream). Because EventSource cannot set headers, this route authenticates with the session token in &#x60;?access_token&#x3D;&#x60;. &#x60;scope&#x3D;advertiser|publisher&#x60; selects the side of a dual-sided account; it defaults to the account type.  Auth: public, no credentials required. Additionally checked by SseAuthGuard.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scope"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerRealtimeStreamWithHttpInfoAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> ReportingControllerRealtimeStreamWithHttpInfoAsync(string scope, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'scope' is set
             if (scope == null)
@@ -5796,6 +6893,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/event-stream"
             };
 
 
@@ -5810,7 +6908,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/realtime/stream", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/v1/reporting/realtime/stream", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5822,21 +6920,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get daily ROAS and conversion-value trend Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerRoas()
+        /// <returns>List&lt;ReportingControllerRoas200ResponseInner&gt;</returns>
+        public List<ReportingControllerRoas200ResponseInner> ReportingControllerRoas()
         {
-            ReportingControllerRoasWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerRoas200ResponseInner>> localVarResponse = ReportingControllerRoasWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get daily ROAS and conversion-value trend Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerRoasWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerRoas200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerRoas200ResponseInner>> ReportingControllerRoasWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5845,6 +6944,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5854,9 +6954,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/roas", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerRoas200ResponseInner>>("/v1/reporting/roas", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5868,23 +6979,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get daily ROAS and conversion-value trend Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerRoasAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerRoas200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerRoas200ResponseInner>> ReportingControllerRoasAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerRoasWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerRoas200ResponseInner>> localVarResponse = await ReportingControllerRoasWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get daily ROAS and conversion-value trend Per-day spend (stats_hourly) joined to attributed conversion count and conversion_value (adnet.conversions), with ROAS &#x3D; conversionValue / spend. Days present in either source are included, sorted ascending. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerRoasWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerRoas200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerRoas200ResponseInner>>> ReportingControllerRoasWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5894,6 +7006,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5904,10 +7017,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/roas", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerRoas200ResponseInner>>("/v1/reporting/roas", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5919,21 +7043,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get ad-serving decision and render latency Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerServeLatency()
+        /// <returns>ReportingControllerServeLatency200Response</returns>
+        public ReportingControllerServeLatency200Response ReportingControllerServeLatency()
         {
-            ReportingControllerServeLatencyWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerServeLatency200Response> localVarResponse = ReportingControllerServeLatencyWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get ad-serving decision and render latency Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerServeLatencyWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerServeLatency200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerServeLatency200Response> ReportingControllerServeLatencyWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5942,6 +7067,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5951,9 +7077,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/serve-latency", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerServeLatency200Response>("/v1/reporting/serve-latency", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5965,23 +7102,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get ad-serving decision and render latency Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerServeLatencyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerServeLatency200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerServeLatency200Response> ReportingControllerServeLatencyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerServeLatencyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerServeLatency200Response> localVarResponse = await ReportingControllerServeLatencyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get ad-serving decision and render latency Engine decision latency percentiles (from ad_requests.decision_us, reported in milliseconds) with the share of requests over the 100 ms soft SLA and a daily p95 series. Also returns client render latency from SDK beacons (null if the tag has not reported any) and client-side load failures (client_timeout/client_error) as a share of all requests. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerServeLatencyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerServeLatency200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerServeLatency200Response>> ReportingControllerServeLatencyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5991,6 +7129,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6001,10 +7140,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/serve-latency", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerServeLatency200Response>("/v1/reporting/serve-latency", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6016,23 +7166,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate energy and carbon footprint of ad delivery Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="periodDays"></param>
-        /// <returns></returns>
-        public void ReportingControllerSustainability(string periodDays)
+        /// <returns>ReportingControllerSustainability200Response</returns>
+        public ReportingControllerSustainability200Response ReportingControllerSustainability(string periodDays)
         {
-            ReportingControllerSustainabilityWithHttpInfo(periodDays);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerSustainability200Response> localVarResponse = ReportingControllerSustainabilityWithHttpInfo(periodDays);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate energy and carbon footprint of ad delivery Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="periodDays"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerSustainabilityWithHttpInfo(string periodDays)
+        /// <returns>ApiResponse of ReportingControllerSustainability200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerSustainability200Response> ReportingControllerSustainabilityWithHttpInfo(string periodDays)
         {
             // verify the required parameter 'periodDays' is set
             if (periodDays == null)
@@ -6045,6 +7196,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6055,9 +7207,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "periodDays", periodDays));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/sustainability", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerSustainability200Response>("/v1/reporting/sustainability", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6069,25 +7232,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate energy and carbon footprint of ad delivery Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="periodDays"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerSustainabilityAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerSustainability200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerSustainability200Response> ReportingControllerSustainabilityAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerSustainabilityWithHttpInfoAsync(periodDays, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerSustainability200Response> localVarResponse = await ReportingControllerSustainabilityWithHttpInfoAsync(periodDays, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate energy and carbon footprint of ad delivery Counts valid impressions over the last &#x60;periodDays&#x60; days (default 30, min 1) and converts them to kWh and kg CO2e using configurable factors (SUSTAINABILITY_KWH_PER_1K, default 0.0009 kWh per 1000 impressions; SUSTAINABILITY_GRID_GCO2_PER_KWH, default 475). Admins get a network-wide figure; publishers their inventory; other accounts their campaigns.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="periodDays"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerSustainabilityWithHttpInfoAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerSustainability200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerSustainability200Response>> ReportingControllerSustainabilityWithHttpInfoAsync(string periodDays, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'periodDays' is set
             if (periodDays == null)
@@ -6101,6 +7265,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6112,10 +7277,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "periodDays", periodDays));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/sustainability", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerSustainability200Response>("/v1/reporting/sustainability", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6127,21 +7303,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get time-to-click latency distribution Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerTimeToClick()
+        /// <returns>ReportingControllerTimeToClick200Response</returns>
+        public ReportingControllerTimeToClick200Response ReportingControllerTimeToClick()
         {
-            ReportingControllerTimeToClickWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerTimeToClick200Response> localVarResponse = ReportingControllerTimeToClickWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get time-to-click latency distribution Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerTimeToClickWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerTimeToClick200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerTimeToClick200Response> ReportingControllerTimeToClickWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -6150,6 +7327,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6159,9 +7337,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/time-to-click", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerTimeToClick200Response>("/v1/reporting/time-to-click", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6173,23 +7362,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get time-to-click latency distribution Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerTimeToClickAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerTimeToClick200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerTimeToClick200Response> ReportingControllerTimeToClickAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerTimeToClickWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerTimeToClick200Response> localVarResponse = await ReportingControllerTimeToClickWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get time-to-click latency distribution Average and median milliseconds between render and click for valid clicks with a recorded time_to_click_ms, plus counts in fixed buckets (&lt;1s, 1-3s, 3-10s, 10-30s, 30s+). Publishers see clicks on their inventory; other accounts on their campaigns. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded (2020-01-01 .. 2099-01-01).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerTimeToClickWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerTimeToClick200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerTimeToClick200Response>> ReportingControllerTimeToClickWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -6199,6 +7389,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6209,10 +7400,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/time-to-click", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerTimeToClick200Response>("/v1/reporting/time-to-click", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6224,21 +7426,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get video completion funnel and breakdown Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerVideo()
+        /// <returns>ReportingControllerVideo200Response</returns>
+        public ReportingControllerVideo200Response ReportingControllerVideo()
         {
-            ReportingControllerVideoWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReportingControllerVideo200Response> localVarResponse = ReportingControllerVideoWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get video completion funnel and breakdown Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerVideoWithHttpInfo()
+        /// <returns>ApiResponse of ReportingControllerVideo200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReportingControllerVideo200Response> ReportingControllerVideoWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -6247,6 +7450,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6256,9 +7460,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/video", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReportingControllerVideo200Response>("/v1/reporting/video", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6270,23 +7485,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get video completion funnel and breakdown Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerVideoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReportingControllerVideo200Response</returns>
+        public async System.Threading.Tasks.Task<ReportingControllerVideo200Response> ReportingControllerVideoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerVideoWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReportingControllerVideo200Response> localVarResponse = await ReportingControllerVideoWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get video completion funnel and breakdown Overall video funnel (starts, quartiles, completes, skips, errors and rates) from adnet.video_events, plus the same metrics per placement (publisher accounts) or per campaign (other accounts), top 100 by starts. Only exact VAST quartile events count toward the funnel. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerVideoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReportingControllerVideo200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReportingControllerVideo200Response>> ReportingControllerVideoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -6296,6 +7512,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6306,10 +7523,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/video", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReportingControllerVideo200Response>("/v1/reporting/video", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6321,21 +7549,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get viewability by placement or campaign Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReportingControllerViewability()
+        /// <returns>List&lt;ReportingControllerViewability200ResponseInner&gt;</returns>
+        public List<ReportingControllerViewability200ResponseInner> ReportingControllerViewability()
         {
-            ReportingControllerViewabilityWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerViewability200ResponseInner>> localVarResponse = ReportingControllerViewabilityWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get viewability by placement or campaign Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReportingControllerViewabilityWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ReportingControllerViewability200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ReportingControllerViewability200ResponseInner>> ReportingControllerViewabilityWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -6344,6 +7573,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6353,9 +7583,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/reporting/viewability", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ReportingControllerViewability200ResponseInner>>("/v1/reporting/viewability", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6367,23 +7608,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get viewability by placement or campaign Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReportingControllerViewabilityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ReportingControllerViewability200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ReportingControllerViewability200ResponseInner>> ReportingControllerViewabilityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReportingControllerViewabilityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ReportingControllerViewability200ResponseInner>> localVarResponse = await ReportingControllerViewabilityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get viewability by placement or campaign Measurable and viewable beacon counts, viewable rate, and average in-view percent and duration (of viewable events) from adnet.viewability. &#x60;groupBy&#x3D;campaign&#x60; groups by campaign, anything else by placement. Advertisers see their own campaigns, publishers their own inventory, admins the whole network. Max 1000 rows ordered by measurable. Optional &#x60;from&#x60;/&#x60;to&#x60; query params bound the window (ClickHouse DateTime, e.g. &#x60;2026-01-01 00:00:00&#x60;, inclusive); when omitted the window is unbounded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReportingControllerViewabilityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ReportingControllerViewability200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ReportingControllerViewability200ResponseInner>>> ReportingControllerViewabilityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -6393,6 +7635,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6403,10 +7646,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/reporting/viewability", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ReportingControllerViewability200ResponseInner>>("/v1/reporting/viewability", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

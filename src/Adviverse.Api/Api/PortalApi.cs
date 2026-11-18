@@ -28,57 +28,66 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createPortalConfigDto"></param>
-        /// <returns></returns>
-        void PortalTemplatesControllerCreateConfig(CreatePortalConfigDto createPortalConfigDto);
-
-        /// <summary>
-        /// 
+        /// Save a portal template config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPortalConfigDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PortalTemplatesControllerCreateConfigWithHttpInfo(CreatePortalConfigDto createPortalConfigDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PortalTemplatesControllerGetConfig(string id);
+        /// <returns>PortalTemplatesControllerCreateConfig201Response</returns>
+        PortalTemplatesControllerCreateConfig201Response PortalTemplatesControllerCreateConfig(CreatePortalConfigDto createPortalConfigDto);
 
         /// <summary>
-        /// 
+        /// Save a portal template config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPortalConfigDto"></param>
+        /// <returns>ApiResponse of PortalTemplatesControllerCreateConfig201Response</returns>
+        ApiResponse<PortalTemplatesControllerCreateConfig201Response> PortalTemplatesControllerCreateConfigWithHttpInfo(CreatePortalConfigDto createPortalConfigDto);
+        /// <summary>
+        /// Fetch a portal config
+        /// </summary>
+        /// <remarks>
+        /// Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PortalTemplatesControllerGetConfigWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PortalTemplatesControllerListTemplates();
+        /// <returns>PortalTemplatesControllerGetConfig200Response</returns>
+        PortalTemplatesControllerGetConfig200Response PortalTemplatesControllerGetConfig(string id);
 
         /// <summary>
-        /// 
+        /// Fetch a portal config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PortalTemplatesControllerListTemplatesWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PortalTemplatesControllerGetConfig200Response</returns>
+        ApiResponse<PortalTemplatesControllerGetConfig200Response> PortalTemplatesControllerGetConfigWithHttpInfo(string id);
+        /// <summary>
+        /// List portal experience templates
+        /// </summary>
+        /// <remarks>
+        /// Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;</returns>
+        List<PortalTemplatesControllerListTemplates200ResponseInner> PortalTemplatesControllerListTemplates();
+
+        /// <summary>
+        /// List portal experience templates
+        /// </summary>
+        /// <remarks>
+        /// Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;</returns>
+        ApiResponse<List<PortalTemplatesControllerListTemplates200ResponseInner>> PortalTemplatesControllerListTemplatesWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -89,72 +98,72 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Save a portal template config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPortalConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PortalTemplatesControllerCreateConfigAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PortalTemplatesControllerCreateConfig201Response</returns>
+        System.Threading.Tasks.Task<PortalTemplatesControllerCreateConfig201Response> PortalTemplatesControllerCreateConfigAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Save a portal template config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPortalConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PortalTemplatesControllerCreateConfigWithHttpInfoAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PortalTemplatesControllerCreateConfig201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PortalTemplatesControllerCreateConfig201Response>> PortalTemplatesControllerCreateConfigWithHttpInfoAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Fetch a portal config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PortalTemplatesControllerGetConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PortalTemplatesControllerGetConfig200Response</returns>
+        System.Threading.Tasks.Task<PortalTemplatesControllerGetConfig200Response> PortalTemplatesControllerGetConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Fetch a portal config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PortalTemplatesControllerGetConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PortalTemplatesControllerGetConfig200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PortalTemplatesControllerGetConfig200Response>> PortalTemplatesControllerGetConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List portal experience templates
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PortalTemplatesControllerListTemplatesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<PortalTemplatesControllerListTemplates200ResponseInner>> PortalTemplatesControllerListTemplatesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List portal experience templates
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PortalTemplatesControllerListTemplatesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<PortalTemplatesControllerListTemplates200ResponseInner>>> PortalTemplatesControllerListTemplatesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -369,23 +378,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save a portal template config Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPortalConfigDto"></param>
-        /// <returns></returns>
-        public void PortalTemplatesControllerCreateConfig(CreatePortalConfigDto createPortalConfigDto)
+        /// <returns>PortalTemplatesControllerCreateConfig201Response</returns>
+        public PortalTemplatesControllerCreateConfig201Response PortalTemplatesControllerCreateConfig(CreatePortalConfigDto createPortalConfigDto)
         {
-            PortalTemplatesControllerCreateConfigWithHttpInfo(createPortalConfigDto);
+            Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerCreateConfig201Response> localVarResponse = PortalTemplatesControllerCreateConfigWithHttpInfo(createPortalConfigDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save a portal template config Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPortalConfigDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PortalTemplatesControllerCreateConfigWithHttpInfo(CreatePortalConfigDto createPortalConfigDto)
+        /// <returns>ApiResponse of PortalTemplatesControllerCreateConfig201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerCreateConfig201Response> PortalTemplatesControllerCreateConfigWithHttpInfo(CreatePortalConfigDto createPortalConfigDto)
         {
             // verify the required parameter 'createPortalConfigDto' is set
             if (createPortalConfigDto == null)
@@ -399,6 +409,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -409,9 +420,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPortalConfigDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/portal/configs", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PortalTemplatesControllerCreateConfig201Response>("/v1/portal/configs", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -423,25 +445,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save a portal template config Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPortalConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PortalTemplatesControllerCreateConfigAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PortalTemplatesControllerCreateConfig201Response</returns>
+        public async System.Threading.Tasks.Task<PortalTemplatesControllerCreateConfig201Response> PortalTemplatesControllerCreateConfigAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PortalTemplatesControllerCreateConfigWithHttpInfoAsync(createPortalConfigDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerCreateConfig201Response> localVarResponse = await PortalTemplatesControllerCreateConfigWithHttpInfoAsync(createPortalConfigDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save a portal template config Stores a &#x60;config&#x60; object for template key &#x60;template&#x60; and returns its id and the hosted template URL that renders it. Use the URL as an &#x60;html5&#x60; creative&#39;s asset URL (for example on a metaverse portal surface). 400 for an unknown template.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPortalConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PortalTemplatesControllerCreateConfigWithHttpInfoAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PortalTemplatesControllerCreateConfig201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerCreateConfig201Response>> PortalTemplatesControllerCreateConfigWithHttpInfoAsync(CreatePortalConfigDto createPortalConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createPortalConfigDto' is set
             if (createPortalConfigDto == null)
@@ -456,6 +479,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -467,10 +491,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPortalConfigDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/portal/configs", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PortalTemplatesControllerCreateConfig201Response>("/v1/portal/configs", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -482,23 +517,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Fetch a portal config Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PortalTemplatesControllerGetConfig(string id)
+        /// <returns>PortalTemplatesControllerGetConfig200Response</returns>
+        public PortalTemplatesControllerGetConfig200Response PortalTemplatesControllerGetConfig(string id)
         {
-            PortalTemplatesControllerGetConfigWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerGetConfig200Response> localVarResponse = PortalTemplatesControllerGetConfigWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Fetch a portal config Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PortalTemplatesControllerGetConfigWithHttpInfo(string id)
+        /// <returns>ApiResponse of PortalTemplatesControllerGetConfig200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerGetConfig200Response> PortalTemplatesControllerGetConfigWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -511,6 +547,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -523,7 +560,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/portal/config/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PortalTemplatesControllerGetConfig200Response>("/v1/portal/config/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -535,25 +572,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Fetch a portal config Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PortalTemplatesControllerGetConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PortalTemplatesControllerGetConfig200Response</returns>
+        public async System.Threading.Tasks.Task<PortalTemplatesControllerGetConfig200Response> PortalTemplatesControllerGetConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PortalTemplatesControllerGetConfigWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerGetConfig200Response> localVarResponse = await PortalTemplatesControllerGetConfigWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Fetch a portal config Public endpoint the hosted template calls at runtime to load its saved configuration. 404 if the config id does not exist.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PortalTemplatesControllerGetConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PortalTemplatesControllerGetConfig200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PortalTemplatesControllerGetConfig200Response>> PortalTemplatesControllerGetConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -567,6 +605,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -581,7 +620,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/portal/config/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PortalTemplatesControllerGetConfig200Response>("/v1/portal/config/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -593,21 +632,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List portal experience templates Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PortalTemplatesControllerListTemplates()
+        /// <returns>List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;</returns>
+        public List<PortalTemplatesControllerListTemplates200ResponseInner> PortalTemplatesControllerListTemplates()
         {
-            PortalTemplatesControllerListTemplatesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<PortalTemplatesControllerListTemplates200ResponseInner>> localVarResponse = PortalTemplatesControllerListTemplatesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List portal experience templates Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PortalTemplatesControllerListTemplatesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<PortalTemplatesControllerListTemplates200ResponseInner>> PortalTemplatesControllerListTemplatesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -616,6 +656,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -625,9 +666,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/portal/templates", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<PortalTemplatesControllerListTemplates200ResponseInner>>("/v1/portal/templates", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -639,23 +691,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List portal experience templates Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PortalTemplatesControllerListTemplatesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<PortalTemplatesControllerListTemplates200ResponseInner>> PortalTemplatesControllerListTemplatesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PortalTemplatesControllerListTemplatesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<PortalTemplatesControllerListTemplates200ResponseInner>> localVarResponse = await PortalTemplatesControllerListTemplatesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List portal experience templates Returns the catalog of prebuilt HTML5 portal templates (product-showcase, spin-to-win, 360-viewer, reward-to-play, reward-onchain), each with the config fields it accepts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PortalTemplatesControllerListTemplatesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;PortalTemplatesControllerListTemplates200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<PortalTemplatesControllerListTemplates200ResponseInner>>> PortalTemplatesControllerListTemplatesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -665,6 +718,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -675,10 +729,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/portal/templates", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<PortalTemplatesControllerListTemplates200ResponseInner>>("/v1/portal/templates", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

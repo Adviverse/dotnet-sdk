@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,427 +28,499 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerAcceptTransfer();
-
-        /// <summary>
-        /// 
+        /// Accept a pixel transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerAcceptTransferWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerAddItem(string id);
+        /// <returns>AgencyControllerAcceptTransfer201Response</returns>
+        AgencyControllerAcceptTransfer201Response AgencyControllerAcceptTransfer();
 
         /// <summary>
-        /// 
+        /// Accept a pixel transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AgencyControllerAcceptTransfer201Response</returns>
+        ApiResponse<AgencyControllerAcceptTransfer201Response> AgencyControllerAcceptTransferWithHttpInfo();
+        /// <summary>
+        /// Add a line item to a draft invoice
+        /// </summary>
+        /// <remarks>
+        /// Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerAddItemWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerCancelTransfer(string id);
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerAddItem(string id);
 
         /// <summary>
-        /// 
+        /// Add a line item to a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerCancelTransferWithHttpInfo(string id);
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerAddItemWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Cancel a pending pixel transfer
         /// </summary>
+        /// <remarks>
+        /// Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AgencyControllerCancelTransfer201Response</returns>
+        AgencyControllerCancelTransfer201Response AgencyControllerCancelTransfer(string id);
+
+        /// <summary>
+        /// Cancel a pending pixel transfer
+        /// </summary>
+        /// <remarks>
+        /// Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AgencyControllerCancelTransfer201Response</returns>
+        ApiResponse<AgencyControllerCancelTransfer201Response> AgencyControllerCancelTransferWithHttpInfo(string id);
+        /// <summary>
+        /// Get spend and delivery for a client
+        /// </summary>
+        /// <remarks>
+        /// Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        void AgencyControllerClientSpend(string id, string from, string to);
+        /// <returns>AgencyControllerClientSpend200Response</returns>
+        AgencyControllerClientSpend200Response AgencyControllerClientSpend(string id, string from, string to);
 
         /// <summary>
-        /// 
+        /// Get spend and delivery for a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerClientSpendWithHttpInfo(string id, string from, string to);
+        /// <returns>ApiResponse of AgencyControllerClientSpend200Response</returns>
+        ApiResponse<AgencyControllerClientSpend200Response> AgencyControllerClientSpendWithHttpInfo(string id, string from, string to);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerCreateClient();
-
-        /// <summary>
-        /// 
+        /// Create an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerCreateClientWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerCreateInvoice();
+        /// <returns>AgencyClient</returns>
+        AgencyClient AgencyControllerCreateClient();
 
         /// <summary>
-        /// 
+        /// Create an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerCreateInvoiceWithHttpInfo();
+        /// <returns>ApiResponse of AgencyClient</returns>
+        ApiResponse<AgencyClient> AgencyControllerCreateClientWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerGetClient(string id);
-
-        /// <summary>
-        /// 
+        /// Create a draft invoice for a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerGetClientWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerGetInvoice(string id);
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerCreateInvoice();
 
         /// <summary>
-        /// 
+        /// Create a draft invoice for a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerCreateInvoiceWithHttpInfo();
+        /// <summary>
+        /// Get an agency client
+        /// </summary>
+        /// <remarks>
+        /// Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerGetInvoiceWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerInitiateTransfer();
+        /// <returns>AgencyClient</returns>
+        AgencyClient AgencyControllerGetClient(string id);
 
         /// <summary>
-        /// 
+        /// Get an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerInitiateTransferWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AgencyClient</returns>
+        ApiResponse<AgencyClient> AgencyControllerGetClientWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Get an invoice with line items
         /// </summary>
+        /// <remarks>
+        /// Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerListClients();
+        /// <param name="id"></param>
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerGetInvoice(string id);
 
         /// <summary>
-        /// 
+        /// Get an invoice with line items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerListClientsWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerGetInvoiceWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Start a pixel ownership transfer
         /// </summary>
+        /// <remarks>
+        /// Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AgencyTransfer</returns>
+        AgencyTransfer AgencyControllerInitiateTransfer();
+
+        /// <summary>
+        /// Start a pixel ownership transfer
+        /// </summary>
+        /// <remarks>
+        /// Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AgencyTransfer</returns>
+        ApiResponse<AgencyTransfer> AgencyControllerInitiateTransferWithHttpInfo();
+        /// <summary>
+        /// List agency clients
+        /// </summary>
+        /// <remarks>
+        /// Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AgencyClient&gt;</returns>
+        List<AgencyClient> AgencyControllerListClients();
+
+        /// <summary>
+        /// List agency clients
+        /// </summary>
+        /// <remarks>
+        /// Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AgencyClient&gt;</returns>
+        ApiResponse<List<AgencyClient>> AgencyControllerListClientsWithHttpInfo();
+        /// <summary>
+        /// List agency invoices
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
-        /// <returns></returns>
-        void AgencyControllerListInvoices(string clientId);
+        /// <returns>List&lt;AgencyInvoice&gt;</returns>
+        List<AgencyInvoice> AgencyControllerListInvoices(string clientId);
 
         /// <summary>
-        /// 
+        /// List agency invoices
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerListInvoicesWithHttpInfo(string clientId);
+        /// <returns>ApiResponse of List&lt;AgencyInvoice&gt;</returns>
+        ApiResponse<List<AgencyInvoice>> AgencyControllerListInvoicesWithHttpInfo(string clientId);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerListTransfers();
-
-        /// <summary>
-        /// 
+        /// List outgoing pixel transfers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerListTransfersWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerMarkPaid(string id);
+        /// <returns>List&lt;AgencyTransfer&gt;</returns>
+        List<AgencyTransfer> AgencyControllerListTransfers();
 
         /// <summary>
-        /// 
+        /// List outgoing pixel transfers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AgencyTransfer&gt;</returns>
+        ApiResponse<List<AgencyTransfer>> AgencyControllerListTransfersWithHttpInfo();
+        /// <summary>
+        /// Mark an invoice paid manually
+        /// </summary>
+        /// <remarks>
+        /// Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerMarkPaidWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        void AgencyControllerPayInfo(string token);
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerMarkPaid(string id);
 
         /// <summary>
-        /// 
+        /// Mark an invoice paid manually
         /// </summary>
         /// <remarks>
-        /// 
+        /// Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerMarkPaidWithHttpInfo(string id);
+        /// <summary>
+        /// Get the public view of an invoice
+        /// </summary>
+        /// <remarks>
+        /// Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerPayInfoWithHttpInfo(string token);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerRemoveClient(string id);
+        /// <returns>AgencyControllerPayInfo200Response</returns>
+        AgencyControllerPayInfo200Response AgencyControllerPayInfo(string token);
 
         /// <summary>
-        /// 
+        /// Get the public view of an invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>ApiResponse of AgencyControllerPayInfo200Response</returns>
+        ApiResponse<AgencyControllerPayInfo200Response> AgencyControllerPayInfoWithHttpInfo(string token);
+        /// <summary>
+        /// Delete an agency client
+        /// </summary>
+        /// <remarks>
+        /// Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerRemoveClientWithHttpInfo(string id);
+        /// <returns>PixelControllerDeletePixel200Response</returns>
+        PixelControllerDeletePixel200Response AgencyControllerRemoveClient(string id);
+
         /// <summary>
-        /// 
+        /// Delete an agency client
         /// </summary>
+        /// <remarks>
+        /// Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PixelControllerDeletePixel200Response</returns>
+        ApiResponse<PixelControllerDeletePixel200Response> AgencyControllerRemoveClientWithHttpInfo(string id);
+        /// <summary>
+        /// Remove a line item from a draft invoice
+        /// </summary>
+        /// <remarks>
+        /// Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
-        /// <returns></returns>
-        void AgencyControllerRemoveItem(string id, string itemId);
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerRemoveItem(string id, string itemId);
 
         /// <summary>
-        /// 
+        /// Remove a line item from a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerRemoveItemWithHttpInfo(string id, string itemId);
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerRemoveItemWithHttpInfo(string id, string itemId);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerSendInvoice(string id);
-
-        /// <summary>
-        /// 
+        /// Send an invoice and mint its pay link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerSendInvoiceWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        void AgencyControllerStartPayment(string token);
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerSendInvoice(string id);
 
         /// <summary>
-        /// 
+        /// Send an invoice and mint its pay link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerSendInvoiceWithHttpInfo(string id);
+        /// <summary>
+        /// Start paying an invoice
+        /// </summary>
+        /// <remarks>
+        /// Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerStartPaymentWithHttpInfo(string token);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerTagCampaign();
+        /// <returns>AgencyControllerStartPayment201Response</returns>
+        AgencyControllerStartPayment201Response AgencyControllerStartPayment(string token);
 
         /// <summary>
-        /// 
+        /// Start paying an invoice
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerTagCampaignWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AgencyControllerTaggable();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerTaggableWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        void AgencyControllerTransferInfo(string token);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerTransferInfoWithHttpInfo(string token);
+        /// <returns>ApiResponse of AgencyControllerStartPayment201Response</returns>
+        ApiResponse<AgencyControllerStartPayment201Response> AgencyControllerStartPaymentWithHttpInfo(string token);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerUpdateClient(string id);
-
-        /// <summary>
-        /// 
+        /// Tag or untag a campaign to a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AgencyControllerTagCampaign201Response</returns>
+        AgencyControllerTagCampaign201Response AgencyControllerTagCampaign();
+
+        /// <summary>
+        /// Tag or untag a campaign to a client
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AgencyControllerTagCampaign201Response</returns>
+        ApiResponse<AgencyControllerTagCampaign201Response> AgencyControllerTagCampaignWithHttpInfo();
+        /// <summary>
+        /// List campaigns available for client tagging
+        /// </summary>
+        /// <remarks>
+        /// Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AgencyControllerTaggable200ResponseInner&gt;</returns>
+        List<AgencyControllerTaggable200ResponseInner> AgencyControllerTaggable();
+
+        /// <summary>
+        /// List campaigns available for client tagging
+        /// </summary>
+        /// <remarks>
+        /// Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AgencyControllerTaggable200ResponseInner&gt;</returns>
+        ApiResponse<List<AgencyControllerTaggable200ResponseInner>> AgencyControllerTaggableWithHttpInfo();
+        /// <summary>
+        /// Preview a pixel transfer by token
+        /// </summary>
+        /// <remarks>
+        /// Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>AgencyControllerTransferInfo200Response</returns>
+        AgencyControllerTransferInfo200Response AgencyControllerTransferInfo(string token);
+
+        /// <summary>
+        /// Preview a pixel transfer by token
+        /// </summary>
+        /// <remarks>
+        /// Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>ApiResponse of AgencyControllerTransferInfo200Response</returns>
+        ApiResponse<AgencyControllerTransferInfo200Response> AgencyControllerTransferInfoWithHttpInfo(string token);
+        /// <summary>
+        /// Update an agency client
+        /// </summary>
+        /// <remarks>
+        /// Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerUpdateClientWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerUpdateInvoice(string id);
+        /// <returns>AgencyClient</returns>
+        AgencyClient AgencyControllerUpdateClient(string id);
 
         /// <summary>
-        /// 
+        /// Update an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerUpdateInvoiceWithHttpInfo(string id);
+        /// <returns>ApiResponse of AgencyClient</returns>
+        ApiResponse<AgencyClient> AgencyControllerUpdateClientWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AgencyControllerVoidInvoice(string id);
-
-        /// <summary>
-        /// 
+        /// Update a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AgencyControllerVoidInvoiceWithHttpInfo(string id);
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerUpdateInvoice(string id);
+
+        /// <summary>
+        /// Update a draft invoice
+        /// </summary>
+        /// <remarks>
+        /// Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerUpdateInvoiceWithHttpInfo(string id);
+        /// <summary>
+        /// Void an invoice
+        /// </summary>
+        /// <remarks>
+        /// Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AgencyInvoice</returns>
+        AgencyInvoice AgencyControllerVoidInvoice(string id);
+
+        /// <summary>
+        /// Void an invoice
+        /// </summary>
+        /// <remarks>
+        /// Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        ApiResponse<AgencyInvoice> AgencyControllerVoidInvoiceWithHttpInfo(string id);
         #endregion Synchronous Operations
     }
 
@@ -458,547 +531,547 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Accept a pixel transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerAcceptTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyControllerAcceptTransfer201Response</returns>
+        System.Threading.Tasks.Task<AgencyControllerAcceptTransfer201Response> AgencyControllerAcceptTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Accept a pixel transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerAcceptTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyControllerAcceptTransfer201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyControllerAcceptTransfer201Response>> AgencyControllerAcceptTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Add a line item to a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerAddItemAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerAddItemAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Add a line item to a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerAddItemWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerAddItemWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Cancel a pending pixel transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerCancelTransferAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyControllerCancelTransfer201Response</returns>
+        System.Threading.Tasks.Task<AgencyControllerCancelTransfer201Response> AgencyControllerCancelTransferAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Cancel a pending pixel transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerCancelTransferWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyControllerCancelTransfer201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyControllerCancelTransfer201Response>> AgencyControllerCancelTransferWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get spend and delivery for a client
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerClientSpendAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerClientSpendWithHttpInfoAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerCreateClientAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyControllerClientSpend200Response</returns>
+        System.Threading.Tasks.Task<AgencyControllerClientSpend200Response> AgencyControllerClientSpendAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get spend and delivery for a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerCreateClientWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyControllerClientSpend200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyControllerClientSpend200Response>> AgencyControllerClientSpendWithHttpInfoAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerCreateInvoiceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyClient</returns>
+        System.Threading.Tasks.Task<AgencyClient> AgencyControllerCreateClientAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerCreateInvoiceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyClient)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyClient>> AgencyControllerCreateClientWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a draft invoice for a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerCreateInvoiceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Create a draft invoice for a client
+        /// </summary>
+        /// <remarks>
+        /// Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerCreateInvoiceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Get an agency client
+        /// </summary>
+        /// <remarks>
+        /// Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerGetClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyClient</returns>
+        System.Threading.Tasks.Task<AgencyClient> AgencyControllerGetClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerGetClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyClient)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyClient>> AgencyControllerGetClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get an invoice with line items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerGetInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerGetInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get an invoice with line items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerGetInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerGetInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start a pixel ownership transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerInitiateTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyTransfer</returns>
+        System.Threading.Tasks.Task<AgencyTransfer> AgencyControllerInitiateTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start a pixel ownership transfer
         /// </summary>
         /// <remarks>
-        /// 
+        /// Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerInitiateTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyTransfer)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyTransfer>> AgencyControllerInitiateTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List agency clients
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerListClientsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AgencyClient&gt;</returns>
+        System.Threading.Tasks.Task<List<AgencyClient>> AgencyControllerListClientsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List agency clients
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerListClientsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AgencyClient&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AgencyClient>>> AgencyControllerListClientsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List agency invoices
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerListInvoicesAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AgencyInvoice&gt;</returns>
+        System.Threading.Tasks.Task<List<AgencyInvoice>> AgencyControllerListInvoicesAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List agency invoices
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerListInvoicesWithHttpInfoAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AgencyInvoice&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AgencyInvoice>>> AgencyControllerListInvoicesWithHttpInfoAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List outgoing pixel transfers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerListTransfersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AgencyTransfer&gt;</returns>
+        System.Threading.Tasks.Task<List<AgencyTransfer>> AgencyControllerListTransfersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List outgoing pixel transfers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerListTransfersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AgencyTransfer&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AgencyTransfer>>> AgencyControllerListTransfersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Mark an invoice paid manually
         /// </summary>
         /// <remarks>
-        /// 
+        /// Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerMarkPaidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerMarkPaidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Mark an invoice paid manually
         /// </summary>
         /// <remarks>
-        /// 
+        /// Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerMarkPaidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerMarkPaidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the public view of an invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerPayInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyControllerPayInfo200Response</returns>
+        System.Threading.Tasks.Task<AgencyControllerPayInfo200Response> AgencyControllerPayInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the public view of an invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerPayInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyControllerPayInfo200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyControllerPayInfo200Response>> AgencyControllerPayInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerRemoveClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerDeletePixel200Response</returns>
+        System.Threading.Tasks.Task<PixelControllerDeletePixel200Response> AgencyControllerRemoveClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerRemoveClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerDeletePixel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerDeletePixel200Response>> AgencyControllerRemoveClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Remove a line item from a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerRemoveItemAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerRemoveItemAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Remove a line item from a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerRemoveItemWithHttpInfoAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerRemoveItemWithHttpInfoAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Send an invoice and mint its pay link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerSendInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerSendInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Send an invoice and mint its pay link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerSendInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerSendInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start paying an invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerStartPaymentAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyControllerStartPayment201Response</returns>
+        System.Threading.Tasks.Task<AgencyControllerStartPayment201Response> AgencyControllerStartPaymentAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start paying an invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerStartPaymentWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyControllerStartPayment201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyControllerStartPayment201Response>> AgencyControllerStartPaymentWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Tag or untag a campaign to a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerTagCampaignAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyControllerTagCampaign201Response</returns>
+        System.Threading.Tasks.Task<AgencyControllerTagCampaign201Response> AgencyControllerTagCampaignAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Tag or untag a campaign to a client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerTagCampaignWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyControllerTagCampaign201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyControllerTagCampaign201Response>> AgencyControllerTagCampaignWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List campaigns available for client tagging
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerTaggableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AgencyControllerTaggable200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<AgencyControllerTaggable200ResponseInner>> AgencyControllerTaggableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List campaigns available for client tagging
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerTaggableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AgencyControllerTaggable200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AgencyControllerTaggable200ResponseInner>>> AgencyControllerTaggableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Preview a pixel transfer by token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerTransferInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyControllerTransferInfo200Response</returns>
+        System.Threading.Tasks.Task<AgencyControllerTransferInfo200Response> AgencyControllerTransferInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Preview a pixel transfer by token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerTransferInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyControllerTransferInfo200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyControllerTransferInfo200Response>> AgencyControllerTransferInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerUpdateClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyClient</returns>
+        System.Threading.Tasks.Task<AgencyClient> AgencyControllerUpdateClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update an agency client
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerUpdateClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyClient)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyClient>> AgencyControllerUpdateClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerUpdateInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerUpdateInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a draft invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerUpdateInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerUpdateInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Void an invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AgencyControllerVoidInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AgencyInvoice</returns>
+        System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerVoidInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Void an invoice
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AgencyControllerVoidInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AgencyInvoice>> AgencyControllerVoidInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1213,21 +1286,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Accept a pixel transfer The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerAcceptTransfer()
+        /// <returns>AgencyControllerAcceptTransfer201Response</returns>
+        public AgencyControllerAcceptTransfer201Response AgencyControllerAcceptTransfer()
         {
-            AgencyControllerAcceptTransferWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AgencyControllerAcceptTransfer201Response> localVarResponse = AgencyControllerAcceptTransferWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Accept a pixel transfer The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerAcceptTransferWithHttpInfo()
+        /// <returns>ApiResponse of AgencyControllerAcceptTransfer201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyControllerAcceptTransfer201Response> AgencyControllerAcceptTransferWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1236,6 +1310,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1245,9 +1320,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/transfers/accept", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyControllerAcceptTransfer201Response>("/v1/transfers/accept", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1259,23 +1345,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Accept a pixel transfer The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerAcceptTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyControllerAcceptTransfer201Response</returns>
+        public async System.Threading.Tasks.Task<AgencyControllerAcceptTransfer201Response> AgencyControllerAcceptTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerAcceptTransferWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerAcceptTransfer201Response> localVarResponse = await AgencyControllerAcceptTransferWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Accept a pixel transfer The recipient, signed in to their own account, accepts with &#x60;token&#x60;. In one transaction the pixel, its pixel-scoped audiences and their sync destinations move to the accepting account, and the sender&#39;s campaigns tagged to a client linked to that pixel are untagged. Audience membership keys are unchanged, so serving continues; historical analytics stay with the sender. Returns 400 if the transfer is not pending, has expired, is your own, or the pixel is gone.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerAcceptTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyControllerAcceptTransfer201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyControllerAcceptTransfer201Response>> AgencyControllerAcceptTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1285,6 +1372,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1295,10 +1383,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/transfers/accept", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyControllerAcceptTransfer201Response>("/v1/transfers/accept", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1310,23 +1409,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a line item to a draft invoice Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerAddItem(string id)
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerAddItem(string id)
         {
-            AgencyControllerAddItemWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerAddItemWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a line item to a draft invoice Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerAddItemWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerAddItemWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1339,6 +1439,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1349,9 +1450,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/invoices/{id}/items", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyInvoice>("/v1/advertiser/invoices/{id}/items", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1363,25 +1475,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a line item to a draft invoice Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerAddItemAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerAddItemAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerAddItemWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerAddItemWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a line item to a draft invoice Appends a line with &#x60;description&#x60; (required), optional &#x60;kind&#x60; (default &#x60;fee&#x60;), &#x60;quantity&#x60; (default 1) and &#x60;unitAmount&#x60;. &#x60;amount&#x60; defaults to quantity x unitAmount, rounded to cents. Draft invoices only (400 otherwise); totals are recomputed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerAddItemWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerAddItemWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1395,6 +1508,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1406,10 +1520,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/invoices/{id}/items", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyInvoice>("/v1/advertiser/invoices/{id}/items", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1421,23 +1546,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Cancel a pending pixel transfer Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerCancelTransfer(string id)
+        /// <returns>AgencyControllerCancelTransfer201Response</returns>
+        public AgencyControllerCancelTransfer201Response AgencyControllerCancelTransfer(string id)
         {
-            AgencyControllerCancelTransferWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerCancelTransfer201Response> localVarResponse = AgencyControllerCancelTransferWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Cancel a pending pixel transfer Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerCancelTransferWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyControllerCancelTransfer201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyControllerCancelTransfer201Response> AgencyControllerCancelTransferWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1450,6 +1576,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1460,9 +1587,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/transfers/{id}/cancel", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyControllerCancelTransfer201Response>("/v1/advertiser/transfers/{id}/cancel", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1474,25 +1612,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Cancel a pending pixel transfer Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerCancelTransferAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyControllerCancelTransfer201Response</returns>
+        public async System.Threading.Tasks.Task<AgencyControllerCancelTransfer201Response> AgencyControllerCancelTransferAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerCancelTransferWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerCancelTransfer201Response> localVarResponse = await AgencyControllerCancelTransferWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Cancel a pending pixel transfer Cancels a transfer this account started. Only &#x60;pending&#x60; transfers can be cancelled (400 otherwise); 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerCancelTransferWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyControllerCancelTransfer201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyControllerCancelTransfer201Response>> AgencyControllerCancelTransferWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1506,6 +1645,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1517,10 +1657,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/transfers/{id}/cancel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyControllerCancelTransfer201Response>("/v1/advertiser/transfers/{id}/cancel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1532,27 +1683,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get spend and delivery for a client Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        public void AgencyControllerClientSpend(string id, string from, string to)
+        /// <returns>AgencyControllerClientSpend200Response</returns>
+        public AgencyControllerClientSpend200Response AgencyControllerClientSpend(string id, string from, string to)
         {
-            AgencyControllerClientSpendWithHttpInfo(id, from, to);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerClientSpend200Response> localVarResponse = AgencyControllerClientSpendWithHttpInfo(id, from, to);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get spend and delivery for a client Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerClientSpendWithHttpInfo(string id, string from, string to)
+        /// <returns>ApiResponse of AgencyControllerClientSpend200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyControllerClientSpend200Response> AgencyControllerClientSpendWithHttpInfo(string id, string from, string to)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1573,6 +1725,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1585,9 +1738,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/clients/{id}/spend", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AgencyControllerClientSpend200Response>("/v1/advertiser/clients/{id}/spend", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1599,29 +1763,30 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get spend and delivery for a client Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerClientSpendAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyControllerClientSpend200Response</returns>
+        public async System.Threading.Tasks.Task<AgencyControllerClientSpend200Response> AgencyControllerClientSpendAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerClientSpendWithHttpInfoAsync(id, from, to, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerClientSpend200Response> localVarResponse = await AgencyControllerClientSpendWithHttpInfoAsync(id, from, to, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get spend and delivery for a client Sums spend, impressions, clicks and conversions from the ClickHouse hourly rollup across the client&#39;s tagged campaigns for the inclusive date range &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD). Defaults to the last 30 days. Returns zeros when no campaigns are tagged. 404 for an unknown client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerClientSpendWithHttpInfoAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyControllerClientSpend200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyControllerClientSpend200Response>> AgencyControllerClientSpendWithHttpInfoAsync(string id, string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1643,6 +1808,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1656,10 +1822,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/clients/{id}/spend", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AgencyControllerClientSpend200Response>("/v1/advertiser/clients/{id}/spend", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1671,21 +1848,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an agency client Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerCreateClient()
+        /// <returns>AgencyClient</returns>
+        public AgencyClient AgencyControllerCreateClient()
         {
-            AgencyControllerCreateClientWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AgencyClient> localVarResponse = AgencyControllerCreateClientWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an agency client Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerCreateClientWithHttpInfo()
+        /// <returns>ApiResponse of AgencyClient</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyClient> AgencyControllerCreateClientWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1694,6 +1872,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1703,9 +1882,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyClient>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1717,23 +1907,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an agency client Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerCreateClientAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyClient</returns>
+        public async System.Threading.Tasks.Task<AgencyClient> AgencyControllerCreateClientAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerCreateClientWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyClient> localVarResponse = await AgencyControllerCreateClientWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an agency client Creates a client with &#x60;name&#x60; (required, truncated to 160 chars), optional &#x60;billingEmail&#x60; (lowercased; used when sending invoices), &#x60;pixelId&#x60; and &#x60;notes&#x60; (truncated to 2000 chars). A supplied &#x60;pixelId&#x60; must belong to the calling account, otherwise 400. A missing name also returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerCreateClientWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyClient)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyClient>> AgencyControllerCreateClientWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1743,6 +1934,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1753,10 +1945,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyClient>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1768,21 +1971,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a draft invoice for a client Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerCreateInvoice()
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerCreateInvoice()
         {
-            AgencyControllerCreateInvoiceWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerCreateInvoiceWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a draft invoice for a client Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerCreateInvoiceWithHttpInfo()
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerCreateInvoiceWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1791,6 +1995,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1800,9 +2005,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyInvoice>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1814,23 +2030,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a draft invoice for a client Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerCreateInvoiceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerCreateInvoiceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerCreateInvoiceWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerCreateInvoiceWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a draft invoice for a client Creates a draft invoice numbered &#x60;INV-NNNN&#x60; for &#x60;clientId&#x60; (required, must be owned). When &#x60;periodStart&#x60; and &#x60;periodEnd&#x60; are set and &#x60;includeSpend&#x60; is not false, an \&quot;Ad spend\&quot; line is added from the client&#39;s tagged-campaign spend, plus an agency fee line of &#x60;markupPct&#x60; percent of it. Optional &#x60;items&#x60; (description, kind, quantity, unitAmount, amount) are appended; &#x60;currency&#x60; defaults to USD. Totals are recomputed from the lines.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerCreateInvoiceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerCreateInvoiceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1840,6 +2057,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1850,10 +2068,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyInvoice>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1865,23 +2094,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an agency client Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerGetClient(string id)
+        /// <returns>AgencyClient</returns>
+        public AgencyClient AgencyControllerGetClient(string id)
         {
-            AgencyControllerGetClientWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyClient> localVarResponse = AgencyControllerGetClientWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an agency client Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerGetClientWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyClient</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyClient> AgencyControllerGetClientWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1894,6 +2124,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1904,9 +2135,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AgencyClient>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1918,25 +2160,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an agency client Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerGetClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyClient</returns>
+        public async System.Threading.Tasks.Task<AgencyClient> AgencyControllerGetClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerGetClientWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyClient> localVarResponse = await AgencyControllerGetClientWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an agency client Returns one client owned by the calling account. 404 if it does not exist or belongs to another account. The single-client view reports &#x60;taggedCampaigns&#x60; as 0; use the list endpoint for counts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerGetClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyClient)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyClient>> AgencyControllerGetClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1950,6 +2193,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1961,10 +2205,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AgencyClient>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1976,23 +2231,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with line items Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerGetInvoice(string id)
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerGetInvoice(string id)
         {
-            AgencyControllerGetInvoiceWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerGetInvoiceWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with line items Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerGetInvoiceWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerGetInvoiceWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2005,6 +2261,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2015,9 +2272,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AgencyInvoice>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2029,25 +2297,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with line items Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerGetInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerGetInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerGetInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerGetInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with line items Returns one invoice owned by the calling account, including its line items ordered by sort position. 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerGetInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerGetInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2061,6 +2330,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2072,10 +2342,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AgencyInvoice>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2087,21 +2368,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a pixel ownership transfer Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerInitiateTransfer()
+        /// <returns>AgencyTransfer</returns>
+        public AgencyTransfer AgencyControllerInitiateTransfer()
         {
-            AgencyControllerInitiateTransferWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AgencyTransfer> localVarResponse = AgencyControllerInitiateTransferWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a pixel ownership transfer Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerInitiateTransferWithHttpInfo()
+        /// <returns>ApiResponse of AgencyTransfer</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyTransfer> AgencyControllerInitiateTransferWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2110,6 +2392,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2119,9 +2402,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyTransfer>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2133,23 +2427,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a pixel ownership transfer Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerInitiateTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyTransfer</returns>
+        public async System.Threading.Tasks.Task<AgencyTransfer> AgencyControllerInitiateTransferAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerInitiateTransferWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyTransfer> localVarResponse = await AgencyControllerInitiateTransferWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a pixel ownership transfer Offers one of the account&#39;s pixels (&#x60;pixelId&#x60;), with its pixel-scoped audiences, to the account at &#x60;email&#x60;. The recipient is emailed a link that expires in 14 days. Returns 400 for an invalid email, a transfer to yourself, or a pixel that already has a pending transfer, and 404 for an unknown pixel. Not available to manager/analyst team seats.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerInitiateTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyTransfer)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyTransfer>> AgencyControllerInitiateTransferWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2159,6 +2454,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2169,10 +2465,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyTransfer>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2184,21 +2491,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List agency clients Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerListClients()
+        /// <returns>List&lt;AgencyClient&gt;</returns>
+        public List<AgencyClient> AgencyControllerListClients()
         {
-            AgencyControllerListClientsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AgencyClient>> localVarResponse = AgencyControllerListClientsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List agency clients Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerListClientsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AgencyClient&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AgencyClient>> AgencyControllerListClientsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2207,6 +2515,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2216,9 +2525,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AgencyClient>>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2230,23 +2550,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List agency clients Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerListClientsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AgencyClient&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AgencyClient>> AgencyControllerListClientsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerListClientsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AgencyClient>> localVarResponse = await AgencyControllerListClientsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List agency clients Returns the billable clients this agency account runs campaigns and pixels for, newest first. Each client includes &#x60;taggedCampaigns&#x60;, the number of non-deleted campaigns currently tagged to it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerListClientsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AgencyClient&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AgencyClient>>> AgencyControllerListClientsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2256,6 +2577,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2266,10 +2588,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AgencyClient>>("/v1/advertiser/clients", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2281,23 +2614,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List agency invoices Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
-        /// <returns></returns>
-        public void AgencyControllerListInvoices(string clientId)
+        /// <returns>List&lt;AgencyInvoice&gt;</returns>
+        public List<AgencyInvoice> AgencyControllerListInvoices(string clientId)
         {
-            AgencyControllerListInvoicesWithHttpInfo(clientId);
+            Adviverse.Api.Client.ApiResponse<List<AgencyInvoice>> localVarResponse = AgencyControllerListInvoicesWithHttpInfo(clientId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List agency invoices Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerListInvoicesWithHttpInfo(string clientId)
+        /// <returns>ApiResponse of List&lt;AgencyInvoice&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AgencyInvoice>> AgencyControllerListInvoicesWithHttpInfo(string clientId)
         {
             // verify the required parameter 'clientId' is set
             if (clientId == null)
@@ -2310,6 +2644,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2320,9 +2655,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "clientId", clientId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AgencyInvoice>>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2334,25 +2680,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List agency invoices Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerListInvoicesAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AgencyInvoice&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AgencyInvoice>> AgencyControllerListInvoicesAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerListInvoicesWithHttpInfoAsync(clientId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AgencyInvoice>> localVarResponse = await AgencyControllerListInvoicesWithHttpInfoAsync(clientId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List agency invoices Returns the account&#39;s client invoices, newest first, optionally filtered by &#x60;clientId&#x60;. List entries carry an empty &#x60;items&#x60; array; fetch a single invoice for its line items.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerListInvoicesWithHttpInfoAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AgencyInvoice&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AgencyInvoice>>> AgencyControllerListInvoicesWithHttpInfoAsync(string clientId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'clientId' is set
             if (clientId == null)
@@ -2366,6 +2713,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2377,10 +2725,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "clientId", clientId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AgencyInvoice>>("/v1/advertiser/invoices", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2392,21 +2751,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List outgoing pixel transfers Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerListTransfers()
+        /// <returns>List&lt;AgencyTransfer&gt;</returns>
+        public List<AgencyTransfer> AgencyControllerListTransfers()
         {
-            AgencyControllerListTransfersWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AgencyTransfer>> localVarResponse = AgencyControllerListTransfersWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List outgoing pixel transfers Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerListTransfersWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AgencyTransfer&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AgencyTransfer>> AgencyControllerListTransfersWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2415,6 +2775,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2424,9 +2785,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AgencyTransfer>>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2438,23 +2810,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List outgoing pixel transfers Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerListTransfersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AgencyTransfer&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AgencyTransfer>> AgencyControllerListTransfersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerListTransfersWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AgencyTransfer>> localVarResponse = await AgencyControllerListTransfersWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List outgoing pixel transfers Returns up to 100 transfers this account has started, newest first, with pixel names and current status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerListTransfersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AgencyTransfer&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AgencyTransfer>>> AgencyControllerListTransfersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2464,6 +2837,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2474,10 +2848,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AgencyTransfer>>("/v1/advertiser/transfers", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2489,23 +2874,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Mark an invoice paid manually Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerMarkPaid(string id)
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerMarkPaid(string id)
         {
-            AgencyControllerMarkPaidWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerMarkPaidWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Mark an invoice paid manually Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerMarkPaidWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerMarkPaidWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2518,6 +2904,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2528,9 +2915,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/invoices/{id}/mark-paid", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyInvoice>("/v1/advertiser/invoices/{id}/mark-paid", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2542,25 +2940,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Mark an invoice paid manually Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerMarkPaidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerMarkPaidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerMarkPaidWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerMarkPaidWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Mark an invoice paid manually Records an offline payment by setting the status to &#x60;paid&#x60; and stamping &#x60;paidAt&#x60;. No ledger entry is posted. Void invoices return 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerMarkPaidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerMarkPaidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2574,6 +2973,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2585,10 +2985,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/invoices/{id}/mark-paid", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyInvoice>("/v1/advertiser/invoices/{id}/mark-paid", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2600,23 +3011,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the public view of an invoice Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns></returns>
-        public void AgencyControllerPayInfo(string token)
+        /// <returns>AgencyControllerPayInfo200Response</returns>
+        public AgencyControllerPayInfo200Response AgencyControllerPayInfo(string token)
         {
-            AgencyControllerPayInfoWithHttpInfo(token);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerPayInfo200Response> localVarResponse = AgencyControllerPayInfoWithHttpInfo(token);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the public view of an invoice Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerPayInfoWithHttpInfo(string token)
+        /// <returns>ApiResponse of AgencyControllerPayInfo200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyControllerPayInfo200Response> AgencyControllerPayInfoWithHttpInfo(string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -2629,6 +3041,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2641,7 +3054,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/pay/{token}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AgencyControllerPayInfo200Response>("/v1/pay/{token}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2653,25 +3066,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the public view of an invoice Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerPayInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyControllerPayInfo200Response</returns>
+        public async System.Threading.Tasks.Task<AgencyControllerPayInfo200Response> AgencyControllerPayInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerPayInfoWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerPayInfo200Response> localVarResponse = await AgencyControllerPayInfoWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the public view of an invoice Unauthenticated: the pay token in the path grants access. Returns what the client needs to review an invoice: number, status, total, agency and client names, period, notes, due/paid dates and line descriptions with amounts. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerPayInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyControllerPayInfo200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyControllerPayInfo200Response>> AgencyControllerPayInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -2685,6 +3099,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2699,7 +3114,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/pay/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AgencyControllerPayInfo200Response>("/v1/pay/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2711,23 +3126,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete an agency client Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerRemoveClient(string id)
+        /// <returns>PixelControllerDeletePixel200Response</returns>
+        public PixelControllerDeletePixel200Response AgencyControllerRemoveClient(string id)
         {
-            AgencyControllerRemoveClientWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> localVarResponse = AgencyControllerRemoveClientWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete an agency client Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerRemoveClientWithHttpInfo(string id)
+        /// <returns>ApiResponse of PixelControllerDeletePixel200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> AgencyControllerRemoveClientWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2740,6 +3156,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2750,9 +3167,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<PixelControllerDeletePixel200Response>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2764,25 +3192,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete an agency client Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerRemoveClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerDeletePixel200Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerDeletePixel200Response> AgencyControllerRemoveClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerRemoveClientWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> localVarResponse = await AgencyControllerRemoveClientWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete an agency client Deletes the client if it belongs to the calling account. Campaigns tagged to it are untagged by the database (ON DELETE SET NULL). Returns &#x60;{ deleted: true }&#x60; even when no matching client existed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerRemoveClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerDeletePixel200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response>> AgencyControllerRemoveClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2796,6 +3225,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2807,10 +3237,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<PixelControllerDeletePixel200Response>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2822,25 +3263,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Remove a line item from a draft invoice Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
-        /// <returns></returns>
-        public void AgencyControllerRemoveItem(string id, string itemId)
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerRemoveItem(string id, string itemId)
         {
-            AgencyControllerRemoveItemWithHttpInfo(id, itemId);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerRemoveItemWithHttpInfo(id, itemId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Remove a line item from a draft invoice Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerRemoveItemWithHttpInfo(string id, string itemId)
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerRemoveItemWithHttpInfo(string id, string itemId)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2857,6 +3299,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2868,9 +3311,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.PathParameters.Add("itemId", Adviverse.Api.Client.ClientUtils.ParameterToString(itemId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/invoices/{id}/items/{itemId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AgencyInvoice>("/v1/advertiser/invoices/{id}/items/{itemId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2882,27 +3336,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Remove a line item from a draft invoice Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerRemoveItemAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerRemoveItemAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerRemoveItemWithHttpInfoAsync(id, itemId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerRemoveItemWithHttpInfoAsync(id, itemId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Remove a line item from a draft invoice Deletes the line item &#x60;itemId&#x60; from a draft invoice and recomputes the totals. Returns 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="itemId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerRemoveItemWithHttpInfoAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerRemoveItemWithHttpInfoAsync(string id, string itemId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2920,6 +3375,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2932,10 +3388,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.PathParameters.Add("itemId", Adviverse.Api.Client.ClientUtils.ParameterToString(itemId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/invoices/{id}/items/{itemId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AgencyInvoice>("/v1/advertiser/invoices/{id}/items/{itemId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2947,23 +3414,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Send an invoice and mint its pay link Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerSendInvoice(string id)
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerSendInvoice(string id)
         {
-            AgencyControllerSendInvoiceWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerSendInvoiceWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Send an invoice and mint its pay link Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerSendInvoiceWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerSendInvoiceWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2976,6 +3444,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2986,9 +3455,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/invoices/{id}/send", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyInvoice>("/v1/advertiser/invoices/{id}/send", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3000,25 +3480,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Send an invoice and mint its pay link Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerSendInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerSendInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerSendInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerSendInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Send an invoice and mint its pay link Moves the invoice to &#x60;sent&#x60;, mints a public pay token (reused if already set) and stamps &#x60;issuedAt&#x60;. If the client has a billing email, it is emailed a link to the hosted pay page. Fails with 400 for paid or void invoices or a non-positive total. The response adds &#x60;payLink&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerSendInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerSendInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3032,6 +3513,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3043,10 +3525,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/invoices/{id}/send", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyInvoice>("/v1/advertiser/invoices/{id}/send", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3058,23 +3551,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start paying an invoice Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns></returns>
-        public void AgencyControllerStartPayment(string token)
+        /// <returns>AgencyControllerStartPayment201Response</returns>
+        public AgencyControllerStartPayment201Response AgencyControllerStartPayment(string token)
         {
-            AgencyControllerStartPaymentWithHttpInfo(token);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerStartPayment201Response> localVarResponse = AgencyControllerStartPaymentWithHttpInfo(token);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start paying an invoice Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerStartPaymentWithHttpInfo(string token)
+        /// <returns>ApiResponse of AgencyControllerStartPayment201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyControllerStartPayment201Response> AgencyControllerStartPaymentWithHttpInfo(string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -3087,6 +3581,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3099,7 +3594,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/pay/{token}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyControllerStartPayment201Response>("/v1/pay/{token}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3111,25 +3606,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start paying an invoice Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerStartPaymentAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyControllerStartPayment201Response</returns>
+        public async System.Threading.Tasks.Task<AgencyControllerStartPayment201Response> AgencyControllerStartPaymentAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerStartPaymentWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerStartPayment201Response> localVarResponse = await AgencyControllerStartPaymentWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start paying an invoice Unauthenticated (pay token in the path). Creates a pending deposit on the agency&#39;s account linked to the invoice and starts checkout with &#x60;provider&#x60; (&#x60;crypto&#x60;, anything else means Stripe). When the provider confirms, the deposit credits the agency balance and marks the invoice paid. Only &#x60;sent&#x60; invoices can be paid (400 otherwise).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerStartPaymentWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyControllerStartPayment201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyControllerStartPayment201Response>> AgencyControllerStartPaymentWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -3143,6 +3639,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3157,7 +3654,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/pay/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyControllerStartPayment201Response>("/v1/pay/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3169,21 +3666,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Tag or untag a campaign to a client Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerTagCampaign()
+        /// <returns>AgencyControllerTagCampaign201Response</returns>
+        public AgencyControllerTagCampaign201Response AgencyControllerTagCampaign()
         {
-            AgencyControllerTagCampaignWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AgencyControllerTagCampaign201Response> localVarResponse = AgencyControllerTagCampaignWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Tag or untag a campaign to a client Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerTagCampaignWithHttpInfo()
+        /// <returns>ApiResponse of AgencyControllerTagCampaign201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyControllerTagCampaign201Response> AgencyControllerTagCampaignWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3192,6 +3690,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3201,9 +3700,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/clients/tag", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyControllerTagCampaign201Response>("/v1/advertiser/clients/tag", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3215,23 +3725,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Tag or untag a campaign to a client Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerTagCampaignAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyControllerTagCampaign201Response</returns>
+        public async System.Threading.Tasks.Task<AgencyControllerTagCampaign201Response> AgencyControllerTagCampaignAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerTagCampaignWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerTagCampaign201Response> localVarResponse = await AgencyControllerTagCampaignWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Tag or untag a campaign to a client Sets &#x60;campaignId&#x60;&#39;s client tag to &#x60;clientId&#x60;, or clears it when &#x60;clientId&#x60; is null. Both the campaign and the client must belong to the calling account (404 otherwise). Tagged campaigns&#39; spend is what client spend reports and auto-generated invoices bill.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerTagCampaignWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyControllerTagCampaign201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyControllerTagCampaign201Response>> AgencyControllerTagCampaignWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3241,6 +3752,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3251,10 +3763,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/clients/tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyControllerTagCampaign201Response>("/v1/advertiser/clients/tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3266,21 +3789,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaigns available for client tagging Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AgencyControllerTaggable()
+        /// <returns>List&lt;AgencyControllerTaggable200ResponseInner&gt;</returns>
+        public List<AgencyControllerTaggable200ResponseInner> AgencyControllerTaggable()
         {
-            AgencyControllerTaggableWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AgencyControllerTaggable200ResponseInner>> localVarResponse = AgencyControllerTaggableWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaigns available for client tagging Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerTaggableWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AgencyControllerTaggable200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AgencyControllerTaggable200ResponseInner>> AgencyControllerTaggableWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3289,6 +3813,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3298,9 +3823,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/clients/campaigns", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AgencyControllerTaggable200ResponseInner>>("/v1/advertiser/clients/campaigns", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3312,23 +3848,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaigns available for client tagging Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerTaggableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AgencyControllerTaggable200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AgencyControllerTaggable200ResponseInner>> AgencyControllerTaggableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerTaggableWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AgencyControllerTaggable200ResponseInner>> localVarResponse = await AgencyControllerTaggableWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaigns available for client tagging Returns up to 500 of the account&#39;s non-deleted campaigns (ad sets) with their current &#x60;client_id&#x60; tag, newest first. Used by the tagging UI to assign campaign spend to a client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerTaggableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AgencyControllerTaggable200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AgencyControllerTaggable200ResponseInner>>> AgencyControllerTaggableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3338,6 +3875,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3348,10 +3886,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/clients/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AgencyControllerTaggable200ResponseInner>>("/v1/advertiser/clients/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3363,23 +3912,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Preview a pixel transfer by token Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns></returns>
-        public void AgencyControllerTransferInfo(string token)
+        /// <returns>AgencyControllerTransferInfo200Response</returns>
+        public AgencyControllerTransferInfo200Response AgencyControllerTransferInfo(string token)
         {
-            AgencyControllerTransferInfoWithHttpInfo(token);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerTransferInfo200Response> localVarResponse = AgencyControllerTransferInfoWithHttpInfo(token);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Preview a pixel transfer by token Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerTransferInfoWithHttpInfo(string token)
+        /// <returns>ApiResponse of AgencyControllerTransferInfo200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyControllerTransferInfo200Response> AgencyControllerTransferInfoWithHttpInfo(string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -3392,6 +3942,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3402,9 +3953,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "token", token));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/transfers/info", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AgencyControllerTransferInfo200Response>("/v1/transfers/info", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3416,25 +3978,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Preview a pixel transfer by token Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerTransferInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyControllerTransferInfo200Response</returns>
+        public async System.Threading.Tasks.Task<AgencyControllerTransferInfo200Response> AgencyControllerTransferInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerTransferInfoWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyControllerTransferInfo200Response> localVarResponse = await AgencyControllerTransferInfoWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Preview a pixel transfer by token Looks up a transfer by the &#x60;token&#x60; query parameter from the email link, so the recipient can review it before accepting. A pending transfer past its expiry is reported as &#x60;expired&#x60;. 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerTransferInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyControllerTransferInfo200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyControllerTransferInfo200Response>> AgencyControllerTransferInfoWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -3448,6 +4011,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3459,10 +4023,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "token", token));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/transfers/info", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AgencyControllerTransferInfo200Response>("/v1/transfers/info", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3474,23 +4049,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update an agency client Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerUpdateClient(string id)
+        /// <returns>AgencyClient</returns>
+        public AgencyClient AgencyControllerUpdateClient(string id)
         {
-            AgencyControllerUpdateClientWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyClient> localVarResponse = AgencyControllerUpdateClientWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update an agency client Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerUpdateClientWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyClient</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyClient> AgencyControllerUpdateClientWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3503,6 +4079,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3513,9 +4090,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyClient>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3527,25 +4115,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update an agency client Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerUpdateClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyClient</returns>
+        public async System.Threading.Tasks.Task<AgencyClient> AgencyControllerUpdateClientAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerUpdateClientWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyClient> localVarResponse = await AgencyControllerUpdateClientWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update an agency client Partially updates &#x60;name&#x60;, &#x60;billingEmail&#x60;, &#x60;pixelId&#x60;, &#x60;notes&#x60; and &#x60;status&#x60;. Only fields present are changed; &#x60;status&#x60; is applied only when it is &#x60;active&#x60; or &#x60;archived&#x60;. A new &#x60;pixelId&#x60; must belong to the account (400 otherwise); an empty string clears it. Returns the updated client.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerUpdateClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyClient)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyClient>> AgencyControllerUpdateClientWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3559,6 +4148,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3570,10 +4160,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyClient>("/v1/advertiser/clients/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3585,23 +4186,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a draft invoice Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerUpdateInvoice(string id)
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerUpdateInvoice(string id)
         {
-            AgencyControllerUpdateInvoiceWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerUpdateInvoiceWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a draft invoice Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerUpdateInvoiceWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerUpdateInvoiceWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3614,6 +4216,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3624,9 +4227,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyInvoice>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3638,25 +4252,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a draft invoice Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerUpdateInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerUpdateInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerUpdateInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerUpdateInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a draft invoice Updates &#x60;notes&#x60; (truncated to 4000 chars) and/or &#x60;dueAt&#x60; on a draft invoice. Returns 400 if the invoice is no longer a draft and 404 if unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerUpdateInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerUpdateInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3670,6 +4285,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3681,10 +4297,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyInvoice>("/v1/advertiser/invoices/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3696,23 +4323,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AgencyControllerVoidInvoice(string id)
+        /// <returns>AgencyInvoice</returns>
+        public AgencyInvoice AgencyControllerVoidInvoice(string id)
         {
-            AgencyControllerVoidInvoiceWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = AgencyControllerVoidInvoiceWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AgencyControllerVoidInvoiceWithHttpInfo(string id)
+        /// <returns>ApiResponse of AgencyInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<AgencyInvoice> AgencyControllerVoidInvoiceWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3725,6 +4353,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3735,9 +4364,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/invoices/{id}/void", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AgencyInvoice>("/v1/advertiser/invoices/{id}/void", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3749,25 +4389,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AgencyControllerVoidInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AgencyInvoice</returns>
+        public async System.Threading.Tasks.Task<AgencyInvoice> AgencyControllerVoidInvoiceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AgencyControllerVoidInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AgencyInvoice> localVarResponse = await AgencyControllerVoidInvoiceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice Sets the invoice status to &#x60;void&#x60;; its pay link stops accepting payments. Paid invoices cannot be voided (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AgencyControllerVoidInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AgencyInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AgencyInvoice>> AgencyControllerVoidInvoiceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3781,6 +4422,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3792,10 +4434,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/invoices/{id}/void", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AgencyInvoice>("/v1/advertiser/invoices/{id}/void", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

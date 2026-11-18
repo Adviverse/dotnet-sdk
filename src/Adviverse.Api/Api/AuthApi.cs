@@ -28,76 +28,91 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AuthControllerConnections();
-
-        /// <summary>
-        /// 
+        /// List linked SSO providers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerConnectionsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="provider"></param>
-        /// <returns></returns>
-        void AuthControllerDisconnect(string provider);
+        /// <returns>List&lt;AuthControllerConnections200ResponseInner&gt;</returns>
+        List<AuthControllerConnections200ResponseInner> AuthControllerConnections();
 
         /// <summary>
-        /// 
+        /// List linked SSO providers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AuthControllerConnections200ResponseInner&gt;</returns>
+        ApiResponse<List<AuthControllerConnections200ResponseInner>> AuthControllerConnectionsWithHttpInfo();
+        /// <summary>
+        /// Disconnect an SSO provider
+        /// </summary>
+        /// <remarks>
+        /// Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="provider"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerDisconnectWithHttpInfo(string provider);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AuthControllerEnable2fa();
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response AuthControllerDisconnect(string provider);
 
         /// <summary>
-        /// 
+        /// Disconnect an SSO provider
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerEnable2faWithHttpInfo();
+        /// <param name="provider"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> AuthControllerDisconnectWithHttpInfo(string provider);
         /// <summary>
-        /// 
+        /// Confirm and enable TOTP 2FA
         /// </summary>
+        /// <remarks>
+        /// Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="emailDto"></param>
-        /// <returns></returns>
-        void AuthControllerForgotPassword(EmailDto emailDto);
+        /// <returns>AuthControllerEnable2fa201Response</returns>
+        AuthControllerEnable2fa201Response AuthControllerEnable2fa();
 
         /// <summary>
-        /// 
+        /// Confirm and enable TOTP 2FA
         /// </summary>
         /// <remarks>
-        /// 
+        /// Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AuthControllerEnable2fa201Response</returns>
+        ApiResponse<AuthControllerEnable2fa201Response> AuthControllerEnable2faWithHttpInfo();
+        /// <summary>
+        /// Start a password reset
+        /// </summary>
+        /// <remarks>
+        /// Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerForgotPasswordWithHttpInfo(EmailDto emailDto);
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response AuthControllerForgotPassword(EmailDto emailDto);
+
         /// <summary>
-        /// 
+        /// Start a password reset
         /// </summary>
+        /// <remarks>
+        /// Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailDto"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> AuthControllerForgotPasswordWithHttpInfo(EmailDto emailDto);
+        /// <summary>
+        /// GitHub OAuth callback
+        /// </summary>
+        /// <remarks>
+        /// Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
         /// <param name="state"></param>
@@ -105,10 +120,10 @@ namespace Adviverse.Api.Api
         void AuthControllerGithubCallback(string code, string state);
 
         /// <summary>
-        /// 
+        /// GitHub OAuth callback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -116,80 +131,95 @@ namespace Adviverse.Api.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> AuthControllerGithubCallbackWithHttpInfo(string code, string state);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization"></param>
-        /// <param name="oauthStartDto"></param>
-        /// <returns></returns>
-        void AuthControllerGithubStart(string authorization, OauthStartDto oauthStartDto);
-
-        /// <summary>
-        /// 
+        /// Start GitHub sign-in
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerGithubStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="loginDto"></param>
-        /// <returns></returns>
-        void AuthControllerLogin(LoginDto loginDto);
+        /// <returns>AuthControllerGithubStart201Response</returns>
+        AuthControllerGithubStart201Response AuthControllerGithubStart(string authorization, OauthStartDto oauthStartDto);
 
         /// <summary>
-        /// 
+        /// Start GitHub sign-in
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="loginDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerLoginWithHttpInfo(LoginDto loginDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization"></param>
-        /// <returns></returns>
-        void AuthControllerLogout(string authorization);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerLogoutWithHttpInfo(string authorization);
+        /// <param name="oauthStartDto"></param>
+        /// <returns>ApiResponse of AuthControllerGithubStart201Response</returns>
+        ApiResponse<AuthControllerGithubStart201Response> AuthControllerGithubStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AuthControllerMe();
-
-        /// <summary>
-        /// 
+        /// Log in with email and password
         /// </summary>
         /// <remarks>
-        /// 
+        /// Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerMeWithHttpInfo();
+        /// <param name="loginDto"></param>
+        /// <returns>AuthSession</returns>
+        AuthSession AuthControllerLogin(LoginDto loginDto);
+
         /// <summary>
-        /// 
+        /// Log in with email and password
         /// </summary>
+        /// <remarks>
+        /// Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loginDto"></param>
+        /// <returns>ApiResponse of AuthSession</returns>
+        ApiResponse<AuthSession> AuthControllerLoginWithHttpInfo(LoginDto loginDto);
+        /// <summary>
+        /// Log out
+        /// </summary>
+        /// <remarks>
+        /// Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response AuthControllerLogout(string authorization);
+
+        /// <summary>
+        /// Log out
+        /// </summary>
+        /// <remarks>
+        /// Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> AuthControllerLogoutWithHttpInfo(string authorization);
+        /// <summary>
+        /// Get the current session account
+        /// </summary>
+        /// <remarks>
+        /// Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AuthMe</returns>
+        AuthMe AuthControllerMe();
+
+        /// <summary>
+        /// Get the current session account
+        /// </summary>
+        /// <remarks>
+        /// Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AuthMe</returns>
+        ApiResponse<AuthMe> AuthControllerMeWithHttpInfo();
+        /// <summary>
+        /// Microsoft OAuth callback
+        /// </summary>
+        /// <remarks>
+        /// Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
         /// <param name="state"></param>
@@ -197,10 +227,10 @@ namespace Adviverse.Api.Api
         void AuthControllerMicrosoftCallback(string code, string state);
 
         /// <summary>
-        /// 
+        /// Microsoft OAuth callback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -208,185 +238,215 @@ namespace Adviverse.Api.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> AuthControllerMicrosoftCallbackWithHttpInfo(string code, string state);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization"></param>
-        /// <param name="oauthStartDto"></param>
-        /// <returns></returns>
-        void AuthControllerMicrosoftStart(string authorization, OauthStartDto oauthStartDto);
-
-        /// <summary>
-        /// 
+        /// Start Microsoft sign-in
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerMicrosoftStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto);
+        /// <returns>AuthControllerGithubStart201Response</returns>
+        AuthControllerGithubStart201Response AuthControllerMicrosoftStart(string authorization, OauthStartDto oauthStartDto);
+
         /// <summary>
-        /// 
+        /// Start Microsoft sign-in
         /// </summary>
+        /// <remarks>
+        /// Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="oauthStartDto"></param>
+        /// <returns>ApiResponse of AuthControllerGithubStart201Response</returns>
+        ApiResponse<AuthControllerGithubStart201Response> AuthControllerMicrosoftStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto);
+        /// <summary>
+        /// Sign in or connect with Discord
+        /// </summary>
+        /// <remarks>
+        /// Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
-        /// <returns></returns>
-        void AuthControllerOauthDiscord(string authorization, OauthDiscordDto oauthDiscordDto);
+        /// <returns>AuthControllerOauthDiscord201Response</returns>
+        AuthControllerOauthDiscord201Response AuthControllerOauthDiscord(string authorization, OauthDiscordDto oauthDiscordDto);
 
         /// <summary>
-        /// 
+        /// Sign in or connect with Discord
         /// </summary>
         /// <remarks>
-        /// 
+        /// Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerOauthDiscordWithHttpInfo(string authorization, OauthDiscordDto oauthDiscordDto);
+        /// <returns>ApiResponse of AuthControllerOauthDiscord201Response</returns>
+        ApiResponse<AuthControllerOauthDiscord201Response> AuthControllerOauthDiscordWithHttpInfo(string authorization, OauthDiscordDto oauthDiscordDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization"></param>
-        /// <param name="oauthGoogleDto"></param>
-        /// <returns></returns>
-        void AuthControllerOauthGoogle(string authorization, OauthGoogleDto oauthGoogleDto);
-
-        /// <summary>
-        /// 
+        /// Sign in or connect with Google
         /// </summary>
         /// <remarks>
-        /// 
+        /// Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthGoogleDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerOauthGoogleWithHttpInfo(string authorization, OauthGoogleDto oauthGoogleDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="emailDto"></param>
-        /// <returns></returns>
-        void AuthControllerResendVerification(EmailDto emailDto);
+        /// <returns>AuthControllerOauthDiscord201Response</returns>
+        AuthControllerOauthDiscord201Response AuthControllerOauthGoogle(string authorization, OauthGoogleDto oauthGoogleDto);
 
         /// <summary>
-        /// 
+        /// Sign in or connect with Google
         /// </summary>
         /// <remarks>
-        /// 
+        /// Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="oauthGoogleDto"></param>
+        /// <returns>ApiResponse of AuthControllerOauthDiscord201Response</returns>
+        ApiResponse<AuthControllerOauthDiscord201Response> AuthControllerOauthGoogleWithHttpInfo(string authorization, OauthGoogleDto oauthGoogleDto);
+        /// <summary>
+        /// Resend the verification email
+        /// </summary>
+        /// <remarks>
+        /// Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerResendVerificationWithHttpInfo(EmailDto emailDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="resetPasswordDto"></param>
-        /// <returns></returns>
-        void AuthControllerResetPassword(ResetPasswordDto resetPasswordDto);
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response AuthControllerResendVerification(EmailDto emailDto);
 
         /// <summary>
-        /// 
+        /// Resend the verification email
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailDto"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> AuthControllerResendVerificationWithHttpInfo(EmailDto emailDto);
+        /// <summary>
+        /// Complete a password reset
+        /// </summary>
+        /// <remarks>
+        /// Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resetPasswordDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerResetPasswordWithHttpInfo(ResetPasswordDto resetPasswordDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="setPasswordDto"></param>
-        /// <returns></returns>
-        void AuthControllerSetPassword(SetPasswordDto setPasswordDto);
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response AuthControllerResetPassword(ResetPasswordDto resetPasswordDto);
 
         /// <summary>
-        /// 
+        /// Complete a password reset
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="resetPasswordDto"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> AuthControllerResetPasswordWithHttpInfo(ResetPasswordDto resetPasswordDto);
+        /// <summary>
+        /// Set or change the password
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setPasswordDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerSetPasswordWithHttpInfo(SetPasswordDto setPasswordDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AuthControllerSetup2fa();
+        /// <returns>AuthControllerSetPassword201Response</returns>
+        AuthControllerSetPassword201Response AuthControllerSetPassword(SetPasswordDto setPasswordDto);
 
         /// <summary>
-        /// 
+        /// Set or change the password
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerSetup2faWithHttpInfo();
+        /// <param name="setPasswordDto"></param>
+        /// <returns>ApiResponse of AuthControllerSetPassword201Response</returns>
+        ApiResponse<AuthControllerSetPassword201Response> AuthControllerSetPasswordWithHttpInfo(SetPasswordDto setPasswordDto);
         /// <summary>
-        /// 
+        /// Begin TOTP 2FA setup
         /// </summary>
+        /// <remarks>
+        /// Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AuthControllerSetup2fa201Response</returns>
+        AuthControllerSetup2fa201Response AuthControllerSetup2fa();
+
+        /// <summary>
+        /// Begin TOTP 2FA setup
+        /// </summary>
+        /// <remarks>
+        /// Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AuthControllerSetup2fa201Response</returns>
+        ApiResponse<AuthControllerSetup2fa201Response> AuthControllerSetup2faWithHttpInfo();
+        /// <summary>
+        /// Create an account
+        /// </summary>
+        /// <remarks>
+        /// Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
-        /// <returns></returns>
-        void AuthControllerSignup(SignupDto signupDto);
+        /// <returns>AuthControllerSignup201Response</returns>
+        AuthControllerSignup201Response AuthControllerSignup(SignupDto signupDto);
 
         /// <summary>
-        /// 
+        /// Create an account
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerSignupWithHttpInfo(SignupDto signupDto);
+        /// <returns>ApiResponse of AuthControllerSignup201Response</returns>
+        ApiResponse<AuthControllerSignup201Response> AuthControllerSignupWithHttpInfo(SignupDto signupDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AuthControllerSsoConfig();
-
-        /// <summary>
-        /// 
+        /// Get public SSO and Turnstile config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerSsoConfigWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AuthControllerVerify();
+        /// <returns>AuthControllerSsoConfig200Response</returns>
+        AuthControllerSsoConfig200Response AuthControllerSsoConfig();
 
         /// <summary>
-        /// 
+        /// Get public SSO and Turnstile config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthControllerVerifyWithHttpInfo();
+        /// <returns>ApiResponse of AuthControllerSsoConfig200Response</returns>
+        ApiResponse<AuthControllerSsoConfig200Response> AuthControllerSsoConfigWithHttpInfo();
+        /// <summary>
+        /// Verify an email address
+        /// </summary>
+        /// <remarks>
+        /// Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AuthControllerVerify201Response</returns>
+        AuthControllerVerify201Response AuthControllerVerify();
+
+        /// <summary>
+        /// Verify an email address
+        /// </summary>
+        /// <remarks>
+        /// Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AuthControllerVerify201Response</returns>
+        ApiResponse<AuthControllerVerify201Response> AuthControllerVerifyWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -397,98 +457,98 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List linked SSO providers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerConnectionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AuthControllerConnections200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<AuthControllerConnections200ResponseInner>> AuthControllerConnectionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List linked SSO providers
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerConnectionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AuthControllerConnections200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AuthControllerConnections200ResponseInner>>> AuthControllerConnectionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Disconnect an SSO provider
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="provider"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerDisconnectAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerDisconnectAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Disconnect an SSO provider
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="provider"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerDisconnectWithHttpInfoAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> AuthControllerDisconnectWithHttpInfoAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Confirm and enable TOTP 2FA
         /// </summary>
         /// <remarks>
-        /// 
+        /// Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerEnable2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerEnable2fa201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerEnable2fa201Response> AuthControllerEnable2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Confirm and enable TOTP 2FA
         /// </summary>
         /// <remarks>
-        /// 
+        /// Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerEnable2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerEnable2fa201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerEnable2fa201Response>> AuthControllerEnable2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start a password reset
         /// </summary>
         /// <remarks>
-        /// 
+        /// Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerForgotPasswordAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerForgotPasswordAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start a password reset
         /// </summary>
         /// <remarks>
-        /// 
+        /// Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerForgotPasswordWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> AuthControllerForgotPasswordWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// GitHub OAuth callback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -498,10 +558,10 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task AuthControllerGithubCallbackAsync(string code, string state, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// GitHub OAuth callback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -510,102 +570,102 @@ namespace Adviverse.Api.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerGithubCallbackWithHttpInfoAsync(string code, string state, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start GitHub sign-in
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerGithubStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerGithubStart201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerGithubStart201Response> AuthControllerGithubStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start GitHub sign-in
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerGithubStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerGithubStart201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerGithubStart201Response>> AuthControllerGithubStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Log in with email and password
         /// </summary>
         /// <remarks>
-        /// 
+        /// Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="loginDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerLoginAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthSession</returns>
+        System.Threading.Tasks.Task<AuthSession> AuthControllerLoginAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Log in with email and password
         /// </summary>
         /// <remarks>
-        /// 
+        /// Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="loginDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerLoginWithHttpInfoAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthSession)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthSession>> AuthControllerLoginWithHttpInfoAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Log out
         /// </summary>
         /// <remarks>
-        /// 
+        /// Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerLogoutAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerLogoutAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Log out
         /// </summary>
         /// <remarks>
-        /// 
+        /// Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerLogoutWithHttpInfoAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> AuthControllerLogoutWithHttpInfoAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the current session account
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerMeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthMe</returns>
+        System.Threading.Tasks.Task<AuthMe> AuthControllerMeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the current session account
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerMeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthMe)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthMe>> AuthControllerMeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Microsoft OAuth callback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -615,10 +675,10 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task AuthControllerMicrosoftCallbackAsync(string code, string state, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Microsoft OAuth callback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -627,235 +687,235 @@ namespace Adviverse.Api.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerMicrosoftCallbackWithHttpInfoAsync(string code, string state, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start Microsoft sign-in
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerMicrosoftStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerGithubStart201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerGithubStart201Response> AuthControllerMicrosoftStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start Microsoft sign-in
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerMicrosoftStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerGithubStart201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerGithubStart201Response>> AuthControllerMicrosoftStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Sign in or connect with Discord
         /// </summary>
         /// <remarks>
-        /// 
+        /// Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerOauthDiscordAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerOauthDiscord201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerOauthDiscord201Response> AuthControllerOauthDiscordAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Sign in or connect with Discord
         /// </summary>
         /// <remarks>
-        /// 
+        /// Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerOauthDiscordWithHttpInfoAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerOauthDiscord201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerOauthDiscord201Response>> AuthControllerOauthDiscordWithHttpInfoAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Sign in or connect with Google
         /// </summary>
         /// <remarks>
-        /// 
+        /// Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthGoogleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerOauthGoogleAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerOauthDiscord201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerOauthDiscord201Response> AuthControllerOauthGoogleAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Sign in or connect with Google
         /// </summary>
         /// <remarks>
-        /// 
+        /// Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthGoogleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerOauthGoogleWithHttpInfoAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerOauthDiscord201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerOauthDiscord201Response>> AuthControllerOauthGoogleWithHttpInfoAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Resend the verification email
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerResendVerificationAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerResendVerificationAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Resend the verification email
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerResendVerificationWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> AuthControllerResendVerificationWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Complete a password reset
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resetPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerResetPasswordAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerResetPasswordAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Complete a password reset
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resetPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerResetPasswordWithHttpInfoAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> AuthControllerResetPasswordWithHttpInfoAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set or change the password
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerSetPasswordAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerSetPassword201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerSetPassword201Response> AuthControllerSetPasswordAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set or change the password
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerSetPasswordWithHttpInfoAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerSetPassword201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerSetPassword201Response>> AuthControllerSetPasswordWithHttpInfoAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Begin TOTP 2FA setup
         /// </summary>
         /// <remarks>
-        /// 
+        /// Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerSetup2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerSetup2fa201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerSetup2fa201Response> AuthControllerSetup2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Begin TOTP 2FA setup
         /// </summary>
         /// <remarks>
-        /// 
+        /// Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerSetup2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerSetup2fa201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerSetup2fa201Response>> AuthControllerSetup2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create an account
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerSignupAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerSignup201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerSignup201Response> AuthControllerSignupAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create an account
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerSignupWithHttpInfoAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerSignup201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerSignup201Response>> AuthControllerSignupWithHttpInfoAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get public SSO and Turnstile config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerSsoConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerSsoConfig200Response</returns>
+        System.Threading.Tasks.Task<AuthControllerSsoConfig200Response> AuthControllerSsoConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get public SSO and Turnstile config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerSsoConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerSsoConfig200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerSsoConfig200Response>> AuthControllerSsoConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Verify an email address
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthControllerVerifyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerVerify201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerVerify201Response> AuthControllerVerifyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Verify an email address
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthControllerVerifyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerVerify201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerVerify201Response>> AuthControllerVerifyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1070,21 +1130,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List linked SSO providers Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AuthControllerConnections()
+        /// <returns>List&lt;AuthControllerConnections200ResponseInner&gt;</returns>
+        public List<AuthControllerConnections200ResponseInner> AuthControllerConnections()
         {
-            AuthControllerConnectionsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AuthControllerConnections200ResponseInner>> localVarResponse = AuthControllerConnectionsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List linked SSO providers Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerConnectionsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AuthControllerConnections200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AuthControllerConnections200ResponseInner>> AuthControllerConnectionsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1093,6 +1154,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1102,9 +1164,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/auth/connections", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AuthControllerConnections200ResponseInner>>("/v1/auth/connections", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1116,23 +1189,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List linked SSO providers Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerConnectionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AuthControllerConnections200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AuthControllerConnections200ResponseInner>> AuthControllerConnectionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerConnectionsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AuthControllerConnections200ResponseInner>> localVarResponse = await AuthControllerConnectionsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List linked SSO providers Lists the social sign-in providers connected to the current account, oldest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerConnectionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AuthControllerConnections200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AuthControllerConnections200ResponseInner>>> AuthControllerConnectionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1142,6 +1216,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1152,10 +1227,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/auth/connections", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AuthControllerConnections200ResponseInner>>("/v1/auth/connections", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1167,23 +1253,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Disconnect an SSO provider Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="provider"></param>
-        /// <returns></returns>
-        public void AuthControllerDisconnect(string provider)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response AuthControllerDisconnect(string provider)
         {
-            AuthControllerDisconnectWithHttpInfo(provider);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = AuthControllerDisconnectWithHttpInfo(provider);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Disconnect an SSO provider Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="provider"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerDisconnectWithHttpInfo(string provider)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> AuthControllerDisconnectWithHttpInfo(string provider)
         {
             // verify the required parameter 'provider' is set
             if (provider == null)
@@ -1196,6 +1283,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1206,9 +1294,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("provider", Adviverse.Api.Client.ClientUtils.ParameterToString(provider)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/auth/connections/{provider}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AuthControllerResendVerification201Response>("/v1/auth/connections/{provider}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1220,25 +1319,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Disconnect an SSO provider Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="provider"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerDisconnectAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerDisconnectAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerDisconnectWithHttpInfoAsync(provider, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await AuthControllerDisconnectWithHttpInfoAsync(provider, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Disconnect an SSO provider Removes the connection for &#x60;provider&#x60; from the current account. Refuses with 400 when the account has no password and this is its only connection, so the user cannot lock themselves out. Unknown providers are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="provider"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerDisconnectWithHttpInfoAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> AuthControllerDisconnectWithHttpInfoAsync(string provider, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'provider' is set
             if (provider == null)
@@ -1252,6 +1352,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1263,10 +1364,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("provider", Adviverse.Api.Client.ClientUtils.ParameterToString(provider)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/auth/connections/{provider}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AuthControllerResendVerification201Response>("/v1/auth/connections/{provider}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1278,21 +1390,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Confirm and enable TOTP 2FA Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AuthControllerEnable2fa()
+        /// <returns>AuthControllerEnable2fa201Response</returns>
+        public AuthControllerEnable2fa201Response AuthControllerEnable2fa()
         {
-            AuthControllerEnable2faWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AuthControllerEnable2fa201Response> localVarResponse = AuthControllerEnable2faWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Confirm and enable TOTP 2FA Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerEnable2faWithHttpInfo()
+        /// <returns>ApiResponse of AuthControllerEnable2fa201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerEnable2fa201Response> AuthControllerEnable2faWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1301,6 +1414,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1310,9 +1424,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/2fa/enable", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerEnable2fa201Response>("/v1/auth/2fa/enable", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1324,23 +1449,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Confirm and enable TOTP 2FA Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerEnable2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerEnable2fa201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerEnable2fa201Response> AuthControllerEnable2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerEnable2faWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerEnable2fa201Response> localVarResponse = await AuthControllerEnable2faWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Confirm and enable TOTP 2FA Verifies &#x60;totp&#x60; against the secret from the setup step and turns on 2FA, after which login requires a code. Returns 400 &#x60;run setup first&#x60; if no secret exists, or &#x60;invalid code&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerEnable2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerEnable2fa201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerEnable2fa201Response>> AuthControllerEnable2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1350,6 +1476,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1360,10 +1487,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/2fa/enable", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerEnable2fa201Response>("/v1/auth/2fa/enable", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1375,23 +1513,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a password reset Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
-        /// <returns></returns>
-        public void AuthControllerForgotPassword(EmailDto emailDto)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response AuthControllerForgotPassword(EmailDto emailDto)
         {
-            AuthControllerForgotPasswordWithHttpInfo(emailDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = AuthControllerForgotPasswordWithHttpInfo(emailDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a password reset Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerForgotPasswordWithHttpInfo(EmailDto emailDto)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> AuthControllerForgotPasswordWithHttpInfo(EmailDto emailDto)
         {
             // verify the required parameter 'emailDto' is set
             if (emailDto == null)
@@ -1405,6 +1544,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1417,7 +1557,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/forgot-password", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerResendVerification201Response>("/v1/auth/forgot-password", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1429,25 +1569,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a password reset Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerForgotPasswordAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerForgotPasswordAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerForgotPasswordWithHttpInfoAsync(emailDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await AuthControllerForgotPasswordWithHttpInfoAsync(emailDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a password reset Emails a one-hour password reset link to &#x60;email&#x60; when an account exists. Always returns &#x60;{ ok: true }&#x60; to avoid account enumeration. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerForgotPasswordWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> AuthControllerForgotPasswordWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'emailDto' is set
             if (emailDto == null)
@@ -1462,6 +1603,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1476,7 +1618,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/forgot-password", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerResendVerification201Response>("/v1/auth/forgot-password", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1488,7 +1630,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// GitHub OAuth callback Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1500,7 +1642,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// GitHub OAuth callback Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1548,7 +1690,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// GitHub OAuth callback Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1561,7 +1703,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// GitHub OAuth callback Browser redirect target for GitHub. Exchanges &#x60;code&#x60;, verifies &#x60;state&#x60;, then 302-redirects to the dashboard: &#x60;/settings#sso&#x3D;connected&#x60; after linking, &#x60;/login#sso_token&#x3D;&lt;token&gt;&#x60; after login/signup, or &#x60;/login#sso_error&#x3D;github&#x60; on any failure. The session token is passed in the URL fragment so it never reaches a server. Callbacks carrying a state issued by the Atlas identity service are forwarded there instead.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1613,25 +1755,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start GitHub sign-in Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
-        /// <returns></returns>
-        public void AuthControllerGithubStart(string authorization, OauthStartDto oauthStartDto)
+        /// <returns>AuthControllerGithubStart201Response</returns>
+        public AuthControllerGithubStart201Response AuthControllerGithubStart(string authorization, OauthStartDto oauthStartDto)
         {
-            AuthControllerGithubStartWithHttpInfo(authorization, oauthStartDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response> localVarResponse = AuthControllerGithubStartWithHttpInfo(authorization, oauthStartDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start GitHub sign-in Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerGithubStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto)
+        /// <returns>ApiResponse of AuthControllerGithubStart201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response> AuthControllerGithubStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -1649,6 +1792,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1662,7 +1806,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/oauth/github/start", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerGithubStart201Response>("/v1/auth/oauth/github/start", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1674,27 +1818,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start GitHub sign-in Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerGithubStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerGithubStart201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerGithubStart201Response> AuthControllerGithubStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerGithubStartWithHttpInfoAsync(authorization, oauthStartDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response> localVarResponse = await AuthControllerGithubStartWithHttpInfoAsync(authorization, oauthStartDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start GitHub sign-in Returns the GitHub authorize URL with a signed state carrying the optional signup &#x60;type&#x60; and, if a bearer token was sent, a \&quot;connect to this account\&quot; intent. POST is used so the session token never appears in a URL. Returns 401 if GitHub SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerGithubStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerGithubStart201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response>> AuthControllerGithubStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -1713,6 +1858,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1728,7 +1874,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/oauth/github/start", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerGithubStart201Response>("/v1/auth/oauth/github/start", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1740,23 +1886,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Log in with email and password Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="loginDto"></param>
-        /// <returns></returns>
-        public void AuthControllerLogin(LoginDto loginDto)
+        /// <returns>AuthSession</returns>
+        public AuthSession AuthControllerLogin(LoginDto loginDto)
         {
-            AuthControllerLoginWithHttpInfo(loginDto);
+            Adviverse.Api.Client.ApiResponse<AuthSession> localVarResponse = AuthControllerLoginWithHttpInfo(loginDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Log in with email and password Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="loginDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerLoginWithHttpInfo(LoginDto loginDto)
+        /// <returns>ApiResponse of AuthSession</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthSession> AuthControllerLoginWithHttpInfo(LoginDto loginDto)
         {
             // verify the required parameter 'loginDto' is set
             if (loginDto == null)
@@ -1770,6 +1917,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1782,7 +1930,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/login", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthSession>("/v1/auth/login", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1794,25 +1942,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Log in with email and password Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="loginDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerLoginAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthSession</returns>
+        public async System.Threading.Tasks.Task<AuthSession> AuthControllerLoginAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerLoginWithHttpInfoAsync(loginDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthSession> localVarResponse = await AuthControllerLoginWithHttpInfoAsync(loginDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Log in with email and password Exchanges &#x60;email&#x60; + &#x60;password&#x60; for a session bearer token. When 2FA is enabled a &#x60;totp&#x60; code is required; without one the call fails with 401 &#x60;2fa_required&#x60;. Emails not found on an account are tried as agency team-member seats, in which case the session is bound to the agency account and &#x60;account.member&#x60; is set. Returns 401 for bad credentials, banned/suspended accounts, or SSO-only accounts without a password. A Turnstile token is checked when configured; rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="loginDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerLoginWithHttpInfoAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthSession)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthSession>> AuthControllerLoginWithHttpInfoAsync(LoginDto loginDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'loginDto' is set
             if (loginDto == null)
@@ -1827,6 +1976,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1841,7 +1991,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/login", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthSession>("/v1/auth/login", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1853,23 +2003,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Log out Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <returns></returns>
-        public void AuthControllerLogout(string authorization)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response AuthControllerLogout(string authorization)
         {
-            AuthControllerLogoutWithHttpInfo(authorization);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = AuthControllerLogoutWithHttpInfo(authorization);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Log out Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerLogoutWithHttpInfo(string authorization)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> AuthControllerLogoutWithHttpInfo(string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -1882,6 +2033,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1892,9 +2044,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.HeaderParameters.Add("authorization", Adviverse.Api.Client.ClientUtils.ParameterToString(authorization)); // header parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/logout", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerResendVerification201Response>("/v1/auth/logout", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1906,25 +2069,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Log out Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerLogoutAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerLogoutAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerLogoutWithHttpInfoAsync(authorization, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await AuthControllerLogoutWithHttpInfoAsync(authorization, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Log out Revokes the session identified by the bearer token in the Authorization header. Always returns &#x60;{ ok: true }&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerLogoutWithHttpInfoAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> AuthControllerLogoutWithHttpInfoAsync(string authorization, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -1938,6 +2102,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1949,10 +2114,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.HeaderParameters.Add("authorization", Adviverse.Api.Client.ClientUtils.ParameterToString(authorization)); // header parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/logout", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerResendVerification201Response>("/v1/auth/logout", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1964,21 +2140,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the current session account Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AuthControllerMe()
+        /// <returns>AuthMe</returns>
+        public AuthMe AuthControllerMe()
         {
-            AuthControllerMeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AuthMe> localVarResponse = AuthControllerMeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the current session account Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerMeWithHttpInfo()
+        /// <returns>ApiResponse of AuthMe</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthMe> AuthControllerMeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1987,6 +2164,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1996,9 +2174,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/auth/me", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AuthMe>("/v1/auth/me", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2010,23 +2199,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the current session account Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerMeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthMe</returns>
+        public async System.Threading.Tasks.Task<AuthMe> AuthControllerMeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerMeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthMe> localVarResponse = await AuthControllerMeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the current session account Returns the account behind the current session or API key. &#x60;roles&#x60; is &#x60;[\&quot;admin\&quot;]&#x60; for admins and &#x60;[\&quot;publisher\&quot;,\&quot;advertiser\&quot;]&#x60; for every other account, since all accounts are dual-sided; &#x60;type&#x60; is only the signup choice. For agency team-member sessions &#x60;email&#x60; is the member email and &#x60;member&#x60; describes the seat role and pixel grant; otherwise &#x60;member&#x60; is null.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerMeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthMe)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthMe>> AuthControllerMeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2036,6 +2226,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2046,10 +2237,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/auth/me", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AuthMe>("/v1/auth/me", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2061,7 +2263,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Microsoft OAuth callback Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -2073,7 +2275,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Microsoft OAuth callback Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -2121,7 +2323,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Microsoft OAuth callback Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -2134,7 +2336,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Microsoft OAuth callback Browser redirect target for Microsoft. Completes the code flow and 302-redirects to the dashboard with &#x60;#sso&#x3D;connected&#x60;, &#x60;#sso_token&#x3D;&lt;token&gt;&#x60; or &#x60;#sso_error&#x3D;microsoft&#x60;, same as the GitHub callback. Atlas-issued states are forwarded to Atlas.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -2186,25 +2388,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start Microsoft sign-in Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
-        /// <returns></returns>
-        public void AuthControllerMicrosoftStart(string authorization, OauthStartDto oauthStartDto)
+        /// <returns>AuthControllerGithubStart201Response</returns>
+        public AuthControllerGithubStart201Response AuthControllerMicrosoftStart(string authorization, OauthStartDto oauthStartDto)
         {
-            AuthControllerMicrosoftStartWithHttpInfo(authorization, oauthStartDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response> localVarResponse = AuthControllerMicrosoftStartWithHttpInfo(authorization, oauthStartDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start Microsoft sign-in Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerMicrosoftStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto)
+        /// <returns>ApiResponse of AuthControllerGithubStart201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response> AuthControllerMicrosoftStartWithHttpInfo(string authorization, OauthStartDto oauthStartDto)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2222,6 +2425,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2235,7 +2439,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/oauth/microsoft/start", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerGithubStart201Response>("/v1/auth/oauth/microsoft/start", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2247,27 +2451,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start Microsoft sign-in Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerMicrosoftStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerGithubStart201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerGithubStart201Response> AuthControllerMicrosoftStartAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerMicrosoftStartWithHttpInfoAsync(authorization, oauthStartDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response> localVarResponse = await AuthControllerMicrosoftStartWithHttpInfoAsync(authorization, oauthStartDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start Microsoft sign-in Returns the Microsoft (Entra) authorize URL with a signed state, exactly like the GitHub start endpoint. An optional bearer token marks a connect intent; &#x60;type&#x60; sets the account type for a new signup. Returns 401 if Microsoft SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthStartDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerMicrosoftStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerGithubStart201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerGithubStart201Response>> AuthControllerMicrosoftStartWithHttpInfoAsync(string authorization, OauthStartDto oauthStartDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2286,6 +2491,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2301,7 +2507,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/oauth/microsoft/start", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerGithubStart201Response>("/v1/auth/oauth/microsoft/start", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2313,25 +2519,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Discord Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
-        /// <returns></returns>
-        public void AuthControllerOauthDiscord(string authorization, OauthDiscordDto oauthDiscordDto)
+        /// <returns>AuthControllerOauthDiscord201Response</returns>
+        public AuthControllerOauthDiscord201Response AuthControllerOauthDiscord(string authorization, OauthDiscordDto oauthDiscordDto)
         {
-            AuthControllerOauthDiscordWithHttpInfo(authorization, oauthDiscordDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response> localVarResponse = AuthControllerOauthDiscordWithHttpInfo(authorization, oauthDiscordDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Discord Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerOauthDiscordWithHttpInfo(string authorization, OauthDiscordDto oauthDiscordDto)
+        /// <returns>ApiResponse of AuthControllerOauthDiscord201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response> AuthControllerOauthDiscordWithHttpInfo(string authorization, OauthDiscordDto oauthDiscordDto)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2349,6 +2556,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2362,7 +2570,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/oauth/discord", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerOauthDiscord201Response>("/v1/auth/oauth/discord", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2374,27 +2582,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Discord Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerOauthDiscordAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerOauthDiscord201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerOauthDiscord201Response> AuthControllerOauthDiscordAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerOauthDiscordWithHttpInfoAsync(authorization, oauthDiscordDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response> localVarResponse = await AuthControllerOauthDiscordWithHttpInfoAsync(authorization, oauthDiscordDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Discord Verifies a single-use RestoreHub widget &#x60;token&#x60; and resolves the Discord identity. Without a bearer token it logs in the account already connected to that identity, else attaches it to an account with the same provider-verified email, else creates a new passwordless account of &#x60;type&#x60;. With a valid bearer token the identity is linked to the current account instead and &#x60;{ linked: true }&#x60; is returned. Returns 400 when the email belongs to an existing account but is not verified by the provider, or no email is shared.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthDiscordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerOauthDiscordWithHttpInfoAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerOauthDiscord201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response>> AuthControllerOauthDiscordWithHttpInfoAsync(string authorization, OauthDiscordDto oauthDiscordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2413,6 +2622,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2428,7 +2638,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/oauth/discord", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerOauthDiscord201Response>("/v1/auth/oauth/discord", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2440,25 +2650,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Google Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthGoogleDto"></param>
-        /// <returns></returns>
-        public void AuthControllerOauthGoogle(string authorization, OauthGoogleDto oauthGoogleDto)
+        /// <returns>AuthControllerOauthDiscord201Response</returns>
+        public AuthControllerOauthDiscord201Response AuthControllerOauthGoogle(string authorization, OauthGoogleDto oauthGoogleDto)
         {
-            AuthControllerOauthGoogleWithHttpInfo(authorization, oauthGoogleDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response> localVarResponse = AuthControllerOauthGoogleWithHttpInfo(authorization, oauthGoogleDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Google Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthGoogleDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerOauthGoogleWithHttpInfo(string authorization, OauthGoogleDto oauthGoogleDto)
+        /// <returns>ApiResponse of AuthControllerOauthDiscord201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response> AuthControllerOauthGoogleWithHttpInfo(string authorization, OauthGoogleDto oauthGoogleDto)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2476,6 +2687,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2489,7 +2701,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/oauth/google", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerOauthDiscord201Response>("/v1/auth/oauth/google", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2501,27 +2713,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Google Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthGoogleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerOauthGoogleAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerOauthDiscord201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerOauthDiscord201Response> AuthControllerOauthGoogleAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerOauthGoogleWithHttpInfoAsync(authorization, oauthGoogleDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response> localVarResponse = await AuthControllerOauthGoogleWithHttpInfoAsync(authorization, oauthGoogleDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Sign in or connect with Google Validates a Google Identity Services ID token (&#x60;credential&#x60;) against Google tokeninfo, checking that the audience is the Adviverse client id and the issuer is Google. Login, auto-link and signup behave as for Discord; with a bearer token the Google identity is linked to the current account. Returns 401 &#x60;verification_failed&#x60; for an invalid token, or when Google SSO is not configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
         /// <param name="oauthGoogleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerOauthGoogleWithHttpInfoAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerOauthDiscord201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerOauthDiscord201Response>> AuthControllerOauthGoogleWithHttpInfoAsync(string authorization, OauthGoogleDto oauthGoogleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2540,6 +2753,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2555,7 +2769,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/oauth/google", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerOauthDiscord201Response>("/v1/auth/oauth/google", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2567,23 +2781,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resend the verification email Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
-        /// <returns></returns>
-        public void AuthControllerResendVerification(EmailDto emailDto)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response AuthControllerResendVerification(EmailDto emailDto)
         {
-            AuthControllerResendVerificationWithHttpInfo(emailDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = AuthControllerResendVerificationWithHttpInfo(emailDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resend the verification email Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerResendVerificationWithHttpInfo(EmailDto emailDto)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> AuthControllerResendVerificationWithHttpInfo(EmailDto emailDto)
         {
             // verify the required parameter 'emailDto' is set
             if (emailDto == null)
@@ -2597,6 +2812,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2609,7 +2825,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/resend-verification", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerResendVerification201Response>("/v1/auth/resend-verification", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2621,25 +2837,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resend the verification email Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerResendVerificationAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerResendVerificationAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerResendVerificationWithHttpInfoAsync(emailDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await AuthControllerResendVerificationWithHttpInfoAsync(emailDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resend the verification email Sends a fresh verification link to &#x60;email&#x60; if an account exists and is not yet verified. Always returns &#x60;{ ok: true }&#x60; so the response does not reveal whether the email is registered. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emailDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerResendVerificationWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> AuthControllerResendVerificationWithHttpInfoAsync(EmailDto emailDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'emailDto' is set
             if (emailDto == null)
@@ -2654,6 +2871,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2668,7 +2886,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/resend-verification", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerResendVerification201Response>("/v1/auth/resend-verification", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2680,23 +2898,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Complete a password reset Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resetPasswordDto"></param>
-        /// <returns></returns>
-        public void AuthControllerResetPassword(ResetPasswordDto resetPasswordDto)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response AuthControllerResetPassword(ResetPasswordDto resetPasswordDto)
         {
-            AuthControllerResetPasswordWithHttpInfo(resetPasswordDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = AuthControllerResetPasswordWithHttpInfo(resetPasswordDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Complete a password reset Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resetPasswordDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerResetPasswordWithHttpInfo(ResetPasswordDto resetPasswordDto)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> AuthControllerResetPasswordWithHttpInfo(ResetPasswordDto resetPasswordDto)
         {
             // verify the required parameter 'resetPasswordDto' is set
             if (resetPasswordDto == null)
@@ -2710,6 +2929,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2722,7 +2942,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/reset-password", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerResendVerification201Response>("/v1/auth/reset-password", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2734,25 +2954,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Complete a password reset Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resetPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerResetPasswordAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> AuthControllerResetPasswordAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerResetPasswordWithHttpInfoAsync(resetPasswordDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await AuthControllerResetPasswordWithHttpInfoAsync(resetPasswordDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Complete a password reset Sets a new &#x60;password&#x60; (min 8 chars) using the single-use reset &#x60;token&#x60; from the email. On success the token is consumed and every active session of the account is revoked, so the user must log in again. Returns 400 for an invalid or expired token. Rate-limited per IP.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resetPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerResetPasswordWithHttpInfoAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> AuthControllerResetPasswordWithHttpInfoAsync(ResetPasswordDto resetPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'resetPasswordDto' is set
             if (resetPasswordDto == null)
@@ -2767,6 +2988,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2781,7 +3003,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/reset-password", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerResendVerification201Response>("/v1/auth/reset-password", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2793,23 +3015,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set or change the password Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setPasswordDto"></param>
-        /// <returns></returns>
-        public void AuthControllerSetPassword(SetPasswordDto setPasswordDto)
+        /// <returns>AuthControllerSetPassword201Response</returns>
+        public AuthControllerSetPassword201Response AuthControllerSetPassword(SetPasswordDto setPasswordDto)
         {
-            AuthControllerSetPasswordWithHttpInfo(setPasswordDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerSetPassword201Response> localVarResponse = AuthControllerSetPasswordWithHttpInfo(setPasswordDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set or change the password Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setPasswordDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerSetPasswordWithHttpInfo(SetPasswordDto setPasswordDto)
+        /// <returns>ApiResponse of AuthControllerSetPassword201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerSetPassword201Response> AuthControllerSetPasswordWithHttpInfo(SetPasswordDto setPasswordDto)
         {
             // verify the required parameter 'setPasswordDto' is set
             if (setPasswordDto == null)
@@ -2823,6 +3046,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2833,9 +3057,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = setPasswordDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/password", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerSetPassword201Response>("/v1/auth/password", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2847,25 +3082,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set or change the password Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerSetPasswordAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerSetPassword201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerSetPassword201Response> AuthControllerSetPasswordAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerSetPasswordWithHttpInfoAsync(setPasswordDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerSetPassword201Response> localVarResponse = await AuthControllerSetPasswordWithHttpInfoAsync(setPasswordDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set or change the password Sets &#x60;newPassword&#x60; (min 8 chars). If the account already has a password, &#x60;currentPassword&#x60; is required and must match (400 if missing, 401 if wrong); SSO-only accounts can set a first password without it, which enables email login. Team-member seats get 403. &#x60;hadPassword&#x60; tells whether this was a change or a first set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setPasswordDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerSetPasswordWithHttpInfoAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerSetPassword201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerSetPassword201Response>> AuthControllerSetPasswordWithHttpInfoAsync(SetPasswordDto setPasswordDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'setPasswordDto' is set
             if (setPasswordDto == null)
@@ -2880,6 +3116,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2891,10 +3128,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = setPasswordDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/password", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerSetPassword201Response>("/v1/auth/password", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2906,21 +3154,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Begin TOTP 2FA setup Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AuthControllerSetup2fa()
+        /// <returns>AuthControllerSetup2fa201Response</returns>
+        public AuthControllerSetup2fa201Response AuthControllerSetup2fa()
         {
-            AuthControllerSetup2faWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AuthControllerSetup2fa201Response> localVarResponse = AuthControllerSetup2faWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Begin TOTP 2FA setup Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerSetup2faWithHttpInfo()
+        /// <returns>ApiResponse of AuthControllerSetup2fa201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerSetup2fa201Response> AuthControllerSetup2faWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2929,6 +3178,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2938,9 +3188,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/2fa/setup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerSetup2fa201Response>("/v1/auth/2fa/setup", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2952,23 +3213,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Begin TOTP 2FA setup Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerSetup2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerSetup2fa201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerSetup2fa201Response> AuthControllerSetup2faAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerSetup2faWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerSetup2fa201Response> localVarResponse = await AuthControllerSetup2faWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Begin TOTP 2FA setup Generates a new TOTP secret, stores it on the account and returns it with an &#x60;otpauth://&#x60; URI for authenticator apps. 2FA is not active until confirmed with the enable endpoint. Calling again replaces any unconfirmed secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerSetup2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerSetup2fa201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerSetup2fa201Response>> AuthControllerSetup2faWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2978,6 +3240,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2988,10 +3251,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/2fa/setup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerSetup2fa201Response>("/v1/auth/2fa/setup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3003,23 +3277,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an account Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
-        /// <returns></returns>
-        public void AuthControllerSignup(SignupDto signupDto)
+        /// <returns>AuthControllerSignup201Response</returns>
+        public AuthControllerSignup201Response AuthControllerSignup(SignupDto signupDto)
         {
-            AuthControllerSignupWithHttpInfo(signupDto);
+            Adviverse.Api.Client.ApiResponse<AuthControllerSignup201Response> localVarResponse = AuthControllerSignupWithHttpInfo(signupDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an account Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerSignupWithHttpInfo(SignupDto signupDto)
+        /// <returns>ApiResponse of AuthControllerSignup201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerSignup201Response> AuthControllerSignupWithHttpInfo(SignupDto signupDto)
         {
             // verify the required parameter 'signupDto' is set
             if (signupDto == null)
@@ -3033,6 +3308,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3045,7 +3321,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/signup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerSignup201Response>("/v1/auth/signup", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3057,25 +3333,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an account Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerSignupAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerSignup201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerSignup201Response> AuthControllerSignupAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerSignupWithHttpInfoAsync(signupDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerSignup201Response> localVarResponse = await AuthControllerSignupWithHttpInfoAsync(signupDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an account Registers a new account from &#x60;email&#x60; and &#x60;password&#x60; (min 8 chars), with optional &#x60;type&#x60; (advertiser|publisher, default advertiser; only the default landing side, every account is dual-sided), &#x60;companyName&#x60;, &#x60;country&#x60; and &#x60;referredByCode&#x60;. A Turnstile token (&#x60;turnstileToken&#x60;) is checked first when Turnstile is configured. Creates a zero balance, records the referral if the code matches, emails a 48-hour verification link and returns a session token so the client is logged in immediately. The account starts in &#x60;pending&#x60; status until the email is verified. Returns 400 if the email is already registered.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerSignupWithHttpInfoAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerSignup201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerSignup201Response>> AuthControllerSignupWithHttpInfoAsync(SignupDto signupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'signupDto' is set
             if (signupDto == null)
@@ -3090,6 +3367,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3104,7 +3382,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/signup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerSignup201Response>("/v1/auth/signup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3116,21 +3394,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get public SSO and Turnstile config Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AuthControllerSsoConfig()
+        /// <returns>AuthControllerSsoConfig200Response</returns>
+        public AuthControllerSsoConfig200Response AuthControllerSsoConfig()
         {
-            AuthControllerSsoConfigWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AuthControllerSsoConfig200Response> localVarResponse = AuthControllerSsoConfigWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get public SSO and Turnstile config Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerSsoConfigWithHttpInfo()
+        /// <returns>ApiResponse of AuthControllerSsoConfig200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerSsoConfig200Response> AuthControllerSsoConfigWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3139,6 +3418,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3150,7 +3430,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/auth/sso-config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AuthControllerSsoConfig200Response>("/v1/auth/sso-config", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3162,23 +3442,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get public SSO and Turnstile config Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerSsoConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerSsoConfig200Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerSsoConfig200Response> AuthControllerSsoConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerSsoConfigWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerSsoConfig200Response> localVarResponse = await AuthControllerSsoConfigWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get public SSO and Turnstile config Returns the public settings the login page needs to render SSO buttons and the Turnstile widget: the Google client id (or null), whether GitHub and Microsoft SSO are configured, and the Turnstile site key (or null). No secrets are returned.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerSsoConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerSsoConfig200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerSsoConfig200Response>> AuthControllerSsoConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3188,6 +3469,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3201,7 +3483,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/auth/sso-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AuthControllerSsoConfig200Response>("/v1/auth/sso-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3213,21 +3495,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Verify an email address Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AuthControllerVerify()
+        /// <returns>AuthControllerVerify201Response</returns>
+        public AuthControllerVerify201Response AuthControllerVerify()
         {
-            AuthControllerVerifyWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AuthControllerVerify201Response> localVarResponse = AuthControllerVerifyWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Verify an email address Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AuthControllerVerifyWithHttpInfo()
+        /// <returns>ApiResponse of AuthControllerVerify201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerVerify201Response> AuthControllerVerifyWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -3236,6 +3519,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3247,7 +3531,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/auth/verify-email", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthControllerVerify201Response>("/v1/auth/verify-email", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3259,23 +3543,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Verify an email address Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthControllerVerifyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerVerify201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerVerify201Response> AuthControllerVerifyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AuthControllerVerifyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerVerify201Response> localVarResponse = await AuthControllerVerifyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Verify an email address Consumes the single-use &#x60;token&#x60; from the verification email. Marks the account email as verified and moves a &#x60;pending&#x60; account to &#x60;active&#x60;. Returns 400 if the token is unknown, already used or expired (tokens live 48 hours).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AuthControllerVerifyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerVerify201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerVerify201Response>> AuthControllerVerifyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -3285,6 +3570,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3298,7 +3584,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/auth/verify-email", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AuthControllerVerify201Response>("/v1/auth/verify-email", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

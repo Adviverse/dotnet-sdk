@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,205 +28,241 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerCatalog();
-
-        /// <summary>
-        /// 
+        /// Get the targetable interest catalog
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerCatalogWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerContribute();
+        /// <returns>List&lt;AudienceCatalogEntry&gt;</returns>
+        List<AudienceCatalogEntry> SegmentsControllerCatalog();
 
         /// <summary>
-        /// 
+        /// Get the targetable interest catalog
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerContributeWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;AudienceCatalogEntry&gt;</returns>
+        ApiResponse<List<AudienceCatalogEntry>> SegmentsControllerCatalogWithHttpInfo();
         /// <summary>
-        /// 
+        /// Contribute an audience to the co-op
         /// </summary>
+        /// <remarks>
+        /// Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerContributions();
+        /// <returns>SegmentsControllerContribute201Response</returns>
+        SegmentsControllerContribute201Response SegmentsControllerContribute();
 
         /// <summary>
-        /// 
+        /// Contribute an audience to the co-op
         /// </summary>
         /// <remarks>
-        /// 
+        /// Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerContributionsWithHttpInfo();
+        /// <returns>ApiResponse of SegmentsControllerContribute201Response</returns>
+        ApiResponse<SegmentsControllerContribute201Response> SegmentsControllerContributeWithHttpInfo();
         /// <summary>
-        /// 
+        /// List your co-op contributions
         /// </summary>
+        /// <remarks>
+        /// Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;SegmentsControllerContributions200ResponseInner&gt;</returns>
+        List<SegmentsControllerContributions200ResponseInner> SegmentsControllerContributions();
+
+        /// <summary>
+        /// List your co-op contributions
+        /// </summary>
+        /// <remarks>
+        /// Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;SegmentsControllerContributions200ResponseInner&gt;</returns>
+        ApiResponse<List<SegmentsControllerContributions200ResponseInner>> SegmentsControllerContributionsWithHttpInfo();
+        /// <summary>
+        /// Detect an audience&#39;s interest niche
+        /// </summary>
+        /// <remarks>
+        /// Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
-        /// <returns></returns>
-        void SegmentsControllerDetectNiche(string audienceId);
+        /// <returns>SegmentsControllerDetectNiche200Response</returns>
+        SegmentsControllerDetectNiche200Response SegmentsControllerDetectNiche(string audienceId);
 
         /// <summary>
-        /// 
+        /// Detect an audience&#39;s interest niche
         /// </summary>
         /// <remarks>
-        /// 
+        /// Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerDetectNicheWithHttpInfo(string audienceId);
+        /// <returns>ApiResponse of SegmentsControllerDetectNiche200Response</returns>
+        ApiResponse<SegmentsControllerDetectNiche200Response> SegmentsControllerDetectNicheWithHttpInfo(string audienceId);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerEarnings();
-
-        /// <summary>
-        /// 
+        /// Co-op data-fee statement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerEarningsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void SegmentsControllerLicense(string id);
+        /// <returns>SegmentsControllerEarnings200Response</returns>
+        SegmentsControllerEarnings200Response SegmentsControllerEarnings();
 
         /// <summary>
-        /// 
+        /// Co-op data-fee statement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of SegmentsControllerEarnings200Response</returns>
+        ApiResponse<SegmentsControllerEarnings200Response> SegmentsControllerEarningsWithHttpInfo();
+        /// <summary>
+        /// License a co-op, preset or in-market segment
+        /// </summary>
+        /// <remarks>
+        /// Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerLicenseWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerLicenses();
+        /// <returns>SegmentsControllerLicense201Response</returns>
+        SegmentsControllerLicense201Response SegmentsControllerLicense(string id);
 
         /// <summary>
-        /// 
+        /// License a co-op, preset or in-market segment
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerLicensesWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerOptOut();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerOptOutWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerRebuild();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerRebuildWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void SegmentsControllerRevoke(string id);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerRevokeWithHttpInfo(string id);
+        /// <returns>ApiResponse of SegmentsControllerLicense201Response</returns>
+        ApiResponse<SegmentsControllerLicense201Response> SegmentsControllerLicenseWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SegmentsControllerTaxonomy();
-
-        /// <summary>
-        /// 
+        /// List licensed segments
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerTaxonomyWithHttpInfo();
+        /// <returns>List&lt;SegmentsControllerLicenses200ResponseInner&gt;</returns>
+        List<SegmentsControllerLicenses200ResponseInner> SegmentsControllerLicenses();
+
         /// <summary>
-        /// 
+        /// List licensed segments
         /// </summary>
+        /// <remarks>
+        /// Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;SegmentsControllerLicenses200ResponseInner&gt;</returns>
+        ApiResponse<List<SegmentsControllerLicenses200ResponseInner>> SegmentsControllerLicensesWithHttpInfo();
+        /// <summary>
+        /// Opt a user out of all audience segments
+        /// </summary>
+        /// <remarks>
+        /// Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>SegmentsControllerOptOut201Response</returns>
+        SegmentsControllerOptOut201Response SegmentsControllerOptOut();
+
+        /// <summary>
+        /// Opt a user out of all audience segments
+        /// </summary>
+        /// <remarks>
+        /// Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of SegmentsControllerOptOut201Response</returns>
+        ApiResponse<SegmentsControllerOptOut201Response> SegmentsControllerOptOutWithHttpInfo();
+        /// <summary>
+        /// Force a segment rebuild
+        /// </summary>
+        /// <remarks>
+        /// Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>SegmentsControllerRebuild201Response</returns>
+        SegmentsControllerRebuild201Response SegmentsControllerRebuild();
+
+        /// <summary>
+        /// Force a segment rebuild
+        /// </summary>
+        /// <remarks>
+        /// Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of SegmentsControllerRebuild201Response</returns>
+        ApiResponse<SegmentsControllerRebuild201Response> SegmentsControllerRebuildWithHttpInfo();
+        /// <summary>
+        /// Stop sharing a contributed segment
+        /// </summary>
+        /// <remarks>
+        /// Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>SegmentsControllerRevoke201Response</returns>
+        SegmentsControllerRevoke201Response SegmentsControllerRevoke(string id);
+
+        /// <summary>
+        /// Stop sharing a contributed segment
+        /// </summary>
+        /// <remarks>
+        /// Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of SegmentsControllerRevoke201Response</returns>
+        ApiResponse<SegmentsControllerRevoke201Response> SegmentsControllerRevokeWithHttpInfo(string id);
+        /// <summary>
+        /// Get the interest taxonomy
+        /// </summary>
+        /// <remarks>
+        /// Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AudienceTaxonomyNode&gt;</returns>
+        List<AudienceTaxonomyNode> SegmentsControllerTaxonomy();
+
+        /// <summary>
+        /// Get the interest taxonomy
+        /// </summary>
+        /// <remarks>
+        /// Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AudienceTaxonomyNode&gt;</returns>
+        ApiResponse<List<AudienceTaxonomyNode>> SegmentsControllerTaxonomyWithHttpInfo();
+        /// <summary>
+        /// List the segments containing an id
+        /// </summary>
+        /// <remarks>
+        /// Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
-        /// <returns></returns>
-        void SegmentsControllerUserSegments(string idHash);
+        /// <returns>SegmentsControllerUserSegments200Response</returns>
+        SegmentsControllerUserSegments200Response SegmentsControllerUserSegments(string idHash);
 
         /// <summary>
-        /// 
+        /// List the segments containing an id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SegmentsControllerUserSegmentsWithHttpInfo(string idHash);
+        /// <returns>ApiResponse of SegmentsControllerUserSegments200Response</returns>
+        ApiResponse<SegmentsControllerUserSegments200Response> SegmentsControllerUserSegmentsWithHttpInfo(string idHash);
         #endregion Synchronous Operations
     }
 
@@ -236,265 +273,265 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get the targetable interest catalog
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AudienceCatalogEntry&gt;</returns>
+        System.Threading.Tasks.Task<List<AudienceCatalogEntry>> SegmentsControllerCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the targetable interest catalog
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AudienceCatalogEntry&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AudienceCatalogEntry>>> SegmentsControllerCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Contribute an audience to the co-op
         /// </summary>
         /// <remarks>
-        /// 
+        /// Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerContributeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerContribute201Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerContribute201Response> SegmentsControllerContributeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Contribute an audience to the co-op
         /// </summary>
         /// <remarks>
-        /// 
+        /// Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerContributeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerContribute201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerContribute201Response>> SegmentsControllerContributeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your co-op contributions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerContributionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;SegmentsControllerContributions200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<SegmentsControllerContributions200ResponseInner>> SegmentsControllerContributionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your co-op contributions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerContributionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;SegmentsControllerContributions200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<SegmentsControllerContributions200ResponseInner>>> SegmentsControllerContributionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Detect an audience&#39;s interest niche
         /// </summary>
         /// <remarks>
-        /// 
+        /// Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerDetectNicheAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerDetectNiche200Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerDetectNiche200Response> SegmentsControllerDetectNicheAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Detect an audience&#39;s interest niche
         /// </summary>
         /// <remarks>
-        /// 
+        /// Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerDetectNicheWithHttpInfoAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerDetectNiche200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerDetectNiche200Response>> SegmentsControllerDetectNicheWithHttpInfoAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Co-op data-fee statement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerEarningsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerEarnings200Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerEarnings200Response> SegmentsControllerEarningsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Co-op data-fee statement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerEarningsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerEarnings200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerEarnings200Response>> SegmentsControllerEarningsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// License a co-op, preset or in-market segment
         /// </summary>
         /// <remarks>
-        /// 
+        /// Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerLicenseAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerLicense201Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerLicense201Response> SegmentsControllerLicenseAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// License a co-op, preset or in-market segment
         /// </summary>
         /// <remarks>
-        /// 
+        /// Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerLicenseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerLicense201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerLicense201Response>> SegmentsControllerLicenseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List licensed segments
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerLicensesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;SegmentsControllerLicenses200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<SegmentsControllerLicenses200ResponseInner>> SegmentsControllerLicensesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List licensed segments
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerLicensesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;SegmentsControllerLicenses200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<SegmentsControllerLicenses200ResponseInner>>> SegmentsControllerLicensesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Opt a user out of all audience segments
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerOptOutAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerOptOut201Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerOptOut201Response> SegmentsControllerOptOutAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Opt a user out of all audience segments
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerOptOutWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerOptOut201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerOptOut201Response>> SegmentsControllerOptOutWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Force a segment rebuild
         /// </summary>
         /// <remarks>
-        /// 
+        /// Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerRebuildAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerRebuild201Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerRebuild201Response> SegmentsControllerRebuildAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Force a segment rebuild
         /// </summary>
         /// <remarks>
-        /// 
+        /// Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerRebuildWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerRebuild201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerRebuild201Response>> SegmentsControllerRebuildWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Stop sharing a contributed segment
         /// </summary>
         /// <remarks>
-        /// 
+        /// Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerRevokeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerRevoke201Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerRevoke201Response> SegmentsControllerRevokeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Stop sharing a contributed segment
         /// </summary>
         /// <remarks>
-        /// 
+        /// Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerRevokeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerRevoke201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerRevoke201Response>> SegmentsControllerRevokeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the interest taxonomy
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerTaxonomyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AudienceTaxonomyNode&gt;</returns>
+        System.Threading.Tasks.Task<List<AudienceTaxonomyNode>> SegmentsControllerTaxonomyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the interest taxonomy
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerTaxonomyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AudienceTaxonomyNode&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AudienceTaxonomyNode>>> SegmentsControllerTaxonomyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List the segments containing an id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SegmentsControllerUserSegmentsAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerUserSegments200Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerUserSegments200Response> SegmentsControllerUserSegmentsAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List the segments containing an id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SegmentsControllerUserSegmentsWithHttpInfoAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerUserSegments200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerUserSegments200Response>> SegmentsControllerUserSegmentsWithHttpInfoAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -709,21 +746,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the targetable interest catalog Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerCatalog()
+        /// <returns>List&lt;AudienceCatalogEntry&gt;</returns>
+        public List<AudienceCatalogEntry> SegmentsControllerCatalog()
         {
-            SegmentsControllerCatalogWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AudienceCatalogEntry>> localVarResponse = SegmentsControllerCatalogWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the targetable interest catalog Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerCatalogWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AudienceCatalogEntry&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AudienceCatalogEntry>> SegmentsControllerCatalogWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -732,6 +770,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -741,9 +780,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/segments/catalog", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AudienceCatalogEntry>>("/v1/advertiser/segments/catalog", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -755,23 +805,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the targetable interest catalog Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AudienceCatalogEntry&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AudienceCatalogEntry>> SegmentsControllerCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerCatalogWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AudienceCatalogEntry>> localVarResponse = await SegmentsControllerCatalogWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the targetable interest catalog Lists every non-sensitive taxonomy node with two ways to target it. &#x60;contextualKeywords&#x60; goes into targeting.contextual_include, is matched against page content at serve time and is free. &#x60;behavioral&#x60; is a network preset segment for targeting.audience_include and carries a data CPM; it is null until the preset reaches its k-anonymity minimum, and &#x60;behavioralBuilding&#x60; reports progress while it builds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AudienceCatalogEntry&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AudienceCatalogEntry>>> SegmentsControllerCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -781,6 +832,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -791,10 +843,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/segments/catalog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AudienceCatalogEntry>>("/v1/advertiser/segments/catalog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -806,21 +869,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Contribute an audience to the co-op Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerContribute()
+        /// <returns>SegmentsControllerContribute201Response</returns>
+        public SegmentsControllerContribute201Response SegmentsControllerContribute()
         {
-            SegmentsControllerContributeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerContribute201Response> localVarResponse = SegmentsControllerContributeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Contribute an audience to the co-op Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerContributeWithHttpInfo()
+        /// <returns>ApiResponse of SegmentsControllerContribute201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerContribute201Response> SegmentsControllerContributeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -829,6 +893,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -838,9 +903,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/segments/contribute", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SegmentsControllerContribute201Response>("/v1/advertiser/segments/contribute", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -852,23 +928,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Contribute an audience to the co-op Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerContributeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerContribute201Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerContribute201Response> SegmentsControllerContributeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerContributeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerContribute201Response> localVarResponse = await SegmentsControllerContributeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Contribute an audience to the co-op Shares one of the caller&#39;s audiences (&#x60;audienceId&#x60;) as a co-op segment that other advertisers can license. &#x60;taxonomyId&#x60; is optional: when omitted the niche is auto-detected from the members, and unknown or sensitive niches leave the segment uncategorized. &#x60;revShare&#x60; (default 0.5, clamped to 0-0.9) sets the contributor&#39;s share of data fees. Re-contributing updates the existing segment. Members are materialized minus opted-out ids. Returns 404 if the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerContributeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerContribute201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerContribute201Response>> SegmentsControllerContributeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -878,6 +955,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -888,10 +966,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/segments/contribute", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SegmentsControllerContribute201Response>("/v1/advertiser/segments/contribute", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -903,21 +992,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your co-op contributions Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerContributions()
+        /// <returns>List&lt;SegmentsControllerContributions200ResponseInner&gt;</returns>
+        public List<SegmentsControllerContributions200ResponseInner> SegmentsControllerContributions()
         {
-            SegmentsControllerContributionsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<SegmentsControllerContributions200ResponseInner>> localVarResponse = SegmentsControllerContributionsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your co-op contributions Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerContributionsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;SegmentsControllerContributions200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<SegmentsControllerContributions200ResponseInner>> SegmentsControllerContributionsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -926,6 +1016,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -935,9 +1026,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/segments/contributions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<SegmentsControllerContributions200ResponseInner>>("/v1/advertiser/segments/contributions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -949,23 +1051,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your co-op contributions Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerContributionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;SegmentsControllerContributions200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<SegmentsControllerContributions200ResponseInner>> SegmentsControllerContributionsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerContributionsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<SegmentsControllerContributions200ResponseInner>> localVarResponse = await SegmentsControllerContributionsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your co-op contributions Returns the caller&#39;s contributed co-op segments, newest first, with their size, rev-share and the number of advertisers that have licensed each one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerContributionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;SegmentsControllerContributions200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<SegmentsControllerContributions200ResponseInner>>> SegmentsControllerContributionsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -975,6 +1078,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -985,10 +1089,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/segments/contributions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<SegmentsControllerContributions200ResponseInner>>("/v1/advertiser/segments/contributions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1000,23 +1115,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Detect an audience&#39;s interest niche Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
-        /// <returns></returns>
-        public void SegmentsControllerDetectNiche(string audienceId)
+        /// <returns>SegmentsControllerDetectNiche200Response</returns>
+        public SegmentsControllerDetectNiche200Response SegmentsControllerDetectNiche(string audienceId)
         {
-            SegmentsControllerDetectNicheWithHttpInfo(audienceId);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerDetectNiche200Response> localVarResponse = SegmentsControllerDetectNicheWithHttpInfo(audienceId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Detect an audience&#39;s interest niche Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerDetectNicheWithHttpInfo(string audienceId)
+        /// <returns>ApiResponse of SegmentsControllerDetectNiche200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerDetectNiche200Response> SegmentsControllerDetectNicheWithHttpInfo(string audienceId)
         {
             // verify the required parameter 'audienceId' is set
             if (audienceId == null)
@@ -1029,6 +1145,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1039,9 +1156,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "audienceId", audienceId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/segments/detect-niche", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SegmentsControllerDetectNiche200Response>("/v1/advertiser/segments/detect-niche", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1053,25 +1181,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Detect an audience&#39;s interest niche Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerDetectNicheAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerDetectNiche200Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerDetectNiche200Response> SegmentsControllerDetectNicheAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerDetectNicheWithHttpInfoAsync(audienceId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerDetectNiche200Response> localVarResponse = await SegmentsControllerDetectNicheWithHttpInfoAsync(audienceId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Detect an audience&#39;s interest niche Previews the taxonomy node that best matches the members of &#x60;audienceId&#x60;, scored by keyword overlap. This is the niche contribute would assign. Returns nulls when nothing matches and 404 when the audience is not owned by the caller.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerDetectNicheWithHttpInfoAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerDetectNiche200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerDetectNiche200Response>> SegmentsControllerDetectNicheWithHttpInfoAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'audienceId' is set
             if (audienceId == null)
@@ -1085,6 +1214,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1096,10 +1226,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "audienceId", audienceId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/segments/detect-niche", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SegmentsControllerDetectNiche200Response>("/v1/advertiser/segments/detect-niche", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1111,21 +1252,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Co-op data-fee statement Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerEarnings()
+        /// <returns>SegmentsControllerEarnings200Response</returns>
+        public SegmentsControllerEarnings200Response SegmentsControllerEarnings()
         {
-            SegmentsControllerEarningsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerEarnings200Response> localVarResponse = SegmentsControllerEarningsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Co-op data-fee statement Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerEarningsWithHttpInfo()
+        /// <returns>ApiResponse of SegmentsControllerEarnings200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerEarnings200Response> SegmentsControllerEarningsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1134,6 +1276,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1143,9 +1286,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/segments/earnings", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SegmentsControllerEarnings200Response>("/v1/advertiser/segments/earnings", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1157,23 +1311,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Co-op data-fee statement Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerEarningsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerEarnings200Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerEarnings200Response> SegmentsControllerEarningsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerEarningsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerEarnings200Response> localVarResponse = await SegmentsControllerEarningsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Co-op data-fee statement Reads the ledger for co-op data-fee movements. Returns the total earned as a contributor (rev-share credits) and the total spent as a licensee, a per-segment earnings rollup, and the 50 most recent earning and spend entries. Totals are rounded to cents.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerEarningsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerEarnings200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerEarnings200Response>> SegmentsControllerEarningsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1183,6 +1338,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1193,10 +1349,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/segments/earnings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SegmentsControllerEarnings200Response>("/v1/advertiser/segments/earnings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1208,23 +1375,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// License a co-op, preset or in-market segment Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void SegmentsControllerLicense(string id)
+        /// <returns>SegmentsControllerLicense201Response</returns>
+        public SegmentsControllerLicense201Response SegmentsControllerLicense(string id)
         {
-            SegmentsControllerLicenseWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerLicense201Response> localVarResponse = SegmentsControllerLicenseWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// License a co-op, preset or in-market segment Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerLicenseWithHttpInfo(string id)
+        /// <returns>ApiResponse of SegmentsControllerLicense201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerLicense201Response> SegmentsControllerLicenseWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1237,6 +1405,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1247,9 +1416,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/segments/{id}/license", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SegmentsControllerLicense201Response>("/v1/advertiser/segments/{id}/license", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1261,25 +1441,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// License a co-op, preset or in-market segment Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerLicenseAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerLicense201Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerLicense201Response> SegmentsControllerLicenseAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerLicenseWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerLicense201Response> localVarResponse = await SegmentsControllerLicenseWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// License a co-op, preset or in-market segment Grants the advertiser the right to target segment &#x60;id&#x60;, recording the data CPM that is charged on delivery and shared with the contributor. Returns 404 if the segment is not a coop/preset/in_market segment. Returns 400 if the caller owns it, if it is sensitive, or if it is below the k-anonymity threshold. Licensing is idempotent; add the returned &#x60;segmentId&#x60; to a campaign&#39;s targeting.audience_include.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerLicenseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerLicense201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerLicense201Response>> SegmentsControllerLicenseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1293,6 +1474,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1304,10 +1486,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/segments/{id}/license", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SegmentsControllerLicense201Response>("/v1/advertiser/segments/{id}/license", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1319,21 +1512,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List licensed segments Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerLicenses()
+        /// <returns>List&lt;SegmentsControllerLicenses200ResponseInner&gt;</returns>
+        public List<SegmentsControllerLicenses200ResponseInner> SegmentsControllerLicenses()
         {
-            SegmentsControllerLicensesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<SegmentsControllerLicenses200ResponseInner>> localVarResponse = SegmentsControllerLicensesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List licensed segments Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerLicensesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;SegmentsControllerLicenses200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<SegmentsControllerLicenses200ResponseInner>> SegmentsControllerLicensesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1342,6 +1536,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1351,9 +1546,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/segments/licenses", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<SegmentsControllerLicenses200ResponseInner>>("/v1/advertiser/segments/licenses", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1365,23 +1571,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List licensed segments Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerLicensesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;SegmentsControllerLicenses200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<SegmentsControllerLicenses200ResponseInner>> SegmentsControllerLicensesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerLicensesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<SegmentsControllerLicenses200ResponseInner>> localVarResponse = await SegmentsControllerLicensesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List licensed segments Returns the segments the advertiser has licensed, newest first, with the data CPM locked at license time and the segment&#39;s name, taxonomy node, size and scope.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerLicensesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;SegmentsControllerLicenses200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<SegmentsControllerLicenses200ResponseInner>>> SegmentsControllerLicensesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1391,6 +1598,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1401,10 +1609,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/segments/licenses", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<SegmentsControllerLicenses200ResponseInner>>("/v1/advertiser/segments/licenses", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1416,21 +1635,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Opt a user out of all audience segments Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerOptOut()
+        /// <returns>SegmentsControllerOptOut201Response</returns>
+        public SegmentsControllerOptOut201Response SegmentsControllerOptOut()
         {
-            SegmentsControllerOptOutWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerOptOut201Response> localVarResponse = SegmentsControllerOptOutWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Opt a user out of all audience segments Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerOptOutWithHttpInfo()
+        /// <returns>ApiResponse of SegmentsControllerOptOut201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerOptOut201Response> SegmentsControllerOptOutWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1439,6 +1659,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1450,7 +1671,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/privacy/audience-optout", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SegmentsControllerOptOut201Response>("/v1/privacy/audience-optout", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1462,23 +1683,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Opt a user out of all audience segments Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerOptOutAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerOptOut201Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerOptOut201Response> SegmentsControllerOptOutAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerOptOutWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerOptOut201Response> localVarResponse = await SegmentsControllerOptOutWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Opt a user out of all audience segments Public privacy endpoint, typically called by a preference center with the visitor&#39;s &#x60;adnet_uid&#x60; cookie or canonical id as &#x60;id&#x60;. The id is recorded as opted out and excluded from every future segment rebuild, and it is removed from live segment sets straight away on a best-effort basis. A missing &#x60;id&#x60; returns 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerOptOutWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerOptOut201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerOptOut201Response>> SegmentsControllerOptOutWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1488,6 +1710,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1501,7 +1724,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/privacy/audience-optout", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SegmentsControllerOptOut201Response>("/v1/privacy/audience-optout", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1513,21 +1736,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Force a segment rebuild Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerRebuild()
+        /// <returns>SegmentsControllerRebuild201Response</returns>
+        public SegmentsControllerRebuild201Response SegmentsControllerRebuild()
         {
-            SegmentsControllerRebuildWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerRebuild201Response> localVarResponse = SegmentsControllerRebuildWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Force a segment rebuild Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerRebuildWithHttpInfo()
+        /// <returns>ApiResponse of SegmentsControllerRebuild201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerRebuild201Response> SegmentsControllerRebuildWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1536,6 +1760,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1545,9 +1770,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/segments/rebuild", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SegmentsControllerRebuild201Response>("/v1/admin/segments/rebuild", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1559,23 +1795,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Force a segment rebuild Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerRebuildAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerRebuild201Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerRebuild201Response> SegmentsControllerRebuildAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerRebuildWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerRebuild201Response> localVarResponse = await SegmentsControllerRebuildWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Force a segment rebuild Runs, in order, the jobs that normally run on a timer: network preset classification, co-op niche union, in-market segments, and per-account first-party interest segments. Returns each job&#39;s count. Can be slow on large datasets because it scans ClickHouse keyword data for each taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerRebuildWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerRebuild201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerRebuild201Response>> SegmentsControllerRebuildWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1585,6 +1822,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1595,10 +1833,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/segments/rebuild", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SegmentsControllerRebuild201Response>("/v1/admin/segments/rebuild", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1610,23 +1859,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Stop sharing a contributed segment Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void SegmentsControllerRevoke(string id)
+        /// <returns>SegmentsControllerRevoke201Response</returns>
+        public SegmentsControllerRevoke201Response SegmentsControllerRevoke(string id)
         {
-            SegmentsControllerRevokeWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response> localVarResponse = SegmentsControllerRevokeWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Stop sharing a contributed segment Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerRevokeWithHttpInfo(string id)
+        /// <returns>ApiResponse of SegmentsControllerRevoke201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response> SegmentsControllerRevokeWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1639,6 +1889,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1649,9 +1900,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/segments/{id}/revoke", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SegmentsControllerRevoke201Response>("/v1/advertiser/segments/{id}/revoke", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1663,25 +1925,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Stop sharing a contributed segment Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerRevokeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerRevoke201Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerRevoke201Response> SegmentsControllerRevokeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerRevokeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response> localVarResponse = await SegmentsControllerRevokeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Stop sharing a contributed segment Unshares the co-op segment &#x60;id&#x60; and removes its contribution record, so it earns no further data fees. Only affects segments the caller owns; other ids are silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerRevokeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerRevoke201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response>> SegmentsControllerRevokeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1695,6 +1958,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1706,10 +1970,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/segments/{id}/revoke", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SegmentsControllerRevoke201Response>("/v1/advertiser/segments/{id}/revoke", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1721,21 +1996,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the interest taxonomy Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SegmentsControllerTaxonomy()
+        /// <returns>List&lt;AudienceTaxonomyNode&gt;</returns>
+        public List<AudienceTaxonomyNode> SegmentsControllerTaxonomy()
         {
-            SegmentsControllerTaxonomyWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AudienceTaxonomyNode>> localVarResponse = SegmentsControllerTaxonomyWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the interest taxonomy Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerTaxonomyWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AudienceTaxonomyNode&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AudienceTaxonomyNode>> SegmentsControllerTaxonomyWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1744,6 +2020,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1753,9 +2030,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/segments/taxonomy", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AudienceTaxonomyNode>>("/v1/segments/taxonomy", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1767,23 +2055,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the interest taxonomy Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerTaxonomyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AudienceTaxonomyNode&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AudienceTaxonomyNode>> SegmentsControllerTaxonomyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerTaxonomyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AudienceTaxonomyNode>> localVarResponse = await SegmentsControllerTaxonomyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the interest taxonomy Returns every node of the Audience Cloud interest taxonomy with its parent, display name, matching keywords and whether it is a sensitive category. Sensitive nodes are never built into shareable or licensable segments.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerTaxonomyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AudienceTaxonomyNode&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AudienceTaxonomyNode>>> SegmentsControllerTaxonomyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1793,6 +2082,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1803,10 +2093,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/segments/taxonomy", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AudienceTaxonomyNode>>("/v1/segments/taxonomy", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1818,23 +2119,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the segments containing an id Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
-        /// <returns></returns>
-        public void SegmentsControllerUserSegments(string idHash)
+        /// <returns>SegmentsControllerUserSegments200Response</returns>
+        public SegmentsControllerUserSegments200Response SegmentsControllerUserSegments(string idHash)
         {
-            SegmentsControllerUserSegmentsWithHttpInfo(idHash);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerUserSegments200Response> localVarResponse = SegmentsControllerUserSegmentsWithHttpInfo(idHash);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the segments containing an id Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SegmentsControllerUserSegmentsWithHttpInfo(string idHash)
+        /// <returns>ApiResponse of SegmentsControllerUserSegments200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerUserSegments200Response> SegmentsControllerUserSegmentsWithHttpInfo(string idHash)
         {
             // verify the required parameter 'idHash' is set
             if (idHash == null)
@@ -1847,6 +2149,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1857,9 +2160,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("idHash", Adviverse.Api.Client.ClientUtils.ParameterToString(idHash)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/segments/user/{idHash}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SegmentsControllerUserSegments200Response>("/v1/admin/segments/user/{idHash}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1871,25 +2185,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the segments containing an id Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SegmentsControllerUserSegmentsAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerUserSegments200Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerUserSegments200Response> SegmentsControllerUserSegmentsAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SegmentsControllerUserSegmentsWithHttpInfoAsync(idHash, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerUserSegments200Response> localVarResponse = await SegmentsControllerUserSegmentsWithHttpInfoAsync(idHash, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the segments containing an id Admin transparency tool: checks every non-empty segment for membership of &#x60;idHash&#x60; (a canonical id or uid) and returns the matching segments with their scope and taxonomy node.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="idHash"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SegmentsControllerUserSegmentsWithHttpInfoAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerUserSegments200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerUserSegments200Response>> SegmentsControllerUserSegmentsWithHttpInfoAsync(string idHash, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'idHash' is set
             if (idHash == null)
@@ -1903,6 +2218,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1914,10 +2230,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("idHash", Adviverse.Api.Client.ClientUtils.ParameterToString(idHash)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/segments/user/{idHash}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SegmentsControllerUserSegments200Response>("/v1/admin/segments/user/{idHash}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

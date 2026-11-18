@@ -28,129 +28,150 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void DealsControllerAccept(string id);
-
-        /// <summary>
-        /// 
+        /// Accept a deal offered to you
         /// </summary>
         /// <remarks>
-        /// 
+        /// The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DealsControllerAcceptWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        void DealsControllerClaim(string token);
+        /// <returns>DealsControllerClaim201Response</returns>
+        DealsControllerClaim201Response DealsControllerAccept(string id);
 
         /// <summary>
-        /// 
+        /// Accept a deal offered to you
         /// </summary>
         /// <remarks>
-        /// 
+        /// The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DealsControllerClaim201Response</returns>
+        ApiResponse<DealsControllerClaim201Response> DealsControllerAcceptWithHttpInfo(string id);
+        /// <summary>
+        /// Claim an open deal
+        /// </summary>
+        /// <remarks>
+        /// The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DealsControllerClaimWithHttpInfo(string token);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createDealDto"></param>
-        /// <returns></returns>
-        void DealsControllerCreate(CreateDealDto createDealDto);
+        /// <returns>DealsControllerClaim201Response</returns>
+        DealsControllerClaim201Response DealsControllerClaim(string token);
 
         /// <summary>
-        /// 
+        /// Claim an open deal
         /// </summary>
         /// <remarks>
-        /// 
+        /// The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>ApiResponse of DealsControllerClaim201Response</returns>
+        ApiResponse<DealsControllerClaim201Response> DealsControllerClaimWithHttpInfo(string token);
+        /// <summary>
+        /// Create a deal
+        /// </summary>
+        /// <remarks>
+        /// Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createDealDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DealsControllerCreateWithHttpInfo(CreateDealDto createDealDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void DealsControllerList();
+        /// <returns>Deal</returns>
+        Deal DealsControllerCreate(CreateDealDto createDealDto);
 
         /// <summary>
-        /// 
+        /// Create a deal
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DealsControllerListWithHttpInfo();
+        /// <param name="createDealDto"></param>
+        /// <returns>ApiResponse of Deal</returns>
+        ApiResponse<Deal> DealsControllerCreateWithHttpInfo(CreateDealDto createDealDto);
         /// <summary>
-        /// 
+        /// List deals
         /// </summary>
+        /// <remarks>
+        /// Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;Deal&gt;</returns>
+        List<Deal> DealsControllerList();
+
+        /// <summary>
+        /// List deals
+        /// </summary>
+        /// <remarks>
+        /// Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;Deal&gt;</returns>
+        ApiResponse<List<Deal>> DealsControllerListWithHttpInfo();
+        /// <summary>
+        /// Find an advertiser by email
+        /// </summary>
+        /// <remarks>
+        /// Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
-        /// <returns></returns>
-        void DealsControllerLookupAdvertiser(string email);
+        /// <returns>DealsControllerLookupAdvertiser200Response</returns>
+        DealsControllerLookupAdvertiser200Response DealsControllerLookupAdvertiser(string email);
 
         /// <summary>
-        /// 
+        /// Find an advertiser by email
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DealsControllerLookupAdvertiserWithHttpInfo(string email);
+        /// <returns>ApiResponse of DealsControllerLookupAdvertiser200Response</returns>
+        ApiResponse<DealsControllerLookupAdvertiser200Response> DealsControllerLookupAdvertiserWithHttpInfo(string email);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        void DealsControllerPreviewClaim(string token);
-
-        /// <summary>
-        /// 
+        /// Preview an open deal from its claim link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DealsControllerPreviewClaimWithHttpInfo(string token);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void DealsControllerStatus(string id);
+        /// <returns>DealsControllerPreviewClaim200Response</returns>
+        DealsControllerPreviewClaim200Response DealsControllerPreviewClaim(string token);
 
         /// <summary>
-        /// 
+        /// Preview an open deal from its claim link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>ApiResponse of DealsControllerPreviewClaim200Response</returns>
+        ApiResponse<DealsControllerPreviewClaim200Response> DealsControllerPreviewClaimWithHttpInfo(string token);
+        /// <summary>
+        /// Change a deal&#39;s status
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DealsControllerStatusWithHttpInfo(string id);
+        /// <returns>DealsControllerStatus201Response</returns>
+        DealsControllerStatus201Response DealsControllerStatus(string id);
+
+        /// <summary>
+        /// Change a deal&#39;s status
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DealsControllerStatus201Response</returns>
+        ApiResponse<DealsControllerStatus201Response> DealsControllerStatusWithHttpInfo(string id);
         #endregion Synchronous Operations
     }
 
@@ -161,164 +182,164 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Accept a deal offered to you
         /// </summary>
         /// <remarks>
-        /// 
+        /// The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DealsControllerAcceptAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of DealsControllerClaim201Response</returns>
+        System.Threading.Tasks.Task<DealsControllerClaim201Response> DealsControllerAcceptAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Accept a deal offered to you
         /// </summary>
         /// <remarks>
-        /// 
+        /// The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DealsControllerAcceptWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DealsControllerClaim201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DealsControllerClaim201Response>> DealsControllerAcceptWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Claim an open deal
         /// </summary>
         /// <remarks>
-        /// 
+        /// The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DealsControllerClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of DealsControllerClaim201Response</returns>
+        System.Threading.Tasks.Task<DealsControllerClaim201Response> DealsControllerClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Claim an open deal
         /// </summary>
         /// <remarks>
-        /// 
+        /// The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DealsControllerClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DealsControllerClaim201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DealsControllerClaim201Response>> DealsControllerClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a deal
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createDealDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DealsControllerCreateAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of Deal</returns>
+        System.Threading.Tasks.Task<Deal> DealsControllerCreateAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a deal
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createDealDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DealsControllerCreateWithHttpInfoAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (Deal)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Deal>> DealsControllerCreateWithHttpInfoAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List deals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DealsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;Deal&gt;</returns>
+        System.Threading.Tasks.Task<List<Deal>> DealsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List deals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DealsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;Deal&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Deal>>> DealsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Find an advertiser by email
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DealsControllerLookupAdvertiserAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of DealsControllerLookupAdvertiser200Response</returns>
+        System.Threading.Tasks.Task<DealsControllerLookupAdvertiser200Response> DealsControllerLookupAdvertiserAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Find an advertiser by email
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DealsControllerLookupAdvertiserWithHttpInfoAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DealsControllerLookupAdvertiser200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DealsControllerLookupAdvertiser200Response>> DealsControllerLookupAdvertiserWithHttpInfoAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Preview an open deal from its claim link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DealsControllerPreviewClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of DealsControllerPreviewClaim200Response</returns>
+        System.Threading.Tasks.Task<DealsControllerPreviewClaim200Response> DealsControllerPreviewClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Preview an open deal from its claim link
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DealsControllerPreviewClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DealsControllerPreviewClaim200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DealsControllerPreviewClaim200Response>> DealsControllerPreviewClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Change a deal&#39;s status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DealsControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of DealsControllerStatus201Response</returns>
+        System.Threading.Tasks.Task<DealsControllerStatus201Response> DealsControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Change a deal&#39;s status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DealsControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DealsControllerStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DealsControllerStatus201Response>> DealsControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -533,23 +554,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Accept a deal offered to you The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void DealsControllerAccept(string id)
+        /// <returns>DealsControllerClaim201Response</returns>
+        public DealsControllerClaim201Response DealsControllerAccept(string id)
         {
-            DealsControllerAcceptWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response> localVarResponse = DealsControllerAcceptWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Accept a deal offered to you The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DealsControllerAcceptWithHttpInfo(string id)
+        /// <returns>ApiResponse of DealsControllerClaim201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response> DealsControllerAcceptWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -562,6 +584,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -572,9 +595,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/deals/{id}/accept", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<DealsControllerClaim201Response>("/v1/deals/{id}/accept", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -586,25 +620,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Accept a deal offered to you The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DealsControllerAcceptAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of DealsControllerClaim201Response</returns>
+        public async System.Threading.Tasks.Task<DealsControllerClaim201Response> DealsControllerAcceptAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DealsControllerAcceptWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response> localVarResponse = await DealsControllerAcceptWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Accept a deal offered to you The targeted advertiser accepts the deal, which becomes &#x60;active&#x60; and is published to the engine index; the publisher is emailed. Returns 403 if the caller is not the deal&#39;s advertiser and 404 if the deal is unknown.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DealsControllerAcceptWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DealsControllerClaim201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response>> DealsControllerAcceptWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -618,6 +653,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -629,10 +665,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/deals/{id}/accept", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<DealsControllerClaim201Response>("/v1/deals/{id}/accept", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -644,23 +691,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Claim an open deal The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns></returns>
-        public void DealsControllerClaim(string token)
+        /// <returns>DealsControllerClaim201Response</returns>
+        public DealsControllerClaim201Response DealsControllerClaim(string token)
         {
-            DealsControllerClaimWithHttpInfo(token);
+            Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response> localVarResponse = DealsControllerClaimWithHttpInfo(token);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Claim an open deal The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DealsControllerClaimWithHttpInfo(string token)
+        /// <returns>ApiResponse of DealsControllerClaim201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response> DealsControllerClaimWithHttpInfo(string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -673,6 +721,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -683,9 +732,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("token", Adviverse.Api.Client.ClientUtils.ParameterToString(token)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<DealsControllerClaim201Response>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -697,25 +757,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Claim an open deal The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DealsControllerClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of DealsControllerClaim201Response</returns>
+        public async System.Threading.Tasks.Task<DealsControllerClaim201Response> DealsControllerClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DealsControllerClaimWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response> localVarResponse = await DealsControllerClaimWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Claim an open deal The caller becomes the deal&#39;s advertiser; the deal goes &#x60;active&#x60;, the claim token is cleared and the publisher is emailed. Returns 400 if the deal already has an advertiser or the caller is its publisher, and 404 for an unknown token.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DealsControllerClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DealsControllerClaim201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<DealsControllerClaim201Response>> DealsControllerClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -729,6 +790,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -740,10 +802,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("token", Adviverse.Api.Client.ClientUtils.ParameterToString(token)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<DealsControllerClaim201Response>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -755,23 +828,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a deal Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createDealDto"></param>
-        /// <returns></returns>
-        public void DealsControllerCreate(CreateDealDto createDealDto)
+        /// <returns>Deal</returns>
+        public Deal DealsControllerCreate(CreateDealDto createDealDto)
         {
-            DealsControllerCreateWithHttpInfo(createDealDto);
+            Adviverse.Api.Client.ApiResponse<Deal> localVarResponse = DealsControllerCreateWithHttpInfo(createDealDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a deal Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createDealDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DealsControllerCreateWithHttpInfo(CreateDealDto createDealDto)
+        /// <returns>ApiResponse of Deal</returns>
+        public Adviverse.Api.Client.ApiResponse<Deal> DealsControllerCreateWithHttpInfo(CreateDealDto createDealDto)
         {
             // verify the required parameter 'createDealDto' is set
             if (createDealDto == null)
@@ -785,6 +859,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -795,9 +870,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createDealDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/deals", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<Deal>("/v1/deals", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -809,25 +895,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a deal Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createDealDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DealsControllerCreateAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of Deal</returns>
+        public async System.Threading.Tasks.Task<Deal> DealsControllerCreateAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DealsControllerCreateWithHttpInfoAsync(createDealDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<Deal> localVarResponse = await DealsControllerCreateWithHttpInfoAsync(createDealDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a deal Creates a &#x60;pending&#x60; deal with &#x60;name&#x60; (required), &#x60;dealType&#x60; (&#x60;pmp&#x60; default, &#x60;preferred&#x60;, &#x60;guaranteed&#x60;), &#x60;floorCpm&#x60;, &#x60;currency&#x60; (USD), optional &#x60;placementId&#x60; and &#x60;startsAt&#x60;/&#x60;endsAt&#x60;. Fields are also accepted in snake_case. With &#x60;advertiserId&#x60; (must be an advertiser account) the advertiser is emailed an invite; without it the deal is open and gets a &#x60;claim_token&#x60; to share. The placement must belong to the creating publisher (403); its owner becomes the deal&#39;s publisher. Active deals are republished to the engine index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createDealDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DealsControllerCreateWithHttpInfoAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (Deal)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Deal>> DealsControllerCreateWithHttpInfoAsync(CreateDealDto createDealDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createDealDto' is set
             if (createDealDto == null)
@@ -842,6 +929,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -853,10 +941,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createDealDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/deals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Deal>("/v1/deals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -868,21 +967,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List deals Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void DealsControllerList()
+        /// <returns>List&lt;Deal&gt;</returns>
+        public List<Deal> DealsControllerList()
         {
-            DealsControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<Deal>> localVarResponse = DealsControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List deals Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DealsControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;Deal&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<Deal>> DealsControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -891,6 +991,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -900,9 +1001,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/deals", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<Deal>>("/v1/deals", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -914,23 +1026,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List deals Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DealsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;Deal&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Deal>> DealsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DealsControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<Deal>> localVarResponse = await DealsControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List deals Lists private-marketplace deals for the caller. Accounts can act on both sides, so &#x60;role&#x3D;publisher&#x60; returns deals the account sells and &#x60;role&#x3D;advertiser&#x60; returns deals offered to it. Without &#x60;role&#x60; the account type decides. Admins see all deals (capped at 500 when unpaginated). Supports optional &#x60;limit&#x60;/&#x60;offset&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DealsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;Deal&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<Deal>>> DealsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -940,6 +1053,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -950,10 +1064,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/deals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<Deal>>("/v1/deals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -965,23 +1090,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Find an advertiser by email Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
-        /// <returns></returns>
-        public void DealsControllerLookupAdvertiser(string email)
+        /// <returns>DealsControllerLookupAdvertiser200Response</returns>
+        public DealsControllerLookupAdvertiser200Response DealsControllerLookupAdvertiser(string email)
         {
-            DealsControllerLookupAdvertiserWithHttpInfo(email);
+            Adviverse.Api.Client.ApiResponse<DealsControllerLookupAdvertiser200Response> localVarResponse = DealsControllerLookupAdvertiserWithHttpInfo(email);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Find an advertiser by email Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DealsControllerLookupAdvertiserWithHttpInfo(string email)
+        /// <returns>ApiResponse of DealsControllerLookupAdvertiser200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<DealsControllerLookupAdvertiser200Response> DealsControllerLookupAdvertiserWithHttpInfo(string email)
         {
             // verify the required parameter 'email' is set
             if (email == null)
@@ -994,6 +1120,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1004,9 +1131,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/deals/advertiser-lookup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<DealsControllerLookupAdvertiser200Response>("/v1/deals/advertiser-lookup", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1018,25 +1156,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Find an advertiser by email Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DealsControllerLookupAdvertiserAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of DealsControllerLookupAdvertiser200Response</returns>
+        public async System.Threading.Tasks.Task<DealsControllerLookupAdvertiser200Response> DealsControllerLookupAdvertiserAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DealsControllerLookupAdvertiserWithHttpInfoAsync(email, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<DealsControllerLookupAdvertiser200Response> localVarResponse = await DealsControllerLookupAdvertiserWithHttpInfoAsync(email, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Find an advertiser by email Resolves an advertiser account by exact, case-insensitive &#x60;email&#x60; so a publisher can target a deal without knowing the account id. Exact match only, to avoid account enumeration. Returns 400 without an email and 404 when no advertiser matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="email"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DealsControllerLookupAdvertiserWithHttpInfoAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DealsControllerLookupAdvertiser200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<DealsControllerLookupAdvertiser200Response>> DealsControllerLookupAdvertiserWithHttpInfoAsync(string email, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'email' is set
             if (email == null)
@@ -1050,6 +1189,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1061,10 +1201,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/deals/advertiser-lookup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DealsControllerLookupAdvertiser200Response>("/v1/deals/advertiser-lookup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1076,23 +1227,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Preview an open deal from its claim link Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns></returns>
-        public void DealsControllerPreviewClaim(string token)
+        /// <returns>DealsControllerPreviewClaim200Response</returns>
+        public DealsControllerPreviewClaim200Response DealsControllerPreviewClaim(string token)
         {
-            DealsControllerPreviewClaimWithHttpInfo(token);
+            Adviverse.Api.Client.ApiResponse<DealsControllerPreviewClaim200Response> localVarResponse = DealsControllerPreviewClaimWithHttpInfo(token);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Preview an open deal from its claim link Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DealsControllerPreviewClaimWithHttpInfo(string token)
+        /// <returns>ApiResponse of DealsControllerPreviewClaim200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<DealsControllerPreviewClaim200Response> DealsControllerPreviewClaimWithHttpInfo(string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -1105,6 +1257,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1115,9 +1268,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("token", Adviverse.Api.Client.ClientUtils.ParameterToString(token)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<DealsControllerPreviewClaim200Response>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1129,25 +1293,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Preview an open deal from its claim link Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DealsControllerPreviewClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of DealsControllerPreviewClaim200Response</returns>
+        public async System.Threading.Tasks.Task<DealsControllerPreviewClaim200Response> DealsControllerPreviewClaimAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DealsControllerPreviewClaimWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<DealsControllerPreviewClaim200Response> localVarResponse = await DealsControllerPreviewClaimWithHttpInfoAsync(token, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Preview an open deal from its claim link Returns the deal behind a claim token (code, name, type, floor, currency, status and publisher company name) plus &#x60;claimable&#x60;, which is true while no advertiser is attached. 404 when the token is unknown or already used.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DealsControllerPreviewClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DealsControllerPreviewClaim200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<DealsControllerPreviewClaim200Response>> DealsControllerPreviewClaimWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'token' is set
             if (token == null)
@@ -1161,6 +1326,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1172,10 +1338,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("token", Adviverse.Api.Client.ClientUtils.ParameterToString(token)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DealsControllerPreviewClaim200Response>("/v1/deals/claim/{token}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1187,23 +1364,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Change a deal&#39;s status Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void DealsControllerStatus(string id)
+        /// <returns>DealsControllerStatus201Response</returns>
+        public DealsControllerStatus201Response DealsControllerStatus(string id)
         {
-            DealsControllerStatusWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<DealsControllerStatus201Response> localVarResponse = DealsControllerStatusWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Change a deal&#39;s status Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DealsControllerStatusWithHttpInfo(string id)
+        /// <returns>ApiResponse of DealsControllerStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<DealsControllerStatus201Response> DealsControllerStatusWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1216,6 +1394,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1226,9 +1405,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/deals/{id}/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<DealsControllerStatus201Response>("/v1/deals/{id}/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1240,25 +1430,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Change a deal&#39;s status Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DealsControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of DealsControllerStatus201Response</returns>
+        public async System.Threading.Tasks.Task<DealsControllerStatus201Response> DealsControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DealsControllerStatusWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<DealsControllerStatus201Response> localVarResponse = await DealsControllerStatusWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Change a deal&#39;s status Sets &#x60;status&#x60; to &#x60;active&#x60;, &#x60;paused&#x60;, &#x60;pending&#x60; or &#x60;expired&#x60;. Only the deal&#39;s publisher or an admin may do this (403 otherwise). The engine&#39;s active-deal index is republished, so pausing takes effect for serving right away.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DealsControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DealsControllerStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<DealsControllerStatus201Response>> DealsControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1272,6 +1463,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1283,10 +1475,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/deals/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<DealsControllerStatus201Response>("/v1/deals/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

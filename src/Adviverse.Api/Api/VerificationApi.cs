@@ -28,55 +28,64 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void VerificationControllerCategories();
-
-        /// <summary>
-        /// 
+        /// List brand-safety categories
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> VerificationControllerCategoriesWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void VerificationControllerGetSettings();
+        /// <returns>List&lt;VerificationControllerCategories200ResponseInner&gt;</returns>
+        List<VerificationControllerCategories200ResponseInner> VerificationControllerCategories();
 
         /// <summary>
-        /// 
+        /// List brand-safety categories
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> VerificationControllerGetSettingsWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;VerificationControllerCategories200ResponseInner&gt;</returns>
+        ApiResponse<List<VerificationControllerCategories200ResponseInner>> VerificationControllerCategoriesWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="putSettingsDto"></param>
-        /// <returns></returns>
-        void VerificationControllerPutSettings(PutSettingsDto putSettingsDto);
-
-        /// <summary>
-        /// 
+        /// Get your verification and brand-safety settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>RewVerificationSettings</returns>
+        RewVerificationSettings VerificationControllerGetSettings();
+
+        /// <summary>
+        /// Get your verification and brand-safety settings
+        /// </summary>
+        /// <remarks>
+        /// Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of RewVerificationSettings</returns>
+        ApiResponse<RewVerificationSettings> VerificationControllerGetSettingsWithHttpInfo();
+        /// <summary>
+        /// Save your verification and brand-safety settings
+        /// </summary>
+        /// <remarks>
+        /// Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="putSettingsDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> VerificationControllerPutSettingsWithHttpInfo(PutSettingsDto putSettingsDto);
+        /// <returns>RewVerificationSettings</returns>
+        RewVerificationSettings VerificationControllerPutSettings(PutSettingsDto putSettingsDto);
+
+        /// <summary>
+        /// Save your verification and brand-safety settings
+        /// </summary>
+        /// <remarks>
+        /// Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="putSettingsDto"></param>
+        /// <returns>ApiResponse of RewVerificationSettings</returns>
+        ApiResponse<RewVerificationSettings> VerificationControllerPutSettingsWithHttpInfo(PutSettingsDto putSettingsDto);
         #endregion Synchronous Operations
     }
 
@@ -87,70 +96,70 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List brand-safety categories
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task VerificationControllerCategoriesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;VerificationControllerCategories200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<VerificationControllerCategories200ResponseInner>> VerificationControllerCategoriesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List brand-safety categories
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> VerificationControllerCategoriesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;VerificationControllerCategories200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<VerificationControllerCategories200ResponseInner>>> VerificationControllerCategoriesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get your verification and brand-safety settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task VerificationControllerGetSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewVerificationSettings</returns>
+        System.Threading.Tasks.Task<RewVerificationSettings> VerificationControllerGetSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get your verification and brand-safety settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> VerificationControllerGetSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewVerificationSettings)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewVerificationSettings>> VerificationControllerGetSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Save your verification and brand-safety settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="putSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task VerificationControllerPutSettingsAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewVerificationSettings</returns>
+        System.Threading.Tasks.Task<RewVerificationSettings> VerificationControllerPutSettingsAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Save your verification and brand-safety settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="putSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> VerificationControllerPutSettingsWithHttpInfoAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewVerificationSettings)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewVerificationSettings>> VerificationControllerPutSettingsWithHttpInfoAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -365,21 +374,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List brand-safety categories Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void VerificationControllerCategories()
+        /// <returns>List&lt;VerificationControllerCategories200ResponseInner&gt;</returns>
+        public List<VerificationControllerCategories200ResponseInner> VerificationControllerCategories()
         {
-            VerificationControllerCategoriesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<VerificationControllerCategories200ResponseInner>> localVarResponse = VerificationControllerCategoriesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List brand-safety categories Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> VerificationControllerCategoriesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;VerificationControllerCategories200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<VerificationControllerCategories200ResponseInner>> VerificationControllerCategoriesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -388,6 +398,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -397,9 +408,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/verification/categories", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<VerificationControllerCategories200ResponseInner>>("/v1/verification/categories", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -411,23 +433,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List brand-safety categories Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task VerificationControllerCategoriesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;VerificationControllerCategories200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<VerificationControllerCategories200ResponseInner>> VerificationControllerCategoriesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await VerificationControllerCategoriesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<VerificationControllerCategories200ResponseInner>> localVarResponse = await VerificationControllerCategoriesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List brand-safety categories Returns the static brand-safety category catalog (ids such as &#x60;adult&#x60;, &#x60;violence&#x60;, &#x60;hate&#x60;) accepted in verification settings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> VerificationControllerCategoriesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;VerificationControllerCategories200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<VerificationControllerCategories200ResponseInner>>> VerificationControllerCategoriesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -437,6 +460,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -447,10 +471,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/verification/categories", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<VerificationControllerCategories200ResponseInner>>("/v1/verification/categories", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -462,21 +497,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your verification and brand-safety settings Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void VerificationControllerGetSettings()
+        /// <returns>RewVerificationSettings</returns>
+        public RewVerificationSettings VerificationControllerGetSettings()
         {
-            VerificationControllerGetSettingsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<RewVerificationSettings> localVarResponse = VerificationControllerGetSettingsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your verification and brand-safety settings Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> VerificationControllerGetSettingsWithHttpInfo()
+        /// <returns>ApiResponse of RewVerificationSettings</returns>
+        public Adviverse.Api.Client.ApiResponse<RewVerificationSettings> VerificationControllerGetSettingsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -485,6 +521,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -494,9 +531,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/verification/settings", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<RewVerificationSettings>("/v1/verification/settings", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -508,23 +556,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your verification and brand-safety settings Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task VerificationControllerGetSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewVerificationSettings</returns>
+        public async System.Threading.Tasks.Task<RewVerificationSettings> VerificationControllerGetSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await VerificationControllerGetSettingsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewVerificationSettings> localVarResponse = await VerificationControllerGetSettingsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your verification and brand-safety settings Returns your measurement vendor, viewability target, blocked brand-safety categories, blocked domains and keywords, falling back to the global defaults when you have not saved settings. The vendor API key is never returned, only &#x60;apiKeySet&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> VerificationControllerGetSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewVerificationSettings)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewVerificationSettings>> VerificationControllerGetSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -534,6 +583,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -544,10 +594,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/verification/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<RewVerificationSettings>("/v1/verification/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -559,23 +620,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save your verification and brand-safety settings Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="putSettingsDto"></param>
-        /// <returns></returns>
-        public void VerificationControllerPutSettings(PutSettingsDto putSettingsDto)
+        /// <returns>RewVerificationSettings</returns>
+        public RewVerificationSettings VerificationControllerPutSettings(PutSettingsDto putSettingsDto)
         {
-            VerificationControllerPutSettingsWithHttpInfo(putSettingsDto);
+            Adviverse.Api.Client.ApiResponse<RewVerificationSettings> localVarResponse = VerificationControllerPutSettingsWithHttpInfo(putSettingsDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save your verification and brand-safety settings Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="putSettingsDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> VerificationControllerPutSettingsWithHttpInfo(PutSettingsDto putSettingsDto)
+        /// <returns>ApiResponse of RewVerificationSettings</returns>
+        public Adviverse.Api.Client.ApiResponse<RewVerificationSettings> VerificationControllerPutSettingsWithHttpInfo(PutSettingsDto putSettingsDto)
         {
             // verify the required parameter 'putSettingsDto' is set
             if (putSettingsDto == null)
@@ -589,6 +651,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -599,9 +662,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = putSettingsDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<Object>("/v1/verification/settings", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Put<RewVerificationSettings>("/v1/verification/settings", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -613,25 +687,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save your verification and brand-safety settings Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="putSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task VerificationControllerPutSettingsAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewVerificationSettings</returns>
+        public async System.Threading.Tasks.Task<RewVerificationSettings> VerificationControllerPutSettingsAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await VerificationControllerPutSettingsWithHttpInfoAsync(putSettingsDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewVerificationSettings> localVarResponse = await VerificationControllerPutSettingsWithHttpInfoAsync(putSettingsDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save your verification and brand-safety settings Replaces your settings: &#x60;vendor&#x60; (none, ias, doubleverify, moat; default none), &#x60;measurementEnabled&#x60;, &#x60;viewabilityTarget&#x60; (0-1, default 0.7), &#x60;brandSafetyCategories&#x60; (unknown ids dropped), &#x60;blockedDomains&#x60; (normalized to bare hosts) and &#x60;blockedKeywords&#x60; (lowercased tokens), all enforced at serve time. &#x60;apiKey&#x60; is encrypted at rest; omit it to keep the stored key, send an empty string to clear it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="putSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> VerificationControllerPutSettingsWithHttpInfoAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewVerificationSettings)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewVerificationSettings>> VerificationControllerPutSettingsWithHttpInfoAsync(PutSettingsDto putSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'putSettingsDto' is set
             if (putSettingsDto == null)
@@ -646,6 +721,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -657,10 +733,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = putSettingsDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PutAsync<Object>("/v1/verification/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PutAsync<RewVerificationSettings>("/v1/verification/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

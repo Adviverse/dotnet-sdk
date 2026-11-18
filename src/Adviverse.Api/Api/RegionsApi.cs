@@ -28,97 +28,112 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createRegionDto"></param>
-        /// <returns></returns>
-        void RegionsControllerCreate(CreateRegionDto createRegionDto);
-
-        /// <summary>
-        /// 
+        /// Create a serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRegionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RegionsControllerCreateWithHttpInfo(CreateRegionDto createRegionDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void RegionsControllerHealth();
+        /// <returns>RewRegion</returns>
+        RewRegion RegionsControllerCreate(CreateRegionDto createRegionDto);
 
         /// <summary>
-        /// 
+        /// Create a serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RegionsControllerHealthWithHttpInfo();
+        /// <param name="createRegionDto"></param>
+        /// <returns>ApiResponse of RewRegion</returns>
+        ApiResponse<RewRegion> RegionsControllerCreateWithHttpInfo(CreateRegionDto createRegionDto);
         /// <summary>
-        /// 
+        /// Get per-region engine health
         /// </summary>
+        /// <remarks>
+        /// Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void RegionsControllerList();
+        /// <returns>List&lt;RegionsControllerHealth200ResponseInner&gt;</returns>
+        List<RegionsControllerHealth200ResponseInner> RegionsControllerHealth();
 
         /// <summary>
-        /// 
+        /// Get per-region engine health
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RegionsControllerListWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;RegionsControllerHealth200ResponseInner&gt;</returns>
+        ApiResponse<List<RegionsControllerHealth200ResponseInner>> RegionsControllerHealthWithHttpInfo();
         /// <summary>
-        /// 
+        /// List active serving regions
         /// </summary>
+        /// <remarks>
+        /// Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;RewRegion&gt;</returns>
+        List<RewRegion> RegionsControllerList();
+
+        /// <summary>
+        /// List active serving regions
+        /// </summary>
+        /// <remarks>
+        /// Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;RewRegion&gt;</returns>
+        ApiResponse<List<RewRegion>> RegionsControllerListWithHttpInfo();
+        /// <summary>
+        /// Resolve the best serving region
+        /// </summary>
+        /// <remarks>
+        /// Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
-        /// <returns></returns>
-        void RegionsControllerNearest(string country, string lat, string lng);
+        /// <returns>RegionsControllerNearest200Response</returns>
+        RegionsControllerNearest200Response RegionsControllerNearest(string country, string lat, string lng);
 
         /// <summary>
-        /// 
+        /// Resolve the best serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RegionsControllerNearestWithHttpInfo(string country, string lat, string lng);
+        /// <returns>ApiResponse of RegionsControllerNearest200Response</returns>
+        ApiResponse<RegionsControllerNearest200Response> RegionsControllerNearestWithHttpInfo(string country, string lat, string lng);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="updateRegionDto"></param>
-        /// <returns></returns>
-        void RegionsControllerUpdate(string id, UpdateRegionDto updateRegionDto);
-
-        /// <summary>
-        /// 
+        /// Update a serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateRegionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RegionsControllerUpdateWithHttpInfo(string id, UpdateRegionDto updateRegionDto);
+        /// <returns>RewRegion</returns>
+        RewRegion RegionsControllerUpdate(string id, UpdateRegionDto updateRegionDto);
+
+        /// <summary>
+        /// Update a serving region
+        /// </summary>
+        /// <remarks>
+        /// Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateRegionDto"></param>
+        /// <returns>ApiResponse of RewRegion</returns>
+        ApiResponse<RewRegion> RegionsControllerUpdateWithHttpInfo(string id, UpdateRegionDto updateRegionDto);
         #endregion Synchronous Operations
     }
 
@@ -129,122 +144,122 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Create a serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RegionsControllerCreateAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewRegion</returns>
+        System.Threading.Tasks.Task<RewRegion> RegionsControllerCreateAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RegionsControllerCreateWithHttpInfoAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewRegion)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewRegion>> RegionsControllerCreateWithHttpInfoAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get per-region engine health
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RegionsControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;RegionsControllerHealth200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<RegionsControllerHealth200ResponseInner>> RegionsControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get per-region engine health
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RegionsControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;RegionsControllerHealth200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<RegionsControllerHealth200ResponseInner>>> RegionsControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List active serving regions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RegionsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;RewRegion&gt;</returns>
+        System.Threading.Tasks.Task<List<RewRegion>> RegionsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List active serving regions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RegionsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;RewRegion&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<RewRegion>>> RegionsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Resolve the best serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RegionsControllerNearestAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RegionsControllerNearest200Response</returns>
+        System.Threading.Tasks.Task<RegionsControllerNearest200Response> RegionsControllerNearestAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Resolve the best serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RegionsControllerNearestWithHttpInfoAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RegionsControllerNearest200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RegionsControllerNearest200Response>> RegionsControllerNearestWithHttpInfoAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RegionsControllerUpdateAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of RewRegion</returns>
+        System.Threading.Tasks.Task<RewRegion> RegionsControllerUpdateAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a serving region
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RegionsControllerUpdateWithHttpInfoAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RewRegion)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RewRegion>> RegionsControllerUpdateWithHttpInfoAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -459,23 +474,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a serving region Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRegionDto"></param>
-        /// <returns></returns>
-        public void RegionsControllerCreate(CreateRegionDto createRegionDto)
+        /// <returns>RewRegion</returns>
+        public RewRegion RegionsControllerCreate(CreateRegionDto createRegionDto)
         {
-            RegionsControllerCreateWithHttpInfo(createRegionDto);
+            Adviverse.Api.Client.ApiResponse<RewRegion> localVarResponse = RegionsControllerCreateWithHttpInfo(createRegionDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a serving region Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRegionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RegionsControllerCreateWithHttpInfo(CreateRegionDto createRegionDto)
+        /// <returns>ApiResponse of RewRegion</returns>
+        public Adviverse.Api.Client.ApiResponse<RewRegion> RegionsControllerCreateWithHttpInfo(CreateRegionDto createRegionDto)
         {
             // verify the required parameter 'createRegionDto' is set
             if (createRegionDto == null)
@@ -489,6 +505,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -499,9 +516,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createRegionDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/regions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<RewRegion>("/v1/admin/regions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -513,25 +541,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a serving region Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RegionsControllerCreateAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewRegion</returns>
+        public async System.Threading.Tasks.Task<RewRegion> RegionsControllerCreateAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RegionsControllerCreateWithHttpInfoAsync(createRegionDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewRegion> localVarResponse = await RegionsControllerCreateWithHttpInfoAsync(createRegionDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a serving region Adds a region from &#x60;code&#x60; (lowercase slug, unique), &#x60;name&#x60;, &#x60;public_endpoint&#x60;, &#x60;lat&#x60;, &#x60;lng&#x60;, optional &#x60;country_codes&#x60; (uppercased), &#x60;status&#x60; (active, draining, disabled; default active) and &#x60;priority&#x60; (default 100, lower wins). Invalidates the region cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RegionsControllerCreateWithHttpInfoAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewRegion)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewRegion>> RegionsControllerCreateWithHttpInfoAsync(CreateRegionDto createRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createRegionDto' is set
             if (createRegionDto == null)
@@ -546,6 +575,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -557,10 +587,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createRegionDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/regions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RewRegion>("/v1/admin/regions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -572,21 +613,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-region engine health Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void RegionsControllerHealth()
+        /// <returns>List&lt;RegionsControllerHealth200ResponseInner&gt;</returns>
+        public List<RegionsControllerHealth200ResponseInner> RegionsControllerHealth()
         {
-            RegionsControllerHealthWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<RegionsControllerHealth200ResponseInner>> localVarResponse = RegionsControllerHealthWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-region engine health Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RegionsControllerHealthWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;RegionsControllerHealth200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<RegionsControllerHealth200ResponseInner>> RegionsControllerHealthWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -595,6 +637,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -606,7 +649,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/regions/health", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<RegionsControllerHealth200ResponseInner>>("/v1/regions/health", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -618,23 +661,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get per-region engine health Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RegionsControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;RegionsControllerHealth200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<RegionsControllerHealth200ResponseInner>> RegionsControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RegionsControllerHealthWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<RegionsControllerHealth200ResponseInner>> localVarResponse = await RegionsControllerHealthWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get per-region engine health Public. Probes every configured region&#39;s engine &#x60;/healthz&#x60; (1.5s timeout) and reports whether it is up with its indexed campaign and placement counts and version. Unreachable engines report &#x60;up: false&#x60; with null metrics.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RegionsControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;RegionsControllerHealth200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<RegionsControllerHealth200ResponseInner>>> RegionsControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -644,6 +688,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -657,7 +702,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/regions/health", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<RegionsControllerHealth200ResponseInner>>("/v1/regions/health", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -669,21 +714,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List active serving regions Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void RegionsControllerList()
+        /// <returns>List&lt;RewRegion&gt;</returns>
+        public List<RewRegion> RegionsControllerList()
         {
-            RegionsControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<RewRegion>> localVarResponse = RegionsControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List active serving regions Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RegionsControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;RewRegion&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<RewRegion>> RegionsControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -692,6 +738,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -703,7 +750,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/regions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<RewRegion>>("/v1/regions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -715,23 +762,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List active serving regions Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RegionsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;RewRegion&gt;</returns>
+        public async System.Threading.Tasks.Task<List<RewRegion>> RegionsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RegionsControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<RewRegion>> localVarResponse = await RegionsControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List active serving regions Public. Returns the active ad-engine regions ordered by priority, served from a 30-second in-memory cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RegionsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;RewRegion&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<RewRegion>>> RegionsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -741,6 +789,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -754,7 +803,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/regions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<RewRegion>>("/v1/regions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -766,27 +815,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resolve the best serving region Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
-        /// <returns></returns>
-        public void RegionsControllerNearest(string country, string lat, string lng)
+        /// <returns>RegionsControllerNearest200Response</returns>
+        public RegionsControllerNearest200Response RegionsControllerNearest(string country, string lat, string lng)
         {
-            RegionsControllerNearestWithHttpInfo(country, lat, lng);
+            Adviverse.Api.Client.ApiResponse<RegionsControllerNearest200Response> localVarResponse = RegionsControllerNearestWithHttpInfo(country, lat, lng);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resolve the best serving region Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RegionsControllerNearestWithHttpInfo(string country, string lat, string lng)
+        /// <returns>ApiResponse of RegionsControllerNearest200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<RegionsControllerNearest200Response> RegionsControllerNearestWithHttpInfo(string country, string lat, string lng)
         {
             // verify the required parameter 'country' is set
             if (country == null)
@@ -807,6 +857,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -821,7 +872,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/regions/nearest", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<RegionsControllerNearest200Response>("/v1/regions/nearest", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -833,29 +884,30 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resolve the best serving region Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RegionsControllerNearestAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RegionsControllerNearest200Response</returns>
+        public async System.Threading.Tasks.Task<RegionsControllerNearest200Response> RegionsControllerNearestAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RegionsControllerNearestWithHttpInfoAsync(country, lat, lng, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RegionsControllerNearest200Response> localVarResponse = await RegionsControllerNearestWithHttpInfoAsync(country, lat, lng, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resolve the best serving region Public and fail-soft; the SDK calls it before auth to choose an engine. Matches &#x60;?country&#x3D;&#x60; (ISO alpha-2) against region country lists, else picks the nearest region to &#x60;?lat&#x3D;&amp;lng&#x3D;&#x60;, else the highest-priority region. Falls back to a built-in default region if none are configured or lookup fails.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"></param>
         /// <param name="lat"></param>
         /// <param name="lng"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RegionsControllerNearestWithHttpInfoAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RegionsControllerNearest200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RegionsControllerNearest200Response>> RegionsControllerNearestWithHttpInfoAsync(string country, string lat, string lng, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'country' is set
             if (country == null)
@@ -877,6 +929,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -893,7 +946,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/regions/nearest", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<RegionsControllerNearest200Response>("/v1/regions/nearest", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -905,25 +958,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a serving region Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateRegionDto"></param>
-        /// <returns></returns>
-        public void RegionsControllerUpdate(string id, UpdateRegionDto updateRegionDto)
+        /// <returns>RewRegion</returns>
+        public RewRegion RegionsControllerUpdate(string id, UpdateRegionDto updateRegionDto)
         {
-            RegionsControllerUpdateWithHttpInfo(id, updateRegionDto);
+            Adviverse.Api.Client.ApiResponse<RewRegion> localVarResponse = RegionsControllerUpdateWithHttpInfo(id, updateRegionDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a serving region Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateRegionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> RegionsControllerUpdateWithHttpInfo(string id, UpdateRegionDto updateRegionDto)
+        /// <returns>ApiResponse of RewRegion</returns>
+        public Adviverse.Api.Client.ApiResponse<RewRegion> RegionsControllerUpdateWithHttpInfo(string id, UpdateRegionDto updateRegionDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -941,6 +995,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -952,9 +1007,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateRegionDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/admin/regions/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<RewRegion>("/v1/admin/regions/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -966,27 +1032,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a serving region Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RegionsControllerUpdateAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of RewRegion</returns>
+        public async System.Threading.Tasks.Task<RewRegion> RegionsControllerUpdateAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await RegionsControllerUpdateWithHttpInfoAsync(id, updateRegionDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<RewRegion> localVarResponse = await RegionsControllerUpdateWithHttpInfoAsync(id, updateRegionDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a serving region Patches &#x60;status&#x60;, &#x60;public_endpoint&#x60;, &#x60;priority&#x60;, &#x60;country_codes&#x60; or &#x60;name&#x60; of the region with UUID &#x60;id&#x60; and invalidates the cache. 404 if the region does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateRegionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> RegionsControllerUpdateWithHttpInfoAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RewRegion)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<RewRegion>> RegionsControllerUpdateWithHttpInfoAsync(string id, UpdateRegionDto updateRegionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1005,6 +1072,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1017,10 +1085,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateRegionDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/admin/regions/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<RewRegion>("/v1/admin/regions/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

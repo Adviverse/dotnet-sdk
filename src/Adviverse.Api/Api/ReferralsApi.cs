@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,21 +28,62 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ReferralsControllerOverview();
-
-        /// <summary>
-        /// 
+        /// Get Refer &amp; earn (affiliate) overview
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReferralsControllerOverviewWithHttpInfo();
+        /// <returns>ReferralsControllerAffiliateOverview200Response</returns>
+        ReferralsControllerAffiliateOverview200Response ReferralsControllerAffiliateOverview();
+
+        /// <summary>
+        /// Get Refer &amp; earn (affiliate) overview
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReferralsControllerAffiliateOverview200Response</returns>
+        ApiResponse<ReferralsControllerAffiliateOverview200Response> ReferralsControllerAffiliateOverviewWithHttpInfo();
+        /// <summary>
+        /// Join Refer &amp; earn
+        /// </summary>
+        /// <remarks>
+        /// Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReferralsControllerJoinAffiliate200Response</returns>
+        ReferralsControllerJoinAffiliate200Response ReferralsControllerJoinAffiliate();
+
+        /// <summary>
+        /// Join Refer &amp; earn
+        /// </summary>
+        /// <remarks>
+        /// Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReferralsControllerJoinAffiliate200Response</returns>
+        ApiResponse<ReferralsControllerJoinAffiliate200Response> ReferralsControllerJoinAffiliateWithHttpInfo();
+        /// <summary>
+        /// Get referral program overview
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReferralsControllerOverview200Response</returns>
+        ReferralsControllerOverview200Response ReferralsControllerOverview();
+
+        /// <summary>
+        /// Get referral program overview
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReferralsControllerOverview200Response</returns>
+        ApiResponse<ReferralsControllerOverview200Response> ReferralsControllerOverviewWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -52,26 +94,68 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get Refer &amp; earn (affiliate) overview
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReferralsControllerOverviewAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ReferralsControllerAffiliateOverview200Response</returns>
+        System.Threading.Tasks.Task<ReferralsControllerAffiliateOverview200Response> ReferralsControllerAffiliateOverviewAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get Refer &amp; earn (affiliate) overview
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReferralsControllerOverviewWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ReferralsControllerAffiliateOverview200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReferralsControllerAffiliateOverview200Response>> ReferralsControllerAffiliateOverviewWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Join Refer &amp; earn
+        /// </summary>
+        /// <remarks>
+        /// Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReferralsControllerJoinAffiliate200Response</returns>
+        System.Threading.Tasks.Task<ReferralsControllerJoinAffiliate200Response> ReferralsControllerJoinAffiliateAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Join Refer &amp; earn
+        /// </summary>
+        /// <remarks>
+        /// Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReferralsControllerJoinAffiliate200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReferralsControllerJoinAffiliate200Response>> ReferralsControllerJoinAffiliateWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Get referral program overview
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReferralsControllerOverview200Response</returns>
+        System.Threading.Tasks.Task<ReferralsControllerOverview200Response> ReferralsControllerOverviewAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get referral program overview
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReferralsControllerOverview200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReferralsControllerOverview200Response>> ReferralsControllerOverviewWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -286,21 +370,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get Refer &amp; earn (affiliate) overview Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ReferralsControllerOverview()
+        /// <returns>ReferralsControllerAffiliateOverview200Response</returns>
+        public ReferralsControllerAffiliateOverview200Response ReferralsControllerAffiliateOverview()
         {
-            ReferralsControllerOverviewWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ReferralsControllerAffiliateOverview200Response> localVarResponse = ReferralsControllerAffiliateOverviewWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get Refer &amp; earn (affiliate) overview Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ReferralsControllerOverviewWithHttpInfo()
+        /// <returns>ApiResponse of ReferralsControllerAffiliateOverview200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReferralsControllerAffiliateOverview200Response> ReferralsControllerAffiliateOverviewWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -309,6 +394,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -318,9 +404,266 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/referrals", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ReferralsControllerAffiliateOverview200Response>("/v1/referrals/affiliate", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReferralsControllerAffiliateOverview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Refer &amp; earn (affiliate) overview Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReferralsControllerAffiliateOverview200Response</returns>
+        public async System.Threading.Tasks.Task<ReferralsControllerAffiliateOverview200Response> ReferralsControllerAffiliateOverviewAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            Adviverse.Api.Client.ApiResponse<ReferralsControllerAffiliateOverview200Response> localVarResponse = await ReferralsControllerAffiliateOverviewWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Refer &amp; earn (affiliate) overview Returns the account&#39;s Refer &amp; earn partner status from Referalli. Before joining it returns &#x60;joined: false&#x60; with the program terms and summary. After joining it adds the partner code, &#x60;?via&#x3D;&#x60; signup link, clicks, signups, pending reviews and converted customers. &#x60;commissions&#x60; (pending and settled, in USD, net of reversals) come from local records.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReferralsControllerAffiliateOverview200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReferralsControllerAffiliateOverview200Response>> ReferralsControllerAffiliateOverviewWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReferralsControllerAffiliateOverview200Response>("/v1/referrals/affiliate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReferralsControllerAffiliateOverview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Join Refer &amp; earn Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReferralsControllerJoinAffiliate200Response</returns>
+        public ReferralsControllerJoinAffiliate200Response ReferralsControllerJoinAffiliate()
+        {
+            Adviverse.Api.Client.ApiResponse<ReferralsControllerJoinAffiliate200Response> localVarResponse = ReferralsControllerJoinAffiliateWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Join Refer &amp; earn Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReferralsControllerJoinAffiliate200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReferralsControllerJoinAffiliate200Response> ReferralsControllerJoinAffiliateWithHttpInfo()
+        {
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ReferralsControllerJoinAffiliate200Response>("/v1/referrals/affiliate/join", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReferralsControllerJoinAffiliate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Join Refer &amp; earn Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReferralsControllerJoinAffiliate200Response</returns>
+        public async System.Threading.Tasks.Task<ReferralsControllerJoinAffiliate200Response> ReferralsControllerJoinAffiliateAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            Adviverse.Api.Client.ApiResponse<ReferralsControllerJoinAffiliate200Response> localVarResponse = await ReferralsControllerJoinAffiliateWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Join Refer &amp; earn Enrolls the account as a Referalli partner keyed on its account id and email, then returns the same body as the affiliate overview. Idempotent (calls are deduplicated per account). Returns 400 &#x60;email_taken&#x60; if the email is already a partner elsewhere, or &#x60;join_failed&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReferralsControllerJoinAffiliate200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReferralsControllerJoinAffiliate200Response>> ReferralsControllerJoinAffiliateWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReferralsControllerJoinAffiliate200Response>("/v1/referrals/affiliate/join", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReferralsControllerJoinAffiliate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get referral program overview Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ReferralsControllerOverview200Response</returns>
+        public ReferralsControllerOverview200Response ReferralsControllerOverview()
+        {
+            Adviverse.Api.Client.ApiResponse<ReferralsControllerOverview200Response> localVarResponse = ReferralsControllerOverviewWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get referral program overview Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ReferralsControllerOverview200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ReferralsControllerOverview200Response> ReferralsControllerOverviewWithHttpInfo()
+        {
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ReferralsControllerOverview200Response>("/v1/referrals", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -332,23 +675,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get referral program overview Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReferralsControllerOverviewAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ReferralsControllerOverview200Response</returns>
+        public async System.Threading.Tasks.Task<ReferralsControllerOverview200Response> ReferralsControllerOverviewAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ReferralsControllerOverviewWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ReferralsControllerOverview200Response> localVarResponse = await ReferralsControllerOverviewWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get referral program overview Returns the account&#39;s referral code and signup link (&#x60;/signup?ref&#x3D;&lt;code&gt;&#x60;), and every account it referred with that account&#39;s status, join date and the referral earnings credited to the caller from it (summed from &#x60;referral&#x60; ledger entries).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ReferralsControllerOverviewWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ReferralsControllerOverview200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ReferralsControllerOverview200Response>> ReferralsControllerOverviewWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -358,6 +702,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -368,10 +713,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/referrals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ReferralsControllerOverview200Response>("/v1/referrals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

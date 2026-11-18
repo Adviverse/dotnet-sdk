@@ -28,367 +28,448 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerAppAdsTxt(string id);
-
-        /// <summary>
-        /// 
+        /// Get the app-ads.txt content for an app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerAppAdsTxtWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAppDto"></param>
-        /// <returns></returns>
-        void PublisherControllerCreateApp(CreateAppDto createAppDto);
+        /// <returns>string</returns>
+        string PublisherControllerAppAdsTxt(string id);
 
         /// <summary>
-        /// 
+        /// Get the app-ads.txt content for an app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> PublisherControllerAppAdsTxtWithHttpInfo(string id);
+        /// <summary>
+        /// Register a mobile or CTV app
+        /// </summary>
+        /// <remarks>
+        /// Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAppDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerCreateAppWithHttpInfo(CreateAppDto createAppDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createPlacementDto"></param>
-        /// <returns></returns>
-        void PublisherControllerCreatePlacement(CreatePlacementDto createPlacementDto);
+        /// <returns>PubProperty</returns>
+        PubProperty PublisherControllerCreateApp(CreateAppDto createAppDto);
 
         /// <summary>
-        /// 
+        /// Register a mobile or CTV app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAppDto"></param>
+        /// <returns>ApiResponse of PubProperty</returns>
+        ApiResponse<PubProperty> PublisherControllerCreateAppWithHttpInfo(CreateAppDto createAppDto);
+        /// <summary>
+        /// Create a placement
+        /// </summary>
+        /// <remarks>
+        /// Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPlacementDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerCreatePlacementWithHttpInfo(CreatePlacementDto createPlacementDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createPropertyDto"></param>
-        /// <returns></returns>
-        void PublisherControllerCreateProperty(CreatePropertyDto createPropertyDto);
+        /// <returns>PubPlacement</returns>
+        PubPlacement PublisherControllerCreatePlacement(CreatePlacementDto createPlacementDto);
 
         /// <summary>
-        /// 
+        /// Create a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPlacementDto"></param>
+        /// <returns>ApiResponse of PubPlacement</returns>
+        ApiResponse<PubPlacement> PublisherControllerCreatePlacementWithHttpInfo(CreatePlacementDto createPlacementDto);
+        /// <summary>
+        /// Register a property
+        /// </summary>
+        /// <remarks>
+        /// Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerCreatePropertyWithHttpInfo(CreatePropertyDto createPropertyDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerDisableSigning(string id);
+        /// <returns>PubProperty</returns>
+        PubProperty PublisherControllerCreateProperty(CreatePropertyDto createPropertyDto);
 
         /// <summary>
-        /// 
+        /// Register a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPropertyDto"></param>
+        /// <returns>ApiResponse of PubProperty</returns>
+        ApiResponse<PubProperty> PublisherControllerCreatePropertyWithHttpInfo(CreatePropertyDto createPropertyDto);
+        /// <summary>
+        /// Disable signed-tag enforcement
+        /// </summary>
+        /// <remarks>
+        /// Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerDisableSigningWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerDomainConnect(string id);
+        /// <returns>PublisherControllerDisableSigning200Response</returns>
+        PublisherControllerDisableSigning200Response PublisherControllerDisableSigning(string id);
 
         /// <summary>
-        /// 
+        /// Disable signed-tag enforcement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerDomainConnectWithHttpInfo(string id);
+        /// <returns>ApiResponse of PublisherControllerDisableSigning200Response</returns>
+        ApiResponse<PublisherControllerDisableSigning200Response> PublisherControllerDisableSigningWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerGetApp(string id);
-
-        /// <summary>
-        /// 
+        /// Get a DomainConnect one-click DNS setup URL
         /// </summary>
         /// <remarks>
-        /// 
+        /// Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerGetAppWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PublisherControllerListApps();
+        /// <returns>PublisherControllerDomainConnect201Response</returns>
+        PublisherControllerDomainConnect201Response PublisherControllerDomainConnect(string id);
 
         /// <summary>
-        /// 
+        /// Get a DomainConnect one-click DNS setup URL
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerListAppsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PublisherControllerListPlacements();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerListPlacementsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PublisherControllerListProperties();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerListPropertiesWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerRemoveProperty(string id);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerRemovePropertyWithHttpInfo(string id);
+        /// <returns>ApiResponse of PublisherControllerDomainConnect201Response</returns>
+        ApiResponse<PublisherControllerDomainConnect201Response> PublisherControllerDomainConnectWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerRemoveServingDomain(string id);
-
-        /// <summary>
-        /// 
+        /// Get a mobile or CTV app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerRemoveServingDomainWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerRotateSigningSecret(string id);
+        /// <returns>PubProperty</returns>
+        PubProperty PublisherControllerGetApp(string id);
 
         /// <summary>
-        /// 
+        /// Get a mobile or CTV app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerRotateSigningSecretWithHttpInfo(string id);
+        /// <returns>ApiResponse of PubProperty</returns>
+        ApiResponse<PubProperty> PublisherControllerGetAppWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// List your mobile and CTV apps
         /// </summary>
+        /// <remarks>
+        /// Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;PubProperty&gt;</returns>
+        List<PubProperty> PublisherControllerListApps();
+
+        /// <summary>
+        /// List your mobile and CTV apps
+        /// </summary>
+        /// <remarks>
+        /// Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;PubProperty&gt;</returns>
+        ApiResponse<List<PubProperty>> PublisherControllerListAppsWithHttpInfo();
+        /// <summary>
+        /// List your placements
+        /// </summary>
+        /// <remarks>
+        /// Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;PubPlacement&gt;</returns>
+        List<PubPlacement> PublisherControllerListPlacements();
+
+        /// <summary>
+        /// List your placements
+        /// </summary>
+        /// <remarks>
+        /// Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;PubPlacement&gt;</returns>
+        ApiResponse<List<PubPlacement>> PublisherControllerListPlacementsWithHttpInfo();
+        /// <summary>
+        /// List your properties
+        /// </summary>
+        /// <remarks>
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;PubProperty&gt;</returns>
+        List<PubProperty> PublisherControllerListProperties();
+
+        /// <summary>
+        /// List your properties
+        /// </summary>
+        /// <remarks>
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;PubProperty&gt;</returns>
+        ApiResponse<List<PubProperty>> PublisherControllerListPropertiesWithHttpInfo();
+        /// <summary>
+        /// Get the ads.txt lines for a property
+        /// </summary>
+        /// <remarks>
+        /// Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>string</returns>
+        string PublisherControllerPropertyAdsTxt(string id);
+
+        /// <summary>
+        /// Get the ads.txt lines for a property
+        /// </summary>
+        /// <remarks>
+        /// Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> PublisherControllerPropertyAdsTxtWithHttpInfo(string id);
+        /// <summary>
+        /// Delete a property
+        /// </summary>
+        /// <remarks>
+        /// Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response PublisherControllerRemoveProperty(string id);
+
+        /// <summary>
+        /// Delete a property
+        /// </summary>
+        /// <remarks>
+        /// Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> PublisherControllerRemovePropertyWithHttpInfo(string id);
+        /// <summary>
+        /// Remove the first-party serving domain
+        /// </summary>
+        /// <remarks>
+        /// Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>PubServingDomain</returns>
+        PubServingDomain PublisherControllerRemoveServingDomain(string id);
+
+        /// <summary>
+        /// Remove the first-party serving domain
+        /// </summary>
+        /// <remarks>
+        /// Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PubServingDomain</returns>
+        ApiResponse<PubServingDomain> PublisherControllerRemoveServingDomainWithHttpInfo(string id);
+        /// <summary>
+        /// Generate or rotate a placement signing secret
+        /// </summary>
+        /// <remarks>
+        /// Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>PublisherControllerRotateSigningSecret201Response</returns>
+        PublisherControllerRotateSigningSecret201Response PublisherControllerRotateSigningSecret(string id);
+
+        /// <summary>
+        /// Generate or rotate a placement signing secret
+        /// </summary>
+        /// <remarks>
+        /// Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PublisherControllerRotateSigningSecret201Response</returns>
+        ApiResponse<PublisherControllerRotateSigningSecret201Response> PublisherControllerRotateSigningSecretWithHttpInfo(string id);
+        /// <summary>
+        /// Set a first-party serving domain
+        /// </summary>
+        /// <remarks>
+        /// Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
-        /// <returns></returns>
-        void PublisherControllerSetServingDomain(string id, ServingDomainDto servingDomainDto);
+        /// <returns>PubServingDomain</returns>
+        PubServingDomain PublisherControllerSetServingDomain(string id, ServingDomainDto servingDomainDto);
 
         /// <summary>
-        /// 
+        /// Set a first-party serving domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerSetServingDomainWithHttpInfo(string id, ServingDomainDto servingDomainDto);
+        /// <returns>ApiResponse of PubServingDomain</returns>
+        ApiResponse<PubServingDomain> PublisherControllerSetServingDomainWithHttpInfo(string id, ServingDomainDto servingDomainDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerTag(string id);
-
-        /// <summary>
-        /// 
+        /// Get the embed code for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerTagWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="updateAppDto"></param>
-        /// <returns></returns>
-        void PublisherControllerUpdateApp(string id, UpdateAppDto updateAppDto);
+        /// <returns>PublisherControllerTag200Response</returns>
+        PublisherControllerTag200Response PublisherControllerTag(string id);
 
         /// <summary>
-        /// 
+        /// Get the embed code for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PublisherControllerTag200Response</returns>
+        ApiResponse<PublisherControllerTag200Response> PublisherControllerTagWithHttpInfo(string id);
+        /// <summary>
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata
+        /// </summary>
+        /// <remarks>
+        /// Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateAppDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerUpdateAppWithHttpInfo(string id, UpdateAppDto updateAppDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="updatePlacementDto"></param>
-        /// <returns></returns>
-        void PublisherControllerUpdatePlacement(string id, UpdatePlacementDto updatePlacementDto);
+        /// <returns>PubProperty</returns>
+        PubProperty PublisherControllerUpdateApp(string id, UpdateAppDto updateAppDto);
 
         /// <summary>
-        /// 
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateAppDto"></param>
+        /// <returns>ApiResponse of PubProperty</returns>
+        ApiResponse<PubProperty> PublisherControllerUpdateAppWithHttpInfo(string id, UpdateAppDto updateAppDto);
+        /// <summary>
+        /// Update a placement
+        /// </summary>
+        /// <remarks>
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePlacementDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerUpdatePlacementWithHttpInfo(string id, UpdatePlacementDto updatePlacementDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="updatePropertyDto"></param>
-        /// <returns></returns>
-        void PublisherControllerUpdateProperty(string id, UpdatePropertyDto updatePropertyDto);
+        /// <returns>PubPlacement</returns>
+        PubPlacement PublisherControllerUpdatePlacement(string id, UpdatePlacementDto updatePlacementDto);
 
         /// <summary>
-        /// 
+        /// Update a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updatePlacementDto"></param>
+        /// <returns>ApiResponse of PubPlacement</returns>
+        ApiResponse<PubPlacement> PublisherControllerUpdatePlacementWithHttpInfo(string id, UpdatePlacementDto updatePlacementDto);
+        /// <summary>
+        /// Update a property
+        /// </summary>
+        /// <remarks>
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePropertyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerUpdatePropertyWithHttpInfo(string id, UpdatePropertyDto updatePropertyDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerVerify(string id);
+        /// <returns>PubProperty</returns>
+        PubProperty PublisherControllerUpdateProperty(string id, UpdatePropertyDto updatePropertyDto);
 
         /// <summary>
-        /// 
+        /// Update a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerVerifyWithHttpInfo(string id);
+        /// <param name="updatePropertyDto"></param>
+        /// <returns>ApiResponse of PubProperty</returns>
+        ApiResponse<PubProperty> PublisherControllerUpdatePropertyWithHttpInfo(string id, UpdatePropertyDto updatePropertyDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void PublisherControllerVerifyServingDomain(string id);
-
-        /// <summary>
-        /// 
+        /// Verify property ownership
         /// </summary>
         /// <remarks>
-        /// 
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherControllerVerifyServingDomainWithHttpInfo(string id);
+        /// <returns>PublisherControllerVerify201Response</returns>
+        PublisherControllerVerify201Response PublisherControllerVerify(string id);
+
+        /// <summary>
+        /// Verify property ownership
+        /// </summary>
+        /// <remarks>
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PublisherControllerVerify201Response</returns>
+        ApiResponse<PublisherControllerVerify201Response> PublisherControllerVerifyWithHttpInfo(string id);
+        /// <summary>
+        /// Verify the first-party serving domain
+        /// </summary>
+        /// <remarks>
+        /// Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>PublisherControllerVerifyServingDomain201Response</returns>
+        PublisherControllerVerifyServingDomain201Response PublisherControllerVerifyServingDomain(string id);
+
+        /// <summary>
+        /// Verify the first-party serving domain
+        /// </summary>
+        /// <remarks>
+        /// Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PublisherControllerVerifyServingDomain201Response</returns>
+        ApiResponse<PublisherControllerVerifyServingDomain201Response> PublisherControllerVerifyServingDomainWithHttpInfo(string id);
         #endregion Synchronous Operations
     }
 
@@ -399,467 +480,490 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get the app-ads.txt content for an app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerAppAdsTxtAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> PublisherControllerAppAdsTxtAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the app-ads.txt content for an app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerAppAdsTxtWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> PublisherControllerAppAdsTxtWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Register a mobile or CTV app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerCreateAppAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubProperty</returns>
+        System.Threading.Tasks.Task<PubProperty> PublisherControllerCreateAppAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Register a mobile or CTV app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerCreateAppWithHttpInfoAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubProperty>> PublisherControllerCreateAppWithHttpInfoAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerCreatePlacementAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubPlacement</returns>
+        System.Threading.Tasks.Task<PubPlacement> PublisherControllerCreatePlacementAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerCreatePlacementWithHttpInfoAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubPlacement)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubPlacement>> PublisherControllerCreatePlacementWithHttpInfoAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Register a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerCreatePropertyAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubProperty</returns>
+        System.Threading.Tasks.Task<PubProperty> PublisherControllerCreatePropertyAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Register a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerCreatePropertyWithHttpInfoAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubProperty>> PublisherControllerCreatePropertyWithHttpInfoAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Disable signed-tag enforcement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerDisableSigningAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherControllerDisableSigning200Response</returns>
+        System.Threading.Tasks.Task<PublisherControllerDisableSigning200Response> PublisherControllerDisableSigningAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Disable signed-tag enforcement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerDisableSigningWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherControllerDisableSigning200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherControllerDisableSigning200Response>> PublisherControllerDisableSigningWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a DomainConnect one-click DNS setup URL
         /// </summary>
         /// <remarks>
-        /// 
+        /// Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerDomainConnectAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherControllerDomainConnect201Response</returns>
+        System.Threading.Tasks.Task<PublisherControllerDomainConnect201Response> PublisherControllerDomainConnectAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a DomainConnect one-click DNS setup URL
         /// </summary>
         /// <remarks>
-        /// 
+        /// Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerDomainConnectWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherControllerDomainConnect201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherControllerDomainConnect201Response>> PublisherControllerDomainConnectWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a mobile or CTV app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerGetAppAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubProperty</returns>
+        System.Threading.Tasks.Task<PubProperty> PublisherControllerGetAppAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a mobile or CTV app
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerGetAppWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubProperty>> PublisherControllerGetAppWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your mobile and CTV apps
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerListAppsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;PubProperty&gt;</returns>
+        System.Threading.Tasks.Task<List<PubProperty>> PublisherControllerListAppsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your mobile and CTV apps
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerListAppsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;PubProperty&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<PubProperty>>> PublisherControllerListAppsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your placements
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerListPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;PubPlacement&gt;</returns>
+        System.Threading.Tasks.Task<List<PubPlacement>> PublisherControllerListPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your placements
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerListPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;PubPlacement&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<PubPlacement>>> PublisherControllerListPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your properties
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerListPropertiesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;PubProperty&gt;</returns>
+        System.Threading.Tasks.Task<List<PubProperty>> PublisherControllerListPropertiesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your properties
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerListPropertiesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;PubProperty&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<PubProperty>>> PublisherControllerListPropertiesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the ads.txt lines for a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerRemovePropertyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> PublisherControllerPropertyAdsTxtAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the ads.txt lines for a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerRemovePropertyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> PublisherControllerPropertyAdsTxtWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerRemoveServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> PublisherControllerRemovePropertyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerRemoveServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> PublisherControllerRemovePropertyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Remove the first-party serving domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerRotateSigningSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubServingDomain</returns>
+        System.Threading.Tasks.Task<PubServingDomain> PublisherControllerRemoveServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Remove the first-party serving domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerRotateSigningSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubServingDomain)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubServingDomain>> PublisherControllerRemoveServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Generate or rotate a placement signing secret
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PublisherControllerRotateSigningSecret201Response</returns>
+        System.Threading.Tasks.Task<PublisherControllerRotateSigningSecret201Response> PublisherControllerRotateSigningSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Generate or rotate a placement signing secret
+        /// </summary>
+        /// <remarks>
+        /// Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PublisherControllerRotateSigningSecret201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherControllerRotateSigningSecret201Response>> PublisherControllerRotateSigningSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Set a first-party serving domain
+        /// </summary>
+        /// <remarks>
+        /// Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerSetServingDomainAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubServingDomain</returns>
+        System.Threading.Tasks.Task<PubServingDomain> PublisherControllerSetServingDomainAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set a first-party serving domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerSetServingDomainWithHttpInfoAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubServingDomain)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubServingDomain>> PublisherControllerSetServingDomainWithHttpInfoAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the embed code for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerTagAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherControllerTag200Response</returns>
+        System.Threading.Tasks.Task<PublisherControllerTag200Response> PublisherControllerTagAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the embed code for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerTagWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherControllerTag200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherControllerTag200Response>> PublisherControllerTagWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerUpdateAppAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubProperty</returns>
+        System.Threading.Tasks.Task<PubProperty> PublisherControllerUpdateAppAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerUpdateAppWithHttpInfoAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubProperty>> PublisherControllerUpdateAppWithHttpInfoAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerUpdatePlacementAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubPlacement</returns>
+        System.Threading.Tasks.Task<PubPlacement> PublisherControllerUpdatePlacementAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerUpdatePlacementWithHttpInfoAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubPlacement)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubPlacement>> PublisherControllerUpdatePlacementWithHttpInfoAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerUpdatePropertyAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PubProperty</returns>
+        System.Threading.Tasks.Task<PubProperty> PublisherControllerUpdatePropertyAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerUpdatePropertyWithHttpInfoAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubProperty>> PublisherControllerUpdatePropertyWithHttpInfoAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Verify property ownership
         /// </summary>
         /// <remarks>
-        /// 
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerVerifyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherControllerVerify201Response</returns>
+        System.Threading.Tasks.Task<PublisherControllerVerify201Response> PublisherControllerVerifyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Verify property ownership
         /// </summary>
         /// <remarks>
-        /// 
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerVerifyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherControllerVerify201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherControllerVerify201Response>> PublisherControllerVerifyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Verify the first-party serving domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherControllerVerifyServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherControllerVerifyServingDomain201Response</returns>
+        System.Threading.Tasks.Task<PublisherControllerVerifyServingDomain201Response> PublisherControllerVerifyServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Verify the first-party serving domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherControllerVerifyServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherControllerVerifyServingDomain201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherControllerVerifyServingDomain201Response>> PublisherControllerVerifyServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1074,23 +1178,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the app-ads.txt content for an app Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerAppAdsTxt(string id)
+        /// <returns>string</returns>
+        public string PublisherControllerAppAdsTxt(string id)
         {
-            PublisherControllerAppAdsTxtWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = PublisherControllerAppAdsTxtWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the app-ads.txt content for an app Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerAppAdsTxtWithHttpInfo(string id)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> PublisherControllerAppAdsTxtWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1103,6 +1208,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1113,9 +1219,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/apps/{id}/app-ads.txt", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/v1/publisher/apps/{id}/app-ads.txt", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1127,25 +1244,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the app-ads.txt content for an app Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerAppAdsTxtAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> PublisherControllerAppAdsTxtAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerAppAdsTxtWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await PublisherControllerAppAdsTxtWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the app-ads.txt content for an app Returns plain-text app-ads.txt: a comment, the network&#39;s own &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; line, then each configured authorized-seller entry (&#x60;domain, sellerId, DIRECT|RESELLER[, certId]&#x60;). 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerAppAdsTxtWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> PublisherControllerAppAdsTxtWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1159,6 +1277,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
 
@@ -1170,10 +1289,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/apps/{id}/app-ads.txt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/v1/publisher/apps/{id}/app-ads.txt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1185,23 +1315,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a mobile or CTV app Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAppDto"></param>
-        /// <returns></returns>
-        public void PublisherControllerCreateApp(CreateAppDto createAppDto)
+        /// <returns>PubProperty</returns>
+        public PubProperty PublisherControllerCreateApp(CreateAppDto createAppDto)
         {
-            PublisherControllerCreateAppWithHttpInfo(createAppDto);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = PublisherControllerCreateAppWithHttpInfo(createAppDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a mobile or CTV app Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAppDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerCreateAppWithHttpInfo(CreateAppDto createAppDto)
+        /// <returns>ApiResponse of PubProperty</returns>
+        public Adviverse.Api.Client.ApiResponse<PubProperty> PublisherControllerCreateAppWithHttpInfo(CreateAppDto createAppDto)
         {
             // verify the required parameter 'createAppDto' is set
             if (createAppDto == null)
@@ -1215,6 +1346,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1225,9 +1357,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAppDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/apps", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PubProperty>("/v1/publisher/apps", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1239,25 +1382,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a mobile or CTV app Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerCreateAppAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubProperty</returns>
+        public async System.Threading.Tasks.Task<PubProperty> PublisherControllerCreateAppAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerCreateAppWithHttpInfoAsync(createAppDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = await PublisherControllerCreateAppWithHttpInfoAsync(createAppDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a mobile or CTV app Creates a &#x60;mobile_app&#x60; or &#x60;ctv&#x60; property from &#x60;kind&#x60;, &#x60;name&#x60;, &#x60;bundleId&#x60; and &#x60;platform&#x60; (ios, android, roku, firetv, appletv, androidtv, web), with optional &#x60;storeUrl&#x60;, &#x60;appStoreId&#x60;, &#x60;category&#x60; and &#x60;ctvMeta&#x60;. The bundle id is stored in both &#x60;bundle_id&#x60; and &#x60;domain&#x60;; the app enters the normal &#x60;pending&#x60; approval flow with file verification.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerCreateAppWithHttpInfoAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubProperty>> PublisherControllerCreateAppWithHttpInfoAsync(CreateAppDto createAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createAppDto' is set
             if (createAppDto == null)
@@ -1272,6 +1416,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1283,10 +1428,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAppDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/apps", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PubProperty>("/v1/publisher/apps", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1298,23 +1454,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a placement Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPlacementDto"></param>
-        /// <returns></returns>
-        public void PublisherControllerCreatePlacement(CreatePlacementDto createPlacementDto)
+        /// <returns>PubPlacement</returns>
+        public PubPlacement PublisherControllerCreatePlacement(CreatePlacementDto createPlacementDto)
         {
-            PublisherControllerCreatePlacementWithHttpInfo(createPlacementDto);
+            Adviverse.Api.Client.ApiResponse<PubPlacement> localVarResponse = PublisherControllerCreatePlacementWithHttpInfo(createPlacementDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a placement Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPlacementDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerCreatePlacementWithHttpInfo(CreatePlacementDto createPlacementDto)
+        /// <returns>ApiResponse of PubPlacement</returns>
+        public Adviverse.Api.Client.ApiResponse<PubPlacement> PublisherControllerCreatePlacementWithHttpInfo(CreatePlacementDto createPlacementDto)
         {
             // verify the required parameter 'createPlacementDto' is set
             if (createPlacementDto == null)
@@ -1328,6 +1485,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1338,9 +1496,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPlacementDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/placements", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PubPlacement>("/v1/publisher/placements", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1352,25 +1521,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a placement Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerCreatePlacementAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubPlacement</returns>
+        public async System.Threading.Tasks.Task<PubPlacement> PublisherControllerCreatePlacementAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerCreatePlacementWithHttpInfoAsync(createPlacementDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubPlacement> localVarResponse = await PublisherControllerCreatePlacementWithHttpInfoAsync(createPlacementDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a placement Creates an ad unit on one of your properties (&#x60;propertyId&#x60;, &#x60;name&#x60;, &#x60;format&#x60; required) with a generated &#x60;tag_key&#x60;. Optional fields cover size (&#x60;width&#x60;/&#x60;height&#x60; or &#x60;responsive&#x60;), &#x60;floorCpm&#x60;, &#x60;revShare&#x60; (defaults to the network rev-share), &#x60;auctionType&#x60; (default &#x60;first_price&#x60;), &#x60;passbackUrl&#x60;, &#x60;frequencyCap&#x60;, format &#x60;settings&#x60;, and yield fill (&#x60;houseOnly&#x60;, &#x60;houseShare&#x60; clamped to 0-1, &#x60;houseBackfill&#x60;, &#x60;floorFallback&#x60;). Popunders default to a 1-per-visitor-per-24h frequency cap unless &#x60;frequencyCap&#x60; is given (&#x60;{}&#x60; opts out). The serving index is republished. 404 if the property is missing, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerCreatePlacementWithHttpInfoAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubPlacement)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubPlacement>> PublisherControllerCreatePlacementWithHttpInfoAsync(CreatePlacementDto createPlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createPlacementDto' is set
             if (createPlacementDto == null)
@@ -1385,6 +1555,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1396,10 +1567,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPlacementDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/placements", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PubPlacement>("/v1/publisher/placements", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1411,23 +1593,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a property Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyDto"></param>
-        /// <returns></returns>
-        public void PublisherControllerCreateProperty(CreatePropertyDto createPropertyDto)
+        /// <returns>PubProperty</returns>
+        public PubProperty PublisherControllerCreateProperty(CreatePropertyDto createPropertyDto)
         {
-            PublisherControllerCreatePropertyWithHttpInfo(createPropertyDto);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = PublisherControllerCreatePropertyWithHttpInfo(createPropertyDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a property Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerCreatePropertyWithHttpInfo(CreatePropertyDto createPropertyDto)
+        /// <returns>ApiResponse of PubProperty</returns>
+        public Adviverse.Api.Client.ApiResponse<PubProperty> PublisherControllerCreatePropertyWithHttpInfo(CreatePropertyDto createPropertyDto)
         {
             // verify the required parameter 'createPropertyDto' is set
             if (createPropertyDto == null)
@@ -1441,6 +1624,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1451,9 +1635,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPropertyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/properties", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PubProperty>("/v1/publisher/properties", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1465,25 +1660,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a property Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerCreatePropertyAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubProperty</returns>
+        public async System.Threading.Tasks.Task<PubProperty> PublisherControllerCreatePropertyAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerCreatePropertyWithHttpInfoAsync(createPropertyDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = await PublisherControllerCreatePropertyWithHttpInfoAsync(createPropertyDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a property Creates a property with a fresh &#x60;adviverse-verify-…&#x60; verification token. &#x60;domain&#x60; is required; &#x60;kind&#x60; defaults to &#x60;website&#x60; and &#x60;verificationMethod&#x60; to &#x60;dns&#x60;. Website properties start &#x60;unverified&#x60;/&#x60;pending&#x60; and must be verified before they serve. With &#x60;kind: \&quot;cli\&quot;&#x60; the property is a terminal/AI-agent tool: &#x60;domain&#x60; is treated as a tool name and turned into a unique slug, and the row is created already &#x60;verified&#x60; and &#x60;approved&#x60; (no domain to prove).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerCreatePropertyWithHttpInfoAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubProperty>> PublisherControllerCreatePropertyWithHttpInfoAsync(CreatePropertyDto createPropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createPropertyDto' is set
             if (createPropertyDto == null)
@@ -1498,6 +1694,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1509,10 +1706,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPropertyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PubProperty>("/v1/publisher/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1524,23 +1732,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Disable signed-tag enforcement Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerDisableSigning(string id)
+        /// <returns>PublisherControllerDisableSigning200Response</returns>
+        public PublisherControllerDisableSigning200Response PublisherControllerDisableSigning(string id)
         {
-            PublisherControllerDisableSigningWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerDisableSigning200Response> localVarResponse = PublisherControllerDisableSigningWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Disable signed-tag enforcement Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerDisableSigningWithHttpInfo(string id)
+        /// <returns>ApiResponse of PublisherControllerDisableSigning200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherControllerDisableSigning200Response> PublisherControllerDisableSigningWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1553,6 +1762,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1563,9 +1773,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<PublisherControllerDisableSigning200Response>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1577,25 +1798,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Disable signed-tag enforcement Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerDisableSigningAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherControllerDisableSigning200Response</returns>
+        public async System.Threading.Tasks.Task<PublisherControllerDisableSigning200Response> PublisherControllerDisableSigningAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerDisableSigningWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerDisableSigning200Response> localVarResponse = await PublisherControllerDisableSigningWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Disable signed-tag enforcement Removes the placement&#39;s signing secret so it goes back to unsigned serving, and republishes the index. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerDisableSigningWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherControllerDisableSigning200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherControllerDisableSigning200Response>> PublisherControllerDisableSigningWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1609,6 +1831,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1620,10 +1843,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<PublisherControllerDisableSigning200Response>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1635,23 +1869,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a DomainConnect one-click DNS setup URL Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerDomainConnect(string id)
+        /// <returns>PublisherControllerDomainConnect201Response</returns>
+        public PublisherControllerDomainConnect201Response PublisherControllerDomainConnect(string id)
         {
-            PublisherControllerDomainConnectWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerDomainConnect201Response> localVarResponse = PublisherControllerDomainConnectWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a DomainConnect one-click DNS setup URL Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerDomainConnectWithHttpInfo(string id)
+        /// <returns>ApiResponse of PublisherControllerDomainConnect201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherControllerDomainConnect201Response> PublisherControllerDomainConnectWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1664,6 +1899,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1674,9 +1910,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/properties/{id}/domainconnect", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PublisherControllerDomainConnect201Response>("/v1/publisher/properties/{id}/domainconnect", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1688,25 +1935,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a DomainConnect one-click DNS setup URL Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerDomainConnectAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherControllerDomainConnect201Response</returns>
+        public async System.Threading.Tasks.Task<PublisherControllerDomainConnect201Response> PublisherControllerDomainConnectAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerDomainConnectWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerDomainConnect201Response> localVarResponse = await PublisherControllerDomainConnectWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a DomainConnect one-click DNS setup URL Discovers whether the property domain&#39;s DNS provider supports DomainConnect (TXT at &#x60;_domainconnect.&lt;domain&gt;&#x60;, then the provider settings &#x60;urlSyncUX&#x60;). If it does, returns &#x60;supported: true&#x60; with an &#x60;applyUrl&#x60; the user opens to approve writing the verification TXT record; afterwards call verify. On any discovery failure it returns &#x60;supported: false, method: \&quot;manual\&quot;&#x60; with the token so the publisher can add the TXT record by hand.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerDomainConnectWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherControllerDomainConnect201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherControllerDomainConnect201Response>> PublisherControllerDomainConnectWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1720,6 +1968,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1731,10 +1980,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/properties/{id}/domainconnect", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PublisherControllerDomainConnect201Response>("/v1/publisher/properties/{id}/domainconnect", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1746,23 +2006,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a mobile or CTV app Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerGetApp(string id)
+        /// <returns>PubProperty</returns>
+        public PubProperty PublisherControllerGetApp(string id)
         {
-            PublisherControllerGetAppWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = PublisherControllerGetAppWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a mobile or CTV app Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerGetAppWithHttpInfo(string id)
+        /// <returns>ApiResponse of PubProperty</returns>
+        public Adviverse.Api.Client.ApiResponse<PubProperty> PublisherControllerGetAppWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1775,6 +2036,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1785,9 +2047,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PubProperty>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1799,25 +2072,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a mobile or CTV app Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerGetAppAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubProperty</returns>
+        public async System.Threading.Tasks.Task<PubProperty> PublisherControllerGetAppAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerGetAppWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = await PublisherControllerGetAppWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a mobile or CTV app Returns one app/CTV property. 404 if it does not exist (or is a web property), 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerGetAppWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubProperty>> PublisherControllerGetAppWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1831,6 +2105,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1842,10 +2117,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PubProperty>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1857,21 +2143,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your mobile and CTV apps Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PublisherControllerListApps()
+        /// <returns>List&lt;PubProperty&gt;</returns>
+        public List<PubProperty> PublisherControllerListApps()
         {
-            PublisherControllerListAppsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<PubProperty>> localVarResponse = PublisherControllerListAppsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your mobile and CTV apps Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerListAppsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;PubProperty&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<PubProperty>> PublisherControllerListAppsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1880,6 +2167,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1889,9 +2177,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/apps", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<PubProperty>>("/v1/publisher/apps", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1903,23 +2202,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your mobile and CTV apps Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerListAppsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;PubProperty&gt;</returns>
+        public async System.Threading.Tasks.Task<List<PubProperty>> PublisherControllerListAppsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerListAppsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<PubProperty>> localVarResponse = await PublisherControllerListAppsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your mobile and CTV apps Returns the publisher&#39;s properties of kind &#x60;mobile_app&#x60; or &#x60;ctv&#x60;, newest first. Web properties are excluded.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerListAppsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;PubProperty&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<PubProperty>>> PublisherControllerListAppsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1929,6 +2229,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1939,10 +2240,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/apps", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<PubProperty>>("/v1/publisher/apps", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1954,21 +2266,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your placements Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PublisherControllerListPlacements()
+        /// <returns>List&lt;PubPlacement&gt;</returns>
+        public List<PubPlacement> PublisherControllerListPlacements()
         {
-            PublisherControllerListPlacementsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<PubPlacement>> localVarResponse = PublisherControllerListPlacementsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your placements Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerListPlacementsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;PubPlacement&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<PubPlacement>> PublisherControllerListPlacementsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1977,6 +2290,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1986,9 +2300,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/placements", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<PubPlacement>>("/v1/publisher/placements", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2000,23 +2325,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your placements Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerListPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;PubPlacement&gt;</returns>
+        public async System.Threading.Tasks.Task<List<PubPlacement>> PublisherControllerListPlacementsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerListPlacementsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<PubPlacement>> localVarResponse = await PublisherControllerListPlacementsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your placements Returns every non-deleted placement across all of the publisher&#39;s properties, newest first. Optional &#x60;limit&#x60;/&#x60;offset&#x60; paginate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerListPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;PubPlacement&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<PubPlacement>>> PublisherControllerListPlacementsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2026,6 +2352,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2036,10 +2363,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/placements", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<PubPlacement>>("/v1/publisher/placements", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2051,21 +2389,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PublisherControllerListProperties()
+        /// <returns>List&lt;PubProperty&gt;</returns>
+        public List<PubProperty> PublisherControllerListProperties()
         {
-            PublisherControllerListPropertiesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<PubProperty>> localVarResponse = PublisherControllerListPropertiesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerListPropertiesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;PubProperty&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<PubProperty>> PublisherControllerListPropertiesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2074,6 +2413,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2083,9 +2423,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/properties", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<PubProperty>>("/v1/publisher/properties", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2097,23 +2448,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerListPropertiesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;PubProperty&gt;</returns>
+        public async System.Threading.Tasks.Task<List<PubProperty>> PublisherControllerListPropertiesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerListPropertiesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<PubProperty>> localVarResponse = await PublisherControllerListPropertiesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerListPropertiesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;PubProperty&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<PubProperty>>> PublisherControllerListPropertiesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2123,6 +2475,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2133,10 +2486,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<PubProperty>>("/v1/publisher/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2148,23 +2512,161 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the ads.txt lines for a property Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerRemoveProperty(string id)
+        /// <returns>string</returns>
+        public string PublisherControllerPropertyAdsTxt(string id)
         {
-            PublisherControllerRemovePropertyWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = PublisherControllerPropertyAdsTxtWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the ads.txt lines for a property Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerRemovePropertyWithHttpInfo(string id)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> PublisherControllerPropertyAdsTxtWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'id' when calling PublisherApi->PublisherControllerPropertyAdsTxt");
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain"
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<string>("/v1/publisher/properties/{id}/ads.txt", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PublisherControllerPropertyAdsTxt", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get the ads.txt lines for a property Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> PublisherControllerPropertyAdsTxtAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await PublisherControllerPropertyAdsTxtWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the ads.txt lines for a property Returns the plain-text ads.txt content to publish at &#x60;https://&lt;domain&gt;/ads.txt&#x60;: a comment line plus &#x60;adviverse.com, &lt;publisherAccountId&gt;, DIRECT&#x60; (the seller id matches sellers.json). 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> PublisherControllerPropertyAdsTxtWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'id' when calling PublisherApi->PublisherControllerPropertyAdsTxt");
+
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain"
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/v1/publisher/properties/{id}/ads.txt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PublisherControllerPropertyAdsTxt", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a property Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response PublisherControllerRemoveProperty(string id)
+        {
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = PublisherControllerRemovePropertyWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a property Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> PublisherControllerRemovePropertyWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2177,6 +2679,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2187,9 +2690,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AuthControllerResendVerification201Response>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2201,25 +2715,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a property Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerRemovePropertyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> PublisherControllerRemovePropertyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerRemovePropertyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await PublisherControllerRemovePropertyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a property Soft-deletes the property and all of its placements, then republishes the serving index so ads stop promptly. 404 if not found, 403 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerRemovePropertyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> PublisherControllerRemovePropertyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2233,6 +2748,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2244,10 +2760,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AuthControllerResendVerification201Response>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2259,23 +2786,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Remove the first-party serving domain Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerRemoveServingDomain(string id)
+        /// <returns>PubServingDomain</returns>
+        public PubServingDomain PublisherControllerRemoveServingDomain(string id)
         {
-            PublisherControllerRemoveServingDomainWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PubServingDomain> localVarResponse = PublisherControllerRemoveServingDomainWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Remove the first-party serving domain Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerRemoveServingDomainWithHttpInfo(string id)
+        /// <returns>ApiResponse of PubServingDomain</returns>
+        public Adviverse.Api.Client.ApiResponse<PubServingDomain> PublisherControllerRemoveServingDomainWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2288,6 +2816,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2298,9 +2827,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<PubServingDomain>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2312,25 +2852,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Remove the first-party serving domain Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerRemoveServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubServingDomain</returns>
+        public async System.Threading.Tasks.Task<PubServingDomain> PublisherControllerRemoveServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerRemoveServingDomainWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubServingDomain> localVarResponse = await PublisherControllerRemoveServingDomainWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Remove the first-party serving domain Clears the property&#39;s custom serving domain; tags fall back to the default serving edge and the edge stops issuing certificates for the old host. 404/403 if the property is not found or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerRemoveServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubServingDomain)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubServingDomain>> PublisherControllerRemoveServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2344,6 +2885,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2355,10 +2897,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<PubServingDomain>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2370,23 +2923,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Generate or rotate a placement signing secret Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerRotateSigningSecret(string id)
+        /// <returns>PublisherControllerRotateSigningSecret201Response</returns>
+        public PublisherControllerRotateSigningSecret201Response PublisherControllerRotateSigningSecret(string id)
         {
-            PublisherControllerRotateSigningSecretWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerRotateSigningSecret201Response> localVarResponse = PublisherControllerRotateSigningSecretWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Generate or rotate a placement signing secret Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerRotateSigningSecretWithHttpInfo(string id)
+        /// <returns>ApiResponse of PublisherControllerRotateSigningSecret201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherControllerRotateSigningSecret201Response> PublisherControllerRotateSigningSecretWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2399,6 +2953,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2409,9 +2964,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PublisherControllerRotateSigningSecret201Response>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2423,25 +2989,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Generate or rotate a placement signing secret Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerRotateSigningSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherControllerRotateSigningSecret201Response</returns>
+        public async System.Threading.Tasks.Task<PublisherControllerRotateSigningSecret201Response> PublisherControllerRotateSigningSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerRotateSigningSecretWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerRotateSigningSecret201Response> localVarResponse = await PublisherControllerRotateSigningSecretWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Generate or rotate a placement signing secret Creates a new &#x60;tsk_…&#x60; HMAC secret for the placement, replacing any previous one, and republishes the index. With a secret set, the engine only serves terminal requests (and accepts integrity pings) that carry a valid signature, so embed it in your signing client. The secret is returned only once. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerRotateSigningSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherControllerRotateSigningSecret201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherControllerRotateSigningSecret201Response>> PublisherControllerRotateSigningSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2455,6 +3022,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2466,10 +3034,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PublisherControllerRotateSigningSecret201Response>("/v1/publisher/placements/{id}/signing-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2481,25 +3060,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a first-party serving domain Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
-        /// <returns></returns>
-        public void PublisherControllerSetServingDomain(string id, ServingDomainDto servingDomainDto)
+        /// <returns>PubServingDomain</returns>
+        public PubServingDomain PublisherControllerSetServingDomain(string id, ServingDomainDto servingDomainDto)
         {
-            PublisherControllerSetServingDomainWithHttpInfo(id, servingDomainDto);
+            Adviverse.Api.Client.ApiResponse<PubServingDomain> localVarResponse = PublisherControllerSetServingDomainWithHttpInfo(id, servingDomainDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a first-party serving domain Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerSetServingDomainWithHttpInfo(string id, ServingDomainDto servingDomainDto)
+        /// <returns>ApiResponse of PubServingDomain</returns>
+        public Adviverse.Api.Client.ApiResponse<PubServingDomain> PublisherControllerSetServingDomainWithHttpInfo(string id, ServingDomainDto servingDomainDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2517,6 +3097,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2528,9 +3109,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = servingDomainDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PubServingDomain>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2542,27 +3134,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a first-party serving domain Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerSetServingDomainAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubServingDomain</returns>
+        public async System.Threading.Tasks.Task<PubServingDomain> PublisherControllerSetServingDomainAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerSetServingDomainWithHttpInfoAsync(id, servingDomainDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubServingDomain> localVarResponse = await PublisherControllerSetServingDomainWithHttpInfoAsync(id, servingDomainDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a first-party serving domain Sets the property&#39;s custom ad-serving hostname (anti-adblock). Body &#x60;{ domain }&#x60; is normalized to a bare hostname; an empty/missing domain clears it. The domain starts unverified: the publisher must CNAME it to &#x60;cname_target&#x60; and call the verify endpoint before tags use it. 400 for an invalid hostname or one already held by another property.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="servingDomainDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerSetServingDomainWithHttpInfoAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubServingDomain)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubServingDomain>> PublisherControllerSetServingDomainWithHttpInfoAsync(string id, ServingDomainDto servingDomainDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2581,6 +3174,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2593,10 +3187,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = servingDomainDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PubServingDomain>("/v1/publisher/properties/{id}/serving-domain", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2608,23 +3213,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the embed code for a placement Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerTag(string id)
+        /// <returns>PublisherControllerTag200Response</returns>
+        public PublisherControllerTag200Response PublisherControllerTag(string id)
         {
-            PublisherControllerTagWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerTag200Response> localVarResponse = PublisherControllerTagWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the embed code for a placement Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerTagWithHttpInfo(string id)
+        /// <returns>ApiResponse of PublisherControllerTag200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherControllerTag200Response> PublisherControllerTagWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2637,6 +3243,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2647,9 +3254,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/placements/{id}/tag", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PublisherControllerTag200Response>("/v1/publisher/placements/{id}/tag", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2661,25 +3279,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the embed code for a placement Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerTagAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherControllerTag200Response</returns>
+        public async System.Threading.Tasks.Task<PublisherControllerTag200Response> PublisherControllerTagAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerTagWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerTag200Response> localVarResponse = await PublisherControllerTagWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the embed code for a placement Returns the integration snippet for the placement, shaped by format: &#x60;script&#x60; (SDK &#x60;&lt;script&gt;&#x60; loader) for web formats, &#x60;directUrl&#x60; for &#x60;direct_link&#x60;, &#x60;emailSnippet&#x60; (tracked image + link with a &#x60;{{RECIPIENT}}&#x60; merge field) for &#x60;email&#x60;, and an HTTP &#x60;endpoint&#x60; for &#x60;terminal&#x60;. If the property has a verified first-party serving domain the snippet points at it and &#x60;firstParty&#x60; is true. 404 if not your placement.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerTagWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherControllerTag200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherControllerTag200Response>> PublisherControllerTagWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2693,6 +3312,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2704,10 +3324,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/placements/{id}/tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PublisherControllerTag200Response>("/v1/publisher/placements/{id}/tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2719,25 +3350,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateAppDto"></param>
-        /// <returns></returns>
-        public void PublisherControllerUpdateApp(string id, UpdateAppDto updateAppDto)
+        /// <returns>PubProperty</returns>
+        public PubProperty PublisherControllerUpdateApp(string id, UpdateAppDto updateAppDto)
         {
-            PublisherControllerUpdateAppWithHttpInfo(id, updateAppDto);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = PublisherControllerUpdateAppWithHttpInfo(id, updateAppDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateAppDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerUpdateAppWithHttpInfo(string id, UpdateAppDto updateAppDto)
+        /// <returns>ApiResponse of PubProperty</returns>
+        public Adviverse.Api.Client.ApiResponse<PubProperty> PublisherControllerUpdateAppWithHttpInfo(string id, UpdateAppDto updateAppDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2755,6 +3387,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2766,9 +3399,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateAppDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<PubProperty>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2780,27 +3424,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerUpdateAppAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubProperty</returns>
+        public async System.Threading.Tasks.Task<PubProperty> PublisherControllerUpdateAppAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerUpdateAppWithHttpInfoAsync(id, updateAppDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = await PublisherControllerUpdateAppWithHttpInfoAsync(id, updateAppDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update app-ads.txt, SKAdNetwork and CTV metadata Patches only the fields sent: &#x60;appAdsTxt&#x60; (authorized-seller entries &#x60;{domain, sellerId, relationship?, certId?}&#x60;, normalized and invalid ones dropped), &#x60;skadnetworkIds&#x60;, &#x60;ctvMeta&#x60;, &#x60;storeUrl&#x60;, &#x60;platform&#x60;. Republishes the serving index. 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateAppDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerUpdateAppWithHttpInfoAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubProperty>> PublisherControllerUpdateAppWithHttpInfoAsync(string id, UpdateAppDto updateAppDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2819,6 +3464,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2831,10 +3477,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateAppDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<PubProperty>("/v1/publisher/apps/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2846,25 +3503,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePlacementDto"></param>
-        /// <returns></returns>
-        public void PublisherControllerUpdatePlacement(string id, UpdatePlacementDto updatePlacementDto)
+        /// <returns>PubPlacement</returns>
+        public PubPlacement PublisherControllerUpdatePlacement(string id, UpdatePlacementDto updatePlacementDto)
         {
-            PublisherControllerUpdatePlacementWithHttpInfo(id, updatePlacementDto);
+            Adviverse.Api.Client.ApiResponse<PubPlacement> localVarResponse = PublisherControllerUpdatePlacementWithHttpInfo(id, updatePlacementDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePlacementDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerUpdatePlacementWithHttpInfo(string id, UpdatePlacementDto updatePlacementDto)
+        /// <returns>ApiResponse of PubPlacement</returns>
+        public Adviverse.Api.Client.ApiResponse<PubPlacement> PublisherControllerUpdatePlacementWithHttpInfo(string id, UpdatePlacementDto updatePlacementDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2882,6 +3540,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2893,9 +3552,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updatePlacementDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/publisher/placements/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<PubPlacement>("/v1/publisher/placements/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2907,27 +3577,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerUpdatePlacementAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubPlacement</returns>
+        public async System.Threading.Tasks.Task<PubPlacement> PublisherControllerUpdatePlacementAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerUpdatePlacementWithHttpInfoAsync(id, updatePlacementDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubPlacement> localVarResponse = await PublisherControllerUpdatePlacementWithHttpInfoAsync(id, updatePlacementDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePlacementDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerUpdatePlacementWithHttpInfoAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubPlacement)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubPlacement>> PublisherControllerUpdatePlacementWithHttpInfoAsync(string id, UpdatePlacementDto updatePlacementDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2946,6 +3617,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2958,10 +3630,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updatePlacementDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/publisher/placements/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<PubPlacement>("/v1/publisher/placements/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2973,25 +3656,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePropertyDto"></param>
-        /// <returns></returns>
-        public void PublisherControllerUpdateProperty(string id, UpdatePropertyDto updatePropertyDto)
+        /// <returns>PubProperty</returns>
+        public PubProperty PublisherControllerUpdateProperty(string id, UpdatePropertyDto updatePropertyDto)
         {
-            PublisherControllerUpdatePropertyWithHttpInfo(id, updatePropertyDto);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = PublisherControllerUpdatePropertyWithHttpInfo(id, updatePropertyDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePropertyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerUpdatePropertyWithHttpInfo(string id, UpdatePropertyDto updatePropertyDto)
+        /// <returns>ApiResponse of PubProperty</returns>
+        public Adviverse.Api.Client.ApiResponse<PubProperty> PublisherControllerUpdatePropertyWithHttpInfo(string id, UpdatePropertyDto updatePropertyDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3009,6 +3693,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3020,9 +3705,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updatePropertyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<PubProperty>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3034,27 +3730,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerUpdatePropertyAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PubProperty</returns>
+        public async System.Threading.Tasks.Task<PubProperty> PublisherControllerUpdatePropertyAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerUpdatePropertyWithHttpInfoAsync(id, updatePropertyDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = await PublisherControllerUpdatePropertyWithHttpInfoAsync(id, updatePropertyDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePropertyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerUpdatePropertyWithHttpInfoAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubProperty>> PublisherControllerUpdatePropertyWithHttpInfoAsync(string id, UpdatePropertyDto updatePropertyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3073,6 +3770,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3085,10 +3783,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updatePropertyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<PubProperty>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3100,23 +3809,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerVerify(string id)
+        /// <returns>PublisherControllerVerify201Response</returns>
+        public PublisherControllerVerify201Response PublisherControllerVerify(string id)
         {
-            PublisherControllerVerifyWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerVerify201Response> localVarResponse = PublisherControllerVerifyWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerVerifyWithHttpInfo(string id)
+        /// <returns>ApiResponse of PublisherControllerVerify201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherControllerVerify201Response> PublisherControllerVerifyWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3129,6 +3839,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3139,9 +3850,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/properties/{id}/verify", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PublisherControllerVerify201Response>("/v1/publisher/properties/{id}/verify", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3153,25 +3875,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerVerifyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherControllerVerify201Response</returns>
+        public async System.Threading.Tasks.Task<PublisherControllerVerify201Response> PublisherControllerVerifyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerVerifyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerVerify201Response> localVarResponse = await PublisherControllerVerifyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerVerifyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherControllerVerify201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherControllerVerify201Response>> PublisherControllerVerifyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3185,6 +3908,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3196,10 +3920,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/properties/{id}/verify", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PublisherControllerVerify201Response>("/v1/publisher/properties/{id}/verify", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3211,23 +3946,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Verify the first-party serving domain Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PublisherControllerVerifyServingDomain(string id)
+        /// <returns>PublisherControllerVerifyServingDomain201Response</returns>
+        public PublisherControllerVerifyServingDomain201Response PublisherControllerVerifyServingDomain(string id)
         {
-            PublisherControllerVerifyServingDomainWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerVerifyServingDomain201Response> localVarResponse = PublisherControllerVerifyServingDomainWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Verify the first-party serving domain Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherControllerVerifyServingDomainWithHttpInfo(string id)
+        /// <returns>ApiResponse of PublisherControllerVerifyServingDomain201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherControllerVerifyServingDomain201Response> PublisherControllerVerifyServingDomainWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3240,6 +3976,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3250,9 +3987,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/properties/{id}/serving-domain/verify", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PublisherControllerVerifyServingDomain201Response>("/v1/publisher/properties/{id}/serving-domain/verify", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3264,25 +4012,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Verify the first-party serving domain Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherControllerVerifyServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherControllerVerifyServingDomain201Response</returns>
+        public async System.Threading.Tasks.Task<PublisherControllerVerifyServingDomain201Response> PublisherControllerVerifyServingDomainAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherControllerVerifyServingDomainWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherControllerVerifyServingDomain201Response> localVarResponse = await PublisherControllerVerifyServingDomainWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Verify the first-party serving domain Checks that the serving domain CNAMEs to the serving edge (or, for flattened CNAME/ALIAS records, resolves to the same A records). Stores the result and refreshes the edge router config; once verified, generated tags load from &#x60;https://&lt;serving_domain&gt;&#x60; and the edge will issue TLS for it. 400 if no serving domain is set.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherControllerVerifyServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherControllerVerifyServingDomain201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherControllerVerifyServingDomain201Response>> PublisherControllerVerifyServingDomainWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3296,6 +4045,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3307,10 +4057,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/properties/{id}/serving-domain/verify", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PublisherControllerVerifyServingDomain201Response>("/v1/publisher/properties/{id}/serving-domain/verify", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

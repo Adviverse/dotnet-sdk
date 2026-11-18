@@ -28,285 +28,333 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q"></param>
-        /// <returns></returns>
-        void AdminControllerAccounts(string q);
-
-        /// <summary>
-        /// 
+        /// Search accounts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerAccountsWithHttpInfo(string q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="addBlockDto"></param>
-        /// <returns></returns>
-        void AdminControllerAddBlock(AddBlockDto addBlockDto);
+        /// <returns>List&lt;AdminControllerAccounts200ResponseInner&gt;</returns>
+        List<AdminControllerAccounts200ResponseInner> AdminControllerAccounts(string q);
 
         /// <summary>
-        /// 
+        /// Search accounts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="q"></param>
+        /// <returns>ApiResponse of List&lt;AdminControllerAccounts200ResponseInner&gt;</returns>
+        ApiResponse<List<AdminControllerAccounts200ResponseInner>> AdminControllerAccountsWithHttpInfo(string q);
+        /// <summary>
+        /// Add a fraud blocklist entry
+        /// </summary>
+        /// <remarks>
+        /// Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addBlockDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerAddBlockWithHttpInfo(AddBlockDto addBlockDto);
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response AdminControllerAddBlock(AddBlockDto addBlockDto);
+
         /// <summary>
-        /// 
+        /// Add a fraud blocklist entry
         /// </summary>
+        /// <remarks>
+        /// Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addBlockDto"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> AdminControllerAddBlockWithHttpInfo(AddBlockDto addBlockDto);
+        /// <summary>
+        /// Read the admin audit log
+        /// </summary>
+        /// <remarks>
+        /// Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void AdminControllerAudits();
 
         /// <summary>
-        /// 
+        /// Read the admin audit log
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> AdminControllerAuditsWithHttpInfo();
         /// <summary>
-        /// 
+        /// List fraud blocklist entries
         /// </summary>
+        /// <remarks>
+        /// Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void AdminControllerBlocklist();
 
         /// <summary>
-        /// 
+        /// List fraud blocklist entries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> AdminControllerBlocklistWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdminControllerConfig();
-
-        /// <summary>
-        /// 
+        /// List platform config and feature flags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerConfigWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdminControllerConfirmDeposit(string id);
+        /// <returns>List&lt;AdminControllerConfig200ResponseInner&gt;</returns>
+        List<AdminControllerConfig200ResponseInner> AdminControllerConfig();
 
         /// <summary>
-        /// 
+        /// List platform config and feature flags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdminControllerConfig200ResponseInner&gt;</returns>
+        ApiResponse<List<AdminControllerConfig200ResponseInner>> AdminControllerConfigWithHttpInfo();
+        /// <summary>
+        /// Confirm a manual deposit
+        /// </summary>
+        /// <remarks>
+        /// Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerConfirmDepositWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdminControllerConfirmPayout(string id);
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response AdminControllerConfirmDeposit(string id);
 
         /// <summary>
-        /// 
+        /// Confirm a manual deposit
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerConfirmPayoutWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> AdminControllerConfirmDepositWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Confirm a manual payout
         /// </summary>
+        /// <remarks>
+        /// For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response AdminControllerConfirmPayout(string id);
+
+        /// <summary>
+        /// Confirm a manual payout
+        /// </summary>
+        /// <remarks>
+        /// For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> AdminControllerConfirmPayoutWithHttpInfo(string id);
+        /// <summary>
+        /// Approve or reject a moderation item
+        /// </summary>
+        /// <remarks>
+        /// Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
-        /// <returns></returns>
-        void AdminControllerDecide(string id, ModerationDecisionDto moderationDecisionDto);
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response AdminControllerDecide(string id, ModerationDecisionDto moderationDecisionDto);
 
         /// <summary>
-        /// 
+        /// Approve or reject a moderation item
         /// </summary>
         /// <remarks>
-        /// 
+        /// Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerDecideWithHttpInfo(string id, ModerationDecisionDto moderationDecisionDto);
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> AdminControllerDecideWithHttpInfo(string id, ModerationDecisionDto moderationDecisionDto);
         /// <summary>
-        /// 
+        /// List manual deposits awaiting confirmation
         /// </summary>
+        /// <remarks>
+        /// Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void AdminControllerPendingDeposits();
 
         /// <summary>
-        /// 
+        /// List manual deposits awaiting confirmation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> AdminControllerPendingDepositsWithHttpInfo();
         /// <summary>
-        /// 
+        /// List payouts awaiting processing
         /// </summary>
+        /// <remarks>
+        /// Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void AdminControllerPendingPayouts();
 
         /// <summary>
-        /// 
+        /// List payouts awaiting processing
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> AdminControllerPendingPayoutsWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdminControllerProcessPayout(string id);
-
-        /// <summary>
-        /// 
+        /// Process a requested payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerProcessPayoutWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdminControllerQuality();
+        /// <returns>AdminControllerProcessPayout201Response</returns>
+        AdminControllerProcessPayout201Response AdminControllerProcessPayout(string id);
 
         /// <summary>
-        /// 
+        /// Process a requested payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerQualityWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdminControllerProcessPayout201Response</returns>
+        ApiResponse<AdminControllerProcessPayout201Response> AdminControllerProcessPayoutWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// List placement quality scores
         /// </summary>
+        /// <remarks>
+        /// Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AdminControllerQuality200ResponseInner&gt;</returns>
+        List<AdminControllerQuality200ResponseInner> AdminControllerQuality();
+
+        /// <summary>
+        /// List placement quality scores
+        /// </summary>
+        /// <remarks>
+        /// Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdminControllerQuality200ResponseInner&gt;</returns>
+        ApiResponse<List<AdminControllerQuality200ResponseInner>> AdminControllerQualityWithHttpInfo();
+        /// <summary>
+        /// List the pending moderation queue
+        /// </summary>
+        /// <remarks>
+        /// Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <returns></returns>
         void AdminControllerQueue(string type);
 
         /// <summary>
-        /// 
+        /// List the pending moderation queue
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> AdminControllerQueueWithHttpInfo(string type);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="creativeId"></param>
-        /// <returns></returns>
-        void AdminControllerRescan(string creativeId);
-
-        /// <summary>
-        /// 
+        /// Re-scan a creative for cloaking
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerRescanWithHttpInfo(string creativeId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="setConfigDto"></param>
-        /// <returns></returns>
-        void AdminControllerSetConfig(SetConfigDto setConfigDto);
+        /// <returns>AdminControllerRescan201Response</returns>
+        AdminControllerRescan201Response AdminControllerRescan(string creativeId);
 
         /// <summary>
-        /// 
+        /// Re-scan a creative for cloaking
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId"></param>
+        /// <returns>ApiResponse of AdminControllerRescan201Response</returns>
+        ApiResponse<AdminControllerRescan201Response> AdminControllerRescanWithHttpInfo(string creativeId);
+        /// <summary>
+        /// Set a platform config value
+        /// </summary>
+        /// <remarks>
+        /// Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setConfigDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerSetConfigWithHttpInfo(SetConfigDto setConfigDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="setAccountStatusDto"></param>
-        /// <returns></returns>
-        void AdminControllerSetStatus(string id, SetAccountStatusDto setAccountStatusDto);
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response AdminControllerSetConfig(SetConfigDto setConfigDto);
 
         /// <summary>
-        /// 
+        /// Set a platform config value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setConfigDto"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> AdminControllerSetConfigWithHttpInfo(SetConfigDto setConfigDto);
+        /// <summary>
+        /// Set an account&#39;s status
+        /// </summary>
+        /// <remarks>
+        /// Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setAccountStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdminControllerSetStatusWithHttpInfo(string id, SetAccountStatusDto setAccountStatusDto);
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response AdminControllerSetStatus(string id, SetAccountStatusDto setAccountStatusDto);
+
+        /// <summary>
+        /// Set an account&#39;s status
+        /// </summary>
+        /// <remarks>
+        /// Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="setAccountStatusDto"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> AdminControllerSetStatusWithHttpInfo(string id, SetAccountStatusDto setAccountStatusDto);
         #endregion Synchronous Operations
     }
 
@@ -317,56 +365,56 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Search accounts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerAccountsAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdminControllerAccounts200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<AdminControllerAccounts200ResponseInner>> AdminControllerAccountsAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Search accounts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerAccountsWithHttpInfoAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdminControllerAccounts200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdminControllerAccounts200ResponseInner>>> AdminControllerAccountsWithHttpInfoAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Add a fraud blocklist entry
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addBlockDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerAddBlockAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerAddBlockAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Add a fraud blocklist entry
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addBlockDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerAddBlockWithHttpInfoAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> AdminControllerAddBlockWithHttpInfoAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Read the admin audit log
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -374,20 +422,20 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task AdminControllerAuditsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Read the admin audit log
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerAuditsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List fraud blocklist entries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -395,112 +443,112 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task AdminControllerBlocklistAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List fraud blocklist entries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerBlocklistWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List platform config and feature flags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdminControllerConfig200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<AdminControllerConfig200ResponseInner>> AdminControllerConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List platform config and feature flags
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdminControllerConfig200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdminControllerConfig200ResponseInner>>> AdminControllerConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Confirm a manual deposit
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerConfirmDepositAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerConfirmDepositAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Confirm a manual deposit
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerConfirmDepositWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> AdminControllerConfirmDepositWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Confirm a manual payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerConfirmPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerConfirmPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Confirm a manual payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerConfirmPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> AdminControllerConfirmPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Approve or reject a moderation item
         /// </summary>
         /// <remarks>
-        /// 
+        /// Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerDecideAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerDecideAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Approve or reject a moderation item
         /// </summary>
         /// <remarks>
-        /// 
+        /// Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerDecideWithHttpInfoAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> AdminControllerDecideWithHttpInfoAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List manual deposits awaiting confirmation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -508,20 +556,20 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task AdminControllerPendingDepositsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List manual deposits awaiting confirmation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerPendingDepositsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List payouts awaiting processing
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -529,64 +577,64 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task AdminControllerPendingPayoutsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List payouts awaiting processing
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerPendingPayoutsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Process a requested payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerProcessPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerProcessPayout201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerProcessPayout201Response> AdminControllerProcessPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Process a requested payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerProcessPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerProcessPayout201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerProcessPayout201Response>> AdminControllerProcessPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List placement quality scores
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerQualityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdminControllerQuality200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<AdminControllerQuality200ResponseInner>> AdminControllerQualityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List placement quality scores
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerQualityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdminControllerQuality200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdminControllerQuality200ResponseInner>>> AdminControllerQualityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List the pending moderation queue
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -595,10 +643,10 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task AdminControllerQueueAsync(string type, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List the pending moderation queue
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -606,76 +654,76 @@ namespace Adviverse.Api.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerQueueWithHttpInfoAsync(string type, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Re-scan a creative for cloaking
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerRescanAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerRescan201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerRescan201Response> AdminControllerRescanAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Re-scan a creative for cloaking
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerRescanWithHttpInfoAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerRescan201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerRescan201Response>> AdminControllerRescanWithHttpInfoAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set a platform config value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerSetConfigAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerSetConfigAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set a platform config value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerSetConfigWithHttpInfoAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> AdminControllerSetConfigWithHttpInfoAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set an account&#39;s status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setAccountStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdminControllerSetStatusAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerSetStatusAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set an account&#39;s status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setAccountStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdminControllerSetStatusWithHttpInfoAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> AdminControllerSetStatusWithHttpInfoAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -890,23 +938,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Search accounts Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q"></param>
-        /// <returns></returns>
-        public void AdminControllerAccounts(string q)
+        /// <returns>List&lt;AdminControllerAccounts200ResponseInner&gt;</returns>
+        public List<AdminControllerAccounts200ResponseInner> AdminControllerAccounts(string q)
         {
-            AdminControllerAccountsWithHttpInfo(q);
+            Adviverse.Api.Client.ApiResponse<List<AdminControllerAccounts200ResponseInner>> localVarResponse = AdminControllerAccountsWithHttpInfo(q);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Search accounts Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerAccountsWithHttpInfo(string q)
+        /// <returns>ApiResponse of List&lt;AdminControllerAccounts200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdminControllerAccounts200ResponseInner>> AdminControllerAccountsWithHttpInfo(string q)
         {
             // verify the required parameter 'q' is set
             if (q == null)
@@ -919,6 +968,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -929,9 +979,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "q", q));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/accounts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdminControllerAccounts200ResponseInner>>("/v1/admin/accounts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -943,25 +1004,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Search accounts Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerAccountsAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdminControllerAccounts200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdminControllerAccounts200ResponseInner>> AdminControllerAccountsAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerAccountsWithHttpInfoAsync(q, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdminControllerAccounts200ResponseInner>> localVarResponse = await AdminControllerAccountsWithHttpInfoAsync(q, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Search accounts Returns up to 200 non-deleted accounts, newest first. &#x60;q&#x60; filters by case-insensitive substring match on email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerAccountsWithHttpInfoAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdminControllerAccounts200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdminControllerAccounts200ResponseInner>>> AdminControllerAccountsWithHttpInfoAsync(string q, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'q' is set
             if (q == null)
@@ -975,6 +1037,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -986,10 +1049,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "q", q));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdminControllerAccounts200ResponseInner>>("/v1/admin/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1001,23 +1075,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a fraud blocklist entry Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addBlockDto"></param>
-        /// <returns></returns>
-        public void AdminControllerAddBlock(AddBlockDto addBlockDto)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response AdminControllerAddBlock(AddBlockDto addBlockDto)
         {
-            AdminControllerAddBlockWithHttpInfo(addBlockDto);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = AdminControllerAddBlockWithHttpInfo(addBlockDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a fraud blocklist entry Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addBlockDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerAddBlockWithHttpInfo(AddBlockDto addBlockDto)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> AdminControllerAddBlockWithHttpInfo(AddBlockDto addBlockDto)
         {
             // verify the required parameter 'addBlockDto' is set
             if (addBlockDto == null)
@@ -1031,6 +1106,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1041,9 +1117,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = addBlockDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/fraud/blocklist", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/fraud/blocklist", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1055,25 +1142,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a fraud blocklist entry Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addBlockDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerAddBlockAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerAddBlockAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerAddBlockWithHttpInfoAsync(addBlockDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await AdminControllerAddBlockWithHttpInfoAsync(addBlockDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a fraud blocklist entry Adds a &#x60;kind&#x60; (&#x60;ip&#x60;, &#x60;domain&#x60;, &#x60;asn&#x60;, &#x60;device&#x60;, &#x60;user_agent&#x60;, &#x60;country&#x60;, &#x60;subnet&#x60;) / &#x60;value&#x60; pair with an optional &#x60;reason&#x60;. Duplicates of an existing kind/value are ignored. The addition is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addBlockDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerAddBlockWithHttpInfoAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> AdminControllerAddBlockWithHttpInfoAsync(AddBlockDto addBlockDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'addBlockDto' is set
             if (addBlockDto == null)
@@ -1088,6 +1176,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1099,10 +1188,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = addBlockDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/fraud/blocklist", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/fraud/blocklist", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1114,7 +1214,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Read the admin audit log Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -1124,7 +1224,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Read the admin audit log Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -1146,6 +1246,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Object>("/v1/admin/audit", localVarRequestOptions, this.Configuration);
@@ -1160,7 +1271,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Read the admin audit log Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1171,7 +1282,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Read the admin audit log Returns the 500 most recent &#x60;audit_log&#x60; rows (actor, action, target type/id, before/after JSON, timestamp). Includes account status changes, moderation decisions, blocks and config changes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1196,6 +1307,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1211,7 +1333,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List fraud blocklist entries Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -1221,7 +1343,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List fraud blocklist entries Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -1243,6 +1365,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Object>("/v1/admin/fraud/blocklist", localVarRequestOptions, this.Configuration);
@@ -1257,7 +1390,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List fraud blocklist entries Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1268,7 +1401,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List fraud blocklist entries Returns the 500 most recent &#x60;block_lists&#x60; rows (kind, value, reason, creator, timestamps).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1293,6 +1426,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1308,21 +1452,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List platform config and feature flags Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdminControllerConfig()
+        /// <returns>List&lt;AdminControllerConfig200ResponseInner&gt;</returns>
+        public List<AdminControllerConfig200ResponseInner> AdminControllerConfig()
         {
-            AdminControllerConfigWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdminControllerConfig200ResponseInner>> localVarResponse = AdminControllerConfigWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List platform config and feature flags Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerConfigWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdminControllerConfig200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdminControllerConfig200ResponseInner>> AdminControllerConfigWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1331,6 +1476,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1340,9 +1486,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdminControllerConfig200ResponseInner>>("/v1/admin/config", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1354,23 +1511,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List platform config and feature flags Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdminControllerConfig200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdminControllerConfig200ResponseInner>> AdminControllerConfigAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerConfigWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdminControllerConfig200ResponseInner>> localVarResponse = await AdminControllerConfigWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List platform config and feature flags Returns all &#x60;platform_config&#x60; key/value pairs, ordered by key. Values are arbitrary JSON.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdminControllerConfig200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdminControllerConfig200ResponseInner>>> AdminControllerConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1380,6 +1538,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1390,10 +1549,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdminControllerConfig200ResponseInner>>("/v1/admin/config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1405,23 +1575,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual deposit Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdminControllerConfirmDeposit(string id)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response AdminControllerConfirmDeposit(string id)
         {
-            AdminControllerConfirmDepositWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = AdminControllerConfirmDepositWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual deposit Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerConfirmDepositWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> AdminControllerConfirmDepositWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1434,6 +1605,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1444,9 +1616,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/deposits/{id}/confirm", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/deposits/{id}/confirm", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1458,25 +1641,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual deposit Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerConfirmDepositAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerConfirmDepositAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerConfirmDepositWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await AdminControllerConfirmDepositWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual deposit Marks a manual deposit received and credits the advertiser ledger. &#x60;ref&#x60; is the bank/provider reference (defaults to &#x60;manual:&lt;id&gt;&#x60;). Idempotent: &#x60;ok&#x60; is true only when a new credit was posted. A deposit tied to an agency invoice also marks that invoice paid.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerConfirmDepositWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> AdminControllerConfirmDepositWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1490,6 +1674,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1501,10 +1686,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/deposits/{id}/confirm", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/deposits/{id}/confirm", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1516,23 +1712,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual payout For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdminControllerConfirmPayout(string id)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response AdminControllerConfirmPayout(string id)
         {
-            AdminControllerConfirmPayoutWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = AdminControllerConfirmPayoutWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual payout For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerConfirmPayoutWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> AdminControllerConfirmPayoutWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1545,6 +1742,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1555,9 +1753,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/payouts/{id}/confirm", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/payouts/{id}/confirm", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1569,25 +1778,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual payout For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerConfirmPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerConfirmPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerConfirmPayoutWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await AdminControllerConfirmPayoutWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Confirm a manual payout For manual (wire) payouts left in &#x60;processing&#x60;: after ops sends the bank transfer, &#x60;paid: true&#x60; (default) settles it and releases the held funds, and &#x60;paid: false&#x60; marks it failed and returns them. Returns 404 for an unknown payout and 400 if it is not awaiting confirmation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerConfirmPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> AdminControllerConfirmPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1601,6 +1811,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1612,10 +1823,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/payouts/{id}/confirm", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/payouts/{id}/confirm", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1627,25 +1849,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Approve or reject a moderation item Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
-        /// <returns></returns>
-        public void AdminControllerDecide(string id, ModerationDecisionDto moderationDecisionDto)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response AdminControllerDecide(string id, ModerationDecisionDto moderationDecisionDto)
         {
-            AdminControllerDecideWithHttpInfo(id, moderationDecisionDto);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = AdminControllerDecideWithHttpInfo(id, moderationDecisionDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Approve or reject a moderation item Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerDecideWithHttpInfo(string id, ModerationDecisionDto moderationDecisionDto)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> AdminControllerDecideWithHttpInfo(string id, ModerationDecisionDto moderationDecisionDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1663,6 +1886,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1674,9 +1898,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = moderationDecisionDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/moderation/{id}/decide", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/moderation/{id}/decide", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1688,27 +1923,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Approve or reject a moderation item Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerDecideAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerDecideAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerDecideWithHttpInfoAsync(id, moderationDecisionDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await AdminControllerDecideWithHttpInfoAsync(id, moderationDecisionDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Approve or reject a moderation item Applies &#x60;decision&#x60; (&#x60;approved&#x60; or &#x60;rejected&#x60;) with optional &#x60;notes&#x60; to a queue item. This updates the target: the creative&#39;s moderation status, the campaign or sponsored-product campaign&#39;s status (&#x60;active&#x60; or &#x60;rejected&#x60;), or the property&#39;s status. The decision is audit-logged and the serving index is republished, so approved items can serve within seconds. 404 for an unknown item.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="moderationDecisionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerDecideWithHttpInfoAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> AdminControllerDecideWithHttpInfoAsync(string id, ModerationDecisionDto moderationDecisionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1727,6 +1963,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1739,10 +1976,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = moderationDecisionDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/moderation/{id}/decide", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/moderation/{id}/decide", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1754,7 +2002,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List manual deposits awaiting confirmation Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -1764,7 +2012,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List manual deposits awaiting confirmation Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -1786,6 +2034,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Object>("/v1/admin/deposits/pending", localVarRequestOptions, this.Configuration);
@@ -1800,7 +2059,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List manual deposits awaiting confirmation Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1811,7 +2070,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List manual deposits awaiting confirmation Returns up to 500 &#x60;pending&#x60; deposits on the manual &#x60;wire&#x60; and &#x60;paxum&#x60; rails, oldest first (all &#x60;deposits&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1836,6 +2095,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1851,7 +2121,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List payouts awaiting processing Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -1861,7 +2131,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List payouts awaiting processing Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -1883,6 +2153,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Object>("/v1/admin/payouts", localVarRequestOptions, this.Configuration);
@@ -1897,7 +2178,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List payouts awaiting processing Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1908,7 +2189,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List payouts awaiting processing Returns publisher payouts in &#x60;requested&#x60; or &#x60;on_hold&#x60; status, oldest request first (all &#x60;payouts&#x60; columns).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1933,6 +2214,17 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1948,23 +2240,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Process a requested payout Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdminControllerProcessPayout(string id)
+        /// <returns>AdminControllerProcessPayout201Response</returns>
+        public AdminControllerProcessPayout201Response AdminControllerProcessPayout(string id)
         {
-            AdminControllerProcessPayoutWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdminControllerProcessPayout201Response> localVarResponse = AdminControllerProcessPayoutWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Process a requested payout Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerProcessPayoutWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdminControllerProcessPayout201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerProcessPayout201Response> AdminControllerProcessPayoutWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1977,6 +2270,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1987,9 +2281,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/payouts/{id}/process", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerProcessPayout201Response>("/v1/admin/payouts/{id}/process", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2001,25 +2306,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Process a requested payout Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerProcessPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerProcessPayout201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerProcessPayout201Response> AdminControllerProcessPayoutAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerProcessPayoutWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerProcessPayout201Response> localVarResponse = await AdminControllerProcessPayoutWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Process a requested payout Claims a &#x60;requested&#x60; payout atomically (so double-triggers call the provider once) and sends it through the payout rail for its method. If paid, the held funds are released from the ledger; if failed, the hold returns to available balance; manual rails such as wire stay &#x60;processing&#x60; until confirmed. Returns 400 if the payout is not in &#x60;requested&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerProcessPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerProcessPayout201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerProcessPayout201Response>> AdminControllerProcessPayoutWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2033,6 +2339,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2044,10 +2351,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/payouts/{id}/process", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerProcessPayout201Response>("/v1/admin/payouts/{id}/process", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2059,21 +2377,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List placement quality scores Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdminControllerQuality()
+        /// <returns>List&lt;AdminControllerQuality200ResponseInner&gt;</returns>
+        public List<AdminControllerQuality200ResponseInner> AdminControllerQuality()
         {
-            AdminControllerQualityWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdminControllerQuality200ResponseInner>> localVarResponse = AdminControllerQualityWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List placement quality scores Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerQualityWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdminControllerQuality200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdminControllerQuality200ResponseInner>> AdminControllerQualityWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2082,6 +2401,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2091,9 +2411,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/fraud/quality", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdminControllerQuality200ResponseInner>>("/v1/admin/fraud/quality", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2105,23 +2436,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List placement quality scores Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerQualityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdminControllerQuality200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdminControllerQuality200ResponseInner>> AdminControllerQualityAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerQualityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdminControllerQuality200ResponseInner>> localVarResponse = await AdminControllerQualityWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List placement quality scores Returns the 200 most recent quality-score windows per placement with the property domain, IVT rate, fill rate and composite score.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerQualityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdminControllerQuality200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdminControllerQuality200ResponseInner>>> AdminControllerQualityWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2131,6 +2463,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2141,10 +2474,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/fraud/quality", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdminControllerQuality200ResponseInner>>("/v1/admin/fraud/quality", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2156,7 +2500,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the pending moderation queue Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -2167,7 +2511,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the pending moderation queue Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -2195,6 +2539,17 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "type", type));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Object>("/v1/admin/moderation", localVarRequestOptions, this.Configuration);
@@ -2209,7 +2564,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the pending moderation queue Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -2221,7 +2576,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the pending moderation queue Returns pending moderation items, oldest first, optionally filtered by &#x60;type&#x60; (entity type such as &#x60;creative&#x60;, &#x60;campaign&#x60;, &#x60;promote_campaign&#x60;, &#x60;property&#x60;). Creative items are joined with what a reviewer needs to see the ad: type, asset and landing URLs, title, screenshot, VAST/VPAID URLs, duration and companions.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -2252,6 +2607,17 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "type", type));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -2267,23 +2633,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Re-scan a creative for cloaking Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId"></param>
-        /// <returns></returns>
-        public void AdminControllerRescan(string creativeId)
+        /// <returns>AdminControllerRescan201Response</returns>
+        public AdminControllerRescan201Response AdminControllerRescan(string creativeId)
         {
-            AdminControllerRescanWithHttpInfo(creativeId);
+            Adviverse.Api.Client.ApiResponse<AdminControllerRescan201Response> localVarResponse = AdminControllerRescanWithHttpInfo(creativeId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Re-scan a creative for cloaking Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerRescanWithHttpInfo(string creativeId)
+        /// <returns>ApiResponse of AdminControllerRescan201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerRescan201Response> AdminControllerRescanWithHttpInfo(string creativeId)
         {
             // verify the required parameter 'creativeId' is set
             if (creativeId == null)
@@ -2296,6 +2663,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2306,9 +2674,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("creativeId", Adviverse.Api.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/moderation/{creativeId}/rescan", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerRescan201Response>("/v1/admin/moderation/{creativeId}/rescan", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2320,25 +2699,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Re-scan a creative for cloaking Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerRescanAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerRescan201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerRescan201Response> AdminControllerRescanAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerRescanWithHttpInfoAsync(creativeId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerRescan201Response> localVarResponse = await AdminControllerRescanWithHttpInfoAsync(creativeId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Re-scan a creative for cloaking Recaptures the landing-page screenshot, then fetches the landing URL with a browser and a bot user agent and compares the responses. Repeated divergence adds cloaking strikes and, at the threshold, flags the creative and re-queues it for moderation. A matching fetch clears strikes and a prior cloaking flag. Fetch errors fail open (not flagged). The result is audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerRescanWithHttpInfoAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerRescan201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerRescan201Response>> AdminControllerRescanWithHttpInfoAsync(string creativeId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'creativeId' is set
             if (creativeId == null)
@@ -2352,6 +2732,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2363,10 +2744,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("creativeId", Adviverse.Api.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/moderation/{creativeId}/rescan", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerRescan201Response>("/v1/admin/moderation/{creativeId}/rescan", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2378,23 +2770,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a platform config value Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setConfigDto"></param>
-        /// <returns></returns>
-        public void AdminControllerSetConfig(SetConfigDto setConfigDto)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response AdminControllerSetConfig(SetConfigDto setConfigDto)
         {
-            AdminControllerSetConfigWithHttpInfo(setConfigDto);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = AdminControllerSetConfigWithHttpInfo(setConfigDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a platform config value Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setConfigDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerSetConfigWithHttpInfo(SetConfigDto setConfigDto)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> AdminControllerSetConfigWithHttpInfo(SetConfigDto setConfigDto)
         {
             // verify the required parameter 'setConfigDto' is set
             if (setConfigDto == null)
@@ -2408,6 +2801,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2418,9 +2812,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = setConfigDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/config", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2432,25 +2837,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a platform config value Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerSetConfigAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerSetConfigAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerSetConfigWithHttpInfoAsync(setConfigDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await AdminControllerSetConfigWithHttpInfoAsync(setConfigDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a platform config value Creates or replaces the config entry &#x60;key&#x60; (1-200 chars) with &#x60;value&#x60; (any JSON). The change is recorded with the admin as updater and audit-logged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="setConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerSetConfigWithHttpInfoAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> AdminControllerSetConfigWithHttpInfoAsync(SetConfigDto setConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'setConfigDto' is set
             if (setConfigDto == null)
@@ -2465,6 +2871,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2476,10 +2883,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = setConfigDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2491,25 +2909,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set an account&#39;s status Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setAccountStatusDto"></param>
-        /// <returns></returns>
-        public void AdminControllerSetStatus(string id, SetAccountStatusDto setAccountStatusDto)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response AdminControllerSetStatus(string id, SetAccountStatusDto setAccountStatusDto)
         {
-            AdminControllerSetStatusWithHttpInfo(id, setAccountStatusDto);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = AdminControllerSetStatusWithHttpInfo(id, setAccountStatusDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set an account&#39;s status Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setAccountStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdminControllerSetStatusWithHttpInfo(string id, SetAccountStatusDto setAccountStatusDto)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> AdminControllerSetStatusWithHttpInfo(string id, SetAccountStatusDto setAccountStatusDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2527,6 +2946,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2538,9 +2958,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setAccountStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/accounts/{id}/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/accounts/{id}/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2552,27 +2983,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set an account&#39;s status Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setAccountStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdminControllerSetStatusAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> AdminControllerSetStatusAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdminControllerSetStatusWithHttpInfoAsync(id, setAccountStatusDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await AdminControllerSetStatusWithHttpInfoAsync(id, setAccountStatusDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set an account&#39;s status Sets an account&#39;s &#x60;status&#x60; to &#x60;active&#x60;, &#x60;pending&#x60;, &#x60;suspended&#x60;, &#x60;banned&#x60; or &#x60;closed&#x60;. The previous and new status are written to the audit log. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setAccountStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdminControllerSetStatusWithHttpInfoAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> AdminControllerSetStatusWithHttpInfoAsync(string id, SetAccountStatusDto setAccountStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2591,6 +3023,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2603,10 +3036,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setAccountStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/accounts/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/accounts/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

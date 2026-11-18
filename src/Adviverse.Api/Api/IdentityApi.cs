@@ -28,93 +28,108 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="consentDto"></param>
-        /// <returns></returns>
-        void IdentityControllerConsent(ConsentDto consentDto);
-
-        /// <summary>
-        /// 
+        /// Set identity consent state
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IdentityControllerConsentWithHttpInfo(ConsentDto consentDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="canonicalId"></param>
-        /// <returns></returns>
-        void IdentityControllerGet(string canonicalId);
+        /// <returns>IdentityControllerConsent201Response</returns>
+        IdentityControllerConsent201Response IdentityControllerConsent(ConsentDto consentDto);
 
         /// <summary>
-        /// 
+        /// Set identity consent state
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="consentDto"></param>
+        /// <returns>ApiResponse of IdentityControllerConsent201Response</returns>
+        ApiResponse<IdentityControllerConsent201Response> IdentityControllerConsentWithHttpInfo(ConsentDto consentDto);
+        /// <summary>
+        /// Get an identity with its signals
+        /// </summary>
+        /// <remarks>
+        /// Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="canonicalId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IdentityControllerGetWithHttpInfo(string canonicalId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="linkIdentityDto"></param>
-        /// <returns></returns>
-        void IdentityControllerLink(LinkIdentityDto linkIdentityDto);
+        /// <returns>IdentityControllerGet200Response</returns>
+        IdentityControllerGet200Response IdentityControllerGet(string canonicalId);
 
         /// <summary>
-        /// 
+        /// Get an identity with its signals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="canonicalId"></param>
+        /// <returns>ApiResponse of IdentityControllerGet200Response</returns>
+        ApiResponse<IdentityControllerGet200Response> IdentityControllerGetWithHttpInfo(string canonicalId);
+        /// <summary>
+        /// Link signals to an identity
+        /// </summary>
+        /// <remarks>
+        /// Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkIdentityDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IdentityControllerLinkWithHttpInfo(LinkIdentityDto linkIdentityDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="resolveIdentityDto"></param>
-        /// <returns></returns>
-        void IdentityControllerResolve(ResolveIdentityDto resolveIdentityDto);
+        /// <returns>IdentityControllerLink201Response</returns>
+        IdentityControllerLink201Response IdentityControllerLink(LinkIdentityDto linkIdentityDto);
 
         /// <summary>
-        /// 
+        /// Link signals to an identity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="linkIdentityDto"></param>
+        /// <returns>ApiResponse of IdentityControllerLink201Response</returns>
+        ApiResponse<IdentityControllerLink201Response> IdentityControllerLinkWithHttpInfo(LinkIdentityDto linkIdentityDto);
+        /// <summary>
+        /// Resolve signals to a canonical identity
+        /// </summary>
+        /// <remarks>
+        /// Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resolveIdentityDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IdentityControllerResolveWithHttpInfo(ResolveIdentityDto resolveIdentityDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void IdentityControllerStats();
+        /// <returns>IdentityControllerResolve201Response</returns>
+        IdentityControllerResolve201Response IdentityControllerResolve(ResolveIdentityDto resolveIdentityDto);
 
         /// <summary>
-        /// 
+        /// Resolve signals to a canonical identity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> IdentityControllerStatsWithHttpInfo();
+        /// <param name="resolveIdentityDto"></param>
+        /// <returns>ApiResponse of IdentityControllerResolve201Response</returns>
+        ApiResponse<IdentityControllerResolve201Response> IdentityControllerResolveWithHttpInfo(ResolveIdentityDto resolveIdentityDto);
+        /// <summary>
+        /// Get identity graph counts
+        /// </summary>
+        /// <remarks>
+        /// Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>IdentityControllerStats200Response</returns>
+        IdentityControllerStats200Response IdentityControllerStats();
+
+        /// <summary>
+        /// Get identity graph counts
+        /// </summary>
+        /// <remarks>
+        /// Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of IdentityControllerStats200Response</returns>
+        ApiResponse<IdentityControllerStats200Response> IdentityControllerStatsWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -125,118 +140,118 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Set identity consent state
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IdentityControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of IdentityControllerConsent201Response</returns>
+        System.Threading.Tasks.Task<IdentityControllerConsent201Response> IdentityControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set identity consent state
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IdentityControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (IdentityControllerConsent201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<IdentityControllerConsent201Response>> IdentityControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get an identity with its signals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="canonicalId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IdentityControllerGetAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of IdentityControllerGet200Response</returns>
+        System.Threading.Tasks.Task<IdentityControllerGet200Response> IdentityControllerGetAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get an identity with its signals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="canonicalId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IdentityControllerGetWithHttpInfoAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (IdentityControllerGet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<IdentityControllerGet200Response>> IdentityControllerGetWithHttpInfoAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Link signals to an identity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IdentityControllerLinkAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of IdentityControllerLink201Response</returns>
+        System.Threading.Tasks.Task<IdentityControllerLink201Response> IdentityControllerLinkAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Link signals to an identity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IdentityControllerLinkWithHttpInfoAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (IdentityControllerLink201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<IdentityControllerLink201Response>> IdentityControllerLinkWithHttpInfoAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Resolve signals to a canonical identity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resolveIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IdentityControllerResolveAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of IdentityControllerResolve201Response</returns>
+        System.Threading.Tasks.Task<IdentityControllerResolve201Response> IdentityControllerResolveAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Resolve signals to a canonical identity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resolveIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IdentityControllerResolveWithHttpInfoAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (IdentityControllerResolve201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<IdentityControllerResolve201Response>> IdentityControllerResolveWithHttpInfoAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get identity graph counts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task IdentityControllerStatsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of IdentityControllerStats200Response</returns>
+        System.Threading.Tasks.Task<IdentityControllerStats200Response> IdentityControllerStatsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get identity graph counts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> IdentityControllerStatsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (IdentityControllerStats200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<IdentityControllerStats200Response>> IdentityControllerStatsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -451,23 +466,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set identity consent state Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
-        /// <returns></returns>
-        public void IdentityControllerConsent(ConsentDto consentDto)
+        /// <returns>IdentityControllerConsent201Response</returns>
+        public IdentityControllerConsent201Response IdentityControllerConsent(ConsentDto consentDto)
         {
-            IdentityControllerConsentWithHttpInfo(consentDto);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerConsent201Response> localVarResponse = IdentityControllerConsentWithHttpInfo(consentDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set identity consent state Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IdentityControllerConsentWithHttpInfo(ConsentDto consentDto)
+        /// <returns>ApiResponse of IdentityControllerConsent201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<IdentityControllerConsent201Response> IdentityControllerConsentWithHttpInfo(ConsentDto consentDto)
         {
             // verify the required parameter 'consentDto' is set
             if (consentDto == null)
@@ -481,6 +497,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -491,9 +508,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = consentDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/identity/consent", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<IdentityControllerConsent201Response>("/v1/identity/consent", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -505,25 +533,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set identity consent state Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IdentityControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of IdentityControllerConsent201Response</returns>
+        public async System.Threading.Tasks.Task<IdentityControllerConsent201Response> IdentityControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IdentityControllerConsentWithHttpInfoAsync(consentDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerConsent201Response> localVarResponse = await IdentityControllerConsentWithHttpInfoAsync(consentDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set identity consent state Sets &#x60;state&#x60; (&#x60;granted&#x60; or &#x60;denied&#x60;) on the identity &#x60;canonicalId&#x60;. &#x60;denied&#x60; blocks future cross-identity merges and signal moves involving it. Returns 404 if the identity does not exist or the caller does not own it (admins bypass).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IdentityControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (IdentityControllerConsent201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<IdentityControllerConsent201Response>> IdentityControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'consentDto' is set
             if (consentDto == null)
@@ -538,6 +567,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -549,10 +579,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = consentDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/identity/consent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<IdentityControllerConsent201Response>("/v1/identity/consent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -564,23 +605,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an identity with its signals Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="canonicalId"></param>
-        /// <returns></returns>
-        public void IdentityControllerGet(string canonicalId)
+        /// <returns>IdentityControllerGet200Response</returns>
+        public IdentityControllerGet200Response IdentityControllerGet(string canonicalId)
         {
-            IdentityControllerGetWithHttpInfo(canonicalId);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerGet200Response> localVarResponse = IdentityControllerGetWithHttpInfo(canonicalId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an identity with its signals Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="canonicalId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IdentityControllerGetWithHttpInfo(string canonicalId)
+        /// <returns>ApiResponse of IdentityControllerGet200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<IdentityControllerGet200Response> IdentityControllerGetWithHttpInfo(string canonicalId)
         {
             // verify the required parameter 'canonicalId' is set
             if (canonicalId == null)
@@ -593,6 +635,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -603,9 +646,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("canonicalId", Adviverse.Api.Client.ClientUtils.ParameterToString(canonicalId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/identity/{canonicalId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<IdentityControllerGet200Response>("/v1/identity/{canonicalId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -617,25 +671,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an identity with its signals Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="canonicalId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IdentityControllerGetAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of IdentityControllerGet200Response</returns>
+        public async System.Threading.Tasks.Task<IdentityControllerGet200Response> IdentityControllerGetAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IdentityControllerGetWithHttpInfoAsync(canonicalId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerGet200Response> localVarResponse = await IdentityControllerGetWithHttpInfoAsync(canonicalId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an identity with its signals Returns the identity row, the signals on it that the caller supplied (oldest first; admins see all) and the raw cookie/device ids among them. Never returns signals supplied by other accounts. Returns 404 if &#x60;canonicalId&#x60; does not exist or the caller does not own it (owns none of its signals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="canonicalId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IdentityControllerGetWithHttpInfoAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (IdentityControllerGet200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<IdentityControllerGet200Response>> IdentityControllerGetWithHttpInfoAsync(string canonicalId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'canonicalId' is set
             if (canonicalId == null)
@@ -649,6 +704,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -660,10 +716,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("canonicalId", Adviverse.Api.Client.ClientUtils.ParameterToString(canonicalId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/identity/{canonicalId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<IdentityControllerGet200Response>("/v1/identity/{canonicalId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -675,23 +742,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Link signals to an identity Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkIdentityDto"></param>
-        /// <returns></returns>
-        public void IdentityControllerLink(LinkIdentityDto linkIdentityDto)
+        /// <returns>IdentityControllerLink201Response</returns>
+        public IdentityControllerLink201Response IdentityControllerLink(LinkIdentityDto linkIdentityDto)
         {
-            IdentityControllerLinkWithHttpInfo(linkIdentityDto);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerLink201Response> localVarResponse = IdentityControllerLinkWithHttpInfo(linkIdentityDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Link signals to an identity Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkIdentityDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IdentityControllerLinkWithHttpInfo(LinkIdentityDto linkIdentityDto)
+        /// <returns>ApiResponse of IdentityControllerLink201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<IdentityControllerLink201Response> IdentityControllerLinkWithHttpInfo(LinkIdentityDto linkIdentityDto)
         {
             // verify the required parameter 'linkIdentityDto' is set
             if (linkIdentityDto == null)
@@ -705,6 +773,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -715,9 +784,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = linkIdentityDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/identity/link", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<IdentityControllerLink201Response>("/v1/identity/link", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -729,25 +809,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Link signals to an identity Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IdentityControllerLinkAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of IdentityControllerLink201Response</returns>
+        public async System.Threading.Tasks.Task<IdentityControllerLink201Response> IdentityControllerLinkAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IdentityControllerLinkWithHttpInfoAsync(linkIdentityDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerLink201Response> localVarResponse = await IdentityControllerLinkWithHttpInfoAsync(linkIdentityDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Link signals to an identity Adds &#x60;signals&#x60; (each &#x60;{ type, value }&#x60;, type one of email/phone/cookie/device/ip_ua) to the identity &#x60;canonicalId&#x60; without merging identities. A signal owned by another identity is moved only if neither identity has denied consent; otherwise it is skipped. The caller becomes an owner of the linked signals. Returns 404 if the identity does not exist or the caller does not own it (has not resolved/linked any of its signals; admins bypass), and 400 for an empty list.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IdentityControllerLinkWithHttpInfoAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (IdentityControllerLink201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<IdentityControllerLink201Response>> IdentityControllerLinkWithHttpInfoAsync(LinkIdentityDto linkIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'linkIdentityDto' is set
             if (linkIdentityDto == null)
@@ -762,6 +843,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -773,10 +855,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = linkIdentityDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/identity/link", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<IdentityControllerLink201Response>("/v1/identity/link", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -788,23 +881,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resolve signals to a canonical identity Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resolveIdentityDto"></param>
-        /// <returns></returns>
-        public void IdentityControllerResolve(ResolveIdentityDto resolveIdentityDto)
+        /// <returns>IdentityControllerResolve201Response</returns>
+        public IdentityControllerResolve201Response IdentityControllerResolve(ResolveIdentityDto resolveIdentityDto)
         {
-            IdentityControllerResolveWithHttpInfo(resolveIdentityDto);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerResolve201Response> localVarResponse = IdentityControllerResolveWithHttpInfo(resolveIdentityDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resolve signals to a canonical identity Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resolveIdentityDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IdentityControllerResolveWithHttpInfo(ResolveIdentityDto resolveIdentityDto)
+        /// <returns>ApiResponse of IdentityControllerResolve201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<IdentityControllerResolve201Response> IdentityControllerResolveWithHttpInfo(ResolveIdentityDto resolveIdentityDto)
         {
             // verify the required parameter 'resolveIdentityDto' is set
             if (resolveIdentityDto == null)
@@ -818,6 +912,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -828,9 +923,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = resolveIdentityDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/identity/resolve", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<IdentityControllerResolve201Response>("/v1/identity/resolve", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -842,25 +948,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Resolve signals to a canonical identity Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resolveIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IdentityControllerResolveAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of IdentityControllerResolve201Response</returns>
+        public async System.Threading.Tasks.Task<IdentityControllerResolve201Response> IdentityControllerResolveAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IdentityControllerResolveWithHttpInfoAsync(resolveIdentityDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerResolve201Response> localVarResponse = await IdentityControllerResolveWithHttpInfoAsync(resolveIdentityDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Resolve signals to a canonical identity Resolves any of &#x60;email&#x60;, &#x60;phone&#x60;, &#x60;cookieId&#x60;, &#x60;deviceId&#x60; (at least one, else 400) to a canonical identity, creating one if none matches and linking all signals to it. If the signals already belong to different identities they are merged into the oldest one, unless any of them has consent &#x60;denied&#x60;, in which case no merge happens and their signals stay put. Email and phone are normalized and hashed; mappings are mirrored to Redis for the ad-engine. The graph is shared across accounts (the same person resolves to one &#x60;canonicalId&#x60;), but the caller is recorded as an owner of the signals it supplied and the response lists only those signals, never signals supplied by other accounts.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="resolveIdentityDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IdentityControllerResolveWithHttpInfoAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (IdentityControllerResolve201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<IdentityControllerResolve201Response>> IdentityControllerResolveWithHttpInfoAsync(ResolveIdentityDto resolveIdentityDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'resolveIdentityDto' is set
             if (resolveIdentityDto == null)
@@ -875,6 +982,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -886,10 +994,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = resolveIdentityDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/identity/resolve", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<IdentityControllerResolve201Response>("/v1/identity/resolve", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -901,21 +1020,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get identity graph counts Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void IdentityControllerStats()
+        /// <returns>IdentityControllerStats200Response</returns>
+        public IdentityControllerStats200Response IdentityControllerStats()
         {
-            IdentityControllerStatsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<IdentityControllerStats200Response> localVarResponse = IdentityControllerStatsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get identity graph counts Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> IdentityControllerStatsWithHttpInfo()
+        /// <returns>ApiResponse of IdentityControllerStats200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<IdentityControllerStats200Response> IdentityControllerStatsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -924,6 +1044,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -933,9 +1054,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/identity/stats", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<IdentityControllerStats200Response>("/v1/identity/stats", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -947,23 +1079,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get identity graph counts Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task IdentityControllerStatsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of IdentityControllerStats200Response</returns>
+        public async System.Threading.Tasks.Task<IdentityControllerStats200Response> IdentityControllerStatsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await IdentityControllerStatsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<IdentityControllerStats200Response> localVarResponse = await IdentityControllerStatsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get identity graph counts Returns counts across the identity graph: identities, linked signals, distinct households and identities that belong to a household (merged). Scoped to the calling account: only identities it owns and signals it supplied (admins get graph-wide totals).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> IdentityControllerStatsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (IdentityControllerStats200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<IdentityControllerStats200Response>> IdentityControllerStatsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -973,6 +1106,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -983,10 +1117,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/identity/stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<IdentityControllerStats200Response>("/v1/identity/stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

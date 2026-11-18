@@ -47,7 +47,8 @@ namespace Adviverse.Api.Model
         /// <param name="floorFallback">floorFallback.</param>
         /// <param name="floorAuto">floorAuto.</param>
         /// <param name="floorSoft">floorSoft.</param>
-        public UpdatePlacementDto(string name = default(string), decimal floorCpm = default(decimal), decimal revShare = default(decimal), string auctionType = default(string), string passbackUrl = default(string), string status = default(string), bool houseOnly = default(bool), decimal houseShare = default(decimal), bool houseBackfill = default(bool), bool floorFallback = default(bool), bool floorAuto = default(bool), decimal floorSoft = default(decimal))
+        /// <param name="autoAds">autoAds.</param>
+        public UpdatePlacementDto(string name = default(string), decimal floorCpm = default(decimal), decimal revShare = default(decimal), string auctionType = default(string), string passbackUrl = default(string), string status = default(string), bool houseOnly = default(bool), decimal houseShare = default(decimal), bool houseBackfill = default(bool), bool floorFallback = default(bool), bool floorAuto = default(bool), decimal floorSoft = default(decimal), Object autoAds = default(Object))
         {
             this.Name = name;
             this.FloorCpm = floorCpm;
@@ -61,6 +62,7 @@ namespace Adviverse.Api.Model
             this.FloorFallback = floorFallback;
             this.FloorAuto = floorAuto;
             this.FloorSoft = floorSoft;
+            this.AutoAds = autoAds;
         }
 
         /// <summary>
@@ -136,6 +138,12 @@ namespace Adviverse.Api.Model
         public decimal FloorSoft { get; set; }
 
         /// <summary>
+        /// Gets or Sets AutoAds
+        /// </summary>
+        [DataMember(Name = "autoAds", EmitDefaultValue = true)]
+        public Object AutoAds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -155,6 +163,7 @@ namespace Adviverse.Api.Model
             sb.Append("  FloorFallback: ").Append(FloorFallback).Append("\n");
             sb.Append("  FloorAuto: ").Append(FloorAuto).Append("\n");
             sb.Append("  FloorSoft: ").Append(FloorSoft).Append("\n");
+            sb.Append("  AutoAds: ").Append(AutoAds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

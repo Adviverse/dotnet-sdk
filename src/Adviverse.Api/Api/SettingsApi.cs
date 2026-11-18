@@ -28,205 +28,238 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="format"></param>
-        /// <param name="geo"></param>
-        /// <returns></returns>
-        void SettingsControllerBidRec(string format, string geo);
-
-        /// <summary>
-        /// 
+        /// Get a bid recommendation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerBidRecWithHttpInfo(string format, string geo);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="brandSafetyDto"></param>
-        /// <returns></returns>
-        void SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto);
+        /// <returns>SettingsControllerBidRec200Response</returns>
+        SettingsControllerBidRec200Response SettingsControllerBidRec(string format, string geo);
 
         /// <summary>
-        /// 
+        /// Get a bid recommendation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="format"></param>
+        /// <param name="geo"></param>
+        /// <returns>ApiResponse of SettingsControllerBidRec200Response</returns>
+        ApiResponse<SettingsControllerBidRec200Response> SettingsControllerBidRecWithHttpInfo(string format, string geo);
+        /// <summary>
+        /// Set campaign brand-safety controls
+        /// </summary>
+        /// <remarks>
+        /// Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto);
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto);
+
         /// <summary>
-        /// 
+        /// Set campaign brand-safety controls
         /// </summary>
+        /// <remarks>
+        /// Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="brandSafetyDto"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto);
+        /// <summary>
+        /// Create an API key
+        /// </summary>
+        /// <remarks>
+        /// Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
-        /// <returns></returns>
-        void SettingsControllerCreateKey(CreateKeyDto createKeyDto);
+        /// <returns>ApiKeyCreated</returns>
+        ApiKeyCreated SettingsControllerCreateKey(CreateKeyDto createKeyDto);
 
         /// <summary>
-        /// 
+        /// Create an API key
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerCreateKeyWithHttpInfo(CreateKeyDto createKeyDto);
+        /// <returns>ApiResponse of ApiKeyCreated</returns>
+        ApiResponse<ApiKeyCreated> SettingsControllerCreateKeyWithHttpInfo(CreateKeyDto createKeyDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createTerminalTokenDto"></param>
-        /// <returns></returns>
-        void SettingsControllerCreateTerminalToken(CreateTerminalTokenDto createTerminalTokenDto);
-
-        /// <summary>
-        /// 
+        /// Create a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTerminalTokenDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerCreateTerminalTokenWithHttpInfo(CreateTerminalTokenDto createTerminalTokenDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SettingsControllerListKeys();
+        /// <returns>SettingsControllerCreateTerminalToken201Response</returns>
+        SettingsControllerCreateTerminalToken201Response SettingsControllerCreateTerminalToken(CreateTerminalTokenDto createTerminalTokenDto);
 
         /// <summary>
-        /// 
+        /// Create a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerListKeysWithHttpInfo();
+        /// <param name="createTerminalTokenDto"></param>
+        /// <returns>ApiResponse of SettingsControllerCreateTerminalToken201Response</returns>
+        ApiResponse<SettingsControllerCreateTerminalToken201Response> SettingsControllerCreateTerminalTokenWithHttpInfo(CreateTerminalTokenDto createTerminalTokenDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SettingsControllerListTerminalTokens();
-
-        /// <summary>
-        /// 
+        /// List API keys
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerListTerminalTokensWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void SettingsControllerRevokeKey(string id);
+        /// <returns>List&lt;ApiKey&gt;</returns>
+        List<ApiKey> SettingsControllerListKeys();
 
         /// <summary>
-        /// 
+        /// List API keys
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerRevokeKeyWithHttpInfo(string id);
+        /// <returns>ApiResponse of List&lt;ApiKey&gt;</returns>
+        ApiResponse<List<ApiKey>> SettingsControllerListKeysWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void SettingsControllerRevokeTerminalToken(string id);
-
-        /// <summary>
-        /// 
+        /// List terminal serve tokens
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;</returns>
+        List<SettingsControllerListTerminalTokens200ResponseInner> SettingsControllerListTerminalTokens();
+
+        /// <summary>
+        /// List terminal serve tokens
+        /// </summary>
+        /// <remarks>
+        /// Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;</returns>
+        ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>> SettingsControllerListTerminalTokensWithHttpInfo();
+        /// <summary>
+        /// Revoke an API key
+        /// </summary>
+        /// <remarks>
+        /// Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerRevokeTerminalTokenWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void SettingsControllerRotateTerminalToken(string id);
+        /// <returns>SettingsControllerRevokeKey200Response</returns>
+        SettingsControllerRevokeKey200Response SettingsControllerRevokeKey(string id);
 
         /// <summary>
-        /// 
+        /// Revoke an API key
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerRotateTerminalTokenWithHttpInfo(string id);
+        /// <returns>ApiResponse of SettingsControllerRevokeKey200Response</returns>
+        ApiResponse<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Revoke a terminal serve token
         /// </summary>
+        /// <remarks>
+        /// Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>SegmentsControllerRevoke201Response</returns>
+        SegmentsControllerRevoke201Response SettingsControllerRevokeTerminalToken(string id);
+
+        /// <summary>
+        /// Revoke a terminal serve token
+        /// </summary>
+        /// <remarks>
+        /// Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of SegmentsControllerRevoke201Response</returns>
+        ApiResponse<SegmentsControllerRevoke201Response> SettingsControllerRevokeTerminalTokenWithHttpInfo(string id);
+        /// <summary>
+        /// Rotate a terminal serve token
+        /// </summary>
+        /// <remarks>
+        /// Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>SettingsControllerRotateTerminalToken201Response</returns>
+        SettingsControllerRotateTerminalToken201Response SettingsControllerRotateTerminalToken(string id);
+
+        /// <summary>
+        /// Rotate a terminal serve token
+        /// </summary>
+        /// <remarks>
+        /// Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of SettingsControllerRotateTerminalToken201Response</returns>
+        ApiResponse<SettingsControllerRotateTerminalToken201Response> SettingsControllerRotateTerminalTokenWithHttpInfo(string id);
+        /// <summary>
+        /// Update a terminal token switch policy
+        /// </summary>
+        /// <remarks>
+        /// Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
-        /// <returns></returns>
-        void SettingsControllerSetTerminalTokenPolicy(string id, TerminalSwitchDto terminalSwitchDto);
+        /// <returns>SettingsControllerSetTerminalTokenPolicy200Response</returns>
+        SettingsControllerSetTerminalTokenPolicy200Response SettingsControllerSetTerminalTokenPolicy(string id, TerminalSwitchDto terminalSwitchDto);
 
         /// <summary>
-        /// 
+        /// Update a terminal token switch policy
         /// </summary>
         /// <remarks>
-        /// 
+        /// Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerSetTerminalTokenPolicyWithHttpInfo(string id, TerminalSwitchDto terminalSwitchDto);
+        /// <returns>ApiResponse of SettingsControllerSetTerminalTokenPolicy200Response</returns>
+        ApiResponse<SettingsControllerSetTerminalTokenPolicy200Response> SettingsControllerSetTerminalTokenPolicyWithHttpInfo(string id, TerminalSwitchDto terminalSwitchDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="networkSettingsDto"></param>
-        /// <returns></returns>
-        void SettingsControllerUpdateNetwork(NetworkSettingsDto networkSettingsDto);
-
-        /// <summary>
-        /// 
+        /// Update network membership and cross-fill
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="networkSettingsDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SettingsControllerUpdateNetworkWithHttpInfo(NetworkSettingsDto networkSettingsDto);
+        /// <returns>SettingsControllerUpdateNetwork200Response</returns>
+        SettingsControllerUpdateNetwork200Response SettingsControllerUpdateNetwork(NetworkSettingsDto networkSettingsDto);
+
+        /// <summary>
+        /// Update network membership and cross-fill
+        /// </summary>
+        /// <remarks>
+        /// Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="networkSettingsDto"></param>
+        /// <returns>ApiResponse of SettingsControllerUpdateNetwork200Response</returns>
+        ApiResponse<SettingsControllerUpdateNetwork200Response> SettingsControllerUpdateNetworkWithHttpInfo(NetworkSettingsDto networkSettingsDto);
         #endregion Synchronous Operations
     }
 
@@ -237,260 +270,260 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get a bid recommendation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerBidRecAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SettingsControllerBidRec200Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerBidRec200Response> SettingsControllerBidRecAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a bid recommendation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerBidRecWithHttpInfoAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SettingsControllerBidRec200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerBidRec200Response>> SettingsControllerBidRecWithHttpInfoAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set campaign brand-safety controls
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set campaign brand-safety controls
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create an API key
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerCreateKeyAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiKeyCreated</returns>
+        System.Threading.Tasks.Task<ApiKeyCreated> SettingsControllerCreateKeyAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create an API key
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerCreateKeyWithHttpInfoAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ApiKeyCreated)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyCreated>> SettingsControllerCreateKeyWithHttpInfoAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTerminalTokenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerCreateTerminalTokenAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SettingsControllerCreateTerminalToken201Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerCreateTerminalToken201Response> SettingsControllerCreateTerminalTokenAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTerminalTokenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerCreateTerminalTokenWithHttpInfoAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SettingsControllerCreateTerminalToken201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerCreateTerminalToken201Response>> SettingsControllerCreateTerminalTokenWithHttpInfoAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List API keys
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerListKeysAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ApiKey&gt;</returns>
+        System.Threading.Tasks.Task<List<ApiKey>> SettingsControllerListKeysAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List API keys
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerListKeysWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ApiKey&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ApiKey>>> SettingsControllerListKeysWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List terminal serve tokens
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerListTerminalTokensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<SettingsControllerListTerminalTokens200ResponseInner>> SettingsControllerListTerminalTokensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List terminal serve tokens
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerListTerminalTokensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>>> SettingsControllerListTerminalTokensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Revoke an API key
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SettingsControllerRevokeKey200Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Revoke an API key
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SettingsControllerRevokeKey200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerRevokeKey200Response>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Revoke a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerRevokeTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SegmentsControllerRevoke201Response</returns>
+        System.Threading.Tasks.Task<SegmentsControllerRevoke201Response> SettingsControllerRevokeTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Revoke a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerRevokeTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SegmentsControllerRevoke201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SegmentsControllerRevoke201Response>> SettingsControllerRevokeTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Rotate a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerRotateTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SettingsControllerRotateTerminalToken201Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerRotateTerminalToken201Response> SettingsControllerRotateTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Rotate a terminal serve token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerRotateTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SettingsControllerRotateTerminalToken201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerRotateTerminalToken201Response>> SettingsControllerRotateTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a terminal token switch policy
         /// </summary>
         /// <remarks>
-        /// 
+        /// Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerSetTerminalTokenPolicyAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SettingsControllerSetTerminalTokenPolicy200Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerSetTerminalTokenPolicy200Response> SettingsControllerSetTerminalTokenPolicyAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a terminal token switch policy
         /// </summary>
         /// <remarks>
-        /// 
+        /// Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerSetTerminalTokenPolicyWithHttpInfoAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SettingsControllerSetTerminalTokenPolicy200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerSetTerminalTokenPolicy200Response>> SettingsControllerSetTerminalTokenPolicyWithHttpInfoAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update network membership and cross-fill
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="networkSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SettingsControllerUpdateNetworkAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SettingsControllerUpdateNetwork200Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerUpdateNetwork200Response> SettingsControllerUpdateNetworkAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update network membership and cross-fill
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="networkSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SettingsControllerUpdateNetworkWithHttpInfoAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SettingsControllerUpdateNetwork200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerUpdateNetwork200Response>> SettingsControllerUpdateNetworkWithHttpInfoAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -705,25 +738,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a bid recommendation Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"></param>
-        /// <returns></returns>
-        public void SettingsControllerBidRec(string format, string geo)
+        /// <returns>SettingsControllerBidRec200Response</returns>
+        public SettingsControllerBidRec200Response SettingsControllerBidRec(string format, string geo)
         {
-            SettingsControllerBidRecWithHttpInfo(format, geo);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerBidRec200Response> localVarResponse = SettingsControllerBidRecWithHttpInfo(format, geo);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a bid recommendation Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerBidRecWithHttpInfo(string format, string geo)
+        /// <returns>ApiResponse of SettingsControllerBidRec200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerBidRec200Response> SettingsControllerBidRecWithHttpInfo(string format, string geo)
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -740,6 +774,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -751,9 +786,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "format", format));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "geo", geo));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/insights/bid-recommendation", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SettingsControllerBidRec200Response>("/v1/advertiser/insights/bid-recommendation", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -765,27 +811,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a bid recommendation Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerBidRecAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SettingsControllerBidRec200Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerBidRec200Response> SettingsControllerBidRecAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerBidRecWithHttpInfoAsync(format, geo, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerBidRec200Response> localVarResponse = await SettingsControllerBidRecWithHttpInfoAsync(format, geo, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a bid recommendation Recommends a CPM bid for &#x60;format&#x60; (and optional &#x60;geo&#x60;) from the last 7 days of valid winning impressions in ClickHouse. &#x60;recommendedCpm&#x60; is the 60th percentile of clearing CPM, &#x60;floorObserved&#x60; the median and &#x60;competitiveCpm&#x60; the 90th percentile, as 4-decimal strings. If the query fails it returns zeros with &#x60;note: \&quot;insufficient data\&quot;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerBidRecWithHttpInfoAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SettingsControllerBidRec200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerBidRec200Response>> SettingsControllerBidRecWithHttpInfoAsync(string format, string geo, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -803,6 +850,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -815,10 +863,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "format", format));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "geo", geo));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/insights/bid-recommendation", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SettingsControllerBidRec200Response>("/v1/advertiser/insights/bid-recommendation", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -830,25 +889,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set campaign brand-safety controls Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
-        /// <returns></returns>
-        public void SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto)
         {
-            SettingsControllerBrandSafetyWithHttpInfo(id, brandSafetyDto);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = SettingsControllerBrandSafetyWithHttpInfo(id, brandSafetyDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set campaign brand-safety controls Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -866,6 +926,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -877,9 +938,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = brandSafetyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -891,27 +963,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set campaign brand-safety controls Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerBrandSafetyWithHttpInfoAsync(id, brandSafetyDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await SettingsControllerBrandSafetyWithHttpInfoAsync(id, brandSafetyDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set campaign brand-safety controls Stores brand-safety settings (&#x60;categories&#x60;, &#x60;keywords&#x60;, &#x60;domains&#x60;, &#x60;sensitivity&#x60;, free-form &#x60;options&#x60;) as JSON on the campaign, replacing any previous value. Only campaigns owned by the caller are updated; a foreign or unknown id is silently ignored.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -930,6 +1003,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -942,10 +1016,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = brandSafetyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -957,23 +1042,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an API key Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
-        /// <returns></returns>
-        public void SettingsControllerCreateKey(CreateKeyDto createKeyDto)
+        /// <returns>ApiKeyCreated</returns>
+        public ApiKeyCreated SettingsControllerCreateKey(CreateKeyDto createKeyDto)
         {
-            SettingsControllerCreateKeyWithHttpInfo(createKeyDto);
+            Adviverse.Api.Client.ApiResponse<ApiKeyCreated> localVarResponse = SettingsControllerCreateKeyWithHttpInfo(createKeyDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an API key Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerCreateKeyWithHttpInfo(CreateKeyDto createKeyDto)
+        /// <returns>ApiResponse of ApiKeyCreated</returns>
+        public Adviverse.Api.Client.ApiResponse<ApiKeyCreated> SettingsControllerCreateKeyWithHttpInfo(CreateKeyDto createKeyDto)
         {
             // verify the required parameter 'createKeyDto' is set
             if (createKeyDto == null)
@@ -987,6 +1073,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -997,9 +1084,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createKeyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/keys", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ApiKeyCreated>("/v1/keys", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1011,25 +1109,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an API key Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerCreateKeyAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiKeyCreated</returns>
+        public async System.Threading.Tasks.Task<ApiKeyCreated> SettingsControllerCreateKeyAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerCreateKeyWithHttpInfoAsync(createKeyDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ApiKeyCreated> localVarResponse = await SettingsControllerCreateKeyWithHttpInfoAsync(createKeyDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an API key Creates a scoped API key with &#x60;name&#x60;, optional &#x60;scopes&#x60; (default &#x60;[\&quot;read\&quot;]&#x60;) and optional &#x60;expiresInDays&#x60; (1-365; omitted &#x3D; never expires). The full &#x60;key&#x60; (&#x60;ak_&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned exactly once; only its SHA-256 hash is stored. The key is projected to Redis immediately so the ad-engine accepts it without waiting for a resync.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createKeyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerCreateKeyWithHttpInfoAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ApiKeyCreated)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ApiKeyCreated>> SettingsControllerCreateKeyWithHttpInfoAsync(CreateKeyDto createKeyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createKeyDto' is set
             if (createKeyDto == null)
@@ -1044,6 +1143,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1055,10 +1155,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createKeyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/keys", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ApiKeyCreated>("/v1/keys", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1070,23 +1181,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a terminal serve token Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTerminalTokenDto"></param>
-        /// <returns></returns>
-        public void SettingsControllerCreateTerminalToken(CreateTerminalTokenDto createTerminalTokenDto)
+        /// <returns>SettingsControllerCreateTerminalToken201Response</returns>
+        public SettingsControllerCreateTerminalToken201Response SettingsControllerCreateTerminalToken(CreateTerminalTokenDto createTerminalTokenDto)
         {
-            SettingsControllerCreateTerminalTokenWithHttpInfo(createTerminalTokenDto);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerCreateTerminalToken201Response> localVarResponse = SettingsControllerCreateTerminalTokenWithHttpInfo(createTerminalTokenDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a terminal serve token Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTerminalTokenDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerCreateTerminalTokenWithHttpInfo(CreateTerminalTokenDto createTerminalTokenDto)
+        /// <returns>ApiResponse of SettingsControllerCreateTerminalToken201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerCreateTerminalToken201Response> SettingsControllerCreateTerminalTokenWithHttpInfo(CreateTerminalTokenDto createTerminalTokenDto)
         {
             // verify the required parameter 'createTerminalTokenDto' is set
             if (createTerminalTokenDto == null)
@@ -1100,6 +1212,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1110,9 +1223,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createTerminalTokenDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SettingsControllerCreateTerminalToken201Response>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1124,25 +1248,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a terminal serve token Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTerminalTokenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerCreateTerminalTokenAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SettingsControllerCreateTerminalToken201Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerCreateTerminalToken201Response> SettingsControllerCreateTerminalTokenAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerCreateTerminalTokenWithHttpInfoAsync(createTerminalTokenDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerCreateTerminalToken201Response> localVarResponse = await SettingsControllerCreateTerminalTokenWithHttpInfoAsync(createTerminalTokenDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a terminal serve token Mints a public &#x60;ts_&#x60; token for shipping inside a terminal client, with optional &#x60;name&#x60;, &#x60;campaignId&#x60; (must be one of your &#x60;terminal&#x60;-format campaigns) and &#x60;switch&#x60; policy. A switch policy (&#x60;flipAfter&#x60; / &#x60;flipOnClick&#x60;) requires a pinned campaign, and &#x60;fallbackTag&#x60; must be one of your own placement tags, otherwise 400. The token is projected to Redis so the engine resolves it on the serve path.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTerminalTokenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerCreateTerminalTokenWithHttpInfoAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SettingsControllerCreateTerminalToken201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerCreateTerminalToken201Response>> SettingsControllerCreateTerminalTokenWithHttpInfoAsync(CreateTerminalTokenDto createTerminalTokenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createTerminalTokenDto' is set
             if (createTerminalTokenDto == null)
@@ -1157,6 +1282,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1168,10 +1294,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createTerminalTokenDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SettingsControllerCreateTerminalToken201Response>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1183,21 +1320,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List API keys Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SettingsControllerListKeys()
+        /// <returns>List&lt;ApiKey&gt;</returns>
+        public List<ApiKey> SettingsControllerListKeys()
         {
-            SettingsControllerListKeysWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ApiKey>> localVarResponse = SettingsControllerListKeysWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List API keys Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerListKeysWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ApiKey&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ApiKey>> SettingsControllerListKeysWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1206,6 +1344,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1215,9 +1354,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/keys", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ApiKey>>("/v1/keys", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1229,23 +1379,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List API keys Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerListKeysAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ApiKey&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ApiKey>> SettingsControllerListKeysAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerListKeysWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ApiKey>> localVarResponse = await SettingsControllerListKeysWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List API keys Lists the account&#39;s live (non-revoked) API keys, newest first. Only the public &#x60;key_prefix&#x60; is returned; the secret is never shown again after creation. &#x60;expired&#x60; is true once &#x60;expires_at&#x60; has passed.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerListKeysWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ApiKey&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ApiKey>>> SettingsControllerListKeysWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1255,6 +1406,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1265,10 +1417,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/keys", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ApiKey>>("/v1/keys", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1280,21 +1443,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List terminal serve tokens Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SettingsControllerListTerminalTokens()
+        /// <returns>List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;</returns>
+        public List<SettingsControllerListTerminalTokens200ResponseInner> SettingsControllerListTerminalTokens()
         {
-            SettingsControllerListTerminalTokensWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>> localVarResponse = SettingsControllerListTerminalTokensWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List terminal serve tokens Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerListTerminalTokensWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>> SettingsControllerListTerminalTokensWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1303,6 +1467,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1312,9 +1477,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<SettingsControllerListTerminalTokens200ResponseInner>>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1326,23 +1502,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List terminal serve tokens Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerListTerminalTokensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<SettingsControllerListTerminalTokens200ResponseInner>> SettingsControllerListTerminalTokensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerListTerminalTokensWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>> localVarResponse = await SettingsControllerListTerminalTokensWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List terminal serve tokens Lists the account&#39;s live public terminal serve tokens (&#x60;ts_...&#x60;), newest first, including any adaptive switch policy columns. These tokens are serve-only and safe to embed in distributed CLIs, so the full value is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerListTerminalTokensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>>> SettingsControllerListTerminalTokensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1352,6 +1529,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1362,10 +1540,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<SettingsControllerListTerminalTokens200ResponseInner>>("/v1/advertiser/terminal-tokens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1377,23 +1566,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Revoke an API key Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void SettingsControllerRevokeKey(string id)
+        /// <returns>SettingsControllerRevokeKey200Response</returns>
+        public SettingsControllerRevokeKey200Response SettingsControllerRevokeKey(string id)
         {
-            SettingsControllerRevokeKeyWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response> localVarResponse = SettingsControllerRevokeKeyWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Revoke an API key Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerRevokeKeyWithHttpInfo(string id)
+        /// <returns>ApiResponse of SettingsControllerRevokeKey200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1406,6 +1596,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1416,9 +1607,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/keys/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<SettingsControllerRevokeKey200Response>("/v1/keys/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1430,25 +1632,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Revoke an API key Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SettingsControllerRevokeKey200Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerRevokeKeyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response> localVarResponse = await SettingsControllerRevokeKeyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Revoke an API key Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SettingsControllerRevokeKey200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1462,6 +1665,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1473,10 +1677,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/keys/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<SettingsControllerRevokeKey200Response>("/v1/keys/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1488,23 +1703,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Revoke a terminal serve token Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void SettingsControllerRevokeTerminalToken(string id)
+        /// <returns>SegmentsControllerRevoke201Response</returns>
+        public SegmentsControllerRevoke201Response SettingsControllerRevokeTerminalToken(string id)
         {
-            SettingsControllerRevokeTerminalTokenWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response> localVarResponse = SettingsControllerRevokeTerminalTokenWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Revoke a terminal serve token Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerRevokeTerminalTokenWithHttpInfo(string id)
+        /// <returns>ApiResponse of SegmentsControllerRevoke201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response> SettingsControllerRevokeTerminalTokenWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1517,6 +1733,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1527,9 +1744,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/terminal-tokens/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<SegmentsControllerRevoke201Response>("/v1/advertiser/terminal-tokens/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1541,25 +1769,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Revoke a terminal serve token Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerRevokeTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SegmentsControllerRevoke201Response</returns>
+        public async System.Threading.Tasks.Task<SegmentsControllerRevoke201Response> SettingsControllerRevokeTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerRevokeTerminalTokenWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response> localVarResponse = await SettingsControllerRevokeTerminalTokenWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Revoke a terminal serve token Marks the token revoked and deletes its Redis projection so the engine stops serving it. Unknown ids are a no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerRevokeTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SegmentsControllerRevoke201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SegmentsControllerRevoke201Response>> SettingsControllerRevokeTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1573,6 +1802,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1584,10 +1814,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/terminal-tokens/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<SegmentsControllerRevoke201Response>("/v1/advertiser/terminal-tokens/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1599,23 +1840,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rotate a terminal serve token Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void SettingsControllerRotateTerminalToken(string id)
+        /// <returns>SettingsControllerRotateTerminalToken201Response</returns>
+        public SettingsControllerRotateTerminalToken201Response SettingsControllerRotateTerminalToken(string id)
         {
-            SettingsControllerRotateTerminalTokenWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRotateTerminalToken201Response> localVarResponse = SettingsControllerRotateTerminalTokenWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rotate a terminal serve token Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerRotateTerminalTokenWithHttpInfo(string id)
+        /// <returns>ApiResponse of SettingsControllerRotateTerminalToken201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerRotateTerminalToken201Response> SettingsControllerRotateTerminalTokenWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1628,6 +1870,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1638,9 +1881,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/terminal-tokens/{id}/rotate", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SettingsControllerRotateTerminalToken201Response>("/v1/advertiser/terminal-tokens/{id}/rotate", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1652,25 +1906,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rotate a terminal serve token Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerRotateTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SettingsControllerRotateTerminalToken201Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerRotateTerminalToken201Response> SettingsControllerRotateTerminalTokenAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerRotateTerminalTokenWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRotateTerminalToken201Response> localVarResponse = await SettingsControllerRotateTerminalTokenWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rotate a terminal serve token Replaces the token value with a new &#x60;ts_&#x60; string, keeping its campaign and switch policy. The old value is removed from Redis and stops serving immediately. Returns 400 if the token is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerRotateTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SettingsControllerRotateTerminalToken201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerRotateTerminalToken201Response>> SettingsControllerRotateTerminalTokenWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1684,6 +1939,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1695,10 +1951,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/terminal-tokens/{id}/rotate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SettingsControllerRotateTerminalToken201Response>("/v1/advertiser/terminal-tokens/{id}/rotate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1710,25 +1977,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a terminal token switch policy Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
-        /// <returns></returns>
-        public void SettingsControllerSetTerminalTokenPolicy(string id, TerminalSwitchDto terminalSwitchDto)
+        /// <returns>SettingsControllerSetTerminalTokenPolicy200Response</returns>
+        public SettingsControllerSetTerminalTokenPolicy200Response SettingsControllerSetTerminalTokenPolicy(string id, TerminalSwitchDto terminalSwitchDto)
         {
-            SettingsControllerSetTerminalTokenPolicyWithHttpInfo(id, terminalSwitchDto);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerSetTerminalTokenPolicy200Response> localVarResponse = SettingsControllerSetTerminalTokenPolicyWithHttpInfo(id, terminalSwitchDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a terminal token switch policy Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerSetTerminalTokenPolicyWithHttpInfo(string id, TerminalSwitchDto terminalSwitchDto)
+        /// <returns>ApiResponse of SettingsControllerSetTerminalTokenPolicy200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerSetTerminalTokenPolicy200Response> SettingsControllerSetTerminalTokenPolicyWithHttpInfo(string id, TerminalSwitchDto terminalSwitchDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1746,6 +2014,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1757,9 +2026,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = terminalSwitchDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/advertiser/terminal-tokens/{id}/switch", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<SettingsControllerSetTerminalTokenPolicy200Response>("/v1/advertiser/terminal-tokens/{id}/switch", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1771,27 +2051,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a terminal token switch policy Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerSetTerminalTokenPolicyAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SettingsControllerSetTerminalTokenPolicy200Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerSetTerminalTokenPolicy200Response> SettingsControllerSetTerminalTokenPolicyAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerSetTerminalTokenPolicyWithHttpInfoAsync(id, terminalSwitchDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerSetTerminalTokenPolicy200Response> localVarResponse = await SettingsControllerSetTerminalTokenPolicyWithHttpInfoAsync(id, terminalSwitchDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a terminal token switch policy Arms, changes or disables (&#x60;flipAfter: 0&#x60;, &#x60;flipOnClick: false&#x60;) adaptive mode-switching on an existing token without changing its &#x60;ts_&#x60; value. Same validation as creation; 400 if the token is not found or the policy is invalid. The new policy is re-projected to Redis.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="terminalSwitchDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerSetTerminalTokenPolicyWithHttpInfoAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SettingsControllerSetTerminalTokenPolicy200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerSetTerminalTokenPolicy200Response>> SettingsControllerSetTerminalTokenPolicyWithHttpInfoAsync(string id, TerminalSwitchDto terminalSwitchDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1810,6 +2091,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1822,10 +2104,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = terminalSwitchDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/advertiser/terminal-tokens/{id}/switch", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<SettingsControllerSetTerminalTokenPolicy200Response>("/v1/advertiser/terminal-tokens/{id}/switch", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1837,23 +2130,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update network membership and cross-fill Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="networkSettingsDto"></param>
-        /// <returns></returns>
-        public void SettingsControllerUpdateNetwork(NetworkSettingsDto networkSettingsDto)
+        /// <returns>SettingsControllerUpdateNetwork200Response</returns>
+        public SettingsControllerUpdateNetwork200Response SettingsControllerUpdateNetwork(NetworkSettingsDto networkSettingsDto)
         {
-            SettingsControllerUpdateNetworkWithHttpInfo(networkSettingsDto);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerUpdateNetwork200Response> localVarResponse = SettingsControllerUpdateNetworkWithHttpInfo(networkSettingsDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update network membership and cross-fill Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="networkSettingsDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SettingsControllerUpdateNetworkWithHttpInfo(NetworkSettingsDto networkSettingsDto)
+        /// <returns>ApiResponse of SettingsControllerUpdateNetwork200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerUpdateNetwork200Response> SettingsControllerUpdateNetworkWithHttpInfo(NetworkSettingsDto networkSettingsDto)
         {
             // verify the required parameter 'networkSettingsDto' is set
             if (networkSettingsDto == null)
@@ -1867,6 +2161,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1877,9 +2172,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = networkSettingsDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/account/network", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<SettingsControllerUpdateNetwork200Response>("/v1/account/network", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1891,25 +2197,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update network membership and cross-fill Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="networkSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SettingsControllerUpdateNetworkAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SettingsControllerUpdateNetwork200Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerUpdateNetwork200Response> SettingsControllerUpdateNetworkAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SettingsControllerUpdateNetworkWithHttpInfoAsync(networkSettingsDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerUpdateNetwork200Response> localVarResponse = await SettingsControllerUpdateNetworkWithHttpInfoAsync(networkSettingsDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update network membership and cross-fill Sets the account&#39;s tenant &#x60;networkId&#x60; (null or empty &#x3D; the general open pool) and/or &#x60;crossFill&#x60; opt-in to transact with other networks. Only provided fields change. Because these flags are projected onto every campaign and placement in the serving index, the indexer republishes after a change.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="networkSettingsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SettingsControllerUpdateNetworkWithHttpInfoAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SettingsControllerUpdateNetwork200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerUpdateNetwork200Response>> SettingsControllerUpdateNetworkWithHttpInfoAsync(NetworkSettingsDto networkSettingsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'networkSettingsDto' is set
             if (networkSettingsDto == null)
@@ -1924,6 +2231,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1935,10 +2243,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = networkSettingsDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/account/network", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<SettingsControllerUpdateNetwork200Response>("/v1/account/network", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

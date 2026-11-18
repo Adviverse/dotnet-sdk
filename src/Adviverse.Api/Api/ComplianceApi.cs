@@ -28,76 +28,91 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ComplianceControllerAdsTxt();
-
-        /// <summary>
-        /// 
+        /// Get the ads.txt line
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerAdsTxtWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void ComplianceControllerComplete(string id);
+        /// <returns>string</returns>
+        string ComplianceControllerAdsTxt();
 
         /// <summary>
-        /// 
+        /// Get the ads.txt line
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> ComplianceControllerAdsTxtWithHttpInfo();
+        /// <summary>
+        /// Complete a data-subject request
+        /// </summary>
+        /// <remarks>
+        /// Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerCompleteWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="consentDto"></param>
-        /// <returns></returns>
-        void ComplianceControllerConsent(ConsentDto consentDto);
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response ComplianceControllerComplete(string id);
 
         /// <summary>
-        /// 
+        /// Complete a data-subject request
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> ComplianceControllerCompleteWithHttpInfo(string id);
+        /// <summary>
+        /// Log a consent signal
+        /// </summary>
+        /// <remarks>
+        /// Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerConsentWithHttpInfo(ConsentDto consentDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ComplianceControllerConsentLog();
+        /// <returns>ComplianceControllerConsent201Response</returns>
+        ComplianceControllerConsent201Response ComplianceControllerConsent(ConsentDto consentDto);
 
         /// <summary>
-        /// 
+        /// Log a consent signal
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerConsentLogWithHttpInfo();
+        /// <param name="consentDto"></param>
+        /// <returns>ApiResponse of ComplianceControllerConsent201Response</returns>
+        ApiResponse<ComplianceControllerConsent201Response> ComplianceControllerConsentWithHttpInfo(ConsentDto consentDto);
         /// <summary>
-        /// 
+        /// List recent consent records
         /// </summary>
+        /// <remarks>
+        /// Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ComplianceControllerConsentLog200ResponseInner&gt;</returns>
+        List<ComplianceControllerConsentLog200ResponseInner> ComplianceControllerConsentLog();
+
+        /// <summary>
+        /// List recent consent records
+        /// </summary>
+        /// <remarks>
+        /// Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ComplianceControllerConsentLog200ResponseInner&gt;</returns>
+        ApiResponse<List<ComplianceControllerConsentLog200ResponseInner>> ComplianceControllerConsentLogWithHttpInfo();
+        /// <summary>
+        /// Get the DomainConnect verification template
+        /// </summary>
+        /// <remarks>
+        /// Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
         /// <param name="serviceId"></param>
@@ -105,10 +120,10 @@ namespace Adviverse.Api.Api
         void ComplianceControllerDomainConnectTemplate(string providerId, string serviceId);
 
         /// <summary>
-        /// 
+        /// Get the DomainConnect verification template
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
@@ -116,125 +131,146 @@ namespace Adviverse.Api.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> ComplianceControllerDomainConnectTemplateWithHttpInfo(string providerId, string serviceId);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dsarDto"></param>
-        /// <returns></returns>
-        void ComplianceControllerDsar(DsarDto dsarDto);
-
-        /// <summary>
-        /// 
+        /// Submit a data-subject request
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dsarDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerDsarWithHttpInfo(DsarDto dsarDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="propertyId"></param>
-        /// <returns></returns>
-        void ComplianceControllerGetConsentConfig(string propertyId);
+        /// <returns>ComplianceDsar</returns>
+        ComplianceDsar ComplianceControllerDsar(DsarDto dsarDto);
 
         /// <summary>
-        /// 
+        /// Submit a data-subject request
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="dsarDto"></param>
+        /// <returns>ApiResponse of ComplianceDsar</returns>
+        ApiResponse<ComplianceDsar> ComplianceControllerDsarWithHttpInfo(DsarDto dsarDto);
+        /// <summary>
+        /// Get consent configuration
+        /// </summary>
+        /// <remarks>
+        /// Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerGetConsentConfigWithHttpInfo(string propertyId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ComplianceControllerGetSellerListing();
+        /// <returns>ComplianceConsentConfig</returns>
+        ComplianceConsentConfig ComplianceControllerGetConsentConfig(string propertyId);
 
         /// <summary>
-        /// 
+        /// Get consent configuration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerGetSellerListingWithHttpInfo();
+        /// <param name="propertyId"></param>
+        /// <returns>ApiResponse of ComplianceConsentConfig</returns>
+        ApiResponse<ComplianceConsentConfig> ComplianceControllerGetConsentConfigWithHttpInfo(string propertyId);
         /// <summary>
-        /// 
+        /// Get sellers.json listing preference
         /// </summary>
+        /// <remarks>
+        /// Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ComplianceControllerListDsar();
+        /// <returns>ComplianceSellerListing</returns>
+        ComplianceSellerListing ComplianceControllerGetSellerListing();
 
         /// <summary>
-        /// 
+        /// Get sellers.json listing preference
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerListDsarWithHttpInfo();
+        /// <returns>ApiResponse of ComplianceSellerListing</returns>
+        ApiResponse<ComplianceSellerListing> ComplianceControllerGetSellerListingWithHttpInfo();
         /// <summary>
-        /// 
+        /// List data-subject requests
         /// </summary>
+        /// <remarks>
+        /// Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ComplianceDsar&gt;</returns>
+        List<ComplianceDsar> ComplianceControllerListDsar();
+
+        /// <summary>
+        /// List data-subject requests
+        /// </summary>
+        /// <remarks>
+        /// Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ComplianceDsar&gt;</returns>
+        ApiResponse<List<ComplianceDsar>> ComplianceControllerListDsarWithHttpInfo();
+        /// <summary>
+        /// Save consent configuration
+        /// </summary>
+        /// <remarks>
+        /// Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
-        /// <returns></returns>
-        void ComplianceControllerSaveConsentConfig(ConsentConfigDto consentConfigDto);
+        /// <returns>ComplianceConsentConfig</returns>
+        ComplianceConsentConfig ComplianceControllerSaveConsentConfig(ConsentConfigDto consentConfigDto);
 
         /// <summary>
-        /// 
+        /// Save consent configuration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerSaveConsentConfigWithHttpInfo(ConsentConfigDto consentConfigDto);
+        /// <returns>ApiResponse of ComplianceConsentConfig</returns>
+        ApiResponse<ComplianceConsentConfig> ComplianceControllerSaveConsentConfigWithHttpInfo(ConsentConfigDto consentConfigDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sellerListingDto"></param>
-        /// <returns></returns>
-        void ComplianceControllerSaveSellerListing(SellerListingDto sellerListingDto);
-
-        /// <summary>
-        /// 
+        /// Set sellers.json listing preference
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sellerListingDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerSaveSellerListingWithHttpInfo(SellerListingDto sellerListingDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ComplianceControllerSellers();
+        /// <returns>ComplianceSellerListing</returns>
+        ComplianceSellerListing ComplianceControllerSaveSellerListing(SellerListingDto sellerListingDto);
 
         /// <summary>
-        /// 
+        /// Set sellers.json listing preference
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComplianceControllerSellersWithHttpInfo();
+        /// <param name="sellerListingDto"></param>
+        /// <returns>ApiResponse of ComplianceSellerListing</returns>
+        ApiResponse<ComplianceSellerListing> ComplianceControllerSaveSellerListingWithHttpInfo(SellerListingDto sellerListingDto);
+        /// <summary>
+        /// Get sellers.json
+        /// </summary>
+        /// <remarks>
+        /// Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ComplianceControllerSellers200Response</returns>
+        ComplianceControllerSellers200Response ComplianceControllerSellers();
+
+        /// <summary>
+        /// Get sellers.json
+        /// </summary>
+        /// <remarks>
+        /// Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ComplianceControllerSellers200Response</returns>
+        ApiResponse<ComplianceControllerSellers200Response> ComplianceControllerSellersWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -245,98 +281,98 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get the ads.txt line
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerAdsTxtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> ComplianceControllerAdsTxtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the ads.txt line
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerAdsTxtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> ComplianceControllerAdsTxtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Complete a data-subject request
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Complete a data-subject request
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Log a consent signal
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceControllerConsent201Response</returns>
+        System.Threading.Tasks.Task<ComplianceControllerConsent201Response> ComplianceControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Log a consent signal
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceControllerConsent201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceControllerConsent201Response>> ComplianceControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List recent consent records
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerConsentLogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ComplianceControllerConsentLog200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ComplianceControllerConsentLog200ResponseInner>> ComplianceControllerConsentLogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List recent consent records
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerConsentLogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ComplianceControllerConsentLog200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ComplianceControllerConsentLog200ResponseInner>>> ComplianceControllerConsentLogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the DomainConnect verification template
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
@@ -346,10 +382,10 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task ComplianceControllerDomainConnectTemplateAsync(string providerId, string serviceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the DomainConnect verification template
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
@@ -358,160 +394,160 @@ namespace Adviverse.Api.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerDomainConnectTemplateWithHttpInfoAsync(string providerId, string serviceId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Submit a data-subject request
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dsarDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerDsarAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceDsar</returns>
+        System.Threading.Tasks.Task<ComplianceDsar> ComplianceControllerDsarAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Submit a data-subject request
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dsarDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerDsarWithHttpInfoAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceDsar)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceDsar>> ComplianceControllerDsarWithHttpInfoAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get consent configuration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerGetConsentConfigAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceConsentConfig</returns>
+        System.Threading.Tasks.Task<ComplianceConsentConfig> ComplianceControllerGetConsentConfigAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get consent configuration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerGetConsentConfigWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceConsentConfig)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceConsentConfig>> ComplianceControllerGetConsentConfigWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get sellers.json listing preference
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerGetSellerListingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceSellerListing</returns>
+        System.Threading.Tasks.Task<ComplianceSellerListing> ComplianceControllerGetSellerListingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get sellers.json listing preference
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerGetSellerListingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceSellerListing)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceSellerListing>> ComplianceControllerGetSellerListingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List data-subject requests
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerListDsarAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ComplianceDsar&gt;</returns>
+        System.Threading.Tasks.Task<List<ComplianceDsar>> ComplianceControllerListDsarAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List data-subject requests
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerListDsarWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ComplianceDsar&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ComplianceDsar>>> ComplianceControllerListDsarWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Save consent configuration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerSaveConsentConfigAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceConsentConfig</returns>
+        System.Threading.Tasks.Task<ComplianceConsentConfig> ComplianceControllerSaveConsentConfigAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Save consent configuration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerSaveConsentConfigWithHttpInfoAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceConsentConfig)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceConsentConfig>> ComplianceControllerSaveConsentConfigWithHttpInfoAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set sellers.json listing preference
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sellerListingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerSaveSellerListingAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceSellerListing</returns>
+        System.Threading.Tasks.Task<ComplianceSellerListing> ComplianceControllerSaveSellerListingAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set sellers.json listing preference
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sellerListingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerSaveSellerListingWithHttpInfoAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceSellerListing)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceSellerListing>> ComplianceControllerSaveSellerListingWithHttpInfoAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get sellers.json
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComplianceControllerSellersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceControllerSellers200Response</returns>
+        System.Threading.Tasks.Task<ComplianceControllerSellers200Response> ComplianceControllerSellersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get sellers.json
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComplianceControllerSellersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceControllerSellers200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceControllerSellers200Response>> ComplianceControllerSellersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -726,21 +762,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the ads.txt line Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ComplianceControllerAdsTxt()
+        /// <returns>string</returns>
+        public string ComplianceControllerAdsTxt()
         {
-            ComplianceControllerAdsTxtWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = ComplianceControllerAdsTxtWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the ads.txt line Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerAdsTxtWithHttpInfo()
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> ComplianceControllerAdsTxtWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -749,6 +786,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -760,7 +798,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/ads.txt", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/ads.txt", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -772,23 +810,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the ads.txt line Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerAdsTxtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> ComplianceControllerAdsTxtAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerAdsTxtWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await ComplianceControllerAdsTxtWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the ads.txt line Public. Returns the single ads.txt line (&#x60;&lt;domain&gt;, &lt;seller id&gt;, DIRECT&#x60;) publishers add to their own ads.txt to authorize Adviverse to sell their inventory.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerAdsTxtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> ComplianceControllerAdsTxtWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -798,6 +837,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
 
@@ -811,7 +851,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/ads.txt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/ads.txt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -823,23 +863,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Complete a data-subject request Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void ComplianceControllerComplete(string id)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response ComplianceControllerComplete(string id)
         {
-            ComplianceControllerCompleteWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = ComplianceControllerCompleteWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Complete a data-subject request Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerCompleteWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> ComplianceControllerCompleteWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -852,6 +893,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -862,9 +904,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -876,25 +929,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Complete a data-subject request Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerCompleteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await ComplianceControllerCompleteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Complete a data-subject request Marks a DSAR completed. For delete requests it also deletes consent-log rows matching the subject hash. Returns &#x60;{ ok: false }&#x60; for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -908,6 +962,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -919,10 +974,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -934,23 +1000,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Log a consent signal Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
-        /// <returns></returns>
-        public void ComplianceControllerConsent(ConsentDto consentDto)
+        /// <returns>ComplianceControllerConsent201Response</returns>
+        public ComplianceControllerConsent201Response ComplianceControllerConsent(ConsentDto consentDto)
         {
-            ComplianceControllerConsentWithHttpInfo(consentDto);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerConsent201Response> localVarResponse = ComplianceControllerConsentWithHttpInfo(consentDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Log a consent signal Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerConsentWithHttpInfo(ConsentDto consentDto)
+        /// <returns>ApiResponse of ComplianceControllerConsent201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceControllerConsent201Response> ComplianceControllerConsentWithHttpInfo(ConsentDto consentDto)
         {
             // verify the required parameter 'consentDto' is set
             if (consentDto == null)
@@ -964,6 +1031,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -976,7 +1044,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/consent", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ComplianceControllerConsent201Response>("/v1/consent", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -988,25 +1056,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Log a consent signal Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceControllerConsent201Response</returns>
+        public async System.Threading.Tasks.Task<ComplianceControllerConsent201Response> ComplianceControllerConsentAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerConsentWithHttpInfoAsync(consentDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerConsent201Response> localVarResponse = await ComplianceControllerConsentWithHttpInfoAsync(consentDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Log a consent signal Public, rate-limited; called by the SDK/CMP bridge. Stores a consent record with a SHA-256 hash of &#x60;userId&#x60;, plus optional &#x60;tcf&#x60;, &#x60;gpp&#x60;, &#x60;gpc&#x60;, &#x60;purposes&#x60; and &#x60;mode&#x60;. &#x60;publisherId&#x60; and &#x60;propertyId&#x60; attribute the record and are kept only when they are well-formed UUIDs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceControllerConsent201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceControllerConsent201Response>> ComplianceControllerConsentWithHttpInfoAsync(ConsentDto consentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'consentDto' is set
             if (consentDto == null)
@@ -1021,6 +1090,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1035,7 +1105,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/consent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ComplianceControllerConsent201Response>("/v1/consent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1047,21 +1117,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent consent records Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ComplianceControllerConsentLog()
+        /// <returns>List&lt;ComplianceControllerConsentLog200ResponseInner&gt;</returns>
+        public List<ComplianceControllerConsentLog200ResponseInner> ComplianceControllerConsentLog()
         {
-            ComplianceControllerConsentLogWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ComplianceControllerConsentLog200ResponseInner>> localVarResponse = ComplianceControllerConsentLogWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent consent records Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerConsentLogWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ComplianceControllerConsentLog200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ComplianceControllerConsentLog200ResponseInner>> ComplianceControllerConsentLogWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1070,6 +1141,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1079,9 +1151,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/consent-log", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ComplianceControllerConsentLog200ResponseInner>>("/v1/publisher/consent-log", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1093,23 +1176,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent consent records Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerConsentLogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ComplianceControllerConsentLog200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ComplianceControllerConsentLog200ResponseInner>> ComplianceControllerConsentLogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerConsentLogWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ComplianceControllerConsentLog200ResponseInner>> localVarResponse = await ComplianceControllerConsentLogWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent consent records Returns the 100 most recent consent-log entries forwarded by this publisher&#39;s snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerConsentLogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ComplianceControllerConsentLog200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ComplianceControllerConsentLog200ResponseInner>>> ComplianceControllerConsentLogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1119,6 +1203,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1129,10 +1214,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/consent-log", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ComplianceControllerConsentLog200ResponseInner>>("/v1/publisher/consent-log", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1144,7 +1240,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the DomainConnect verification template Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
@@ -1156,7 +1252,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the DomainConnect verification template Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
@@ -1204,7 +1300,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the DomainConnect verification template Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
@@ -1217,7 +1313,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the DomainConnect verification template Public. Serves the DomainConnect template for publisher domain verification at the standard service-provider path. The template applies one TXT record at the verification host carrying the &#x60;%txt%&#x60; token. Any other provider/service id returns 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="providerId"></param>
@@ -1269,23 +1365,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit a data-subject request Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dsarDto"></param>
-        /// <returns></returns>
-        public void ComplianceControllerDsar(DsarDto dsarDto)
+        /// <returns>ComplianceDsar</returns>
+        public ComplianceDsar ComplianceControllerDsar(DsarDto dsarDto)
         {
-            ComplianceControllerDsarWithHttpInfo(dsarDto);
+            Adviverse.Api.Client.ApiResponse<ComplianceDsar> localVarResponse = ComplianceControllerDsarWithHttpInfo(dsarDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit a data-subject request Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dsarDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerDsarWithHttpInfo(DsarDto dsarDto)
+        /// <returns>ApiResponse of ComplianceDsar</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceDsar> ComplianceControllerDsarWithHttpInfo(DsarDto dsarDto)
         {
             // verify the required parameter 'dsarDto' is set
             if (dsarDto == null)
@@ -1299,6 +1396,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1311,7 +1409,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/privacy/dsar", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ComplianceDsar>("/v1/privacy/dsar", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1323,25 +1421,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit a data-subject request Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dsarDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerDsarAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceDsar</returns>
+        public async System.Threading.Tasks.Task<ComplianceDsar> ComplianceControllerDsarAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerDsarWithHttpInfoAsync(dsarDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceDsar> localVarResponse = await ComplianceControllerDsarWithHttpInfoAsync(dsarDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit a data-subject request Public, rate-limited. Files an &#x60;access&#x60; or &#x60;delete&#x60; request for &#x60;email&#x60;; only a hash of the subject is stored. A delete request starts erasing the subject from identity maps, CDP traits, segment memberships and event history and suppresses re-collection (fail-soft, in the background). An access request returns the stored request plus an &#x60;export&#x60; of the data held on the subject.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dsarDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerDsarWithHttpInfoAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceDsar)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceDsar>> ComplianceControllerDsarWithHttpInfoAsync(DsarDto dsarDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'dsarDto' is set
             if (dsarDto == null)
@@ -1356,6 +1455,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1370,7 +1470,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/privacy/dsar", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ComplianceDsar>("/v1/privacy/dsar", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1382,23 +1482,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get consent configuration Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
-        /// <returns></returns>
-        public void ComplianceControllerGetConsentConfig(string propertyId)
+        /// <returns>ComplianceConsentConfig</returns>
+        public ComplianceConsentConfig ComplianceControllerGetConsentConfig(string propertyId)
         {
-            ComplianceControllerGetConsentConfigWithHttpInfo(propertyId);
+            Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig> localVarResponse = ComplianceControllerGetConsentConfigWithHttpInfo(propertyId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get consent configuration Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerGetConsentConfigWithHttpInfo(string propertyId)
+        /// <returns>ApiResponse of ComplianceConsentConfig</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig> ComplianceControllerGetConsentConfigWithHttpInfo(string propertyId)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1411,6 +1512,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1421,9 +1523,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "propertyId", propertyId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ComplianceConsentConfig>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1435,25 +1548,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get consent configuration Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerGetConsentConfigAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceConsentConfig</returns>
+        public async System.Threading.Tasks.Task<ComplianceConsentConfig> ComplianceControllerGetConsentConfigAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerGetConsentConfigWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig> localVarResponse = await ComplianceControllerGetConsentConfigWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get consent configuration Returns the consent config for &#x60;propertyId&#x60;, falling back to the account-wide default and then to built-in defaults (TCF v2, no default consent, all collection on). Without &#x60;propertyId&#x60; the account default is returned. The property must belong to the caller (400).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerGetConsentConfigWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceConsentConfig)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig>> ComplianceControllerGetConsentConfigWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1467,6 +1581,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1478,10 +1593,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "propertyId", propertyId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ComplianceConsentConfig>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1493,21 +1619,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json listing preference Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ComplianceControllerGetSellerListing()
+        /// <returns>ComplianceSellerListing</returns>
+        public ComplianceSellerListing ComplianceControllerGetSellerListing()
         {
-            ComplianceControllerGetSellerListingWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ComplianceSellerListing> localVarResponse = ComplianceControllerGetSellerListingWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json listing preference Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerGetSellerListingWithHttpInfo()
+        /// <returns>ApiResponse of ComplianceSellerListing</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceSellerListing> ComplianceControllerGetSellerListingWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1516,6 +1643,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1525,9 +1653,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ComplianceSellerListing>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1539,23 +1678,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json listing preference Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerGetSellerListingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceSellerListing</returns>
+        public async System.Threading.Tasks.Task<ComplianceSellerListing> ComplianceControllerGetSellerListingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerGetSellerListingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceSellerListing> localVarResponse = await ComplianceControllerGetSellerListingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json listing preference Returns whether the publisher is listed publicly in sellers.json and its declared seller domain. Defaults to confidential.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerGetSellerListingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceSellerListing)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceSellerListing>> ComplianceControllerGetSellerListingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1565,6 +1705,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1575,10 +1716,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ComplianceSellerListing>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1590,21 +1742,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List data-subject requests Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ComplianceControllerListDsar()
+        /// <returns>List&lt;ComplianceDsar&gt;</returns>
+        public List<ComplianceDsar> ComplianceControllerListDsar()
         {
-            ComplianceControllerListDsarWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ComplianceDsar>> localVarResponse = ComplianceControllerListDsarWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List data-subject requests Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerListDsarWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ComplianceDsar&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ComplianceDsar>> ComplianceControllerListDsarWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1613,6 +1766,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1622,9 +1776,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/dsar", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ComplianceDsar>>("/v1/admin/dsar", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1636,23 +1801,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List data-subject requests Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerListDsarAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ComplianceDsar&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ComplianceDsar>> ComplianceControllerListDsarAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerListDsarWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ComplianceDsar>> localVarResponse = await ComplianceControllerListDsarWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List data-subject requests Returns the 200 most recent DSAR requests, newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerListDsarWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ComplianceDsar&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ComplianceDsar>>> ComplianceControllerListDsarWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1662,6 +1828,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1672,10 +1839,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/dsar", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ComplianceDsar>>("/v1/admin/dsar", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1687,23 +1865,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save consent configuration Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
-        /// <returns></returns>
-        public void ComplianceControllerSaveConsentConfig(ConsentConfigDto consentConfigDto)
+        /// <returns>ComplianceConsentConfig</returns>
+        public ComplianceConsentConfig ComplianceControllerSaveConsentConfig(ConsentConfigDto consentConfigDto)
         {
-            ComplianceControllerSaveConsentConfigWithHttpInfo(consentConfigDto);
+            Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig> localVarResponse = ComplianceControllerSaveConsentConfigWithHttpInfo(consentConfigDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save consent configuration Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerSaveConsentConfigWithHttpInfo(ConsentConfigDto consentConfigDto)
+        /// <returns>ApiResponse of ComplianceConsentConfig</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig> ComplianceControllerSaveConsentConfigWithHttpInfo(ConsentConfigDto consentConfigDto)
         {
             // verify the required parameter 'consentConfigDto' is set
             if (consentConfigDto == null)
@@ -1717,6 +1896,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1727,9 +1907,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = consentConfigDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ComplianceConsentConfig>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1741,25 +1932,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Save consent configuration Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerSaveConsentConfigAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceConsentConfig</returns>
+        public async System.Threading.Tasks.Task<ComplianceConsentConfig> ComplianceControllerSaveConsentConfigAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerSaveConsentConfigWithHttpInfoAsync(consentConfigDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig> localVarResponse = await ComplianceControllerSaveConsentConfigWithHttpInfoAsync(consentConfigDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Save consent configuration Upserts the consent config for &#x60;propertyId&#x60;, or the account default when omitted. Requires &#x60;mode&#x60; (&#x60;tcf_v2&#x60;, &#x60;gpp&#x60;, &#x60;custom&#x60;) and &#x60;defaultConsent&#x60;; snippet controls default to true. For a custom CMP, &#x60;consentSource&#x60; &#x60;cookie&#x60; or &#x60;global&#x60; requires &#x60;consentKey&#x60; (cookie name or JS global path), and &#x60;consentGrantValue&#x60; defaults to &#x60;true&#x60;. &#x60;tcfPurpose&#x60; (1-11, default 1) and &#x60;tcfVendorId&#x60; are range-checked. Invalid mode, source or key returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="consentConfigDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerSaveConsentConfigWithHttpInfoAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceConsentConfig)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceConsentConfig>> ComplianceControllerSaveConsentConfigWithHttpInfoAsync(ConsentConfigDto consentConfigDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'consentConfigDto' is set
             if (consentConfigDto == null)
@@ -1774,6 +1966,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1785,10 +1978,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = consentConfigDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ComplianceConsentConfig>("/v1/publisher/consent-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1800,23 +2004,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set sellers.json listing preference Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sellerListingDto"></param>
-        /// <returns></returns>
-        public void ComplianceControllerSaveSellerListing(SellerListingDto sellerListingDto)
+        /// <returns>ComplianceSellerListing</returns>
+        public ComplianceSellerListing ComplianceControllerSaveSellerListing(SellerListingDto sellerListingDto)
         {
-            ComplianceControllerSaveSellerListingWithHttpInfo(sellerListingDto);
+            Adviverse.Api.Client.ApiResponse<ComplianceSellerListing> localVarResponse = ComplianceControllerSaveSellerListingWithHttpInfo(sellerListingDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set sellers.json listing preference Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sellerListingDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerSaveSellerListingWithHttpInfo(SellerListingDto sellerListingDto)
+        /// <returns>ApiResponse of ComplianceSellerListing</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceSellerListing> ComplianceControllerSaveSellerListingWithHttpInfo(SellerListingDto sellerListingDto)
         {
             // verify the required parameter 'sellerListingDto' is set
             if (sellerListingDto == null)
@@ -1830,6 +2035,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1840,9 +2046,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = sellerListingDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<Object>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Put<ComplianceSellerListing>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1854,25 +2071,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set sellers.json listing preference Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sellerListingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerSaveSellerListingAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceSellerListing</returns>
+        public async System.Threading.Tasks.Task<ComplianceSellerListing> ComplianceControllerSaveSellerListingAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerSaveSellerListingWithHttpInfoAsync(sellerListingDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceSellerListing> localVarResponse = await ComplianceControllerSaveSellerListingWithHttpInfoAsync(sellerListingDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set sellers.json listing preference Sets &#x60;sellerPublic&#x60; and an optional &#x60;sellerDomain&#x60;. The domain is normalized (scheme, path and &#x60;www.&#x60; stripped, lowercased) and must be a valid hostname (400 otherwise). A public listing exposes the company name and domain in sellers.json.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sellerListingDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerSaveSellerListingWithHttpInfoAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceSellerListing)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceSellerListing>> ComplianceControllerSaveSellerListingWithHttpInfoAsync(SellerListingDto sellerListingDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'sellerListingDto' is set
             if (sellerListingDto == null)
@@ -1887,6 +2105,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1898,10 +2117,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = sellerListingDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PutAsync<Object>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PutAsync<ComplianceSellerListing>("/v1/publisher/seller-listing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1913,21 +2143,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ComplianceControllerSellers()
+        /// <returns>ComplianceControllerSellers200Response</returns>
+        public ComplianceControllerSellers200Response ComplianceControllerSellers()
         {
-            ComplianceControllerSellersWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerSellers200Response> localVarResponse = ComplianceControllerSellersWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComplianceControllerSellersWithHttpInfo()
+        /// <returns>ApiResponse of ComplianceControllerSellers200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceControllerSellers200Response> ComplianceControllerSellersWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1936,6 +2167,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1947,7 +2179,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/sellers.json", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ComplianceControllerSellers200Response>("/sellers.json", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1959,23 +2191,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComplianceControllerSellersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceControllerSellers200Response</returns>
+        public async System.Threading.Tasks.Task<ComplianceControllerSellers200Response> ComplianceControllerSellersAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComplianceControllerSellersWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerSellers200Response> localVarResponse = await ComplianceControllerSellersWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get sellers.json Public IAB sellers.json listing active publisher accounts as PUBLISHER sellers. Advertisers are not listed. Sellers are confidential (&#x60;is_confidential: 1&#x60;, no name/domain) unless the publisher opted into a public listing, which exposes their company name and seller domain.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComplianceControllerSellersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceControllerSellers200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceControllerSellers200Response>> ComplianceControllerSellersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1985,6 +2218,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1998,7 +2232,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/sellers.json", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ComplianceControllerSellers200Response>("/sellers.json", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -28,169 +28,196 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="locale"></param>
-        /// <returns></returns>
-        void BlogControllerAdminList(string locale);
-
-        /// <summary>
-        /// 
+        /// List all blog posts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerAdminListWithHttpInfo(string locale);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createPostDto"></param>
-        /// <returns></returns>
-        void BlogControllerCreate(CreatePostDto createPostDto);
+        /// <returns>List&lt;BlogPost&gt;</returns>
+        List<BlogPost> BlogControllerAdminList(string locale);
 
         /// <summary>
-        /// 
+        /// List all blog posts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="locale"></param>
+        /// <returns>ApiResponse of List&lt;BlogPost&gt;</returns>
+        ApiResponse<List<BlogPost>> BlogControllerAdminListWithHttpInfo(string locale);
+        /// <summary>
+        /// Create or replace a blog post
+        /// </summary>
+        /// <remarks>
+        /// Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerCreateWithHttpInfo(CreatePostDto createPostDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="slug"></param>
-        /// <param name="locale"></param>
-        /// <returns></returns>
-        void BlogControllerGet(string slug, string locale);
+        /// <returns>BlogPost</returns>
+        BlogPost BlogControllerCreate(CreatePostDto createPostDto);
 
         /// <summary>
-        /// 
+        /// Create or replace a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPostDto"></param>
+        /// <returns>ApiResponse of BlogPost</returns>
+        ApiResponse<BlogPost> BlogControllerCreateWithHttpInfo(CreatePostDto createPostDto);
+        /// <summary>
+        /// Get a published blog post
+        /// </summary>
+        /// <remarks>
+        /// Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerGetWithHttpInfo(string slug, string locale);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void BlogControllerIndexHtml();
+        /// <returns>BlogControllerGet200Response</returns>
+        BlogControllerGet200Response BlogControllerGet(string slug, string locale);
 
         /// <summary>
-        /// 
+        /// Get a published blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerIndexHtmlWithHttpInfo();
+        /// <param name="slug"></param>
+        /// <param name="locale"></param>
+        /// <returns>ApiResponse of BlogControllerGet200Response</returns>
+        ApiResponse<BlogControllerGet200Response> BlogControllerGetWithHttpInfo(string slug, string locale);
         /// <summary>
-        /// 
+        /// Render the public blog index page
         /// </summary>
+        /// <remarks>
+        /// Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>string</returns>
+        string BlogControllerIndexHtml();
+
+        /// <summary>
+        /// Render the public blog index page
+        /// </summary>
+        /// <remarks>
+        /// Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> BlogControllerIndexHtmlWithHttpInfo();
+        /// <summary>
+        /// List published blog posts
+        /// </summary>
+        /// <remarks>
+        /// Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
-        /// <returns></returns>
-        void BlogControllerList(string locale, string tag);
+        /// <returns>List&lt;BlogPost&gt;</returns>
+        List<BlogPost> BlogControllerList(string locale, string tag);
 
         /// <summary>
-        /// 
+        /// List published blog posts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerListWithHttpInfo(string locale, string tag);
+        /// <returns>ApiResponse of List&lt;BlogPost&gt;</returns>
+        ApiResponse<List<BlogPost>> BlogControllerListWithHttpInfo(string locale, string tag);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="slug"></param>
-        /// <returns></returns>
-        void BlogControllerPageHtml(string slug);
-
-        /// <summary>
-        /// 
+        /// Render a public blog post page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerPageHtmlWithHttpInfo(string slug);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void BlogControllerRemove(string id);
+        /// <returns>string</returns>
+        string BlogControllerPageHtml(string slug);
 
         /// <summary>
-        /// 
+        /// Render a public blog post page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="slug"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> BlogControllerPageHtmlWithHttpInfo(string slug);
+        /// <summary>
+        /// Delete a blog post
+        /// </summary>
+        /// <remarks>
+        /// Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerRemoveWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void BlogControllerSitemap();
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response BlogControllerRemove(string id);
 
         /// <summary>
-        /// 
+        /// Delete a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerSitemapWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> BlogControllerRemoveWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Get the blog sitemap
         /// </summary>
+        /// <remarks>
+        /// Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>string</returns>
+        string BlogControllerSitemap();
+
+        /// <summary>
+        /// Get the blog sitemap
+        /// </summary>
+        /// <remarks>
+        /// Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> BlogControllerSitemapWithHttpInfo();
+        /// <summary>
+        /// Update a blog post
+        /// </summary>
+        /// <remarks>
+        /// Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
-        /// <returns></returns>
-        void BlogControllerUpdate(string id, UpdatePostDto updatePostDto);
+        /// <returns>BlogPost</returns>
+        BlogPost BlogControllerUpdate(string id, UpdatePostDto updatePostDto);
 
         /// <summary>
-        /// 
+        /// Update a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BlogControllerUpdateWithHttpInfo(string id, UpdatePostDto updatePostDto);
+        /// <returns>ApiResponse of BlogPost</returns>
+        ApiResponse<BlogPost> BlogControllerUpdateWithHttpInfo(string id, UpdatePostDto updatePostDto);
         #endregion Synchronous Operations
     }
 
@@ -201,214 +228,214 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List all blog posts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;BlogPost&gt;</returns>
+        System.Threading.Tasks.Task<List<BlogPost>> BlogControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List all blog posts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;BlogPost&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<BlogPost>>> BlogControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create or replace a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerCreateAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BlogPost</returns>
+        System.Threading.Tasks.Task<BlogPost> BlogControllerCreateAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create or replace a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerCreateWithHttpInfoAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BlogPost)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BlogPost>> BlogControllerCreateWithHttpInfoAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a published blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BlogControllerGet200Response</returns>
+        System.Threading.Tasks.Task<BlogControllerGet200Response> BlogControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a published blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BlogControllerGet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BlogControllerGet200Response>> BlogControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Render the public blog index page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> BlogControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Render the public blog index page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> BlogControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List published blog posts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerListAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;BlogPost&gt;</returns>
+        System.Threading.Tasks.Task<List<BlogPost>> BlogControllerListAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List published blog posts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerListWithHttpInfoAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;BlogPost&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<BlogPost>>> BlogControllerListWithHttpInfoAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Render a public blog post page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> BlogControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Render a public blog post page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> BlogControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the blog sitemap
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> BlogControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the blog sitemap
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> BlogControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BlogControllerUpdateAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BlogPost</returns>
+        System.Threading.Tasks.Task<BlogPost> BlogControllerUpdateAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a blog post
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BlogControllerUpdateWithHttpInfoAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BlogPost)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BlogPost>> BlogControllerUpdateWithHttpInfoAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -623,23 +650,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all blog posts Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
-        /// <returns></returns>
-        public void BlogControllerAdminList(string locale)
+        /// <returns>List&lt;BlogPost&gt;</returns>
+        public List<BlogPost> BlogControllerAdminList(string locale)
         {
-            BlogControllerAdminListWithHttpInfo(locale);
+            Adviverse.Api.Client.ApiResponse<List<BlogPost>> localVarResponse = BlogControllerAdminListWithHttpInfo(locale);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all blog posts Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerAdminListWithHttpInfo(string locale)
+        /// <returns>ApiResponse of List&lt;BlogPost&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<BlogPost>> BlogControllerAdminListWithHttpInfo(string locale)
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -652,6 +680,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -662,9 +691,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "locale", locale));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/blog", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<BlogPost>>("/v1/admin/blog", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -676,25 +716,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all blog posts Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;BlogPost&gt;</returns>
+        public async System.Threading.Tasks.Task<List<BlogPost>> BlogControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerAdminListWithHttpInfoAsync(locale, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<BlogPost>> localVarResponse = await BlogControllerAdminListWithHttpInfoAsync(locale, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all blog posts Returns every post, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;BlogPost&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<BlogPost>>> BlogControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -708,6 +749,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -719,10 +761,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "locale", locale));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<BlogPost>>("/v1/admin/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -734,23 +787,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a blog post Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostDto"></param>
-        /// <returns></returns>
-        public void BlogControllerCreate(CreatePostDto createPostDto)
+        /// <returns>BlogPost</returns>
+        public BlogPost BlogControllerCreate(CreatePostDto createPostDto)
         {
-            BlogControllerCreateWithHttpInfo(createPostDto);
+            Adviverse.Api.Client.ApiResponse<BlogPost> localVarResponse = BlogControllerCreateWithHttpInfo(createPostDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a blog post Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerCreateWithHttpInfo(CreatePostDto createPostDto)
+        /// <returns>ApiResponse of BlogPost</returns>
+        public Adviverse.Api.Client.ApiResponse<BlogPost> BlogControllerCreateWithHttpInfo(CreatePostDto createPostDto)
         {
             // verify the required parameter 'createPostDto' is set
             if (createPostDto == null)
@@ -764,6 +818,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -774,9 +829,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPostDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/blog", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<BlogPost>("/v1/admin/blog", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -788,25 +854,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a blog post Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerCreateAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BlogPost</returns>
+        public async System.Threading.Tasks.Task<BlogPost> BlogControllerCreateAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerCreateWithHttpInfoAsync(createPostDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BlogPost> localVarResponse = await BlogControllerCreateWithHttpInfoAsync(createPostDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a blog post Creates a post from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;tag&#x60; (&#x60;News&#x60;), &#x60;author&#x60; (&#x60;Adviverse Team&#x60;), &#x60;excerpt&#x60;, Markdown &#x60;body&#x60;, &#x60;cover_image&#x60;, &#x60;published_at&#x60; (now), &#x60;position&#x60; and &#x60;published&#x60; (true). An existing post with the same slug and locale is overwritten (upsert). Clears the public cache. Posts without a cover get a generated SVG cover at the next service start.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerCreateWithHttpInfoAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BlogPost)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BlogPost>> BlogControllerCreateWithHttpInfoAsync(CreatePostDto createPostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createPostDto' is set
             if (createPostDto == null)
@@ -821,6 +888,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -832,10 +900,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPostDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BlogPost>("/v1/admin/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -847,25 +926,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a published blog post Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
-        /// <returns></returns>
-        public void BlogControllerGet(string slug, string locale)
+        /// <returns>BlogControllerGet200Response</returns>
+        public BlogControllerGet200Response BlogControllerGet(string slug, string locale)
         {
-            BlogControllerGetWithHttpInfo(slug, locale);
+            Adviverse.Api.Client.ApiResponse<BlogControllerGet200Response> localVarResponse = BlogControllerGetWithHttpInfo(slug, locale);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a published blog post Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerGetWithHttpInfo(string slug, string locale)
+        /// <returns>ApiResponse of BlogControllerGet200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<BlogControllerGet200Response> BlogControllerGetWithHttpInfo(string slug, string locale)
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -882,6 +962,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -895,7 +976,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/blog/{slug}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<BlogControllerGet200Response>("/v1/blog/{slug}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -907,27 +988,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a published blog post Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BlogControllerGet200Response</returns>
+        public async System.Threading.Tasks.Task<BlogControllerGet200Response> BlogControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerGetWithHttpInfoAsync(slug, locale, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BlogControllerGet200Response> localVarResponse = await BlogControllerGetWithHttpInfoAsync(slug, locale, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a published blog post Public. Returns a published post by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BlogControllerGet200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BlogControllerGet200Response>> BlogControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -945,6 +1027,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -960,7 +1043,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/blog/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<BlogControllerGet200Response>("/v1/blog/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -972,21 +1055,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render the public blog index page Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void BlogControllerIndexHtml()
+        /// <returns>string</returns>
+        public string BlogControllerIndexHtml()
         {
-            BlogControllerIndexHtmlWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = BlogControllerIndexHtmlWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render the public blog index page Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerIndexHtmlWithHttpInfo()
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> BlogControllerIndexHtmlWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -995,6 +1079,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1006,7 +1091,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/blog", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/blog", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1018,23 +1103,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render the public blog index page Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> BlogControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerIndexHtmlWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await BlogControllerIndexHtmlWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render the public blog index page Public, server-rendered HTML for /blog listing published English posts. Cached (max-age 300, s-maxage 3600).  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> BlogControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1044,6 +1130,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
 
@@ -1057,7 +1144,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1069,25 +1156,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List published blog posts Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
-        /// <returns></returns>
-        public void BlogControllerList(string locale, string tag)
+        /// <returns>List&lt;BlogPost&gt;</returns>
+        public List<BlogPost> BlogControllerList(string locale, string tag)
         {
-            BlogControllerListWithHttpInfo(locale, tag);
+            Adviverse.Api.Client.ApiResponse<List<BlogPost>> localVarResponse = BlogControllerListWithHttpInfo(locale, tag);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List published blog posts Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerListWithHttpInfo(string locale, string tag)
+        /// <returns>ApiResponse of List&lt;BlogPost&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<BlogPost>> BlogControllerListWithHttpInfo(string locale, string tag)
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -1104,6 +1192,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1117,7 +1206,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/blog", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<BlogPost>>("/v1/blog", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1129,27 +1218,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List published blog posts Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerListAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;BlogPost&gt;</returns>
+        public async System.Threading.Tasks.Task<List<BlogPost>> BlogControllerListAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerListWithHttpInfoAsync(locale, tag, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<BlogPost>> localVarResponse = await BlogControllerListWithHttpInfoAsync(locale, tag, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List published blog posts Public. Returns published posts for &#x60;locale&#x60; (default &#x60;en&#x60;), newest &#x60;published_at&#x60; first, optionally filtered by &#x60;tag&#x60;. Reads are cached in Redis for 60 seconds.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="tag"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerListWithHttpInfoAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;BlogPost&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<BlogPost>>> BlogControllerListWithHttpInfoAsync(string locale, string tag, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -1167,6 +1257,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1182,7 +1273,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<BlogPost>>("/v1/blog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1194,23 +1285,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render a public blog post page Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
-        /// <returns></returns>
-        public void BlogControllerPageHtml(string slug)
+        /// <returns>string</returns>
+        public string BlogControllerPageHtml(string slug)
         {
-            BlogControllerPageHtmlWithHttpInfo(slug);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = BlogControllerPageHtmlWithHttpInfo(slug);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render a public blog post page Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerPageHtmlWithHttpInfo(string slug)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> BlogControllerPageHtmlWithHttpInfo(string slug)
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -1223,6 +1315,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1235,7 +1328,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/blog/{slug}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/blog/{slug}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1247,25 +1340,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render a public blog post page Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> BlogControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerPageHtmlWithHttpInfoAsync(slug, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await BlogControllerPageHtmlWithHttpInfoAsync(slug, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render a public blog post page Public, server-rendered HTML for one English post, with its Markdown body rendered escape-first. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> BlogControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -1279,6 +1373,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
 
@@ -1293,7 +1388,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/blog/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/blog/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1305,23 +1400,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a blog post Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void BlogControllerRemove(string id)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response BlogControllerRemove(string id)
         {
-            BlogControllerRemoveWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = BlogControllerRemoveWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a blog post Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerRemoveWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> BlogControllerRemoveWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1334,6 +1430,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1344,9 +1441,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdminControllerSetStatus201Response>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1358,25 +1466,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a blog post Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await BlogControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a blog post Deletes the post and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1390,6 +1499,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1401,10 +1511,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdminControllerSetStatus201Response>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1416,21 +1537,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the blog sitemap Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void BlogControllerSitemap()
+        /// <returns>string</returns>
+        public string BlogControllerSitemap()
         {
-            BlogControllerSitemapWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = BlogControllerSitemapWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the blog sitemap Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerSitemapWithHttpInfo()
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> BlogControllerSitemapWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1439,6 +1561,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/xml"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1450,7 +1573,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/blog/sitemap.xml", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/blog/sitemap.xml", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1462,23 +1585,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the blog sitemap Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> BlogControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerSitemapWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await BlogControllerSitemapWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the blog sitemap Public XML sitemap listing /blog and every published English post page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> BlogControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1488,6 +1612,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/xml"
             };
 
 
@@ -1501,7 +1626,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/blog/sitemap.xml", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/blog/sitemap.xml", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1513,25 +1638,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a blog post Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
-        /// <returns></returns>
-        public void BlogControllerUpdate(string id, UpdatePostDto updatePostDto)
+        /// <returns>BlogPost</returns>
+        public BlogPost BlogControllerUpdate(string id, UpdatePostDto updatePostDto)
         {
-            BlogControllerUpdateWithHttpInfo(id, updatePostDto);
+            Adviverse.Api.Client.ApiResponse<BlogPost> localVarResponse = BlogControllerUpdateWithHttpInfo(id, updatePostDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a blog post Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BlogControllerUpdateWithHttpInfo(string id, UpdatePostDto updatePostDto)
+        /// <returns>ApiResponse of BlogPost</returns>
+        public Adviverse.Api.Client.ApiResponse<BlogPost> BlogControllerUpdateWithHttpInfo(string id, UpdatePostDto updatePostDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1549,6 +1675,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1560,9 +1687,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updatePostDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<BlogPost>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1574,27 +1712,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a blog post Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BlogControllerUpdateAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BlogPost</returns>
+        public async System.Threading.Tasks.Task<BlogPost> BlogControllerUpdateAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BlogControllerUpdateWithHttpInfoAsync(id, updatePostDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BlogPost> localVarResponse = await BlogControllerUpdateWithHttpInfoAsync(id, updatePostDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a blog post Partially updates any post field (slug, locale, title, tag, author, excerpt, body, cover_image, position, published, published_at) and clears the public cache. Returns the updated post, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updatePostDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BlogControllerUpdateWithHttpInfoAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BlogPost)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BlogPost>> BlogControllerUpdateWithHttpInfoAsync(string id, UpdatePostDto updatePostDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1613,6 +1752,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1625,10 +1765,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updatePostDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<BlogPost>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

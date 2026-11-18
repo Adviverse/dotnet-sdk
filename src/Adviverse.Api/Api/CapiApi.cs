@@ -28,57 +28,66 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="capiEventsDto"></param>
-        /// <returns></returns>
-        void CapiControllerEvents(CapiEventsDto capiEventsDto);
-
-        /// <summary>
-        /// 
+        /// Ingest server-side conversion events (CAPI)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="capiEventsDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CapiControllerEventsWithHttpInfo(CapiEventsDto capiEventsDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"></param>
-        /// <returns></returns>
-        void CapiControllerRecent(string limit);
+        /// <returns>CapiControllerEvents201Response</returns>
+        CapiControllerEvents201Response CapiControllerEvents(CapiEventsDto capiEventsDto);
 
         /// <summary>
-        /// 
+        /// Ingest server-side conversion events (CAPI)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="capiEventsDto"></param>
+        /// <returns>ApiResponse of CapiControllerEvents201Response</returns>
+        ApiResponse<CapiControllerEvents201Response> CapiControllerEventsWithHttpInfo(CapiEventsDto capiEventsDto);
+        /// <summary>
+        /// List recent CAPI events
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CapiControllerRecentWithHttpInfo(string limit);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void CapiControllerToken();
+        /// <returns>List&lt;CapiControllerRecent200ResponseInner&gt;</returns>
+        List<CapiControllerRecent200ResponseInner> CapiControllerRecent(string limit);
 
         /// <summary>
-        /// 
+        /// List recent CAPI events
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CapiControllerTokenWithHttpInfo();
+        /// <param name="limit"></param>
+        /// <returns>ApiResponse of List&lt;CapiControllerRecent200ResponseInner&gt;</returns>
+        ApiResponse<List<CapiControllerRecent200ResponseInner>> CapiControllerRecentWithHttpInfo(string limit);
+        /// <summary>
+        /// Rotate the CAPI access token
+        /// </summary>
+        /// <remarks>
+        /// Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>CapiControllerToken201Response</returns>
+        CapiControllerToken201Response CapiControllerToken();
+
+        /// <summary>
+        /// Rotate the CAPI access token
+        /// </summary>
+        /// <remarks>
+        /// Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of CapiControllerToken201Response</returns>
+        ApiResponse<CapiControllerToken201Response> CapiControllerTokenWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -89,72 +98,72 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Ingest server-side conversion events (CAPI)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="capiEventsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CapiControllerEventsAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of CapiControllerEvents201Response</returns>
+        System.Threading.Tasks.Task<CapiControllerEvents201Response> CapiControllerEventsAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Ingest server-side conversion events (CAPI)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="capiEventsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CapiControllerEventsWithHttpInfoAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (CapiControllerEvents201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CapiControllerEvents201Response>> CapiControllerEventsWithHttpInfoAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List recent CAPI events
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CapiControllerRecentAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;CapiControllerRecent200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<CapiControllerRecent200ResponseInner>> CapiControllerRecentAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List recent CAPI events
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CapiControllerRecentWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;CapiControllerRecent200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<CapiControllerRecent200ResponseInner>>> CapiControllerRecentWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Rotate the CAPI access token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CapiControllerTokenAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of CapiControllerToken201Response</returns>
+        System.Threading.Tasks.Task<CapiControllerToken201Response> CapiControllerTokenAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Rotate the CAPI access token
         /// </summary>
         /// <remarks>
-        /// 
+        /// Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CapiControllerTokenWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (CapiControllerToken201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CapiControllerToken201Response>> CapiControllerTokenWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -369,23 +378,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest server-side conversion events (CAPI) Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="capiEventsDto"></param>
-        /// <returns></returns>
-        public void CapiControllerEvents(CapiEventsDto capiEventsDto)
+        /// <returns>CapiControllerEvents201Response</returns>
+        public CapiControllerEvents201Response CapiControllerEvents(CapiEventsDto capiEventsDto)
         {
-            CapiControllerEventsWithHttpInfo(capiEventsDto);
+            Adviverse.Api.Client.ApiResponse<CapiControllerEvents201Response> localVarResponse = CapiControllerEventsWithHttpInfo(capiEventsDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Ingest server-side conversion events (CAPI) Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="capiEventsDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> CapiControllerEventsWithHttpInfo(CapiEventsDto capiEventsDto)
+        /// <returns>ApiResponse of CapiControllerEvents201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<CapiControllerEvents201Response> CapiControllerEventsWithHttpInfo(CapiEventsDto capiEventsDto)
         {
             // verify the required parameter 'capiEventsDto' is set
             if (capiEventsDto == null)
@@ -399,6 +409,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -411,7 +422,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/capi/events", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CapiControllerEvents201Response>("/v1/capi/events", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -423,25 +434,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest server-side conversion events (CAPI) Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="capiEventsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CapiControllerEventsAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of CapiControllerEvents201Response</returns>
+        public async System.Threading.Tasks.Task<CapiControllerEvents201Response> CapiControllerEventsAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await CapiControllerEventsWithHttpInfoAsync(capiEventsDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<CapiControllerEvents201Response> localVarResponse = await CapiControllerEventsWithHttpInfoAsync(capiEventsDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Ingest server-side conversion events (CAPI) Server-to-server batch ingest authenticated by the advertiser&#39;s CAPI token in the &#x60;X-CAPI-Token&#x60; header, not a session; a missing or invalid token returns 401. Each item in &#x60;events&#x60; needs &#x60;eventId&#x60; and &#x60;eventName&#x60;, plus optional &#x60;value&#x60;, &#x60;currency&#x60;, &#x60;clickId&#x60;, hashed &#x60;identifiers&#x60; (emailHash, phoneHash, externalId), &#x60;eventTime&#x60; and &#x60;customData&#x60;. Events are deduplicated per advertiser on &#x60;eventId&#x60; and attributed by click id first, then by the identity graph&#39;s most recent eligible click or impression. Results are per event and a failing event never fails the batch.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="capiEventsDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> CapiControllerEventsWithHttpInfoAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (CapiControllerEvents201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<CapiControllerEvents201Response>> CapiControllerEventsWithHttpInfoAsync(CapiEventsDto capiEventsDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'capiEventsDto' is set
             if (capiEventsDto == null)
@@ -456,6 +468,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -470,7 +483,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/capi/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CapiControllerEvents201Response>("/v1/capi/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -482,23 +495,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent CAPI events Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns></returns>
-        public void CapiControllerRecent(string limit)
+        /// <returns>List&lt;CapiControllerRecent200ResponseInner&gt;</returns>
+        public List<CapiControllerRecent200ResponseInner> CapiControllerRecent(string limit)
         {
-            CapiControllerRecentWithHttpInfo(limit);
+            Adviverse.Api.Client.ApiResponse<List<CapiControllerRecent200ResponseInner>> localVarResponse = CapiControllerRecentWithHttpInfo(limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent CAPI events Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> CapiControllerRecentWithHttpInfo(string limit)
+        /// <returns>ApiResponse of List&lt;CapiControllerRecent200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<CapiControllerRecent200ResponseInner>> CapiControllerRecentWithHttpInfo(string limit)
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -511,6 +525,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -521,9 +536,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/capi/events", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<CapiControllerRecent200ResponseInner>>("/v1/capi/events", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -535,25 +561,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent CAPI events Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CapiControllerRecentAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;CapiControllerRecent200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<CapiControllerRecent200ResponseInner>> CapiControllerRecentAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await CapiControllerRecentWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<CapiControllerRecent200ResponseInner>> localVarResponse = await CapiControllerRecentWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent CAPI events Returns the advertiser&#39;s most recent CAPI-sourced postback log rows, newest first. &#x60;limit&#x60; defaults to 100 and is capped at 500. &#x60;attributed&#x60; shows whether the event was matched to a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> CapiControllerRecentWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;CapiControllerRecent200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<CapiControllerRecent200ResponseInner>>> CapiControllerRecentWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -567,6 +594,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -578,10 +606,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/capi/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<CapiControllerRecent200ResponseInner>>("/v1/capi/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -593,21 +632,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rotate the CAPI access token Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void CapiControllerToken()
+        /// <returns>CapiControllerToken201Response</returns>
+        public CapiControllerToken201Response CapiControllerToken()
         {
-            CapiControllerTokenWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<CapiControllerToken201Response> localVarResponse = CapiControllerTokenWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rotate the CAPI access token Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> CapiControllerTokenWithHttpInfo()
+        /// <returns>ApiResponse of CapiControllerToken201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<CapiControllerToken201Response> CapiControllerTokenWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -616,6 +656,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -625,9 +666,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/capi/token", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CapiControllerToken201Response>("/v1/capi/token", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -639,23 +691,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rotate the CAPI access token Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CapiControllerTokenAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of CapiControllerToken201Response</returns>
+        public async System.Threading.Tasks.Task<CapiControllerToken201Response> CapiControllerTokenAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await CapiControllerTokenWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<CapiControllerToken201Response> localVarResponse = await CapiControllerTokenWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rotate the CAPI access token Revokes any active CAPI token for the advertiser and issues a new one. The full token (&#x60;&lt;prefix&gt;.&lt;secret&gt;&#x60;) is returned only in this response; the server stores only its hash. Use it as the &#x60;X-CAPI-Token&#x60; header on POST /v1/capi/events.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> CapiControllerTokenWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (CapiControllerToken201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<CapiControllerToken201Response>> CapiControllerTokenWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -665,6 +718,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -675,10 +729,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/capi/token", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CapiControllerToken201Response>("/v1/capi/token", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -28,39 +28,45 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ExportsControllerList();
-
-        /// <summary>
-        /// 
+        /// List export jobs
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ExportsControllerListWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="runExportDto"></param>
-        /// <returns></returns>
-        void ExportsControllerRun(RunExportDto runExportDto);
+        /// <returns>List&lt;ExportJob&gt;</returns>
+        List<ExportJob> ExportsControllerList();
 
         /// <summary>
-        /// 
+        /// List export jobs
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ExportJob&gt;</returns>
+        ApiResponse<List<ExportJob>> ExportsControllerListWithHttpInfo();
+        /// <summary>
+        /// Export an analytics dataset to object storage
+        /// </summary>
+        /// <remarks>
+        /// Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runExportDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ExportsControllerRunWithHttpInfo(RunExportDto runExportDto);
+        /// <returns>ExportsControllerRun201Response</returns>
+        ExportsControllerRun201Response ExportsControllerRun(RunExportDto runExportDto);
+
+        /// <summary>
+        /// Export an analytics dataset to object storage
+        /// </summary>
+        /// <remarks>
+        /// Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runExportDto"></param>
+        /// <returns>ApiResponse of ExportsControllerRun201Response</returns>
+        ApiResponse<ExportsControllerRun201Response> ExportsControllerRunWithHttpInfo(RunExportDto runExportDto);
         #endregion Synchronous Operations
     }
 
@@ -71,49 +77,49 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List export jobs
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ExportsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ExportJob&gt;</returns>
+        System.Threading.Tasks.Task<List<ExportJob>> ExportsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List export jobs
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ExportsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ExportJob&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ExportJob>>> ExportsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Export an analytics dataset to object storage
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runExportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ExportsControllerRunAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ExportsControllerRun201Response</returns>
+        System.Threading.Tasks.Task<ExportsControllerRun201Response> ExportsControllerRunAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Export an analytics dataset to object storage
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runExportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ExportsControllerRunWithHttpInfoAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ExportsControllerRun201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ExportsControllerRun201Response>> ExportsControllerRunWithHttpInfoAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -328,21 +334,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List export jobs Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ExportsControllerList()
+        /// <returns>List&lt;ExportJob&gt;</returns>
+        public List<ExportJob> ExportsControllerList()
         {
-            ExportsControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ExportJob>> localVarResponse = ExportsControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List export jobs Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ExportsControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ExportJob&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ExportJob>> ExportsControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -351,6 +358,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -360,9 +368,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/exports", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ExportJob>>("/v1/exports", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -374,23 +393,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List export jobs Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ExportsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ExportJob&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ExportJob>> ExportsControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ExportsControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ExportJob>> localVarResponse = await ExportsControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List export jobs Returns the 200 most recent export jobs, newest first: the caller&#39;s own for advertisers, all jobs for admins.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ExportsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ExportJob&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ExportJob>>> ExportsControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -400,6 +420,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -410,10 +431,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/exports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ExportJob>>("/v1/exports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -425,23 +457,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Export an analytics dataset to object storage Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runExportDto"></param>
-        /// <returns></returns>
-        public void ExportsControllerRun(RunExportDto runExportDto)
+        /// <returns>ExportsControllerRun201Response</returns>
+        public ExportsControllerRun201Response ExportsControllerRun(RunExportDto runExportDto)
         {
-            ExportsControllerRunWithHttpInfo(runExportDto);
+            Adviverse.Api.Client.ApiResponse<ExportsControllerRun201Response> localVarResponse = ExportsControllerRunWithHttpInfo(runExportDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Export an analytics dataset to object storage Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runExportDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ExportsControllerRunWithHttpInfo(RunExportDto runExportDto)
+        /// <returns>ApiResponse of ExportsControllerRun201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ExportsControllerRun201Response> ExportsControllerRunWithHttpInfo(RunExportDto runExportDto)
         {
             // verify the required parameter 'runExportDto' is set
             if (runExportDto == null)
@@ -455,6 +488,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -465,9 +499,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = runExportDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/exports/run", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ExportsControllerRun201Response>("/v1/exports/run", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -479,25 +524,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Export an analytics dataset to object storage Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runExportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ExportsControllerRunAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ExportsControllerRun201Response</returns>
+        public async System.Threading.Tasks.Task<ExportsControllerRun201Response> ExportsControllerRunAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ExportsControllerRunWithHttpInfoAsync(runExportDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ExportsControllerRun201Response> localVarResponse = await ExportsControllerRunWithHttpInfoAsync(runExportDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Export an analytics dataset to object storage Pages a ClickHouse dataset into one NDJSON or CSV object plus a manifest JSON in object storage and returns a presigned download URL. Body: &#x60;dataset&#x60; (events &#x3D; raw impressions, conversions, or spend &#x3D; hourly rollup), &#x60;from&#x60; (inclusive) and &#x60;to&#x60; (exclusive) as ISO dates, optional &#x60;format&#x60; (ndjson default, csv). Advertisers export only their own rows; admins export network-wide. The job is recorded and marked failed if the export errors.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runExportDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ExportsControllerRunWithHttpInfoAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ExportsControllerRun201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ExportsControllerRun201Response>> ExportsControllerRunWithHttpInfoAsync(RunExportDto runExportDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'runExportDto' is set
             if (runExportDto == null)
@@ -512,6 +558,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -523,10 +570,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = runExportDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/exports/run", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ExportsControllerRun201Response>("/v1/exports/run", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

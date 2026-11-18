@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,99 +28,114 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="format"></param>
-        /// <param name="geo"> (optional)</param>
-        /// <param name="bid"> (optional)</param>
-        /// <returns></returns>
-        void InsightsControllerBidSimulator(string format, string? geo = default(string?), decimal? bid = default(decimal?));
-
-        /// <summary>
-        /// 
+        /// Simulate win rate, reach and spend across bids
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="bid"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> InsightsControllerBidSimulatorWithHttpInfo(string format, string? geo = default(string?), decimal? bid = default(decimal?));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="format"></param>
-        /// <param name="geo"> (optional)</param>
-        /// <returns></returns>
-        void InsightsControllerCompetitiveness(string format, string? geo = default(string?));
+        /// <returns>InsightsControllerBidSimulator200Response</returns>
+        InsightsControllerBidSimulator200Response InsightsControllerBidSimulator(string format, string? geo = default(string?), decimal? bid = default(decimal?));
 
         /// <summary>
-        /// 
+        /// Simulate win rate, reach and spend across bids
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> InsightsControllerCompetitivenessWithHttpInfo(string format, string? geo = default(string?));
+        /// <param name="bid"> (optional)</param>
+        /// <returns>ApiResponse of InsightsControllerBidSimulator200Response</returns>
+        ApiResponse<InsightsControllerBidSimulator200Response> InsightsControllerBidSimulatorWithHttpInfo(string format, string? geo = default(string?), decimal? bid = default(decimal?));
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <returns></returns>
-        void InsightsControllerCreativePerformance(string campaignId);
-
-        /// <summary>
-        /// 
+        /// Score how competitive a targeting slice is
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="format"></param>
+        /// <param name="geo"> (optional)</param>
+        /// <returns>InsightsControllerCompetitiveness200Response</returns>
+        InsightsControllerCompetitiveness200Response InsightsControllerCompetitiveness(string format, string? geo = default(string?));
+
+        /// <summary>
+        /// Score how competitive a targeting slice is
+        /// </summary>
+        /// <remarks>
+        /// Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="format"></param>
+        /// <param name="geo"> (optional)</param>
+        /// <returns>ApiResponse of InsightsControllerCompetitiveness200Response</returns>
+        ApiResponse<InsightsControllerCompetitiveness200Response> InsightsControllerCompetitivenessWithHttpInfo(string format, string? geo = default(string?));
+        /// <summary>
+        /// Per-creative performance for a campaign
+        /// </summary>
+        /// <remarks>
+        /// Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> InsightsControllerCreativePerformanceWithHttpInfo(string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void InsightsControllerPacing();
+        /// <returns>InsightsControllerCreativePerformance200Response</returns>
+        InsightsControllerCreativePerformance200Response InsightsControllerCreativePerformance(string campaignId);
 
         /// <summary>
-        /// 
+        /// Per-creative performance for a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> InsightsControllerPacingWithHttpInfo();
+        /// <param name="campaignId"></param>
+        /// <returns>ApiResponse of InsightsControllerCreativePerformance200Response</returns>
+        ApiResponse<InsightsControllerCreativePerformance200Response> InsightsControllerCreativePerformanceWithHttpInfo(string campaignId);
         /// <summary>
-        /// 
+        /// Delivery pacing per campaign
         /// </summary>
+        /// <remarks>
+        /// For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"> (optional)</param>
-        /// <returns></returns>
-        void InsightsControllerShadingSavings(string? campaignId = default(string?));
+        /// <returns>InsightsControllerPacing200Response</returns>
+        InsightsControllerPacing200Response InsightsControllerPacing();
 
         /// <summary>
-        /// 
+        /// Delivery pacing per campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of InsightsControllerPacing200Response</returns>
+        ApiResponse<InsightsControllerPacing200Response> InsightsControllerPacingWithHttpInfo();
+        /// <summary>
+        /// Estimate savings from bid shading
+        /// </summary>
+        /// <remarks>
+        /// Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> InsightsControllerShadingSavingsWithHttpInfo(string? campaignId = default(string?));
+        /// <returns>InsightsControllerShadingSavings200Response</returns>
+        InsightsControllerShadingSavings200Response InsightsControllerShadingSavings(string? campaignId = default(string?));
+
+        /// <summary>
+        /// Estimate savings from bid shading
+        /// </summary>
+        /// <remarks>
+        /// Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId"> (optional)</param>
+        /// <returns>ApiResponse of InsightsControllerShadingSavings200Response</returns>
+        ApiResponse<InsightsControllerShadingSavings200Response> InsightsControllerShadingSavingsWithHttpInfo(string? campaignId = default(string?));
         #endregion Synchronous Operations
     }
 
@@ -130,124 +146,124 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Simulate win rate, reach and spend across bids
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="bid"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task InsightsControllerBidSimulatorAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of InsightsControllerBidSimulator200Response</returns>
+        System.Threading.Tasks.Task<InsightsControllerBidSimulator200Response> InsightsControllerBidSimulatorAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Simulate win rate, reach and spend across bids
         /// </summary>
         /// <remarks>
-        /// 
+        /// For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="bid"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> InsightsControllerBidSimulatorWithHttpInfoAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (InsightsControllerBidSimulator200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InsightsControllerBidSimulator200Response>> InsightsControllerBidSimulatorWithHttpInfoAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Score how competitive a targeting slice is
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task InsightsControllerCompetitivenessAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of InsightsControllerCompetitiveness200Response</returns>
+        System.Threading.Tasks.Task<InsightsControllerCompetitiveness200Response> InsightsControllerCompetitivenessAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Score how competitive a targeting slice is
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> InsightsControllerCompetitivenessWithHttpInfoAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (InsightsControllerCompetitiveness200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InsightsControllerCompetitiveness200Response>> InsightsControllerCompetitivenessWithHttpInfoAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Per-creative performance for a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task InsightsControllerCreativePerformanceAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of InsightsControllerCreativePerformance200Response</returns>
+        System.Threading.Tasks.Task<InsightsControllerCreativePerformance200Response> InsightsControllerCreativePerformanceAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Per-creative performance for a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> InsightsControllerCreativePerformanceWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (InsightsControllerCreativePerformance200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InsightsControllerCreativePerformance200Response>> InsightsControllerCreativePerformanceWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delivery pacing per campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task InsightsControllerPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of InsightsControllerPacing200Response</returns>
+        System.Threading.Tasks.Task<InsightsControllerPacing200Response> InsightsControllerPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delivery pacing per campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> InsightsControllerPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (InsightsControllerPacing200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InsightsControllerPacing200Response>> InsightsControllerPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Estimate savings from bid shading
         /// </summary>
         /// <remarks>
-        /// 
+        /// Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task InsightsControllerShadingSavingsAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of InsightsControllerShadingSavings200Response</returns>
+        System.Threading.Tasks.Task<InsightsControllerShadingSavings200Response> InsightsControllerShadingSavingsAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Estimate savings from bid shading
         /// </summary>
         /// <remarks>
-        /// 
+        /// Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> InsightsControllerShadingSavingsWithHttpInfoAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (InsightsControllerShadingSavings200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InsightsControllerShadingSavings200Response>> InsightsControllerShadingSavingsWithHttpInfoAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -462,27 +478,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Simulate win rate, reach and spend across bids For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="bid"> (optional)</param>
-        /// <returns></returns>
-        public void InsightsControllerBidSimulator(string format, string? geo = default(string?), decimal? bid = default(decimal?))
+        /// <returns>InsightsControllerBidSimulator200Response</returns>
+        public InsightsControllerBidSimulator200Response InsightsControllerBidSimulator(string format, string? geo = default(string?), decimal? bid = default(decimal?))
         {
-            InsightsControllerBidSimulatorWithHttpInfo(format, geo, bid);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerBidSimulator200Response> localVarResponse = InsightsControllerBidSimulatorWithHttpInfo(format, geo, bid);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Simulate win rate, reach and spend across bids For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="bid"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> InsightsControllerBidSimulatorWithHttpInfo(string format, string? geo = default(string?), decimal? bid = default(decimal?))
+        /// <returns>ApiResponse of InsightsControllerBidSimulator200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<InsightsControllerBidSimulator200Response> InsightsControllerBidSimulatorWithHttpInfo(string format, string? geo = default(string?), decimal? bid = default(decimal?))
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -495,6 +512,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -513,9 +531,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "bid", bid));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/insights/bid-simulator", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<InsightsControllerBidSimulator200Response>("/v1/advertiser/insights/bid-simulator", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -527,29 +556,30 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Simulate win rate, reach and spend across bids For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="bid"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task InsightsControllerBidSimulatorAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of InsightsControllerBidSimulator200Response</returns>
+        public async System.Threading.Tasks.Task<InsightsControllerBidSimulator200Response> InsightsControllerBidSimulatorAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await InsightsControllerBidSimulatorWithHttpInfoAsync(format, geo, bid, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerBidSimulator200Response> localVarResponse = await InsightsControllerBidSimulatorWithHttpInfoAsync(format, geo, bid, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Simulate win rate, reach and spend across bids For the required &#x60;format&#x60; and optional &#x60;geo&#x60;, takes about 10 candidate bids spanning the advertiser&#39;s recent clearing-price range, plus the caller&#39;s own &#x60;bid&#x60; if given. Each bid gets an estimated win rate from the empirical CDF of the advertiser&#39;s last-30-day clearing prices, and projected impressions and spend per day. Prices are per impression (CPM &#x3D; price x 1000). With no auction history for the slice, &#x60;points&#x60; is empty and &#x60;note&#x60; explains why.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="bid"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> InsightsControllerBidSimulatorWithHttpInfoAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (InsightsControllerBidSimulator200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<InsightsControllerBidSimulator200Response>> InsightsControllerBidSimulatorWithHttpInfoAsync(string format, string? geo = default(string?), decimal? bid = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -563,6 +593,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -582,10 +613,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "bid", bid));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/insights/bid-simulator", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<InsightsControllerBidSimulator200Response>("/v1/advertiser/insights/bid-simulator", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -597,25 +639,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Score how competitive a targeting slice is Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
-        /// <returns></returns>
-        public void InsightsControllerCompetitiveness(string format, string? geo = default(string?))
+        /// <returns>InsightsControllerCompetitiveness200Response</returns>
+        public InsightsControllerCompetitiveness200Response InsightsControllerCompetitiveness(string format, string? geo = default(string?))
         {
-            InsightsControllerCompetitivenessWithHttpInfo(format, geo);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerCompetitiveness200Response> localVarResponse = InsightsControllerCompetitivenessWithHttpInfo(format, geo);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Score how competitive a targeting slice is Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> InsightsControllerCompetitivenessWithHttpInfo(string format, string? geo = default(string?))
+        /// <returns>ApiResponse of InsightsControllerCompetitiveness200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<InsightsControllerCompetitiveness200Response> InsightsControllerCompetitivenessWithHttpInfo(string format, string? geo = default(string?))
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -628,6 +671,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -642,9 +686,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "geo", geo));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/insights/competitiveness", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<InsightsControllerCompetitiveness200Response>("/v1/advertiser/insights/competitiveness", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -656,27 +711,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Score how competitive a targeting slice is Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task InsightsControllerCompetitivenessAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of InsightsControllerCompetitiveness200Response</returns>
+        public async System.Threading.Tasks.Task<InsightsControllerCompetitiveness200Response> InsightsControllerCompetitivenessAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await InsightsControllerCompetitivenessWithHttpInfoAsync(format, geo, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerCompetitiveness200Response> localVarResponse = await InsightsControllerCompetitivenessWithHttpInfoAsync(format, geo, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Score how competitive a targeting slice is Reads the market-wide clearing-price distribution over the last 30 days for &#x60;format&#x60; (required) and optional &#x60;geo&#x60;, and returns p50, p90, the sample size and a low/moderate/high score based on the price spread. The score is \&quot;low\&quot; when there is no data. Uses market data only, not the caller&#39;s own history.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="format"></param>
         /// <param name="geo"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> InsightsControllerCompetitivenessWithHttpInfoAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (InsightsControllerCompetitiveness200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<InsightsControllerCompetitiveness200Response>> InsightsControllerCompetitivenessWithHttpInfoAsync(string format, string? geo = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -690,6 +746,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -705,10 +762,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "geo", geo));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/insights/competitiveness", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<InsightsControllerCompetitiveness200Response>("/v1/advertiser/insights/competitiveness", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -720,23 +788,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Per-creative performance for a campaign Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns></returns>
-        public void InsightsControllerCreativePerformance(string campaignId)
+        /// <returns>InsightsControllerCreativePerformance200Response</returns>
+        public InsightsControllerCreativePerformance200Response InsightsControllerCreativePerformance(string campaignId)
         {
-            InsightsControllerCreativePerformanceWithHttpInfo(campaignId);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerCreativePerformance200Response> localVarResponse = InsightsControllerCreativePerformanceWithHttpInfo(campaignId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Per-creative performance for a campaign Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> InsightsControllerCreativePerformanceWithHttpInfo(string campaignId)
+        /// <returns>ApiResponse of InsightsControllerCreativePerformance200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<InsightsControllerCreativePerformance200Response> InsightsControllerCreativePerformanceWithHttpInfo(string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -749,6 +818,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -759,9 +829,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/insights/creative-performance", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<InsightsControllerCreativePerformance200Response>("/v1/advertiser/insights/creative-performance", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -773,25 +854,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Per-creative performance for a campaign Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task InsightsControllerCreativePerformanceAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of InsightsControllerCreativePerformance200Response</returns>
+        public async System.Threading.Tasks.Task<InsightsControllerCreativePerformance200Response> InsightsControllerCreativePerformanceAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await InsightsControllerCreativePerformanceWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerCreativePerformance200Response> localVarResponse = await InsightsControllerCreativePerformanceWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Per-creative performance for a campaign Rolls up the last 30 days of valid impressions and spend, clicks and click-attributed conversions by creative for &#x60;campaignId&#x60; (required). Creative names come from Postgres. Rows include CTR and CVR as percentages and eCPM, sorted by spend. A campaign the advertiser does not own returns an empty list, not an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> InsightsControllerCreativePerformanceWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (InsightsControllerCreativePerformance200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<InsightsControllerCreativePerformance200Response>> InsightsControllerCreativePerformanceWithHttpInfoAsync(string campaignId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -805,6 +887,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -816,10 +899,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/insights/creative-performance", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<InsightsControllerCreativePerformance200Response>("/v1/advertiser/insights/creative-performance", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -831,21 +925,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delivery pacing per campaign For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void InsightsControllerPacing()
+        /// <returns>InsightsControllerPacing200Response</returns>
+        public InsightsControllerPacing200Response InsightsControllerPacing()
         {
-            InsightsControllerPacingWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<InsightsControllerPacing200Response> localVarResponse = InsightsControllerPacingWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delivery pacing per campaign For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> InsightsControllerPacingWithHttpInfo()
+        /// <returns>ApiResponse of InsightsControllerPacing200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<InsightsControllerPacing200Response> InsightsControllerPacingWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -854,6 +949,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -863,9 +959,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/insights/pacing", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<InsightsControllerPacing200Response>("/v1/advertiser/insights/pacing", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -877,23 +984,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delivery pacing per campaign For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task InsightsControllerPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of InsightsControllerPacing200Response</returns>
+        public async System.Threading.Tasks.Task<InsightsControllerPacing200Response> InsightsControllerPacingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await InsightsControllerPacingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerPacing200Response> localVarResponse = await InsightsControllerPacingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delivery pacing per campaign For each of the advertiser&#39;s campaigns, compares the percentage of the delivery goal reached with the percentage of the flight that has elapsed, and flags whether the campaign is on pace. Reuses the billing-reports pacing calculation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> InsightsControllerPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (InsightsControllerPacing200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<InsightsControllerPacing200Response>> InsightsControllerPacingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -903,6 +1011,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -913,10 +1022,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/insights/pacing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<InsightsControllerPacing200Response>("/v1/advertiser/insights/pacing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -928,23 +1048,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate savings from bid shading Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"> (optional)</param>
-        /// <returns></returns>
-        public void InsightsControllerShadingSavings(string? campaignId = default(string?))
+        /// <returns>InsightsControllerShadingSavings200Response</returns>
+        public InsightsControllerShadingSavings200Response InsightsControllerShadingSavings(string? campaignId = default(string?))
         {
-            InsightsControllerShadingSavingsWithHttpInfo(campaignId);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerShadingSavings200Response> localVarResponse = InsightsControllerShadingSavingsWithHttpInfo(campaignId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate savings from bid shading Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> InsightsControllerShadingSavingsWithHttpInfo(string? campaignId = default(string?))
+        /// <returns>ApiResponse of InsightsControllerShadingSavings200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<InsightsControllerShadingSavings200Response> InsightsControllerShadingSavingsWithHttpInfo(string? campaignId = default(string?))
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -953,6 +1074,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -966,9 +1088,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/insights/shading-savings", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<InsightsControllerShadingSavings200Response>("/v1/advertiser/insights/shading-savings", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -980,25 +1113,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate savings from bid shading Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task InsightsControllerShadingSavingsAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of InsightsControllerShadingSavings200Response</returns>
+        public async System.Threading.Tasks.Task<InsightsControllerShadingSavings200Response> InsightsControllerShadingSavingsAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await InsightsControllerShadingSavingsWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<InsightsControllerShadingSavings200Response> localVarResponse = await InsightsControllerShadingSavingsWithHttpInfoAsync(campaignId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate savings from bid shading Combines the bid-shading factors the engine publishes for this advertiser with its last-30-day spend (optionally only &#x60;campaignId&#x60;) to estimate overpay avoided: roughly spend x (1/avgFactor - 1), with the factor floored at 0.5. If shading is not active for the advertiser yet, all values are zero and a note says so. The figures are directional estimates.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> InsightsControllerShadingSavingsWithHttpInfoAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (InsightsControllerShadingSavings200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<InsightsControllerShadingSavings200Response>> InsightsControllerShadingSavingsWithHttpInfoAsync(string? campaignId = default(string?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1008,6 +1142,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1022,10 +1157,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/insights/shading-savings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<InsightsControllerShadingSavings200Response>("/v1/advertiser/insights/shading-savings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

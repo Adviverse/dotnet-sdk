@@ -28,73 +28,85 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
+        /// Retargeting pixel: add the visitor to an audience
         /// </summary>
+        /// <remarks>
+        /// Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void ConversionsControllerTrackAudience();
 
         /// <summary>
-        /// 
+        /// Retargeting pixel: add the visitor to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> ConversionsControllerTrackAudienceWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ConversionsControllerTrackGet();
-
-        /// <summary>
-        /// 
+        /// Record an S2S conversion postback (GET)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ConversionsControllerTrackGetWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="trackConversionDto"></param>
-        /// <returns></returns>
-        void ConversionsControllerTrackPost(TrackConversionDto trackConversionDto);
+        /// <returns>ConversionsControllerTrackGet200Response</returns>
+        ConversionsControllerTrackGet200Response ConversionsControllerTrackGet();
 
         /// <summary>
-        /// 
+        /// Record an S2S conversion postback (GET)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ConversionsControllerTrackGet200Response</returns>
+        ApiResponse<ConversionsControllerTrackGet200Response> ConversionsControllerTrackGetWithHttpInfo();
+        /// <summary>
+        /// Record an S2S conversion postback (POST)
+        /// </summary>
+        /// <remarks>
+        /// JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="trackConversionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ConversionsControllerTrackPostWithHttpInfo(TrackConversionDto trackConversionDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="refundDto"></param>
-        /// <returns></returns>
-        void ConversionsControllerTrackRefund(RefundDto refundDto);
+        /// <returns>ConversionsControllerTrackPost201Response</returns>
+        ConversionsControllerTrackPost201Response ConversionsControllerTrackPost(TrackConversionDto trackConversionDto);
 
         /// <summary>
-        /// 
+        /// Record an S2S conversion postback (POST)
         /// </summary>
         /// <remarks>
-        /// 
+        /// JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="trackConversionDto"></param>
+        /// <returns>ApiResponse of ConversionsControllerTrackPost201Response</returns>
+        ApiResponse<ConversionsControllerTrackPost201Response> ConversionsControllerTrackPostWithHttpInfo(TrackConversionDto trackConversionDto);
+        /// <summary>
+        /// Report a refund or chargeback for an order
+        /// </summary>
+        /// <remarks>
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ConversionsControllerTrackRefundWithHttpInfo(RefundDto refundDto);
+        /// <returns>ConversionsControllerTrackRefund201Response</returns>
+        ConversionsControllerTrackRefund201Response ConversionsControllerTrackRefund(RefundDto refundDto);
+
+        /// <summary>
+        /// Report a refund or chargeback for an order
+        /// </summary>
+        /// <remarks>
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="refundDto"></param>
+        /// <returns>ApiResponse of ConversionsControllerTrackRefund201Response</returns>
+        ApiResponse<ConversionsControllerTrackRefund201Response> ConversionsControllerTrackRefundWithHttpInfo(RefundDto refundDto);
         #endregion Synchronous Operations
     }
 
@@ -105,10 +117,10 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Retargeting pixel: add the visitor to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -116,82 +128,82 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task ConversionsControllerTrackAudienceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Retargeting pixel: add the visitor to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> ConversionsControllerTrackAudienceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Record an S2S conversion postback (GET)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ConversionsControllerTrackGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ConversionsControllerTrackGet200Response</returns>
+        System.Threading.Tasks.Task<ConversionsControllerTrackGet200Response> ConversionsControllerTrackGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Record an S2S conversion postback (GET)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ConversionsControllerTrackGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ConversionsControllerTrackGet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConversionsControllerTrackGet200Response>> ConversionsControllerTrackGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Record an S2S conversion postback (POST)
         /// </summary>
         /// <remarks>
-        /// 
+        /// JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="trackConversionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ConversionsControllerTrackPostAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ConversionsControllerTrackPost201Response</returns>
+        System.Threading.Tasks.Task<ConversionsControllerTrackPost201Response> ConversionsControllerTrackPostAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Record an S2S conversion postback (POST)
         /// </summary>
         /// <remarks>
-        /// 
+        /// JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="trackConversionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ConversionsControllerTrackPostWithHttpInfoAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ConversionsControllerTrackPost201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConversionsControllerTrackPost201Response>> ConversionsControllerTrackPostWithHttpInfoAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Report a refund or chargeback for an order
         /// </summary>
         /// <remarks>
-        /// 
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ConversionsControllerTrackRefundAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ConversionsControllerTrackRefund201Response</returns>
+        System.Threading.Tasks.Task<ConversionsControllerTrackRefund201Response> ConversionsControllerTrackRefundAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Report a refund or chargeback for an order
         /// </summary>
         /// <remarks>
-        /// 
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ConversionsControllerTrackRefundWithHttpInfoAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ConversionsControllerTrackRefund201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConversionsControllerTrackRefund201Response>> ConversionsControllerTrackRefundWithHttpInfoAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -406,7 +418,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Retargeting pixel: add the visitor to an audience Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -416,7 +428,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Retargeting pixel: add the visitor to an audience Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -452,7 +464,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Retargeting pixel: add the visitor to an audience Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -463,7 +475,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Retargeting pixel: add the visitor to an audience Adds the visitor&#39;s &#x60;adnet_uid&#x60; first-party cookie (minted on first contact) to audience &#x60;aud&#x60;, plus an advertiser-supplied &#x60;uid&#x60; when given. Only existing audiences accept members, and each audience has a size cap. GPC or &#x60;ac&#x3D;0&#x60;/&#x60;ac&#x3D;n&#x60; opts the visitor out: no cookie is set and no membership is recorded. Always responds with a 1x1 GIF.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -503,21 +515,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (GET) Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ConversionsControllerTrackGet()
+        /// <returns>ConversionsControllerTrackGet200Response</returns>
+        public ConversionsControllerTrackGet200Response ConversionsControllerTrackGet()
         {
-            ConversionsControllerTrackGetWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackGet200Response> localVarResponse = ConversionsControllerTrackGetWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (GET) Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ConversionsControllerTrackGetWithHttpInfo()
+        /// <returns>ApiResponse of ConversionsControllerTrackGet200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackGet200Response> ConversionsControllerTrackGetWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -526,6 +539,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -537,7 +551,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/track/conversion", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ConversionsControllerTrackGet200Response>("/v1/track/conversion", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -549,23 +563,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (GET) Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ConversionsControllerTrackGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ConversionsControllerTrackGet200Response</returns>
+        public async System.Threading.Tasks.Task<ConversionsControllerTrackGet200Response> ConversionsControllerTrackGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ConversionsControllerTrackGetWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackGet200Response> localVarResponse = await ConversionsControllerTrackGetWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (GET) Advertiser server-to-server postback keyed by &#x60;click_id&#x60;, with optional &#x60;value&#x60;, &#x60;order_id&#x60; and &#x60;order_value&#x60; query params. The click context cached by the ad engine resolves the campaign; the billed payout always comes from the campaign&#39;s server-side CPA config (flat or percent of order), never from the request. One conversion per click and one per (advertiser, order_id); orders below the configured minimum are rejected, and sponsored CPC clicks are skipped because they bill on the click. A recorded conversion emits the conversion event and fires the advertiser&#39;s outbound postback if one is configured.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ConversionsControllerTrackGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ConversionsControllerTrackGet200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackGet200Response>> ConversionsControllerTrackGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -575,6 +590,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -588,7 +604,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/track/conversion", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ConversionsControllerTrackGet200Response>("/v1/track/conversion", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -600,23 +616,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (POST) JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="trackConversionDto"></param>
-        /// <returns></returns>
-        public void ConversionsControllerTrackPost(TrackConversionDto trackConversionDto)
+        /// <returns>ConversionsControllerTrackPost201Response</returns>
+        public ConversionsControllerTrackPost201Response ConversionsControllerTrackPost(TrackConversionDto trackConversionDto)
         {
-            ConversionsControllerTrackPostWithHttpInfo(trackConversionDto);
+            Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackPost201Response> localVarResponse = ConversionsControllerTrackPostWithHttpInfo(trackConversionDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (POST) JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="trackConversionDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ConversionsControllerTrackPostWithHttpInfo(TrackConversionDto trackConversionDto)
+        /// <returns>ApiResponse of ConversionsControllerTrackPost201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackPost201Response> ConversionsControllerTrackPostWithHttpInfo(TrackConversionDto trackConversionDto)
         {
             // verify the required parameter 'trackConversionDto' is set
             if (trackConversionDto == null)
@@ -630,6 +647,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -642,7 +660,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/track/conversion", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ConversionsControllerTrackPost201Response>("/v1/track/conversion", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -654,25 +672,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (POST) JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="trackConversionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ConversionsControllerTrackPostAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ConversionsControllerTrackPost201Response</returns>
+        public async System.Threading.Tasks.Task<ConversionsControllerTrackPost201Response> ConversionsControllerTrackPostAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ConversionsControllerTrackPostWithHttpInfoAsync(trackConversionDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackPost201Response> localVarResponse = await ConversionsControllerTrackPostWithHttpInfoAsync(trackConversionDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Record an S2S conversion postback (POST) JSON form of the conversion postback. Accepts &#x60;clickId&#x60;/&#x60;click_id&#x60;, &#x60;value&#x60;, &#x60;orderId&#x60;/&#x60;order_id&#x60; and &#x60;orderValue&#x60;/&#x60;order_value&#x60;, in camelCase or snake_case. Behaviour matches the GET form: dedup per click and per order, payout from the server-side CPA config, minimum-order check, and a &#x60;postbackId&#x60; returned when recorded. Unknown body fields are rejected with 400.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="trackConversionDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ConversionsControllerTrackPostWithHttpInfoAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ConversionsControllerTrackPost201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackPost201Response>> ConversionsControllerTrackPostWithHttpInfoAsync(TrackConversionDto trackConversionDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'trackConversionDto' is set
             if (trackConversionDto == null)
@@ -687,6 +706,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -701,7 +721,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/track/conversion", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ConversionsControllerTrackPost201Response>("/v1/track/conversion", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -713,23 +733,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
-        /// <returns></returns>
-        public void ConversionsControllerTrackRefund(RefundDto refundDto)
+        /// <returns>ConversionsControllerTrackRefund201Response</returns>
+        public ConversionsControllerTrackRefund201Response ConversionsControllerTrackRefund(RefundDto refundDto)
         {
-            ConversionsControllerTrackRefundWithHttpInfo(refundDto);
+            Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackRefund201Response> localVarResponse = ConversionsControllerTrackRefundWithHttpInfo(refundDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ConversionsControllerTrackRefundWithHttpInfo(RefundDto refundDto)
+        /// <returns>ApiResponse of ConversionsControllerTrackRefund201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackRefund201Response> ConversionsControllerTrackRefundWithHttpInfo(RefundDto refundDto)
         {
             // verify the required parameter 'refundDto' is set
             if (refundDto == null)
@@ -743,6 +764,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -755,7 +777,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/track/refund", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ConversionsControllerTrackRefund201Response>("/v1/track/refund", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -767,25 +789,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ConversionsControllerTrackRefundAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ConversionsControllerTrackRefund201Response</returns>
+        public async System.Threading.Tasks.Task<ConversionsControllerTrackRefund201Response> ConversionsControllerTrackRefundAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ConversionsControllerTrackRefundWithHttpInfoAsync(refundDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackRefund201Response> localVarResponse = await ConversionsControllerTrackRefundWithHttpInfoAsync(refundDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ConversionsControllerTrackRefundWithHttpInfoAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ConversionsControllerTrackRefund201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ConversionsControllerTrackRefund201Response>> ConversionsControllerTrackRefundWithHttpInfoAsync(RefundDto refundDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'refundDto' is set
             if (refundDto == null)
@@ -800,6 +823,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -814,7 +838,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/track/refund", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ConversionsControllerTrackRefund201Response>("/v1/track/refund", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -28,1117 +28,1300 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="audienceMembersDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerAddAudienceMembers(string id, AudienceMembersDto audienceMembersDto);
-
-        /// <summary>
-        /// 
+        /// Add hashed members to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="audienceMembersDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerAddAudienceMembersWithHttpInfo(string id, AudienceMembersDto audienceMembersDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="addComponentDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerAddComponent(string id, AddComponentDto addComponentDto);
+        /// <returns>AdvertiserControllerAddAudienceMembers201Response</returns>
+        AdvertiserControllerAddAudienceMembers201Response AdvertiserControllerAddAudienceMembers(string id, AudienceMembersDto audienceMembersDto);
 
         /// <summary>
-        /// 
+        /// Add hashed members to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="audienceMembersDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerAddAudienceMembers201Response</returns>
+        ApiResponse<AdvertiserControllerAddAudienceMembers201Response> AdvertiserControllerAddAudienceMembersWithHttpInfo(string id, AudienceMembersDto audienceMembersDto);
+        /// <summary>
+        /// Add a DCO component to a creative&#39;s pool
+        /// </summary>
+        /// <remarks>
+        /// Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="addComponentDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerAddComponentWithHttpInfo(string id, AddComponentDto addComponentDto);
+        /// <returns>AdvertiserControllerAddComponent201Response</returns>
+        AdvertiserControllerAddComponent201Response AdvertiserControllerAddComponent(string id, AddComponentDto addComponentDto);
+
         /// <summary>
-        /// 
+        /// Add a DCO component to a creative&#39;s pool
         /// </summary>
+        /// <remarks>
+        /// Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="addComponentDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerAddComponent201Response</returns>
+        ApiResponse<AdvertiserControllerAddComponent201Response> AdvertiserControllerAddComponentWithHttpInfo(string id, AddComponentDto addComponentDto);
+        /// <summary>
+        /// Attach a library creative to a campaign
+        /// </summary>
+        /// <remarks>
+        /// Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerAttachCreative(string id, AttachCreativeDto attachCreativeDto);
+        /// <returns>AdvertiserControllerAttachCreative201Response</returns>
+        AdvertiserControllerAttachCreative201Response AdvertiserControllerAttachCreative(string id, AttachCreativeDto attachCreativeDto);
 
         /// <summary>
-        /// 
+        /// Attach a library creative to a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerAttachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto);
+        /// <returns>ApiResponse of AdvertiserControllerAttachCreative201Response</returns>
+        ApiResponse<AdvertiserControllerAttachCreative201Response> AdvertiserControllerAttachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerAudiencePixel(string id);
-
-        /// <summary>
-        /// 
+        /// Get the retargeting pixel snippet for an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerAudiencePixelWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="days"></param>
-        /// <returns></returns>
-        void AdvertiserControllerAudienceSuggestions(string days);
+        /// <returns>AdvertiserControllerAudiencePixel200Response</returns>
+        AdvertiserControllerAudiencePixel200Response AdvertiserControllerAudiencePixel(string id);
 
         /// <summary>
-        /// 
+        /// Get the retargeting pixel snippet for an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvertiserControllerAudiencePixel200Response</returns>
+        ApiResponse<AdvertiserControllerAudiencePixel200Response> AdvertiserControllerAudiencePixelWithHttpInfo(string id);
+        /// <summary>
+        /// Suggest audiences from pixel activity
+        /// </summary>
+        /// <remarks>
+        /// Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerAudienceSuggestionsWithHttpInfo(string days);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCampaignDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreate(CreateCampaignDto createCampaignDto);
+        /// <returns>AdvertiserControllerAudienceSuggestions200Response</returns>
+        AdvertiserControllerAudienceSuggestions200Response AdvertiserControllerAudienceSuggestions(string days);
 
         /// <summary>
-        /// 
+        /// Suggest audiences from pixel activity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="days"></param>
+        /// <returns>ApiResponse of AdvertiserControllerAudienceSuggestions200Response</returns>
+        ApiResponse<AdvertiserControllerAudienceSuggestions200Response> AdvertiserControllerAudienceSuggestionsWithHttpInfo(string days);
+        /// <summary>
+        /// Create a campaign (ad set)
+        /// </summary>
+        /// <remarks>
+        /// Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCampaignDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreateWithHttpInfo(CreateCampaignDto createCampaignDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAudienceDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreateAudience(CreateAudienceDto createAudienceDto);
+        /// <returns>AdvCampaign</returns>
+        AdvCampaign AdvertiserControllerCreate(CreateCampaignDto createCampaignDto);
 
         /// <summary>
-        /// 
+        /// Create a campaign (ad set)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCampaignDto"></param>
+        /// <returns>ApiResponse of AdvCampaign</returns>
+        ApiResponse<AdvCampaign> AdvertiserControllerCreateWithHttpInfo(CreateCampaignDto createCampaignDto);
+        /// <summary>
+        /// Create an audience
+        /// </summary>
+        /// <remarks>
+        /// Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCreativeDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreateCreative(CreateCreativeDto createCreativeDto);
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        AdvertiserControllerCreateAudience201Response AdvertiserControllerCreateAudience(CreateAudienceDto createAudienceDto);
 
         /// <summary>
-        /// 
+        /// Create an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAudienceDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto);
+        /// <summary>
+        /// Create a creative
+        /// </summary>
+        /// <remarks>
+        /// Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreateCreativeWithHttpInfo(CreateCreativeDto createCreativeDto);
+        /// <returns>AdvCreative</returns>
+        AdvCreative AdvertiserControllerCreateCreative(CreateCreativeDto createCreativeDto);
+
         /// <summary>
-        /// 
+        /// Create a creative
         /// </summary>
+        /// <remarks>
+        /// Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCreativeDto"></param>
+        /// <returns>ApiResponse of AdvCreative</returns>
+        ApiResponse<AdvCreative> AdvertiserControllerCreateCreativeWithHttpInfo(CreateCreativeDto createCreativeDto);
+        /// <summary>
+        /// Add a sync destination to an audience
+        /// </summary>
+        /// <remarks>
+        /// Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreateDestination(string id, CreateDestinationDto createDestinationDto);
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        AdvertiserControllerCreateAudience201Response AdvertiserControllerCreateDestination(string id, CreateDestinationDto createDestinationDto);
 
         /// <summary>
-        /// 
+        /// Add a sync destination to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreateDestinationWithHttpInfo(string id, CreateDestinationDto createDestinationDto);
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateDestinationWithHttpInfo(string id, CreateDestinationDto createDestinationDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createFeedDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreateFeed(CreateFeedDto createFeedDto);
-
-        /// <summary>
-        /// 
+        /// Register a product feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createFeedDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreateFeedWithHttpInfo(CreateFeedDto createFeedDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignGroupDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreateGroup(CampaignGroupDto campaignGroupDto);
+        /// <returns>AdvProductFeed</returns>
+        AdvProductFeed AdvertiserControllerCreateFeed(CreateFeedDto createFeedDto);
 
         /// <summary>
-        /// 
+        /// Register a product feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFeedDto"></param>
+        /// <returns>ApiResponse of AdvProductFeed</returns>
+        ApiResponse<AdvProductFeed> AdvertiserControllerCreateFeedWithHttpInfo(CreateFeedDto createFeedDto);
+        /// <summary>
+        /// Create a campaign group
+        /// </summary>
+        /// <remarks>
+        /// Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignGroupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreateGroupWithHttpInfo(CampaignGroupDto campaignGroupDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createPromoteCampaignDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreatePromote(CreatePromoteCampaignDto createPromoteCampaignDto);
+        /// <returns>AdvCampaignGroup</returns>
+        AdvCampaignGroup AdvertiserControllerCreateGroup(CampaignGroupDto campaignGroupDto);
 
         /// <summary>
-        /// 
+        /// Create a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignGroupDto"></param>
+        /// <returns>ApiResponse of AdvCampaignGroup</returns>
+        ApiResponse<AdvCampaignGroup> AdvertiserControllerCreateGroupWithHttpInfo(CampaignGroupDto campaignGroupDto);
+        /// <summary>
+        /// Create a sponsored-product promote campaign
+        /// </summary>
+        /// <remarks>
+        /// Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPromoteCampaignDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreatePromoteWithHttpInfo(CreatePromoteCampaignDto createPromoteCampaignDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerCreativeAssignments(string id);
+        /// <returns>AdvPromoteCampaign</returns>
+        AdvPromoteCampaign AdvertiserControllerCreatePromote(CreatePromoteCampaignDto createPromoteCampaignDto);
 
         /// <summary>
-        /// 
+        /// Create a sponsored-product promote campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPromoteCampaignDto"></param>
+        /// <returns>ApiResponse of AdvPromoteCampaign</returns>
+        ApiResponse<AdvPromoteCampaign> AdvertiserControllerCreatePromoteWithHttpInfo(CreatePromoteCampaignDto createPromoteCampaignDto);
+        /// <summary>
+        /// List campaigns a creative is attached to
+        /// </summary>
+        /// <remarks>
+        /// Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerCreativeAssignmentsWithHttpInfo(string id);
+        /// <returns>List&lt;AdvCreativeAssignment&gt;</returns>
+        List<AdvCreativeAssignment> AdvertiserControllerCreativeAssignments(string id);
+
         /// <summary>
-        /// 
+        /// List campaigns a creative is attached to
         /// </summary>
+        /// <remarks>
+        /// Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of List&lt;AdvCreativeAssignment&gt;</returns>
+        ApiResponse<List<AdvCreativeAssignment>> AdvertiserControllerCreativeAssignmentsWithHttpInfo(string id);
+        /// <summary>
+        /// Detach a library creative from a campaign
+        /// </summary>
+        /// <remarks>
+        /// Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerDetachCreative(string id, AttachCreativeDto attachCreativeDto);
+        /// <returns>AdvertiserControllerDetachCreative201Response</returns>
+        AdvertiserControllerDetachCreative201Response AdvertiserControllerDetachCreative(string id, AttachCreativeDto attachCreativeDto);
 
         /// <summary>
-        /// 
+        /// Detach a library creative from a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerDetachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto);
+        /// <returns>ApiResponse of AdvertiserControllerDetachCreative201Response</returns>
+        ApiResponse<AdvertiserControllerDetachCreative201Response> AdvertiserControllerDetachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAudienceDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerEstimateAudience(CreateAudienceDto createAudienceDto);
-
-        /// <summary>
-        /// 
+        /// Estimate the size of an audience rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerEstimateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerFetchFeed(string id);
+        /// <returns>AdvertiserControllerEstimateAudience201Response</returns>
+        AdvertiserControllerEstimateAudience201Response AdvertiserControllerEstimateAudience(CreateAudienceDto createAudienceDto);
 
         /// <summary>
-        /// 
+        /// Estimate the size of an audience rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAudienceDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerEstimateAudience201Response</returns>
+        ApiResponse<AdvertiserControllerEstimateAudience201Response> AdvertiserControllerEstimateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto);
+        /// <summary>
+        /// Fetch a product feed now
+        /// </summary>
+        /// <remarks>
+        /// Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerFetchFeedWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerGet(string id);
+        /// <returns>AdvertiserControllerFetchFeed201Response</returns>
+        AdvertiserControllerFetchFeed201Response AdvertiserControllerFetchFeed(string id);
 
         /// <summary>
-        /// 
+        /// Fetch a product feed now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerGetWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdvertiserControllerFetchFeed201Response</returns>
+        ApiResponse<AdvertiserControllerFetchFeed201Response> AdvertiserControllerFetchFeedWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerGetConversionConfig(string id);
-
-        /// <summary>
-        /// 
+        /// Get a campaign with targeting and creatives
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerGetConversionConfigWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerGetCreative(string id);
+        /// <returns>AdvCampaignDetail</returns>
+        AdvCampaignDetail AdvertiserControllerGet(string id);
 
         /// <summary>
-        /// 
+        /// Get a campaign with targeting and creatives
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerGetCreativeWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdvCampaignDetail</returns>
+        ApiResponse<AdvCampaignDetail> AdvertiserControllerGetWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerGetGroup(string id);
-
-        /// <summary>
-        /// 
+        /// Get a campaign&#39;s conversion config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerGetGroupWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerGetTargeting(string id);
+        /// <returns>AdvConversionConfig</returns>
+        AdvConversionConfig AdvertiserControllerGetConversionConfig(string id);
 
         /// <summary>
-        /// 
+        /// Get a campaign&#39;s conversion config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerGetTargetingWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdvConversionConfig</returns>
+        ApiResponse<AdvConversionConfig> AdvertiserControllerGetConversionConfigWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerList();
-
-        /// <summary>
-        /// 
+        /// Get a creative
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerListAllCreatives();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListAllCreativesWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerListAudiences();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListAudiencesWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerListCatalog();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListCatalogWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerListCatalogFeeds();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListCatalogFeedsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerListComponents(string id);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListComponentsWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerListCreatives(string id);
+        /// <returns>AdvCreative</returns>
+        AdvCreative AdvertiserControllerGetCreative(string id);
 
         /// <summary>
-        /// 
+        /// Get a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListCreativesWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdvCreative</returns>
+        ApiResponse<AdvCreative> AdvertiserControllerGetCreativeWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerListDestinations(string id);
-
-        /// <summary>
-        /// 
+        /// Get a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListDestinationsWithHttpInfo(string id);
+        /// <returns>AdvCampaignGroup</returns>
+        AdvCampaignGroup AdvertiserControllerGetGroup(string id);
+
         /// <summary>
-        /// 
+        /// Get a campaign group
         /// </summary>
+        /// <remarks>
+        /// Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvCampaignGroup</returns>
+        ApiResponse<AdvCampaignGroup> AdvertiserControllerGetGroupWithHttpInfo(string id);
+        /// <summary>
+        /// Get campaign targeting
+        /// </summary>
+        /// <remarks>
+        /// Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AdvTargeting</returns>
+        AdvTargeting AdvertiserControllerGetTargeting(string id);
+
+        /// <summary>
+        /// Get campaign targeting
+        /// </summary>
+        /// <remarks>
+        /// Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvTargeting</returns>
+        ApiResponse<AdvTargeting> AdvertiserControllerGetTargetingWithHttpInfo(string id);
+        /// <summary>
+        /// List campaigns (ad sets)
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AdvCampaign&gt;</returns>
+        List<AdvCampaign> AdvertiserControllerList();
+
+        /// <summary>
+        /// List campaigns (ad sets)
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdvCampaign&gt;</returns>
+        ApiResponse<List<AdvCampaign>> AdvertiserControllerListWithHttpInfo();
+        /// <summary>
+        /// List the creative library
+        /// </summary>
+        /// <remarks>
+        /// Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AdvLibraryCreative&gt;</returns>
+        List<AdvLibraryCreative> AdvertiserControllerListAllCreatives();
+
+        /// <summary>
+        /// List the creative library
+        /// </summary>
+        /// <remarks>
+        /// Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdvLibraryCreative&gt;</returns>
+        ApiResponse<List<AdvLibraryCreative>> AdvertiserControllerListAllCreativesWithHttpInfo();
+        /// <summary>
+        /// List audiences
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AdvAudience&gt;</returns>
+        List<AdvAudience> AdvertiserControllerListAudiences();
+
+        /// <summary>
+        /// List audiences
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdvAudience&gt;</returns>
+        ApiResponse<List<AdvAudience>> AdvertiserControllerListAudiencesWithHttpInfo();
+        /// <summary>
+        /// List marketplace catalog items
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AdvCatalogItem&gt;</returns>
+        List<AdvCatalogItem> AdvertiserControllerListCatalog();
+
+        /// <summary>
+        /// List marketplace catalog items
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdvCatalogItem&gt;</returns>
+        ApiResponse<List<AdvCatalogItem>> AdvertiserControllerListCatalogWithHttpInfo();
+        /// <summary>
+        /// List scheduled catalog feeds
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AdvCatalogFeed&gt;</returns>
+        List<AdvCatalogFeed> AdvertiserControllerListCatalogFeeds();
+
+        /// <summary>
+        /// List scheduled catalog feeds
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdvCatalogFeed&gt;</returns>
+        ApiResponse<List<AdvCatalogFeed>> AdvertiserControllerListCatalogFeedsWithHttpInfo();
+        /// <summary>
+        /// List DCO components for a creative
+        /// </summary>
+        /// <remarks>
+        /// Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>List&lt;AdvCreativeComponent&gt;</returns>
+        List<AdvCreativeComponent> AdvertiserControllerListComponents(string id);
+
+        /// <summary>
+        /// List DCO components for a creative
+        /// </summary>
+        /// <remarks>
+        /// Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of List&lt;AdvCreativeComponent&gt;</returns>
+        ApiResponse<List<AdvCreativeComponent>> AdvertiserControllerListComponentsWithHttpInfo(string id);
+        /// <summary>
+        /// List creatives serving a campaign
+        /// </summary>
+        /// <remarks>
+        /// Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>List&lt;AdvCampaignCreative&gt;</returns>
+        List<AdvCampaignCreative> AdvertiserControllerListCreatives(string id);
+
+        /// <summary>
+        /// List creatives serving a campaign
+        /// </summary>
+        /// <remarks>
+        /// Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of List&lt;AdvCampaignCreative&gt;</returns>
+        ApiResponse<List<AdvCampaignCreative>> AdvertiserControllerListCreativesWithHttpInfo(string id);
+        /// <summary>
+        /// List sync destinations for an audience
+        /// </summary>
+        /// <remarks>
+        /// Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>List&lt;AdvAudienceDestination&gt;</returns>
+        List<AdvAudienceDestination> AdvertiserControllerListDestinations(string id);
+
+        /// <summary>
+        /// List sync destinations for an audience
+        /// </summary>
+        /// <remarks>
+        /// Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of List&lt;AdvAudienceDestination&gt;</returns>
+        ApiResponse<List<AdvAudienceDestination>> AdvertiserControllerListDestinationsWithHttpInfo(string id);
+        /// <summary>
+        /// List products parsed from a feed
+        /// </summary>
+        /// <remarks>
+        /// Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
-        /// <returns></returns>
-        void AdvertiserControllerListFeedProducts(string id, string limit, string offset);
+        /// <returns>AdvertiserControllerListFeedProducts200Response</returns>
+        AdvertiserControllerListFeedProducts200Response AdvertiserControllerListFeedProducts(string id, string limit, string offset);
 
         /// <summary>
-        /// 
+        /// List products parsed from a feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListFeedProductsWithHttpInfo(string id, string limit, string offset);
+        /// <returns>ApiResponse of AdvertiserControllerListFeedProducts200Response</returns>
+        ApiResponse<AdvertiserControllerListFeedProducts200Response> AdvertiserControllerListFeedProductsWithHttpInfo(string id, string limit, string offset);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerListFeeds();
-
-        /// <summary>
-        /// 
+        /// List product feeds
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListFeedsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerListGroups();
+        /// <returns>List&lt;AdvProductFeed&gt;</returns>
+        List<AdvProductFeed> AdvertiserControllerListFeeds();
 
         /// <summary>
-        /// 
+        /// List product feeds
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListGroupsWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;AdvProductFeed&gt;</returns>
+        ApiResponse<List<AdvProductFeed>> AdvertiserControllerListFeedsWithHttpInfo();
         /// <summary>
-        /// 
+        /// List campaign groups with their ad sets
         /// </summary>
+        /// <remarks>
+        /// Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerListPromote();
+        /// <returns>List&lt;AdvCampaignGroupWithAdSets&gt;</returns>
+        List<AdvCampaignGroupWithAdSets> AdvertiserControllerListGroups();
 
         /// <summary>
-        /// 
+        /// List campaign groups with their ad sets
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerListPromoteWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;AdvCampaignGroupWithAdSets&gt;</returns>
+        ApiResponse<List<AdvCampaignGroupWithAdSets>> AdvertiserControllerListGroupsWithHttpInfo();
         /// <summary>
-        /// 
+        /// List sponsored-product promote campaigns
         /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AdvPromoteCampaign&gt;</returns>
+        List<AdvPromoteCampaign> AdvertiserControllerListPromote();
+
+        /// <summary>
+        /// List sponsored-product promote campaigns
+        /// </summary>
+        /// <remarks>
+        /// Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AdvPromoteCampaign&gt;</returns>
+        ApiResponse<List<AdvPromoteCampaign>> AdvertiserControllerListPromoteWithHttpInfo();
+        /// <summary>
+        /// Create a heuristic lookalike audience
+        /// </summary>
+        /// <remarks>
+        /// Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerLookalikeAudience(string id, LookalikeDto lookalikeDto);
+        /// <returns>AdvertiserControllerLookalikeAudience201Response</returns>
+        AdvertiserControllerLookalikeAudience201Response AdvertiserControllerLookalikeAudience(string id, LookalikeDto lookalikeDto);
 
         /// <summary>
-        /// 
+        /// Create a heuristic lookalike audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerLookalikeAudienceWithHttpInfo(string id, LookalikeDto lookalikeDto);
+        /// <returns>ApiResponse of AdvertiserControllerLookalikeAudience201Response</returns>
+        ApiResponse<AdvertiserControllerLookalikeAudience201Response> AdvertiserControllerLookalikeAudienceWithHttpInfo(string id, LookalikeDto lookalikeDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="modeledLookalikeDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerModeledLookalike(ModeledLookalikeDto modeledLookalikeDto);
-
-        /// <summary>
-        /// 
+        /// Create a modeled lookalike audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="modeledLookalikeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerModeledLookalikeWithHttpInfo(ModeledLookalikeDto modeledLookalikeDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerModeledLookalikePreview(string id);
+        /// <returns>AdvertiserControllerModeledLookalike201Response</returns>
+        AdvertiserControllerModeledLookalike201Response AdvertiserControllerModeledLookalike(ModeledLookalikeDto modeledLookalikeDto);
 
         /// <summary>
-        /// 
+        /// Create a modeled lookalike audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="modeledLookalikeDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerModeledLookalike201Response</returns>
+        ApiResponse<AdvertiserControllerModeledLookalike201Response> AdvertiserControllerModeledLookalikeWithHttpInfo(ModeledLookalikeDto modeledLookalikeDto);
+        /// <summary>
+        /// Preview a modeled lookalike for a seed
+        /// </summary>
+        /// <remarks>
+        /// Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerModeledLookalikePreviewWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="setPromoteStatusDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerPromoteStatus(string id, SetPromoteStatusDto setPromoteStatusDto);
+        /// <returns>AdvertiserControllerModeledLookalikePreview200Response</returns>
+        AdvertiserControllerModeledLookalikePreview200Response AdvertiserControllerModeledLookalikePreview(string id);
 
         /// <summary>
-        /// 
+        /// Preview a modeled lookalike for a seed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvertiserControllerModeledLookalikePreview200Response</returns>
+        ApiResponse<AdvertiserControllerModeledLookalikePreview200Response> AdvertiserControllerModeledLookalikePreviewWithHttpInfo(string id);
+        /// <summary>
+        /// Activate or pause a promote campaign
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setPromoteStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerPromoteStatusWithHttpInfo(string id, SetPromoteStatusDto setPromoteStatusDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reachEstimateDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerReach(ReachEstimateDto reachEstimateDto);
+        /// <returns>AdvStatusResult</returns>
+        AdvStatusResult AdvertiserControllerPromoteStatus(string id, SetPromoteStatusDto setPromoteStatusDto);
 
         /// <summary>
-        /// 
+        /// Activate or pause a promote campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="setPromoteStatusDto"></param>
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        ApiResponse<AdvStatusResult> AdvertiserControllerPromoteStatusWithHttpInfo(string id, SetPromoteStatusDto setPromoteStatusDto);
+        /// <summary>
+        /// Estimate daily reach for targeting
+        /// </summary>
+        /// <remarks>
+        /// Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reachEstimateDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerReachWithHttpInfo(ReachEstimateDto reachEstimateDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="registerCatalogFeedDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRegisterCatalogFeed(RegisterCatalogFeedDto registerCatalogFeedDto);
+        /// <returns>AdvertiserControllerReach201Response</returns>
+        AdvertiserControllerReach201Response AdvertiserControllerReach(ReachEstimateDto reachEstimateDto);
 
         /// <summary>
-        /// 
+        /// Estimate daily reach for targeting
         /// </summary>
         /// <remarks>
-        /// 
+        /// Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reachEstimateDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerReach201Response</returns>
+        ApiResponse<AdvertiserControllerReach201Response> AdvertiserControllerReachWithHttpInfo(ReachEstimateDto reachEstimateDto);
+        /// <summary>
+        /// Register a scheduled catalog feed
+        /// </summary>
+        /// <remarks>
+        /// Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="registerCatalogFeedDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRegisterCatalogFeedWithHttpInfo(RegisterCatalogFeedDto registerCatalogFeedDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRemove(string id);
+        /// <returns>AdvCatalogFeed</returns>
+        AdvCatalogFeed AdvertiserControllerRegisterCatalogFeed(RegisterCatalogFeedDto registerCatalogFeedDto);
 
         /// <summary>
-        /// 
+        /// Register a scheduled catalog feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerCatalogFeedDto"></param>
+        /// <returns>ApiResponse of AdvCatalogFeed</returns>
+        ApiResponse<AdvCatalogFeed> AdvertiserControllerRegisterCatalogFeedWithHttpInfo(RegisterCatalogFeedDto registerCatalogFeedDto);
+        /// <summary>
+        /// Delete a campaign
+        /// </summary>
+        /// <remarks>
+        /// Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRemoveWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRemoveAudience(string id);
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted AdvertiserControllerRemove(string id);
 
         /// <summary>
-        /// 
+        /// Delete a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRemoveAudienceWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> AdvertiserControllerRemoveWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRemoveCatalogFeed(string id);
-
-        /// <summary>
-        /// 
+        /// Delete an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRemoveCatalogFeedWithHttpInfo(string id);
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted AdvertiserControllerRemoveAudience(string id);
+
         /// <summary>
-        /// 
+        /// Delete an audience
         /// </summary>
+        /// <remarks>
+        /// Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> AdvertiserControllerRemoveAudienceWithHttpInfo(string id);
+        /// <summary>
+        /// Delete a scheduled catalog feed
+        /// </summary>
+        /// <remarks>
+        /// Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted AdvertiserControllerRemoveCatalogFeed(string id);
+
+        /// <summary>
+        /// Delete a scheduled catalog feed
+        /// </summary>
+        /// <remarks>
+        /// Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> AdvertiserControllerRemoveCatalogFeedWithHttpInfo(string id);
+        /// <summary>
+        /// Delete a DCO component
+        /// </summary>
+        /// <remarks>
+        /// Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRemoveComponent(string id, string cid);
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted AdvertiserControllerRemoveComponent(string id, string cid);
 
         /// <summary>
-        /// 
+        /// Delete a DCO component
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRemoveComponentWithHttpInfo(string id, string cid);
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> AdvertiserControllerRemoveComponentWithHttpInfo(string id, string cid);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRemoveCreative(string id);
-
-        /// <summary>
-        /// 
+        /// Delete a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRemoveCreativeWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="did"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRemoveDestination(string did);
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted AdvertiserControllerRemoveCreative(string id);
 
         /// <summary>
-        /// 
+        /// Delete a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> AdvertiserControllerRemoveCreativeWithHttpInfo(string id);
+        /// <summary>
+        /// Delete a sync destination
+        /// </summary>
+        /// <remarks>
+        /// Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRemoveDestinationWithHttpInfo(string did);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerRemoveGroup(string id);
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted AdvertiserControllerRemoveDestination(string did);
 
         /// <summary>
-        /// 
+        /// Delete a sync destination
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="did"></param>
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> AdvertiserControllerRemoveDestinationWithHttpInfo(string did);
+        /// <summary>
+        /// Delete a campaign group
+        /// </summary>
+        /// <remarks>
+        /// Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerRemoveGroupWithHttpInfo(string id);
+        /// <returns>AdvDeleted</returns>
+        AdvDeleted AdvertiserControllerRemoveGroup(string id);
+
         /// <summary>
-        /// 
+        /// Delete a campaign group
         /// </summary>
+        /// <remarks>
+        /// Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        ApiResponse<AdvDeleted> AdvertiserControllerRemoveGroupWithHttpInfo(string id);
+        /// <summary>
+        /// Set DCO and product-ad flags on a creative
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerSetDco(string id, SetDcoDto setDcoDto);
+        /// <returns>AdvertiserControllerSetDco200Response</returns>
+        AdvertiserControllerSetDco200Response AdvertiserControllerSetDco(string id, SetDcoDto setDcoDto);
 
         /// <summary>
-        /// 
+        /// Set DCO and product-ad flags on a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerSetDcoWithHttpInfo(string id, SetDcoDto setDcoDto);
+        /// <returns>ApiResponse of AdvertiserControllerSetDco200Response</returns>
+        ApiResponse<AdvertiserControllerSetDco200Response> AdvertiserControllerSetDcoWithHttpInfo(string id, SetDcoDto setDcoDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerStatus(string id);
-
-        /// <summary>
-        /// 
+        /// Activate or pause a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerStatusWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerSubmit(string id);
+        /// <returns>AdvStatusResult</returns>
+        AdvStatusResult AdvertiserControllerStatus(string id);
 
         /// <summary>
-        /// 
+        /// Activate or pause a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerSubmitWithHttpInfo(string id);
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        ApiResponse<AdvStatusResult> AdvertiserControllerStatusWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerSubmitPromote(string id);
-
-        /// <summary>
-        /// 
+        /// Submit a campaign for moderation review
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerSubmitPromoteWithHttpInfo(string id);
+        /// <returns>AdvStatusResult</returns>
+        AdvStatusResult AdvertiserControllerSubmit(string id);
+
         /// <summary>
-        /// 
+        /// Submit a campaign for moderation review
         /// </summary>
+        /// <remarks>
+        /// Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        ApiResponse<AdvStatusResult> AdvertiserControllerSubmitWithHttpInfo(string id);
+        /// <summary>
+        /// Submit a promote campaign for review
+        /// </summary>
+        /// <remarks>
+        /// Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AdvStatusResult</returns>
+        AdvStatusResult AdvertiserControllerSubmitPromote(string id);
+
+        /// <summary>
+        /// Submit a promote campaign for review
+        /// </summary>
+        /// <remarks>
+        /// Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        ApiResponse<AdvStatusResult> AdvertiserControllerSubmitPromoteWithHttpInfo(string id);
+        /// <summary>
+        /// Sync a destination now
+        /// </summary>
+        /// <remarks>
+        /// Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
-        /// <returns></returns>
-        void AdvertiserControllerSyncDestination(string did);
+        /// <returns>AdvertiserControllerSyncDestination201Response</returns>
+        AdvertiserControllerSyncDestination201Response AdvertiserControllerSyncDestination(string did);
 
         /// <summary>
-        /// 
+        /// Sync a destination now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerSyncDestinationWithHttpInfo(string did);
+        /// <returns>ApiResponse of AdvertiserControllerSyncDestination201Response</returns>
+        ApiResponse<AdvertiserControllerSyncDestination201Response> AdvertiserControllerSyncDestinationWithHttpInfo(string did);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void AdvertiserControllerTranscodeCreative(string id);
-
-        /// <summary>
-        /// 
+        /// Queue HLS transcoding for a video creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerTranscodeCreativeWithHttpInfo(string id);
+        /// <returns>AdvertiserControllerTranscodeCreative201Response</returns>
+        AdvertiserControllerTranscodeCreative201Response AdvertiserControllerTranscodeCreative(string id);
+
         /// <summary>
-        /// 
+        /// Queue HLS transcoding for a video creative
         /// </summary>
+        /// <remarks>
+        /// Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdvertiserControllerTranscodeCreative201Response</returns>
+        ApiResponse<AdvertiserControllerTranscodeCreative201Response> AdvertiserControllerTranscodeCreativeWithHttpInfo(string id);
+        /// <summary>
+        /// Update a campaign
+        /// </summary>
+        /// <remarks>
+        /// Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerUpdate(string id, UpdateCampaignDto updateCampaignDto);
+        /// <returns>AdvCampaignDetail</returns>
+        AdvCampaignDetail AdvertiserControllerUpdate(string id, UpdateCampaignDto updateCampaignDto);
 
         /// <summary>
-        /// 
+        /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUpdateWithHttpInfo(string id, UpdateCampaignDto updateCampaignDto);
+        /// <returns>ApiResponse of AdvCampaignDetail</returns>
+        ApiResponse<AdvCampaignDetail> AdvertiserControllerUpdateWithHttpInfo(string id, UpdateCampaignDto updateCampaignDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="createAudienceDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerUpdateAudience(string id, CreateAudienceDto createAudienceDto);
-
-        /// <summary>
-        /// 
+        /// Update an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createAudienceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUpdateAudienceWithHttpInfo(string id, CreateAudienceDto createAudienceDto);
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        AdvertiserControllerCreateAudience201Response AdvertiserControllerUpdateAudience(string id, CreateAudienceDto createAudienceDto);
+
         /// <summary>
-        /// 
+        /// Update an audience
         /// </summary>
+        /// <remarks>
+        /// Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="createAudienceDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateAudienceWithHttpInfo(string id, CreateAudienceDto createAudienceDto);
+        /// <summary>
+        /// Update a creative
+        /// </summary>
+        /// <remarks>
+        /// Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerUpdateCreative(string id, UpdateCreativeDto updateCreativeDto);
+        /// <returns>AdvCreative</returns>
+        AdvCreative AdvertiserControllerUpdateCreative(string id, UpdateCreativeDto updateCreativeDto);
 
         /// <summary>
-        /// 
+        /// Update a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUpdateCreativeWithHttpInfo(string id, UpdateCreativeDto updateCreativeDto);
+        /// <returns>ApiResponse of AdvCreative</returns>
+        ApiResponse<AdvCreative> AdvertiserControllerUpdateCreativeWithHttpInfo(string id, UpdateCreativeDto updateCreativeDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="did"></param>
-        /// <param name="updateDestinationDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerUpdateDestination(string did, UpdateDestinationDto updateDestinationDto);
-
-        /// <summary>
-        /// 
+        /// Update a sync destination
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="updateDestinationDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUpdateDestinationWithHttpInfo(string did, UpdateDestinationDto updateDestinationDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="updateCampaignGroupDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerUpdateGroup(string id, UpdateCampaignGroupDto updateCampaignGroupDto);
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        AdvertiserControllerCreateAudience201Response AdvertiserControllerUpdateDestination(string did, UpdateDestinationDto updateDestinationDto);
 
         /// <summary>
-        /// 
+        /// Update a sync destination
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="did"></param>
+        /// <param name="updateDestinationDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateDestinationWithHttpInfo(string did, UpdateDestinationDto updateDestinationDto);
+        /// <summary>
+        /// Update a campaign group
+        /// </summary>
+        /// <remarks>
+        /// Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignGroupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUpdateGroupWithHttpInfo(string id, UpdateCampaignGroupDto updateCampaignGroupDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerUploadCreative();
+        /// <returns>AdvCampaignGroup</returns>
+        AdvCampaignGroup AdvertiserControllerUpdateGroup(string id, UpdateCampaignGroupDto updateCampaignGroupDto);
 
         /// <summary>
-        /// 
+        /// Update a campaign group
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUploadCreativeWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void AdvertiserControllerUploadPlayable();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUploadPlayableWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="bulkUpsertCatalogDto"></param>
-        /// <returns></returns>
-        void AdvertiserControllerUpsertCatalog(BulkUpsertCatalogDto bulkUpsertCatalogDto);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="bulkUpsertCatalogDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUpsertCatalogWithHttpInfo(BulkUpsertCatalogDto bulkUpsertCatalogDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="body"></param>
-        /// <returns></returns>
-        void AdvertiserControllerUpsertConversionConfig(string id, Object body);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="updateCampaignGroupDto"></param>
+        /// <returns>ApiResponse of AdvCampaignGroup</returns>
+        ApiResponse<AdvCampaignGroup> AdvertiserControllerUpdateGroupWithHttpInfo(string id, UpdateCampaignGroupDto updateCampaignGroupDto);
+        /// <summary>
+        /// Upload a creative asset file
+        /// </summary>
+        /// <remarks>
+        /// Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AdvertiserControllerUploadCreative201Response</returns>
+        AdvertiserControllerUploadCreative201Response AdvertiserControllerUploadCreative();
+
+        /// <summary>
+        /// Upload a creative asset file
+        /// </summary>
+        /// <remarks>
+        /// Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AdvertiserControllerUploadCreative201Response</returns>
+        ApiResponse<AdvertiserControllerUploadCreative201Response> AdvertiserControllerUploadCreativeWithHttpInfo();
+        /// <summary>
+        /// Upload a playable (HTML5) ZIP bundle
+        /// </summary>
+        /// <remarks>
+        /// Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AdvertiserControllerUploadPlayable201Response</returns>
+        AdvertiserControllerUploadPlayable201Response AdvertiserControllerUploadPlayable();
+
+        /// <summary>
+        /// Upload a playable (HTML5) ZIP bundle
+        /// </summary>
+        /// <remarks>
+        /// Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AdvertiserControllerUploadPlayable201Response</returns>
+        ApiResponse<AdvertiserControllerUploadPlayable201Response> AdvertiserControllerUploadPlayableWithHttpInfo();
+        /// <summary>
+        /// Bulk upsert marketplace catalog items
+        /// </summary>
+        /// <remarks>
+        /// Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpsertCatalogDto"></param>
+        /// <returns>AdvertiserControllerUpsertCatalog201Response</returns>
+        AdvertiserControllerUpsertCatalog201Response AdvertiserControllerUpsertCatalog(BulkUpsertCatalogDto bulkUpsertCatalogDto);
+
+        /// <summary>
+        /// Bulk upsert marketplace catalog items
+        /// </summary>
+        /// <remarks>
+        /// Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpsertCatalogDto"></param>
+        /// <returns>ApiResponse of AdvertiserControllerUpsertCatalog201Response</returns>
+        ApiResponse<AdvertiserControllerUpsertCatalog201Response> AdvertiserControllerUpsertCatalogWithHttpInfo(BulkUpsertCatalogDto bulkUpsertCatalogDto);
+        /// <summary>
+        /// Create or replace a campaign&#39;s conversion config
+        /// </summary>
+        /// <remarks>
+        /// Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
         /// <param name="body"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AdvertiserControllerUpsertConversionConfigWithHttpInfo(string id, Object body);
+        /// <returns>AdvConversionConfig</returns>
+        AdvConversionConfig AdvertiserControllerUpsertConversionConfig(string id, Object body);
+
+        /// <summary>
+        /// Create or replace a campaign&#39;s conversion config
+        /// </summary>
+        /// <remarks>
+        /// Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of AdvConversionConfig</returns>
+        ApiResponse<AdvConversionConfig> AdvertiserControllerUpsertConversionConfigWithHttpInfo(string id, Object body);
         #endregion Synchronous Operations
     }
 
@@ -1149,1422 +1332,1422 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Add hashed members to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="audienceMembersDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerAddAudienceMembersAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerAddAudienceMembers201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerAddAudienceMembers201Response> AdvertiserControllerAddAudienceMembersAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Add hashed members to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="audienceMembersDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerAddAudienceMembersWithHttpInfoAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerAddAudienceMembers201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerAddAudienceMembers201Response>> AdvertiserControllerAddAudienceMembersWithHttpInfoAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Add a DCO component to a creative&#39;s pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="addComponentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerAddComponentAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerAddComponent201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerAddComponent201Response> AdvertiserControllerAddComponentAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Add a DCO component to a creative&#39;s pool
         /// </summary>
         /// <remarks>
-        /// 
+        /// Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="addComponentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerAddComponentWithHttpInfoAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerAddComponent201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerAddComponent201Response>> AdvertiserControllerAddComponentWithHttpInfoAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Attach a library creative to a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerAttachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerAttachCreative201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerAttachCreative201Response> AdvertiserControllerAttachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Attach a library creative to a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerAttachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerAttachCreative201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerAttachCreative201Response>> AdvertiserControllerAttachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the retargeting pixel snippet for an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerAudiencePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerAudiencePixel200Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerAudiencePixel200Response> AdvertiserControllerAudiencePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the retargeting pixel snippet for an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerAudiencePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerAudiencePixel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerAudiencePixel200Response>> AdvertiserControllerAudiencePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Suggest audiences from pixel activity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerAudienceSuggestionsAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerAudienceSuggestions200Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerAudienceSuggestions200Response> AdvertiserControllerAudienceSuggestionsAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Suggest audiences from pixel activity
         /// </summary>
         /// <remarks>
-        /// 
+        /// Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerAudienceSuggestionsWithHttpInfoAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerAudienceSuggestions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerAudienceSuggestions200Response>> AdvertiserControllerAudienceSuggestionsWithHttpInfoAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a campaign (ad set)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreateAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCampaign</returns>
+        System.Threading.Tasks.Task<AdvCampaign> AdvertiserControllerCreateAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a campaign (ad set)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreateWithHttpInfoAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCampaign)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCampaign>> AdvertiserControllerCreateWithHttpInfoAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerCreateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreateCreativeAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCreative</returns>
+        System.Threading.Tasks.Task<AdvCreative> AdvertiserControllerCreateCreativeAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreateCreativeWithHttpInfoAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCreative)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCreative>> AdvertiserControllerCreateCreativeWithHttpInfoAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Add a sync destination to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreateDestinationAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateDestinationAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Add a sync destination to an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreateDestinationWithHttpInfoAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerCreateDestinationWithHttpInfoAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Register a product feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreateFeedAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvProductFeed</returns>
+        System.Threading.Tasks.Task<AdvProductFeed> AdvertiserControllerCreateFeedAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Register a product feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreateFeedWithHttpInfoAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvProductFeed)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvProductFeed>> AdvertiserControllerCreateFeedWithHttpInfoAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreateGroupAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCampaignGroup</returns>
+        System.Threading.Tasks.Task<AdvCampaignGroup> AdvertiserControllerCreateGroupAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreateGroupWithHttpInfoAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCampaignGroup)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCampaignGroup>> AdvertiserControllerCreateGroupWithHttpInfoAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a sponsored-product promote campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPromoteCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreatePromoteAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvPromoteCampaign</returns>
+        System.Threading.Tasks.Task<AdvPromoteCampaign> AdvertiserControllerCreatePromoteAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a sponsored-product promote campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPromoteCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreatePromoteWithHttpInfoAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvPromoteCampaign)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvPromoteCampaign>> AdvertiserControllerCreatePromoteWithHttpInfoAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List campaigns a creative is attached to
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerCreativeAssignmentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvCreativeAssignment&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvCreativeAssignment>> AdvertiserControllerCreativeAssignmentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List campaigns a creative is attached to
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerCreativeAssignmentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvCreativeAssignment&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvCreativeAssignment>>> AdvertiserControllerCreativeAssignmentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Detach a library creative from a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerDetachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerDetachCreative201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerDetachCreative201Response> AdvertiserControllerDetachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Detach a library creative from a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerDetachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerDetachCreative201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerDetachCreative201Response>> AdvertiserControllerDetachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Estimate the size of an audience rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerEstimateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerEstimateAudience201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerEstimateAudience201Response> AdvertiserControllerEstimateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Estimate the size of an audience rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerEstimateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerEstimateAudience201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerEstimateAudience201Response>> AdvertiserControllerEstimateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Fetch a product feed now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerFetchFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerFetchFeed201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerFetchFeed201Response> AdvertiserControllerFetchFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Fetch a product feed now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerFetchFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerFetchFeed201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerFetchFeed201Response>> AdvertiserControllerFetchFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a campaign with targeting and creatives
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCampaignDetail</returns>
+        System.Threading.Tasks.Task<AdvCampaignDetail> AdvertiserControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a campaign with targeting and creatives
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCampaignDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCampaignDetail>> AdvertiserControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a campaign&#39;s conversion config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerGetConversionConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvConversionConfig</returns>
+        System.Threading.Tasks.Task<AdvConversionConfig> AdvertiserControllerGetConversionConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a campaign&#39;s conversion config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerGetConversionConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvConversionConfig)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvConversionConfig>> AdvertiserControllerGetConversionConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerGetCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCreative</returns>
+        System.Threading.Tasks.Task<AdvCreative> AdvertiserControllerGetCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerGetCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCreative)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCreative>> AdvertiserControllerGetCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerGetGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCampaignGroup</returns>
+        System.Threading.Tasks.Task<AdvCampaignGroup> AdvertiserControllerGetGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerGetGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCampaignGroup)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCampaignGroup>> AdvertiserControllerGetGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get campaign targeting
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerGetTargetingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvTargeting</returns>
+        System.Threading.Tasks.Task<AdvTargeting> AdvertiserControllerGetTargetingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get campaign targeting
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerGetTargetingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvTargeting)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvTargeting>> AdvertiserControllerGetTargetingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List campaigns (ad sets)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvCampaign&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvCampaign>> AdvertiserControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List campaigns (ad sets)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvCampaign&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvCampaign>>> AdvertiserControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List the creative library
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListAllCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvLibraryCreative&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvLibraryCreative>> AdvertiserControllerListAllCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List the creative library
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListAllCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvLibraryCreative&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvLibraryCreative>>> AdvertiserControllerListAllCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List audiences
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListAudiencesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvAudience&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvAudience>> AdvertiserControllerListAudiencesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List audiences
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListAudiencesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvAudience&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvAudience>>> AdvertiserControllerListAudiencesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List marketplace catalog items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvCatalogItem&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvCatalogItem>> AdvertiserControllerListCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List marketplace catalog items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvCatalogItem&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvCatalogItem>>> AdvertiserControllerListCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List scheduled catalog feeds
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListCatalogFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvCatalogFeed&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvCatalogFeed>> AdvertiserControllerListCatalogFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List scheduled catalog feeds
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListCatalogFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvCatalogFeed&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvCatalogFeed>>> AdvertiserControllerListCatalogFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List DCO components for a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListComponentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvCreativeComponent&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvCreativeComponent>> AdvertiserControllerListComponentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List DCO components for a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListComponentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvCreativeComponent&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvCreativeComponent>>> AdvertiserControllerListComponentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List creatives serving a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListCreativesAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvCampaignCreative&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvCampaignCreative>> AdvertiserControllerListCreativesAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List creatives serving a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListCreativesWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvCampaignCreative&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvCampaignCreative>>> AdvertiserControllerListCreativesWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List sync destinations for an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListDestinationsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvAudienceDestination&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvAudienceDestination>> AdvertiserControllerListDestinationsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List sync destinations for an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListDestinationsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvAudienceDestination&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvAudienceDestination>>> AdvertiserControllerListDestinationsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List products parsed from a feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListFeedProductsAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerListFeedProducts200Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerListFeedProducts200Response> AdvertiserControllerListFeedProductsAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List products parsed from a feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListFeedProductsWithHttpInfoAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerListFeedProducts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerListFeedProducts200Response>> AdvertiserControllerListFeedProductsWithHttpInfoAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List product feeds
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvProductFeed&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvProductFeed>> AdvertiserControllerListFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List product feeds
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvProductFeed&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvProductFeed>>> AdvertiserControllerListFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List campaign groups with their ad sets
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListGroupsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvCampaignGroupWithAdSets&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvCampaignGroupWithAdSets>> AdvertiserControllerListGroupsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List campaign groups with their ad sets
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListGroupsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvCampaignGroupWithAdSets&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvCampaignGroupWithAdSets>>> AdvertiserControllerListGroupsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List sponsored-product promote campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerListPromoteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AdvPromoteCampaign&gt;</returns>
+        System.Threading.Tasks.Task<List<AdvPromoteCampaign>> AdvertiserControllerListPromoteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List sponsored-product promote campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerListPromoteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AdvPromoteCampaign&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AdvPromoteCampaign>>> AdvertiserControllerListPromoteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a heuristic lookalike audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerLookalikeAudienceAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerLookalikeAudience201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerLookalikeAudience201Response> AdvertiserControllerLookalikeAudienceAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a heuristic lookalike audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerLookalikeAudienceWithHttpInfoAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerLookalikeAudience201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerLookalikeAudience201Response>> AdvertiserControllerLookalikeAudienceWithHttpInfoAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a modeled lookalike audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="modeledLookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerModeledLookalikeAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerModeledLookalike201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerModeledLookalike201Response> AdvertiserControllerModeledLookalikeAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a modeled lookalike audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="modeledLookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerModeledLookalikeWithHttpInfoAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerModeledLookalike201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerModeledLookalike201Response>> AdvertiserControllerModeledLookalikeWithHttpInfoAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Preview a modeled lookalike for a seed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerModeledLookalikePreviewAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerModeledLookalikePreview200Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerModeledLookalikePreview200Response> AdvertiserControllerModeledLookalikePreviewAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Preview a modeled lookalike for a seed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerModeledLookalikePreviewWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerModeledLookalikePreview200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerModeledLookalikePreview200Response>> AdvertiserControllerModeledLookalikePreviewWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Activate or pause a promote campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setPromoteStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerPromoteStatusAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvStatusResult</returns>
+        System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerPromoteStatusAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Activate or pause a promote campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setPromoteStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerPromoteStatusWithHttpInfoAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvStatusResult>> AdvertiserControllerPromoteStatusWithHttpInfoAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Estimate daily reach for targeting
         /// </summary>
         /// <remarks>
-        /// 
+        /// Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reachEstimateDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerReachAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerReach201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerReach201Response> AdvertiserControllerReachAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Estimate daily reach for targeting
         /// </summary>
         /// <remarks>
-        /// 
+        /// Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reachEstimateDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerReachWithHttpInfoAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerReach201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerReach201Response>> AdvertiserControllerReachWithHttpInfoAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Register a scheduled catalog feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="registerCatalogFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRegisterCatalogFeedAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCatalogFeed</returns>
+        System.Threading.Tasks.Task<AdvCatalogFeed> AdvertiserControllerRegisterCatalogFeedAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Register a scheduled catalog feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="registerCatalogFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRegisterCatalogFeedWithHttpInfoAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCatalogFeed)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCatalogFeed>> AdvertiserControllerRegisterCatalogFeedWithHttpInfoAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> AdvertiserControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRemoveAudienceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveAudienceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRemoveAudienceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> AdvertiserControllerRemoveAudienceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a scheduled catalog feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRemoveCatalogFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveCatalogFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a scheduled catalog feed
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRemoveCatalogFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> AdvertiserControllerRemoveCatalogFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a DCO component
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRemoveComponentAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveComponentAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a DCO component
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRemoveComponentWithHttpInfoAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> AdvertiserControllerRemoveComponentWithHttpInfoAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRemoveCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRemoveCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> AdvertiserControllerRemoveCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a sync destination
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRemoveDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a sync destination
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRemoveDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> AdvertiserControllerRemoveDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerRemoveGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvDeleted</returns>
+        System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerRemoveGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvDeleted>> AdvertiserControllerRemoveGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set DCO and product-ad flags on a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerSetDcoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerSetDco200Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerSetDco200Response> AdvertiserControllerSetDcoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set DCO and product-ad flags on a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerSetDcoWithHttpInfoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerSetDco200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerSetDco200Response>> AdvertiserControllerSetDcoWithHttpInfoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Activate or pause a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvStatusResult</returns>
+        System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Activate or pause a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvStatusResult>> AdvertiserControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Submit a campaign for moderation review
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerSubmitAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvStatusResult</returns>
+        System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerSubmitAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Submit a campaign for moderation review
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerSubmitWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvStatusResult>> AdvertiserControllerSubmitWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Submit a promote campaign for review
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerSubmitPromoteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvStatusResult</returns>
+        System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerSubmitPromoteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Submit a promote campaign for review
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerSubmitPromoteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvStatusResult>> AdvertiserControllerSubmitPromoteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Sync a destination now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerSyncDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerSyncDestination201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerSyncDestination201Response> AdvertiserControllerSyncDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Sync a destination now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerSyncDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerSyncDestination201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerSyncDestination201Response>> AdvertiserControllerSyncDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Queue HLS transcoding for a video creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerTranscodeCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerTranscodeCreative201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerTranscodeCreative201Response> AdvertiserControllerTranscodeCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Queue HLS transcoding for a video creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerTranscodeCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerTranscodeCreative201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerTranscodeCreative201Response>> AdvertiserControllerTranscodeCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUpdateAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCampaignDetail</returns>
+        System.Threading.Tasks.Task<AdvCampaignDetail> AdvertiserControllerUpdateAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUpdateWithHttpInfoAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCampaignDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCampaignDetail>> AdvertiserControllerUpdateWithHttpInfoAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUpdateAudienceAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateAudienceAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update an audience
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUpdateAudienceWithHttpInfoAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerUpdateAudienceWithHttpInfoAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUpdateCreativeAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCreative</returns>
+        System.Threading.Tasks.Task<AdvCreative> AdvertiserControllerUpdateCreativeAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a creative
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUpdateCreativeWithHttpInfoAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCreative)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCreative>> AdvertiserControllerUpdateCreativeWithHttpInfoAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a sync destination
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="updateDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUpdateDestinationAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateDestinationAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a sync destination
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="updateDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUpdateDestinationWithHttpInfoAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerUpdateDestinationWithHttpInfoAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUpdateGroupAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvCampaignGroup</returns>
+        System.Threading.Tasks.Task<AdvCampaignGroup> AdvertiserControllerUpdateGroupAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a campaign group
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUpdateGroupWithHttpInfoAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvCampaignGroup)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvCampaignGroup>> AdvertiserControllerUpdateGroupWithHttpInfoAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Upload a creative asset file
         /// </summary>
         /// <remarks>
-        /// 
+        /// Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUploadCreativeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerUploadCreative201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerUploadCreative201Response> AdvertiserControllerUploadCreativeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Upload a creative asset file
         /// </summary>
         /// <remarks>
-        /// 
+        /// Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUploadCreativeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerUploadCreative201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerUploadCreative201Response>> AdvertiserControllerUploadCreativeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Upload a playable (HTML5) ZIP bundle
         /// </summary>
         /// <remarks>
-        /// 
+        /// Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUploadPlayableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerUploadPlayable201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerUploadPlayable201Response> AdvertiserControllerUploadPlayableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Upload a playable (HTML5) ZIP bundle
         /// </summary>
         /// <remarks>
-        /// 
+        /// Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUploadPlayableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerUploadPlayable201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerUploadPlayable201Response>> AdvertiserControllerUploadPlayableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Bulk upsert marketplace catalog items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpsertCatalogDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUpsertCatalogAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvertiserControllerUpsertCatalog201Response</returns>
+        System.Threading.Tasks.Task<AdvertiserControllerUpsertCatalog201Response> AdvertiserControllerUpsertCatalogAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Bulk upsert marketplace catalog items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpsertCatalogDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUpsertCatalogWithHttpInfoAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvertiserControllerUpsertCatalog201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvertiserControllerUpsertCatalog201Response>> AdvertiserControllerUpsertCatalogWithHttpInfoAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create or replace a campaign&#39;s conversion config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AdvertiserControllerUpsertConversionConfigAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdvConversionConfig</returns>
+        System.Threading.Tasks.Task<AdvConversionConfig> AdvertiserControllerUpsertConversionConfigAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create or replace a campaign&#39;s conversion config
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AdvertiserControllerUpsertConversionConfigWithHttpInfoAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdvConversionConfig)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdvConversionConfig>> AdvertiserControllerUpsertConversionConfigWithHttpInfoAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -2779,25 +2962,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add hashed members to an audience Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="audienceMembersDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerAddAudienceMembers(string id, AudienceMembersDto audienceMembersDto)
+        /// <returns>AdvertiserControllerAddAudienceMembers201Response</returns>
+        public AdvertiserControllerAddAudienceMembers201Response AdvertiserControllerAddAudienceMembers(string id, AudienceMembersDto audienceMembersDto)
         {
-            AdvertiserControllerAddAudienceMembersWithHttpInfo(id, audienceMembersDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddAudienceMembers201Response> localVarResponse = AdvertiserControllerAddAudienceMembersWithHttpInfo(id, audienceMembersDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add hashed members to an audience Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="audienceMembersDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerAddAudienceMembersWithHttpInfo(string id, AudienceMembersDto audienceMembersDto)
+        /// <returns>ApiResponse of AdvertiserControllerAddAudienceMembers201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddAudienceMembers201Response> AdvertiserControllerAddAudienceMembersWithHttpInfo(string id, AudienceMembersDto audienceMembersDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2815,6 +2999,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2826,9 +3011,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = audienceMembersDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/audiences/{id}/members", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerAddAudienceMembers201Response>("/v1/advertiser/audiences/{id}/members", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2840,27 +3036,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add hashed members to an audience Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="audienceMembersDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerAddAudienceMembersAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerAddAudienceMembers201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerAddAudienceMembers201Response> AdvertiserControllerAddAudienceMembersAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerAddAudienceMembersWithHttpInfoAsync(id, audienceMembersDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddAudienceMembers201Response> localVarResponse = await AdvertiserControllerAddAudienceMembersWithHttpInfoAsync(id, audienceMembersDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add hashed members to an audience Adds the strings in &#x60;hashes&#x60; (user id hashes) to the audience&#39;s member set; empty or non-string entries are skipped. Returns the number of accepted entries and the resulting set size. Responds 404/403 when the audience is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="audienceMembersDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerAddAudienceMembersWithHttpInfoAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerAddAudienceMembers201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddAudienceMembers201Response>> AdvertiserControllerAddAudienceMembersWithHttpInfoAsync(string id, AudienceMembersDto audienceMembersDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2879,6 +3076,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2891,10 +3089,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = audienceMembersDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/audiences/{id}/members", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerAddAudienceMembers201Response>("/v1/advertiser/audiences/{id}/members", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2906,25 +3115,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a DCO component to a creative&#39;s pool Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="addComponentDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerAddComponent(string id, AddComponentDto addComponentDto)
+        /// <returns>AdvertiserControllerAddComponent201Response</returns>
+        public AdvertiserControllerAddComponent201Response AdvertiserControllerAddComponent(string id, AddComponentDto addComponentDto)
         {
-            AdvertiserControllerAddComponentWithHttpInfo(id, addComponentDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddComponent201Response> localVarResponse = AdvertiserControllerAddComponentWithHttpInfo(id, addComponentDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a DCO component to a creative&#39;s pool Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="addComponentDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerAddComponentWithHttpInfo(string id, AddComponentDto addComponentDto)
+        /// <returns>ApiResponse of AdvertiserControllerAddComponent201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddComponent201Response> AdvertiserControllerAddComponentWithHttpInfo(string id, AddComponentDto addComponentDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2942,6 +3152,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2953,9 +3164,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = addComponentDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerAddComponent201Response>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2967,27 +3189,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a DCO component to a creative&#39;s pool Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="addComponentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerAddComponentAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerAddComponent201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerAddComponent201Response> AdvertiserControllerAddComponentAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerAddComponentWithHttpInfoAsync(id, addComponentDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddComponent201Response> localVarResponse = await AdvertiserControllerAddComponentWithHttpInfoAsync(id, addComponentDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a DCO component to a creative&#39;s pool Adds one &#x60;{ slot, value }&#x60; component to the component pool of the creative&#39;s campaign. &#x60;slot&#x60; is headline, body, image, cta, logo or bg_color; &#x60;value&#x60; must be non-empty and image/logo values are SSRF-checked (400). The creative must be owned and authored under a campaign (404 otherwise). Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="addComponentDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerAddComponentWithHttpInfoAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerAddComponent201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerAddComponent201Response>> AdvertiserControllerAddComponentWithHttpInfoAsync(string id, AddComponentDto addComponentDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3006,6 +3229,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3018,10 +3242,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = addComponentDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerAddComponent201Response>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3033,25 +3268,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Attach a library creative to a campaign Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerAttachCreative(string id, AttachCreativeDto attachCreativeDto)
+        /// <returns>AdvertiserControllerAttachCreative201Response</returns>
+        public AdvertiserControllerAttachCreative201Response AdvertiserControllerAttachCreative(string id, AttachCreativeDto attachCreativeDto)
         {
-            AdvertiserControllerAttachCreativeWithHttpInfo(id, attachCreativeDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAttachCreative201Response> localVarResponse = AdvertiserControllerAttachCreativeWithHttpInfo(id, attachCreativeDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Attach a library creative to a campaign Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerAttachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto)
+        /// <returns>ApiResponse of AdvertiserControllerAttachCreative201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerAttachCreative201Response> AdvertiserControllerAttachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3069,6 +3305,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3080,9 +3317,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = attachCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/creatives/{id}/attach", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerAttachCreative201Response>("/v1/advertiser/creatives/{id}/attach", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3094,27 +3342,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Attach a library creative to a campaign Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerAttachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerAttachCreative201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerAttachCreative201Response> AdvertiserControllerAttachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerAttachCreativeWithHttpInfoAsync(id, attachCreativeDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAttachCreative201Response> localVarResponse = await AdvertiserControllerAttachCreativeWithHttpInfoAsync(id, attachCreativeDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Attach a library creative to a campaign Links the creative to &#x60;campaignId&#x60; with an optional rotation &#x60;weight&#x60; (minimum 1, default 1). Attaching again updates the weight and re-enables the link. Both the creative (404) and campaign (404/403) must be owned. Republishes the serving index.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerAttachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerAttachCreative201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerAttachCreative201Response>> AdvertiserControllerAttachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3133,6 +3382,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3145,10 +3395,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = attachCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/creatives/{id}/attach", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerAttachCreative201Response>("/v1/advertiser/creatives/{id}/attach", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3160,23 +3421,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the retargeting pixel snippet for an audience Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerAudiencePixel(string id)
+        /// <returns>AdvertiserControllerAudiencePixel200Response</returns>
+        public AdvertiserControllerAudiencePixel200Response AdvertiserControllerAudiencePixel(string id)
         {
-            AdvertiserControllerAudiencePixelWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudiencePixel200Response> localVarResponse = AdvertiserControllerAudiencePixelWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the retargeting pixel snippet for an audience Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerAudiencePixelWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvertiserControllerAudiencePixel200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudiencePixel200Response> AdvertiserControllerAudiencePixelWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3189,6 +3451,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3199,9 +3462,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/audiences/{id}/pixel", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvertiserControllerAudiencePixel200Response>("/v1/advertiser/audiences/{id}/pixel", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3213,25 +3487,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the retargeting pixel snippet for an audience Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerAudiencePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerAudiencePixel200Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerAudiencePixel200Response> AdvertiserControllerAudiencePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerAudiencePixelWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudiencePixel200Response> localVarResponse = await AdvertiserControllerAudiencePixelWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the retargeting pixel snippet for an audience Returns the tracking URL plus ready-to-paste &#x60;&lt;img&gt;&#x60; and &#x60;&lt;script&gt;&#x60; snippets that add the visiting user to this audience via /v1/track/audience. Replace the USER_ID placeholder (the script uses window.ADNET_UID). 404/403 when the audience is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerAudiencePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerAudiencePixel200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudiencePixel200Response>> AdvertiserControllerAudiencePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3245,6 +3520,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3256,10 +3532,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/audiences/{id}/pixel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvertiserControllerAudiencePixel200Response>("/v1/advertiser/audiences/{id}/pixel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3271,23 +3558,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Suggest audiences from pixel activity Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerAudienceSuggestions(string days)
+        /// <returns>AdvertiserControllerAudienceSuggestions200Response</returns>
+        public AdvertiserControllerAudienceSuggestions200Response AdvertiserControllerAudienceSuggestions(string days)
         {
-            AdvertiserControllerAudienceSuggestionsWithHttpInfo(days);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudienceSuggestions200Response> localVarResponse = AdvertiserControllerAudienceSuggestionsWithHttpInfo(days);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Suggest audiences from pixel activity Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerAudienceSuggestionsWithHttpInfo(string days)
+        /// <returns>ApiResponse of AdvertiserControllerAudienceSuggestions200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudienceSuggestions200Response> AdvertiserControllerAudienceSuggestionsWithHttpInfo(string days)
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -3300,6 +3588,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3310,9 +3599,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/audiences/suggestions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvertiserControllerAudienceSuggestions200Response>("/v1/advertiser/audiences/suggestions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3324,25 +3624,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Suggest audiences from pixel activity Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerAudienceSuggestionsAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerAudienceSuggestions200Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerAudienceSuggestions200Response> AdvertiserControllerAudienceSuggestionsAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerAudienceSuggestionsWithHttpInfoAsync(days, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudienceSuggestions200Response> localVarResponse = await AdvertiserControllerAudienceSuggestionsWithHttpInfoAsync(days, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Suggest audiences from pixel activity Inspects the account&#39;s pixel events over the last &#x60;days&#x60; (1-180, default 30) and returns ready-to-create rule audiences such as all visitors, engaged visitors, cart and checkout abandoners, purchasers, high-value buyers, unconverted leads and viewers of the top 5 products. Each suggestion has a &#x60;rule&#x60; to pass to POST /audiences and an &#x60;estReach&#x60; upper bound. &#x60;eventInventory&#x60; maps each event name to its distinct users.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerAudienceSuggestionsWithHttpInfoAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerAudienceSuggestions200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerAudienceSuggestions200Response>> AdvertiserControllerAudienceSuggestionsWithHttpInfoAsync(string days, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -3356,6 +3657,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3367,10 +3669,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/audiences/suggestions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvertiserControllerAudienceSuggestions200Response>("/v1/advertiser/audiences/suggestions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3382,23 +3695,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign (ad set) Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCampaignDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreate(CreateCampaignDto createCampaignDto)
+        /// <returns>AdvCampaign</returns>
+        public AdvCampaign AdvertiserControllerCreate(CreateCampaignDto createCampaignDto)
         {
-            AdvertiserControllerCreateWithHttpInfo(createCampaignDto);
+            Adviverse.Api.Client.ApiResponse<AdvCampaign> localVarResponse = AdvertiserControllerCreateWithHttpInfo(createCampaignDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign (ad set) Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCampaignDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreateWithHttpInfo(CreateCampaignDto createCampaignDto)
+        /// <returns>ApiResponse of AdvCampaign</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCampaign> AdvertiserControllerCreateWithHttpInfo(CreateCampaignDto createCampaignDto)
         {
             // verify the required parameter 'createCampaignDto' is set
             if (createCampaignDto == null)
@@ -3412,6 +3726,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3422,9 +3737,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createCampaignDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvCampaign>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3436,25 +3762,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign (ad set) Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreateAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCampaign</returns>
+        public async System.Threading.Tasks.Task<AdvCampaign> AdvertiserControllerCreateAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreateWithHttpInfoAsync(createCampaignDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCampaign> localVarResponse = await AdvertiserControllerCreateWithHttpInfoAsync(createCampaignDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign (ad set) Creates a campaign in &#x60;draft&#x60; status together with its targeting row and, if &#x60;conversion&#x60; is given, a conversion config. Key body fields: &#x60;name&#x60;, &#x60;format&#x60;, &#x60;pricingModel&#x60;, &#x60;bidAmount&#x60;, budgets, &#x60;pacing&#x60;, schedule, &#x60;targeting&#x60;, &#x60;bidStrategy&#x60;/&#x60;targetCpa&#x60;/&#x60;targetRoas&#x60;, &#x60;houseAd&#x60;, &#x60;priorityTier&#x60;, &#x60;groupId&#x60;. The currency is always taken from the advertiser&#39;s account (a client-sent &#x60;currency&#x60; is ignored), &#x60;terminal&#x60; format is forced to CPM, and &#x60;groupId&#x60; is silently dropped unless the advertiser owns that group. A house ad with no placement whitelist is confined to the owner&#39;s own active placements. Submit the draft for review to start serving.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreateWithHttpInfoAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCampaign)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCampaign>> AdvertiserControllerCreateWithHttpInfoAsync(CreateCampaignDto createCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createCampaignDto' is set
             if (createCampaignDto == null)
@@ -3469,6 +3796,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3480,10 +3808,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createCampaignDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvCampaign>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3495,23 +3834,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an audience Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreateAudience(CreateAudienceDto createAudienceDto)
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        public AdvertiserControllerCreateAudience201Response AdvertiserControllerCreateAudience(CreateAudienceDto createAudienceDto)
         {
-            AdvertiserControllerCreateAudienceWithHttpInfo(createAudienceDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = AdvertiserControllerCreateAudienceWithHttpInfo(createAudienceDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an audience Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto)
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto)
         {
             // verify the required parameter 'createAudienceDto' is set
             if (createAudienceDto == null)
@@ -3525,6 +3865,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3535,9 +3876,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAudienceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3549,25 +3901,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an audience Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreateAudienceWithHttpInfoAsync(createAudienceDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = await AdvertiserControllerCreateAudienceWithHttpInfoAsync(createAudienceDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an audience Creates an audience. Passing a &#x60;rule&#x60; makes it an event-rule audience (type &#x60;rule&#x60;) built from pixel events: the rule is bounds-checked (400), membership is resolved immediately in the background, and the resolver keeps it fresh. Without a rule, &#x60;type&#x60; selects uploaded, lookalike or retargeting (the default). &#x60;pixelId&#x60; scopes the audience to one pixel.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerCreateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createAudienceDto' is set
             if (createAudienceDto == null)
@@ -3582,6 +3935,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3593,10 +3947,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAudienceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3608,23 +3973,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a creative Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreativeDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreateCreative(CreateCreativeDto createCreativeDto)
+        /// <returns>AdvCreative</returns>
+        public AdvCreative AdvertiserControllerCreateCreative(CreateCreativeDto createCreativeDto)
         {
-            AdvertiserControllerCreateCreativeWithHttpInfo(createCreativeDto);
+            Adviverse.Api.Client.ApiResponse<AdvCreative> localVarResponse = AdvertiserControllerCreateCreativeWithHttpInfo(createCreativeDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a creative Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreateCreativeWithHttpInfo(CreateCreativeDto createCreativeDto)
+        /// <returns>ApiResponse of AdvCreative</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCreative> AdvertiserControllerCreateCreativeWithHttpInfo(CreateCreativeDto createCreativeDto)
         {
             // verify the required parameter 'createCreativeDto' is set
             if (createCreativeDto == null)
@@ -3638,6 +4004,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3648,9 +4015,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvCreative>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3662,25 +4040,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a creative Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreateCreativeAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCreative</returns>
+        public async System.Threading.Tasks.Task<AdvCreative> AdvertiserControllerCreateCreativeAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreateCreativeWithHttpInfoAsync(createCreativeDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCreative> localVarResponse = await AdvertiserControllerCreateCreativeWithHttpInfoAsync(createCreativeDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a creative Creates a creative in the library; pass &#x60;campaignId&#x60; to also author it directly under a campaign (404/403 if that campaign is not owned). Every URL field is SSRF-checked (400 for internal destinations) and video/VAST fields are validated (&#x60;duration&#x60; 1-600, &#x60;skipOffsetSec&#x60;, https &#x60;vastTagUrl&#x60;/&#x60;vpaidUrl&#x60;, &#x60;companions&#x60;); &#x60;carouselItems&#x60; is capped at 20. Marketplace creatives start &#x60;pending&#x60; and enter moderation; creatives under a house-ad campaign are approved immediately. A malware scan always runs, video assets are queued for HLS transcoding, and a VAST tag without &#x60;duration&#x60; is probed in the background.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreateCreativeWithHttpInfoAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCreative)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCreative>> AdvertiserControllerCreateCreativeWithHttpInfoAsync(CreateCreativeDto createCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createCreativeDto' is set
             if (createCreativeDto == null)
@@ -3695,6 +4074,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3706,10 +4086,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvCreative>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3721,25 +4112,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a sync destination to an audience Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreateDestination(string id, CreateDestinationDto createDestinationDto)
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        public AdvertiserControllerCreateAudience201Response AdvertiserControllerCreateDestination(string id, CreateDestinationDto createDestinationDto)
         {
-            AdvertiserControllerCreateDestinationWithHttpInfo(id, createDestinationDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = AdvertiserControllerCreateDestinationWithHttpInfo(id, createDestinationDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a sync destination to an audience Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreateDestinationWithHttpInfo(string id, CreateDestinationDto createDestinationDto)
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateDestinationWithHttpInfo(string id, CreateDestinationDto createDestinationDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3757,6 +4149,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3768,9 +4161,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = createDestinationDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3782,27 +4186,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Add a sync destination to an audience Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreateDestinationAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerCreateDestinationAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreateDestinationWithHttpInfoAsync(id, createDestinationDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = await AdvertiserControllerCreateDestinationWithHttpInfoAsync(id, createDestinationDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Add a sync destination to an audience Creates a destination of &#x60;type&#x60; webhook (default; HMAC-signed, SSRF-guarded HTTPS push), meta_custom_audience or google_customer_match, with adapter settings and credentials in &#x60;config&#x60;. Responds 404 when the audience is not owned. Active destinations are synced on a schedule; PII destinations receive only hashed email/phone, never raw PII.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreateDestinationWithHttpInfoAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerCreateDestinationWithHttpInfoAsync(string id, CreateDestinationDto createDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3821,6 +4226,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3833,10 +4239,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = createDestinationDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3848,23 +4265,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a product feed Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createFeedDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreateFeed(CreateFeedDto createFeedDto)
+        /// <returns>AdvProductFeed</returns>
+        public AdvProductFeed AdvertiserControllerCreateFeed(CreateFeedDto createFeedDto)
         {
-            AdvertiserControllerCreateFeedWithHttpInfo(createFeedDto);
+            Adviverse.Api.Client.ApiResponse<AdvProductFeed> localVarResponse = AdvertiserControllerCreateFeedWithHttpInfo(createFeedDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a product feed Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createFeedDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreateFeedWithHttpInfo(CreateFeedDto createFeedDto)
+        /// <returns>ApiResponse of AdvProductFeed</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvProductFeed> AdvertiserControllerCreateFeedWithHttpInfo(CreateFeedDto createFeedDto)
         {
             // verify the required parameter 'createFeedDto' is set
             if (createFeedDto == null)
@@ -3878,6 +4296,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -3888,9 +4307,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createFeedDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvProductFeed>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3902,25 +4332,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a product feed Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreateFeedAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvProductFeed</returns>
+        public async System.Threading.Tasks.Task<AdvProductFeed> AdvertiserControllerCreateFeedAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreateFeedWithHttpInfoAsync(createFeedDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvProductFeed> localVarResponse = await AdvertiserControllerCreateFeedWithHttpInfoAsync(createFeedDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a product feed Registers a product feed for dynamic product ads. Body: &#x60;name&#x60;, &#x60;url&#x60; (http/https), &#x60;format&#x60; (csv, xml or google_merchant) and optional &#x60;scheduleCron&#x60;. Responds 400 for a missing name, a non-http URL or an unknown format. The feed is not fetched until a fetch is triggered or the scheduler runs.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreateFeedWithHttpInfoAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvProductFeed)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvProductFeed>> AdvertiserControllerCreateFeedWithHttpInfoAsync(CreateFeedDto createFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createFeedDto' is set
             if (createFeedDto == null)
@@ -3935,6 +4366,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -3946,10 +4378,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createFeedDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvProductFeed>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3961,23 +4404,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign group Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignGroupDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreateGroup(CampaignGroupDto campaignGroupDto)
+        /// <returns>AdvCampaignGroup</returns>
+        public AdvCampaignGroup AdvertiserControllerCreateGroup(CampaignGroupDto campaignGroupDto)
         {
-            AdvertiserControllerCreateGroupWithHttpInfo(campaignGroupDto);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> localVarResponse = AdvertiserControllerCreateGroupWithHttpInfo(campaignGroupDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign group Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignGroupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreateGroupWithHttpInfo(CampaignGroupDto campaignGroupDto)
+        /// <returns>ApiResponse of AdvCampaignGroup</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> AdvertiserControllerCreateGroupWithHttpInfo(CampaignGroupDto campaignGroupDto)
         {
             // verify the required parameter 'campaignGroupDto' is set
             if (campaignGroupDto == null)
@@ -3991,6 +4435,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4001,9 +4446,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = campaignGroupDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvCampaignGroup>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4015,25 +4471,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign group Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreateGroupAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCampaignGroup</returns>
+        public async System.Threading.Tasks.Task<AdvCampaignGroup> AdvertiserControllerCreateGroupAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreateGroupWithHttpInfoAsync(campaignGroupDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> localVarResponse = await AdvertiserControllerCreateGroupWithHttpInfoAsync(campaignGroupDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a campaign group Creates a campaign group with &#x60;name&#x60; and an optional &#x60;objective&#x60;. New groups start with status &#x60;active&#x60;. Ad sets are attached to a group by passing &#x60;groupId&#x60; when creating a campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreateGroupWithHttpInfoAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCampaignGroup)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCampaignGroup>> AdvertiserControllerCreateGroupWithHttpInfoAsync(CampaignGroupDto campaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'campaignGroupDto' is set
             if (campaignGroupDto == null)
@@ -4048,6 +4505,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4059,10 +4517,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = campaignGroupDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvCampaignGroup>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4074,23 +4543,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a sponsored-product promote campaign Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPromoteCampaignDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreatePromote(CreatePromoteCampaignDto createPromoteCampaignDto)
+        /// <returns>AdvPromoteCampaign</returns>
+        public AdvPromoteCampaign AdvertiserControllerCreatePromote(CreatePromoteCampaignDto createPromoteCampaignDto)
         {
-            AdvertiserControllerCreatePromoteWithHttpInfo(createPromoteCampaignDto);
+            Adviverse.Api.Client.ApiResponse<AdvPromoteCampaign> localVarResponse = AdvertiserControllerCreatePromoteWithHttpInfo(createPromoteCampaignDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a sponsored-product promote campaign Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPromoteCampaignDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreatePromoteWithHttpInfo(CreatePromoteCampaignDto createPromoteCampaignDto)
+        /// <returns>ApiResponse of AdvPromoteCampaign</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvPromoteCampaign> AdvertiserControllerCreatePromoteWithHttpInfo(CreatePromoteCampaignDto createPromoteCampaignDto)
         {
             // verify the required parameter 'createPromoteCampaignDto' is set
             if (createPromoteCampaignDto == null)
@@ -4104,6 +4574,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4114,9 +4585,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPromoteCampaignDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvPromoteCampaign>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4128,25 +4610,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a sponsored-product promote campaign Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPromoteCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreatePromoteAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvPromoteCampaign</returns>
+        public async System.Threading.Tasks.Task<AdvPromoteCampaign> AdvertiserControllerCreatePromoteAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreatePromoteWithHttpInfoAsync(createPromoteCampaignDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvPromoteCampaign> localVarResponse = await AdvertiserControllerCreatePromoteWithHttpInfoAsync(createPromoteCampaignDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a sponsored-product promote campaign Creates a draft campaign that promotes catalog items. &#x60;itemSelector&#x60; must be exactly one of &#x60;{ item_ids }&#x60;, &#x60;{ keywords }&#x60; or &#x60;{ all: true }&#x60;. &#x60;pricingModel&#x60; is cpc (default) or cpa; cpc and flat cpa need &#x60;bidAmount&#x60; &gt; 0, while cpa with &#x60;cpaMode: percent&#x60; needs &#x60;cpaPercent&#x60; in (0, 1]. Also accepts budgets, &#x60;pacing&#x60; (even|asap), &#x60;minOrderValue&#x60; (CPA fraud floor), &#x60;currency&#x60;, schedule and &#x60;targeting&#x60;. Validation failures return 400. The created row is returned with NUMERIC columns as strings.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPromoteCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreatePromoteWithHttpInfoAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvPromoteCampaign)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvPromoteCampaign>> AdvertiserControllerCreatePromoteWithHttpInfoAsync(CreatePromoteCampaignDto createPromoteCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createPromoteCampaignDto' is set
             if (createPromoteCampaignDto == null)
@@ -4161,6 +4644,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4172,10 +4656,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createPromoteCampaignDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvPromoteCampaign>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4187,23 +4682,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaigns a creative is attached to Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerCreativeAssignments(string id)
+        /// <returns>List&lt;AdvCreativeAssignment&gt;</returns>
+        public List<AdvCreativeAssignment> AdvertiserControllerCreativeAssignments(string id)
         {
-            AdvertiserControllerCreativeAssignmentsWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<List<AdvCreativeAssignment>> localVarResponse = AdvertiserControllerCreativeAssignmentsWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaigns a creative is attached to Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerCreativeAssignmentsWithHttpInfo(string id)
+        /// <returns>ApiResponse of List&lt;AdvCreativeAssignment&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvCreativeAssignment>> AdvertiserControllerCreativeAssignmentsWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4216,6 +4712,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4226,9 +4723,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/creatives/{id}/campaigns", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvCreativeAssignment>>("/v1/advertiser/creatives/{id}/campaigns", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4240,25 +4748,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaigns a creative is attached to Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerCreativeAssignmentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvCreativeAssignment&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvCreativeAssignment>> AdvertiserControllerCreativeAssignmentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerCreativeAssignmentsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvCreativeAssignment>> localVarResponse = await AdvertiserControllerCreativeAssignmentsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaigns a creative is attached to Returns the non-deleted campaigns this library creative is attached to, with the attachment &#x60;weight&#x60; and &#x60;enabled&#x60; flag. Creatives authored directly under a campaign without an attachment do not appear. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerCreativeAssignmentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvCreativeAssignment&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvCreativeAssignment>>> AdvertiserControllerCreativeAssignmentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4272,6 +4781,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4283,10 +4793,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/creatives/{id}/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvCreativeAssignment>>("/v1/advertiser/creatives/{id}/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4298,25 +4819,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Detach a library creative from a campaign Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerDetachCreative(string id, AttachCreativeDto attachCreativeDto)
+        /// <returns>AdvertiserControllerDetachCreative201Response</returns>
+        public AdvertiserControllerDetachCreative201Response AdvertiserControllerDetachCreative(string id, AttachCreativeDto attachCreativeDto)
         {
-            AdvertiserControllerDetachCreativeWithHttpInfo(id, attachCreativeDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerDetachCreative201Response> localVarResponse = AdvertiserControllerDetachCreativeWithHttpInfo(id, attachCreativeDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Detach a library creative from a campaign Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerDetachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto)
+        /// <returns>ApiResponse of AdvertiserControllerDetachCreative201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerDetachCreative201Response> AdvertiserControllerDetachCreativeWithHttpInfo(string id, AttachCreativeDto attachCreativeDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4334,6 +4856,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4345,9 +4868,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = attachCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/creatives/{id}/detach", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerDetachCreative201Response>("/v1/advertiser/creatives/{id}/detach", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4359,27 +4893,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Detach a library creative from a campaign Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerDetachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerDetachCreative201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerDetachCreative201Response> AdvertiserControllerDetachCreativeAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerDetachCreativeWithHttpInfoAsync(id, attachCreativeDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerDetachCreative201Response> localVarResponse = await AdvertiserControllerDetachCreativeWithHttpInfoAsync(id, attachCreativeDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Detach a library creative from a campaign Removes the link between the creative and &#x60;campaignId&#x60; and republishes the serving index. Succeeds even if no link existed. 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="attachCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerDetachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerDetachCreative201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerDetachCreative201Response>> AdvertiserControllerDetachCreativeWithHttpInfoAsync(string id, AttachCreativeDto attachCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4398,6 +4933,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4410,10 +4946,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = attachCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/creatives/{id}/detach", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerDetachCreative201Response>("/v1/advertiser/creatives/{id}/detach", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4425,23 +4972,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate the size of an audience rule Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerEstimateAudience(CreateAudienceDto createAudienceDto)
+        /// <returns>AdvertiserControllerEstimateAudience201Response</returns>
+        public AdvertiserControllerEstimateAudience201Response AdvertiserControllerEstimateAudience(CreateAudienceDto createAudienceDto)
         {
-            AdvertiserControllerEstimateAudienceWithHttpInfo(createAudienceDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerEstimateAudience201Response> localVarResponse = AdvertiserControllerEstimateAudienceWithHttpInfo(createAudienceDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate the size of an audience rule Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerEstimateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto)
+        /// <returns>ApiResponse of AdvertiserControllerEstimateAudience201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerEstimateAudience201Response> AdvertiserControllerEstimateAudienceWithHttpInfo(CreateAudienceDto createAudienceDto)
         {
             // verify the required parameter 'createAudienceDto' is set
             if (createAudienceDto == null)
@@ -4455,6 +5003,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4465,9 +5014,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAudienceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/audiences/estimate", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerEstimateAudience201Response>("/v1/advertiser/audiences/estimate", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4479,25 +5039,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate the size of an audience rule Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerEstimateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerEstimateAudience201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerEstimateAudience201Response> AdvertiserControllerEstimateAudienceAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerEstimateAudienceWithHttpInfoAsync(createAudienceDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerEstimateAudience201Response> localVarResponse = await AdvertiserControllerEstimateAudienceWithHttpInfoAsync(createAudienceDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate the size of an audience rule Counts the distinct users matching &#x60;rule&#x60; (optionally limited to &#x60;pixelId&#x60;) without creating an audience. The rule is bounds-checked (400). A query failure returns 0. Rate-limited to 20 calls per throttle window because each call runs a ClickHouse aggregation.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerEstimateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerEstimateAudience201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerEstimateAudience201Response>> AdvertiserControllerEstimateAudienceWithHttpInfoAsync(CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createAudienceDto' is set
             if (createAudienceDto == null)
@@ -4512,6 +5073,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4523,10 +5085,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAudienceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/audiences/estimate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerEstimateAudience201Response>("/v1/advertiser/audiences/estimate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4538,23 +5111,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Fetch a product feed now Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerFetchFeed(string id)
+        /// <returns>AdvertiserControllerFetchFeed201Response</returns>
+        public AdvertiserControllerFetchFeed201Response AdvertiserControllerFetchFeed(string id)
         {
-            AdvertiserControllerFetchFeedWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerFetchFeed201Response> localVarResponse = AdvertiserControllerFetchFeedWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Fetch a product feed now Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerFetchFeedWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvertiserControllerFetchFeed201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerFetchFeed201Response> AdvertiserControllerFetchFeedWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4567,6 +5141,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4577,9 +5152,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/feeds/{id}/fetch", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerFetchFeed201Response>("/v1/advertiser/feeds/{id}/fetch", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4591,25 +5177,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Fetch a product feed now Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerFetchFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerFetchFeed201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerFetchFeed201Response> AdvertiserControllerFetchFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerFetchFeedWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerFetchFeed201Response> localVarResponse = await AdvertiserControllerFetchFeedWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Fetch a product feed now Downloads (SSRF-guarded) and parses the feed immediately and upserts its products, returning the parsed and upserted counts. Rate-limited to 5 calls per throttle window. Responds 404 when the feed does not exist and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerFetchFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerFetchFeed201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerFetchFeed201Response>> AdvertiserControllerFetchFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4623,6 +5210,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4634,10 +5222,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/feeds/{id}/fetch", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerFetchFeed201Response>("/v1/advertiser/feeds/{id}/fetch", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4649,23 +5248,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign with targeting and creatives Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerGet(string id)
+        /// <returns>AdvCampaignDetail</returns>
+        public AdvCampaignDetail AdvertiserControllerGet(string id)
         {
-            AdvertiserControllerGetWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignDetail> localVarResponse = AdvertiserControllerGetWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign with targeting and creatives Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerGetWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvCampaignDetail</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCampaignDetail> AdvertiserControllerGetWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4678,6 +5278,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4688,9 +5289,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvCampaignDetail>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4702,25 +5314,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign with targeting and creatives Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCampaignDetail</returns>
+        public async System.Threading.Tasks.Task<AdvCampaignDetail> AdvertiserControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignDetail> localVarResponse = await AdvertiserControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign with targeting and creatives Returns the campaign row plus its raw &#x60;targeting&#x60; row and the creatives authored directly under it (library-attached creatives are listed by GET /campaigns/{id}/creatives). Responds 404 when the campaign does not exist or is deleted, and 403 when it belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCampaignDetail)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCampaignDetail>> AdvertiserControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4734,6 +5347,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4745,10 +5359,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvCampaignDetail>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4760,23 +5385,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign&#39;s conversion config Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerGetConversionConfig(string id)
+        /// <returns>AdvConversionConfig</returns>
+        public AdvConversionConfig AdvertiserControllerGetConversionConfig(string id)
         {
-            AdvertiserControllerGetConversionConfigWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvConversionConfig> localVarResponse = AdvertiserControllerGetConversionConfigWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign&#39;s conversion config Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerGetConversionConfigWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvConversionConfig</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvConversionConfig> AdvertiserControllerGetConversionConfigWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4789,6 +5415,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4799,9 +5426,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvConversionConfig>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4813,25 +5451,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign&#39;s conversion config Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerGetConversionConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvConversionConfig</returns>
+        public async System.Threading.Tasks.Task<AdvConversionConfig> AdvertiserControllerGetConversionConfigAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerGetConversionConfigWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvConversionConfig> localVarResponse = await AdvertiserControllerGetConversionConfigWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign&#39;s conversion config Returns the conversion-tracking config for the campaign (event type, payout, postback URL, dedupe and attribution windows, CPA mode). The body is empty (null) when none has been set. Responds 404 when the campaign is missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerGetConversionConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvConversionConfig)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvConversionConfig>> AdvertiserControllerGetConversionConfigWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4845,6 +5484,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4856,10 +5496,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvConversionConfig>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4871,23 +5522,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a creative Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerGetCreative(string id)
+        /// <returns>AdvCreative</returns>
+        public AdvCreative AdvertiserControllerGetCreative(string id)
         {
-            AdvertiserControllerGetCreativeWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvCreative> localVarResponse = AdvertiserControllerGetCreativeWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a creative Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerGetCreativeWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvCreative</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCreative> AdvertiserControllerGetCreativeWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4900,6 +5552,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -4910,9 +5563,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvCreative>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4924,25 +5588,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a creative Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerGetCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCreative</returns>
+        public async System.Threading.Tasks.Task<AdvCreative> AdvertiserControllerGetCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerGetCreativeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCreative> localVarResponse = await AdvertiserControllerGetCreativeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a creative Returns one creative owned by the advertiser. Responds 404 when it does not exist, is deleted, or belongs to another advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerGetCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCreative)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCreative>> AdvertiserControllerGetCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -4956,6 +5621,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -4967,10 +5633,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvCreative>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4982,23 +5659,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign group Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerGetGroup(string id)
+        /// <returns>AdvCampaignGroup</returns>
+        public AdvCampaignGroup AdvertiserControllerGetGroup(string id)
         {
-            AdvertiserControllerGetGroupWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> localVarResponse = AdvertiserControllerGetGroupWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign group Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerGetGroupWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvCampaignGroup</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> AdvertiserControllerGetGroupWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5011,6 +5689,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5021,9 +5700,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvCampaignGroup>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5035,25 +5725,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign group Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerGetGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCampaignGroup</returns>
+        public async System.Threading.Tasks.Task<AdvCampaignGroup> AdvertiserControllerGetGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerGetGroupWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> localVarResponse = await AdvertiserControllerGetGroupWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a campaign group Returns one campaign group row. Responds 404 when the group does not exist, is deleted, or belongs to another advertiser. Ad sets are not nested here; the list endpoint includes them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerGetGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCampaignGroup)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCampaignGroup>> AdvertiserControllerGetGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5067,6 +5758,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5078,10 +5770,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvCampaignGroup>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5093,23 +5796,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get campaign targeting Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerGetTargeting(string id)
+        /// <returns>AdvTargeting</returns>
+        public AdvTargeting AdvertiserControllerGetTargeting(string id)
         {
-            AdvertiserControllerGetTargetingWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvTargeting> localVarResponse = AdvertiserControllerGetTargetingWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get campaign targeting Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerGetTargetingWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvTargeting</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvTargeting> AdvertiserControllerGetTargetingWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5122,6 +5826,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5132,9 +5837,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/campaigns/{id}/targeting", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvTargeting>("/v1/advertiser/campaigns/{id}/targeting", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5146,25 +5862,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get campaign targeting Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerGetTargetingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvTargeting</returns>
+        public async System.Threading.Tasks.Task<AdvTargeting> AdvertiserControllerGetTargetingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerGetTargetingWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvTargeting> localVarResponse = await AdvertiserControllerGetTargetingWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get campaign targeting Returns the campaign&#39;s targeting normalized to the camelCase shape accepted by create/update. Absent fields come back as empty arrays (or null for &#x60;osVersionMin&#x60; and &#x60;frequencyCap&#x60;). &#x60;dayparting&#x60; is a 168-element array indexed weekday*24+hour (Sunday&#x3D;0); empty means all hours. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerGetTargetingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvTargeting)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvTargeting>> AdvertiserControllerGetTargetingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5178,6 +5895,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5189,10 +5907,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/campaigns/{id}/targeting", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvTargeting>("/v1/advertiser/campaigns/{id}/targeting", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5204,21 +5933,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaigns (ad sets) Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerList()
+        /// <returns>List&lt;AdvCampaign&gt;</returns>
+        public List<AdvCampaign> AdvertiserControllerList()
         {
-            AdvertiserControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvCampaign>> localVarResponse = AdvertiserControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaigns (ad sets) Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvCampaign&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvCampaign>> AdvertiserControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5227,6 +5957,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5236,9 +5967,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvCampaign>>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5250,23 +5992,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaigns (ad sets) Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvCampaign&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvCampaign>> AdvertiserControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvCampaign>> localVarResponse = await AdvertiserControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaigns (ad sets) Returns the advertiser&#39;s non-deleted &#x60;campaigns&#x60; rows (the UI \&quot;Ad set\&quot;, the real targeting and serving unit), newest first. Pagination is opt-in: pass &#x60;limit&#x60; (clamped to 1-500) and &#x60;offset&#x60;; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvCampaign&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvCampaign>>> AdvertiserControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5276,6 +6019,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5286,10 +6030,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvCampaign>>("/v1/advertiser/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5301,21 +6056,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the creative library Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerListAllCreatives()
+        /// <returns>List&lt;AdvLibraryCreative&gt;</returns>
+        public List<AdvLibraryCreative> AdvertiserControllerListAllCreatives()
         {
-            AdvertiserControllerListAllCreativesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvLibraryCreative>> localVarResponse = AdvertiserControllerListAllCreativesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the creative library Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListAllCreativesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvLibraryCreative&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvLibraryCreative>> AdvertiserControllerListAllCreativesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5324,6 +6080,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5333,9 +6090,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvLibraryCreative>>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5347,23 +6115,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the creative library Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListAllCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvLibraryCreative&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvLibraryCreative>> AdvertiserControllerListAllCreativesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListAllCreativesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvLibraryCreative>> localVarResponse = await AdvertiserControllerListAllCreativesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the creative library Returns every non-deleted creative owned by the advertiser, independent of campaigns, with &#x60;campaign_count&#x60; (number of library attachments). Used by Creative Studio.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListAllCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvLibraryCreative&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvLibraryCreative>>> AdvertiserControllerListAllCreativesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5373,6 +6142,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5383,10 +6153,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvLibraryCreative>>("/v1/advertiser/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5398,21 +6179,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List audiences Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerListAudiences()
+        /// <returns>List&lt;AdvAudience&gt;</returns>
+        public List<AdvAudience> AdvertiserControllerListAudiences()
         {
-            AdvertiserControllerListAudiencesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvAudience>> localVarResponse = AdvertiserControllerListAudiencesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List audiences Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListAudiencesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvAudience&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvAudience>> AdvertiserControllerListAudiencesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5421,6 +6203,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5430,9 +6213,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvAudience>>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5444,23 +6238,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List audiences Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListAudiencesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvAudience&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvAudience>> AdvertiserControllerListAudiencesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListAudiencesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvAudience>> localVarResponse = await AdvertiserControllerListAudiencesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List audiences Returns the account&#39;s audiences, newest first, with the live member count read from the serving set. A team member scoped to specific pixels only sees audiences tied to those pixels.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListAudiencesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvAudience&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvAudience>>> AdvertiserControllerListAudiencesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5470,6 +6265,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5480,10 +6276,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvAudience>>("/v1/advertiser/audiences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5495,21 +6302,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List marketplace catalog items Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerListCatalog()
+        /// <returns>List&lt;AdvCatalogItem&gt;</returns>
+        public List<AdvCatalogItem> AdvertiserControllerListCatalog()
         {
-            AdvertiserControllerListCatalogWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvCatalogItem>> localVarResponse = AdvertiserControllerListCatalogWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List marketplace catalog items Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListCatalogWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvCatalogItem&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvCatalogItem>> AdvertiserControllerListCatalogWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5518,6 +6326,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5527,9 +6336,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvCatalogItem>>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5541,23 +6361,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List marketplace catalog items Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvCatalogItem&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvCatalogItem>> AdvertiserControllerListCatalogAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListCatalogWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvCatalogItem>> localVarResponse = await AdvertiserControllerListCatalogWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List marketplace catalog items Returns the advertiser&#39;s non-deleted catalog items, most recently updated first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvCatalogItem&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvCatalogItem>>> AdvertiserControllerListCatalogWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5567,6 +6388,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5577,10 +6399,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvCatalogItem>>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5592,21 +6425,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List scheduled catalog feeds Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerListCatalogFeeds()
+        /// <returns>List&lt;AdvCatalogFeed&gt;</returns>
+        public List<AdvCatalogFeed> AdvertiserControllerListCatalogFeeds()
         {
-            AdvertiserControllerListCatalogFeedsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvCatalogFeed>> localVarResponse = AdvertiserControllerListCatalogFeedsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List scheduled catalog feeds Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListCatalogFeedsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvCatalogFeed&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvCatalogFeed>> AdvertiserControllerListCatalogFeedsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -5615,6 +6449,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5624,9 +6459,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvCatalogFeed>>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5638,23 +6484,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List scheduled catalog feeds Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListCatalogFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvCatalogFeed&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvCatalogFeed>> AdvertiserControllerListCatalogFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListCatalogFeedsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvCatalogFeed>> localVarResponse = await AdvertiserControllerListCatalogFeedsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List scheduled catalog feeds Returns the advertiser&#39;s non-deleted catalog feeds, newest first, with the last sync time and last error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListCatalogFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvCatalogFeed&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvCatalogFeed>>> AdvertiserControllerListCatalogFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -5664,6 +6511,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5674,10 +6522,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvCatalogFeed>>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5689,23 +6548,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List DCO components for a creative Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerListComponents(string id)
+        /// <returns>List&lt;AdvCreativeComponent&gt;</returns>
+        public List<AdvCreativeComponent> AdvertiserControllerListComponents(string id)
         {
-            AdvertiserControllerListComponentsWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<List<AdvCreativeComponent>> localVarResponse = AdvertiserControllerListComponentsWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List DCO components for a creative Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListComponentsWithHttpInfo(string id)
+        /// <returns>ApiResponse of List&lt;AdvCreativeComponent&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvCreativeComponent>> AdvertiserControllerListComponentsWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5718,6 +6578,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5728,9 +6589,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvCreativeComponent>>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5742,25 +6614,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List DCO components for a creative Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListComponentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvCreativeComponent&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvCreativeComponent>> AdvertiserControllerListComponentsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListComponentsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvCreativeComponent>> localVarResponse = await AdvertiserControllerListComponentsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List DCO components for a creative Returns the components in the creative&#39;s campaign pool plus account-wide components (no campaign), ordered by slot. Each row includes bandit impressions/clicks and the derived &#x60;ctr&#x60; (0 with no impressions). 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListComponentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvCreativeComponent&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvCreativeComponent>>> AdvertiserControllerListComponentsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5774,6 +6647,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5785,10 +6659,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvCreativeComponent>>("/v1/advertiser/creatives/{id}/components", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5800,23 +6685,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List creatives serving a campaign Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerListCreatives(string id)
+        /// <returns>List&lt;AdvCampaignCreative&gt;</returns>
+        public List<AdvCampaignCreative> AdvertiserControllerListCreatives(string id)
         {
-            AdvertiserControllerListCreativesWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<List<AdvCampaignCreative>> localVarResponse = AdvertiserControllerListCreativesWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List creatives serving a campaign Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListCreativesWithHttpInfo(string id)
+        /// <returns>ApiResponse of List&lt;AdvCampaignCreative&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvCampaignCreative>> AdvertiserControllerListCreativesWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5829,6 +6715,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5839,9 +6726,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/campaigns/{id}/creatives", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvCampaignCreative>>("/v1/advertiser/campaigns/{id}/creatives", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5853,25 +6751,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List creatives serving a campaign Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListCreativesAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvCampaignCreative&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvCampaignCreative>> AdvertiserControllerListCreativesAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListCreativesWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvCampaignCreative>> localVarResponse = await AdvertiserControllerListCreativesWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List creatives serving a campaign Returns creatives authored directly under the campaign plus library creatives attached to it, newest first. Each row adds &#x60;effective_weight&#x60; (attachment weight, else the creative weight) and &#x60;attached&#x60;. Returns an empty list for a campaign the advertiser does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListCreativesWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvCampaignCreative&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvCampaignCreative>>> AdvertiserControllerListCreativesWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5885,6 +6784,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -5896,10 +6796,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/campaigns/{id}/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvCampaignCreative>>("/v1/advertiser/campaigns/{id}/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -5911,23 +6822,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List sync destinations for an audience Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerListDestinations(string id)
+        /// <returns>List&lt;AdvAudienceDestination&gt;</returns>
+        public List<AdvAudienceDestination> AdvertiserControllerListDestinations(string id)
         {
-            AdvertiserControllerListDestinationsWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<List<AdvAudienceDestination>> localVarResponse = AdvertiserControllerListDestinationsWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List sync destinations for an audience Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListDestinationsWithHttpInfo(string id)
+        /// <returns>ApiResponse of List&lt;AdvAudienceDestination&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvAudienceDestination>> AdvertiserControllerListDestinationsWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5940,6 +6852,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -5950,9 +6863,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvAudienceDestination>>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5964,25 +6888,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List sync destinations for an audience Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListDestinationsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvAudienceDestination&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvAudienceDestination>> AdvertiserControllerListDestinationsAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListDestinationsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvAudienceDestination>> localVarResponse = await AdvertiserControllerListDestinationsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List sync destinations for an audience Returns the destinations that push this audience&#39;s members to external systems, newest first. Secrets and tokens in &#x60;config&#x60; are redacted. Returns an empty list for an audience the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListDestinationsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvAudienceDestination&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvAudienceDestination>>> AdvertiserControllerListDestinationsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5996,6 +6921,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6007,10 +6933,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvAudienceDestination>>("/v1/advertiser/audiences/{id}/destinations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6022,27 +6959,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List products parsed from a feed Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerListFeedProducts(string id, string limit, string offset)
+        /// <returns>AdvertiserControllerListFeedProducts200Response</returns>
+        public AdvertiserControllerListFeedProducts200Response AdvertiserControllerListFeedProducts(string id, string limit, string offset)
         {
-            AdvertiserControllerListFeedProductsWithHttpInfo(id, limit, offset);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerListFeedProducts200Response> localVarResponse = AdvertiserControllerListFeedProductsWithHttpInfo(id, limit, offset);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List products parsed from a feed Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListFeedProductsWithHttpInfo(string id, string limit, string offset)
+        /// <returns>ApiResponse of AdvertiserControllerListFeedProducts200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerListFeedProducts200Response> AdvertiserControllerListFeedProductsWithHttpInfo(string id, string limit, string offset)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6063,6 +7001,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6075,9 +7014,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "offset", offset));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/feeds/{id}/products", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvertiserControllerListFeedProducts200Response>("/v1/advertiser/feeds/{id}/products", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6089,29 +7039,30 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List products parsed from a feed Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListFeedProductsAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerListFeedProducts200Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerListFeedProducts200Response> AdvertiserControllerListFeedProductsAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListFeedProductsWithHttpInfoAsync(id, limit, offset, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerListFeedProducts200Response> localVarResponse = await AdvertiserControllerListFeedProductsWithHttpInfoAsync(id, limit, offset, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List products parsed from a feed Returns products from the feed, most recently updated first. Query &#x60;limit&#x60; (1-500, default 50) and &#x60;offset&#x60; (default 0). Responds 404/403 when the feed is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListFeedProductsWithHttpInfoAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerListFeedProducts200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerListFeedProducts200Response>> AdvertiserControllerListFeedProductsWithHttpInfoAsync(string id, string limit, string offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6133,6 +7084,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6146,10 +7098,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "offset", offset));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/feeds/{id}/products", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvertiserControllerListFeedProducts200Response>("/v1/advertiser/feeds/{id}/products", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6161,21 +7124,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List product feeds Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerListFeeds()
+        /// <returns>List&lt;AdvProductFeed&gt;</returns>
+        public List<AdvProductFeed> AdvertiserControllerListFeeds()
         {
-            AdvertiserControllerListFeedsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvProductFeed>> localVarResponse = AdvertiserControllerListFeedsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List product feeds Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListFeedsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvProductFeed&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvProductFeed>> AdvertiserControllerListFeedsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -6184,6 +7148,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6193,9 +7158,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvProductFeed>>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6207,23 +7183,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List product feeds Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvProductFeed&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvProductFeed>> AdvertiserControllerListFeedsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListFeedsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvProductFeed>> localVarResponse = await AdvertiserControllerListFeedsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List product feeds Returns the advertiser&#39;s non-deleted product feeds, newest first, with their fetch schedule, last fetch time and status.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvProductFeed&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvProductFeed>>> AdvertiserControllerListFeedsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -6233,6 +7210,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6243,10 +7221,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvProductFeed>>("/v1/advertiser/feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6258,21 +7247,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaign groups with their ad sets Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerListGroups()
+        /// <returns>List&lt;AdvCampaignGroupWithAdSets&gt;</returns>
+        public List<AdvCampaignGroupWithAdSets> AdvertiserControllerListGroups()
         {
-            AdvertiserControllerListGroupsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvCampaignGroupWithAdSets>> localVarResponse = AdvertiserControllerListGroupsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaign groups with their ad sets Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListGroupsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvCampaignGroupWithAdSets&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvCampaignGroupWithAdSets>> AdvertiserControllerListGroupsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -6281,6 +7271,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6290,9 +7281,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvCampaignGroupWithAdSets>>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6304,23 +7306,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List campaign groups with their ad sets Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListGroupsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvCampaignGroupWithAdSets&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvCampaignGroupWithAdSets>> AdvertiserControllerListGroupsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListGroupsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvCampaignGroupWithAdSets>> localVarResponse = await AdvertiserControllerListGroupsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List campaign groups with their ad sets Returns every non-deleted campaign group (the UI \&quot;Campaign\&quot;) owned by the advertiser, newest first. Each group carries a spend rollup (&#x60;spent_total&#x60;, summed over its live ad sets) and an &#x60;adSets&#x60; array with a compact summary of each ad set (&#x60;campaigns&#x60; row) under it. Ad sets with no group are not included here; use GET /v1/advertiser/campaigns for those.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListGroupsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvCampaignGroupWithAdSets&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvCampaignGroupWithAdSets>>> AdvertiserControllerListGroupsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -6330,6 +7333,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6340,10 +7344,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvCampaignGroupWithAdSets>>("/v1/advertiser/campaign-groups", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6355,21 +7370,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List sponsored-product promote campaigns Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerListPromote()
+        /// <returns>List&lt;AdvPromoteCampaign&gt;</returns>
+        public List<AdvPromoteCampaign> AdvertiserControllerListPromote()
         {
-            AdvertiserControllerListPromoteWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AdvPromoteCampaign>> localVarResponse = AdvertiserControllerListPromoteWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List sponsored-product promote campaigns Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerListPromoteWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AdvPromoteCampaign&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AdvPromoteCampaign>> AdvertiserControllerListPromoteWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -6378,6 +7394,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6387,9 +7404,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AdvPromoteCampaign>>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6401,23 +7429,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List sponsored-product promote campaigns Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerListPromoteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AdvPromoteCampaign&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AdvPromoteCampaign>> AdvertiserControllerListPromoteAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerListPromoteWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AdvPromoteCampaign>> localVarResponse = await AdvertiserControllerListPromoteWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List sponsored-product promote campaigns Returns the advertiser&#39;s non-deleted promote campaigns, newest first, with money fields as numbers.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerListPromoteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AdvPromoteCampaign&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AdvPromoteCampaign>>> AdvertiserControllerListPromoteWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -6427,6 +7456,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6437,10 +7467,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AdvPromoteCampaign>>("/v1/advertiser/promote-campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6452,25 +7493,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a heuristic lookalike audience Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerLookalikeAudience(string id, LookalikeDto lookalikeDto)
+        /// <returns>AdvertiserControllerLookalikeAudience201Response</returns>
+        public AdvertiserControllerLookalikeAudience201Response AdvertiserControllerLookalikeAudience(string id, LookalikeDto lookalikeDto)
         {
-            AdvertiserControllerLookalikeAudienceWithHttpInfo(id, lookalikeDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerLookalikeAudience201Response> localVarResponse = AdvertiserControllerLookalikeAudienceWithHttpInfo(id, lookalikeDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a heuristic lookalike audience Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerLookalikeAudienceWithHttpInfo(string id, LookalikeDto lookalikeDto)
+        /// <returns>ApiResponse of AdvertiserControllerLookalikeAudience201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerLookalikeAudience201Response> AdvertiserControllerLookalikeAudienceWithHttpInfo(string id, LookalikeDto lookalikeDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6488,6 +7530,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6499,9 +7542,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = lookalikeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/audiences/{id}/lookalike", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerLookalikeAudience201Response>("/v1/advertiser/audiences/{id}/lookalike", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6513,27 +7567,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a heuristic lookalike audience Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerLookalikeAudienceAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerLookalikeAudience201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerLookalikeAudience201Response> AdvertiserControllerLookalikeAudienceAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerLookalikeAudienceWithHttpInfoAsync(id, lookalikeDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerLookalikeAudience201Response> localVarResponse = await AdvertiserControllerLookalikeAudienceWithHttpInfoAsync(id, lookalikeDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a heuristic lookalike audience Builds a new &#x60;lookalike&#x60; audience from the seed audience using a profile heuristic, not a trained model: it finds the dominant geo/device of the seed&#39;s recent impressions (falling back to the network-wide profile) and selects other recent users with that profile, excluding seed members. &#x60;size&#x60; is capped by LOOKALIKE_MAX (default 50,000). The result can be empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="lookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerLookalikeAudienceWithHttpInfoAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerLookalikeAudience201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerLookalikeAudience201Response>> AdvertiserControllerLookalikeAudienceWithHttpInfoAsync(string id, LookalikeDto lookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6552,6 +7607,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6564,10 +7620,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = lookalikeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/audiences/{id}/lookalike", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerLookalikeAudience201Response>("/v1/advertiser/audiences/{id}/lookalike", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6579,23 +7646,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a modeled lookalike audience Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="modeledLookalikeDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerModeledLookalike(ModeledLookalikeDto modeledLookalikeDto)
+        /// <returns>AdvertiserControllerModeledLookalike201Response</returns>
+        public AdvertiserControllerModeledLookalike201Response AdvertiserControllerModeledLookalike(ModeledLookalikeDto modeledLookalikeDto)
         {
-            AdvertiserControllerModeledLookalikeWithHttpInfo(modeledLookalikeDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalike201Response> localVarResponse = AdvertiserControllerModeledLookalikeWithHttpInfo(modeledLookalikeDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a modeled lookalike audience Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="modeledLookalikeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerModeledLookalikeWithHttpInfo(ModeledLookalikeDto modeledLookalikeDto)
+        /// <returns>ApiResponse of AdvertiserControllerModeledLookalike201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalike201Response> AdvertiserControllerModeledLookalikeWithHttpInfo(ModeledLookalikeDto modeledLookalikeDto)
         {
             // verify the required parameter 'modeledLookalikeDto' is set
             if (modeledLookalikeDto == null)
@@ -6609,6 +7677,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6619,9 +7688,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = modeledLookalikeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/audiences/lookalike-modeled", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerModeledLookalike201Response>("/v1/advertiser/audiences/lookalike-modeled", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6633,25 +7713,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a modeled lookalike audience Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="modeledLookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerModeledLookalikeAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerModeledLookalike201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerModeledLookalike201Response> AdvertiserControllerModeledLookalikeAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerModeledLookalikeWithHttpInfoAsync(modeledLookalikeDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalike201Response> localVarResponse = await AdvertiserControllerModeledLookalikeWithHttpInfoAsync(modeledLookalikeDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a modeled lookalike audience Fits a model of the seed audience&#39;s distinctive first-party pixel features against the account&#39;s background audience, scores recent pixel-active users (excluding seed members and opt-outs) and creates a new lookalike audience. Body: &#x60;seedAudienceId&#x60;, optional &#x60;size&#x60; and &#x60;minScore&#x60; (0-1). Responds 400 when the seed or the output is below the k-anonymity floor, and 404/403 when the seed is not owned. The audience is rebuilt periodically.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="modeledLookalikeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerModeledLookalikeWithHttpInfoAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerModeledLookalike201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalike201Response>> AdvertiserControllerModeledLookalikeWithHttpInfoAsync(ModeledLookalikeDto modeledLookalikeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'modeledLookalikeDto' is set
             if (modeledLookalikeDto == null)
@@ -6666,6 +7747,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6677,10 +7759,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = modeledLookalikeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/audiences/lookalike-modeled", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerModeledLookalike201Response>("/v1/advertiser/audiences/lookalike-modeled", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6692,23 +7785,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Preview a modeled lookalike for a seed Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerModeledLookalikePreview(string id)
+        /// <returns>AdvertiserControllerModeledLookalikePreview200Response</returns>
+        public AdvertiserControllerModeledLookalikePreview200Response AdvertiserControllerModeledLookalikePreview(string id)
         {
-            AdvertiserControllerModeledLookalikePreviewWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalikePreview200Response> localVarResponse = AdvertiserControllerModeledLookalikePreviewWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Preview a modeled lookalike for a seed Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerModeledLookalikePreviewWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvertiserControllerModeledLookalikePreview200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalikePreview200Response> AdvertiserControllerModeledLookalikePreviewWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6721,6 +7815,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6731,9 +7826,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/audiences/{id}/lookalike-modeled/preview", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdvertiserControllerModeledLookalikePreview200Response>("/v1/advertiser/audiences/{id}/lookalike-modeled/preview", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6745,25 +7851,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Preview a modeled lookalike for a seed Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerModeledLookalikePreviewAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerModeledLookalikePreview200Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerModeledLookalikePreview200Response> AdvertiserControllerModeledLookalikePreviewAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerModeledLookalikePreviewWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalikePreview200Response> localVarResponse = await AdvertiserControllerModeledLookalikePreviewWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Preview a modeled lookalike for a seed Returns the seed and background sizes, whether the seed passes the k-anonymity gate (&#x60;eligible&#x60;) and the most distinctive features, without creating an audience. When ineligible, &#x60;note&#x60; explains why and &#x60;topFeatures&#x60; is empty. 404/403 when the seed is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerModeledLookalikePreviewWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerModeledLookalikePreview200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerModeledLookalikePreview200Response>> AdvertiserControllerModeledLookalikePreviewWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6777,6 +7884,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6788,10 +7896,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/audiences/{id}/lookalike-modeled/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdvertiserControllerModeledLookalikePreview200Response>("/v1/advertiser/audiences/{id}/lookalike-modeled/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6803,25 +7922,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a promote campaign Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setPromoteStatusDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerPromoteStatus(string id, SetPromoteStatusDto setPromoteStatusDto)
+        /// <returns>AdvStatusResult</returns>
+        public AdvStatusResult AdvertiserControllerPromoteStatus(string id, SetPromoteStatusDto setPromoteStatusDto)
         {
-            AdvertiserControllerPromoteStatusWithHttpInfo(id, setPromoteStatusDto);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = AdvertiserControllerPromoteStatusWithHttpInfo(id, setPromoteStatusDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a promote campaign Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setPromoteStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerPromoteStatusWithHttpInfo(string id, SetPromoteStatusDto setPromoteStatusDto)
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvStatusResult> AdvertiserControllerPromoteStatusWithHttpInfo(string id, SetPromoteStatusDto setPromoteStatusDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6839,6 +7959,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6850,9 +7971,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setPromoteStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/promote-campaigns/{id}/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvStatusResult>("/v1/advertiser/promote-campaigns/{id}/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6864,27 +7996,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a promote campaign Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setPromoteStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerPromoteStatusAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvStatusResult</returns>
+        public async System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerPromoteStatusAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerPromoteStatusWithHttpInfoAsync(id, setPromoteStatusDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = await AdvertiserControllerPromoteStatusWithHttpInfoAsync(id, setPromoteStatusDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a promote campaign Sets &#x60;status&#x60; to active or paused and republishes the serving index so the engine adds or removes it from sponsored-product auctions. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setPromoteStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerPromoteStatusWithHttpInfoAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvStatusResult>> AdvertiserControllerPromoteStatusWithHttpInfoAsync(string id, SetPromoteStatusDto setPromoteStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6903,6 +8036,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -6915,10 +8049,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setPromoteStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/promote-campaigns/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvStatusResult>("/v1/advertiser/promote-campaigns/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -6930,23 +8075,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate daily reach for targeting Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reachEstimateDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerReach(ReachEstimateDto reachEstimateDto)
+        /// <returns>AdvertiserControllerReach201Response</returns>
+        public AdvertiserControllerReach201Response AdvertiserControllerReach(ReachEstimateDto reachEstimateDto)
         {
-            AdvertiserControllerReachWithHttpInfo(reachEstimateDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerReach201Response> localVarResponse = AdvertiserControllerReachWithHttpInfo(reachEstimateDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate daily reach for targeting Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reachEstimateDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerReachWithHttpInfo(ReachEstimateDto reachEstimateDto)
+        /// <returns>ApiResponse of AdvertiserControllerReach201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerReach201Response> AdvertiserControllerReachWithHttpInfo(ReachEstimateDto reachEstimateDto)
         {
             // verify the required parameter 'reachEstimateDto' is set
             if (reachEstimateDto == null)
@@ -6960,6 +8106,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -6970,9 +8117,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = reachEstimateDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/reach-estimate", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerReach201Response>("/v1/advertiser/reach-estimate", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -6984,25 +8142,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Estimate daily reach for targeting Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reachEstimateDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerReachAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerReach201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerReach201Response> AdvertiserControllerReachAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerReachWithHttpInfoAsync(reachEstimateDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerReach201Response> localVarResponse = await AdvertiserControllerReachWithHttpInfoAsync(reachEstimateDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Estimate daily reach for targeting Estimates available daily impressions as the average daily ad-request volume over the last 7 days, optionally filtered by &#x60;geoInclude&#x60; (country codes) and &#x60;deviceTypes&#x60;. The &#x60;format&#x60; field is accepted but not used in the estimate. If ClickHouse has no usable history the estimate is 0 with a &#x60;note&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reachEstimateDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerReachWithHttpInfoAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerReach201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerReach201Response>> AdvertiserControllerReachWithHttpInfoAsync(ReachEstimateDto reachEstimateDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'reachEstimateDto' is set
             if (reachEstimateDto == null)
@@ -7017,6 +8176,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7028,10 +8188,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = reachEstimateDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/reach-estimate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerReach201Response>("/v1/advertiser/reach-estimate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7043,23 +8214,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a scheduled catalog feed Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="registerCatalogFeedDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRegisterCatalogFeed(RegisterCatalogFeedDto registerCatalogFeedDto)
+        /// <returns>AdvCatalogFeed</returns>
+        public AdvCatalogFeed AdvertiserControllerRegisterCatalogFeed(RegisterCatalogFeedDto registerCatalogFeedDto)
         {
-            AdvertiserControllerRegisterCatalogFeedWithHttpInfo(registerCatalogFeedDto);
+            Adviverse.Api.Client.ApiResponse<AdvCatalogFeed> localVarResponse = AdvertiserControllerRegisterCatalogFeedWithHttpInfo(registerCatalogFeedDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a scheduled catalog feed Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="registerCatalogFeedDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRegisterCatalogFeedWithHttpInfo(RegisterCatalogFeedDto registerCatalogFeedDto)
+        /// <returns>ApiResponse of AdvCatalogFeed</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCatalogFeed> AdvertiserControllerRegisterCatalogFeedWithHttpInfo(RegisterCatalogFeedDto registerCatalogFeedDto)
         {
             // verify the required parameter 'registerCatalogFeedDto' is set
             if (registerCatalogFeedDto == null)
@@ -7073,6 +8245,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7083,9 +8256,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = registerCatalogFeedDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvCatalogFeed>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7097,25 +8281,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a scheduled catalog feed Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="registerCatalogFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRegisterCatalogFeedAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCatalogFeed</returns>
+        public async System.Threading.Tasks.Task<AdvCatalogFeed> AdvertiserControllerRegisterCatalogFeedAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRegisterCatalogFeedWithHttpInfoAsync(registerCatalogFeedDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCatalogFeed> localVarResponse = await AdvertiserControllerRegisterCatalogFeedWithHttpInfoAsync(registerCatalogFeedDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a scheduled catalog feed Registers a hosted JSON or CSV catalog at &#x60;feedUrl&#x60; (http/https; 400 otherwise) that a background job re-fetches every &#x60;intervalMinutes&#x60; (minimum 15, default 360) into the catalog. Registering a URL that is already registered updates its interval and reactivates it instead of creating a duplicate.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="registerCatalogFeedDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRegisterCatalogFeedWithHttpInfoAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCatalogFeed)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCatalogFeed>> AdvertiserControllerRegisterCatalogFeedWithHttpInfoAsync(RegisterCatalogFeedDto registerCatalogFeedDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'registerCatalogFeedDto' is set
             if (registerCatalogFeedDto == null)
@@ -7130,6 +8315,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7141,10 +8327,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = registerCatalogFeedDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvCatalogFeed>("/v1/advertiser/catalog-feeds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7156,23 +8353,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRemove(string id)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted AdvertiserControllerRemove(string id)
         {
-            AdvertiserControllerRemoveWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = AdvertiserControllerRemoveWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRemoveWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> AdvertiserControllerRemoveWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7185,6 +8383,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7195,9 +8394,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7209,25 +8419,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await AdvertiserControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign Soft-deletes the campaign and republishes the serving index so it stops serving immediately. Historical spend and stats remain available for reporting. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> AdvertiserControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7241,6 +8452,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7252,10 +8464,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7267,23 +8490,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete an audience Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRemoveAudience(string id)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted AdvertiserControllerRemoveAudience(string id)
         {
-            AdvertiserControllerRemoveAudienceWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = AdvertiserControllerRemoveAudienceWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete an audience Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRemoveAudienceWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> AdvertiserControllerRemoveAudienceWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7296,6 +8520,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7306,9 +8531,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7320,25 +8556,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete an audience Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRemoveAudienceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveAudienceAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRemoveAudienceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await AdvertiserControllerRemoveAudienceWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete an audience Permanently deletes the audience row and its member set, so targeting that references it stops matching. Responds 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRemoveAudienceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> AdvertiserControllerRemoveAudienceWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7352,6 +8589,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7363,10 +8601,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7378,23 +8627,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled catalog feed Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRemoveCatalogFeed(string id)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted AdvertiserControllerRemoveCatalogFeed(string id)
         {
-            AdvertiserControllerRemoveCatalogFeedWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = AdvertiserControllerRemoveCatalogFeedWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled catalog feed Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRemoveCatalogFeedWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> AdvertiserControllerRemoveCatalogFeedWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7407,6 +8657,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7417,9 +8668,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/catalog-feeds/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/catalog-feeds/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7431,25 +8693,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled catalog feed Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRemoveCatalogFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveCatalogFeedAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRemoveCatalogFeedWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await AdvertiserControllerRemoveCatalogFeedWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a scheduled catalog feed Soft-deletes the feed and stops its scheduled syncs; items already imported stay in the catalog. Returns &#x60;deleted: false&#x60; (not 404) when no owned, live feed matches.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRemoveCatalogFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> AdvertiserControllerRemoveCatalogFeedWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7463,6 +8726,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7474,10 +8738,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/catalog-feeds/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/catalog-feeds/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7489,25 +8764,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a DCO component Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRemoveComponent(string id, string cid)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted AdvertiserControllerRemoveComponent(string id, string cid)
         {
-            AdvertiserControllerRemoveComponentWithHttpInfo(id, cid);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = AdvertiserControllerRemoveComponentWithHttpInfo(id, cid);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a DCO component Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRemoveComponentWithHttpInfo(string id, string cid)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> AdvertiserControllerRemoveComponentWithHttpInfo(string id, string cid)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7524,6 +8800,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7535,9 +8812,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.PathParameters.Add("cid", Adviverse.Api.Client.ClientUtils.ParameterToString(cid)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/creatives/{id}/components/{cid}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/creatives/{id}/components/{cid}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7549,27 +8837,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a DCO component Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRemoveComponentAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveComponentAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRemoveComponentWithHttpInfoAsync(id, cid, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await AdvertiserControllerRemoveComponentWithHttpInfoAsync(id, cid, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a DCO component Soft-deletes component &#x60;cid&#x60; and republishes the serving index. Responds 404 when the creative or the component is not owned by the advertiser.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cid"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRemoveComponentWithHttpInfoAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> AdvertiserControllerRemoveComponentWithHttpInfoAsync(string id, string cid, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7587,6 +8876,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7599,10 +8889,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.PathParameters.Add("cid", Adviverse.Api.Client.ClientUtils.ParameterToString(cid)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/creatives/{id}/components/{cid}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/creatives/{id}/components/{cid}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7614,23 +8915,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a creative Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRemoveCreative(string id)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted AdvertiserControllerRemoveCreative(string id)
         {
-            AdvertiserControllerRemoveCreativeWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = AdvertiserControllerRemoveCreativeWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a creative Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRemoveCreativeWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> AdvertiserControllerRemoveCreativeWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7643,6 +8945,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7653,9 +8956,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7667,25 +8981,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a creative Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRemoveCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRemoveCreativeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await AdvertiserControllerRemoveCreativeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a creative Soft-deletes the creative, removes all its campaign attachments, and republishes the serving index. Responds 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRemoveCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> AdvertiserControllerRemoveCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7699,6 +9014,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7710,10 +9026,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7725,23 +9052,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a sync destination Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRemoveDestination(string did)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted AdvertiserControllerRemoveDestination(string did)
         {
-            AdvertiserControllerRemoveDestinationWithHttpInfo(did);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = AdvertiserControllerRemoveDestinationWithHttpInfo(did);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a sync destination Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRemoveDestinationWithHttpInfo(string did)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> AdvertiserControllerRemoveDestinationWithHttpInfo(string did)
         {
             // verify the required parameter 'did' is set
             if (did == null)
@@ -7754,6 +9082,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7764,9 +9093,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("did", Adviverse.Api.Client.ClientUtils.ParameterToString(did)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7778,25 +9118,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a sync destination Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRemoveDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRemoveDestinationWithHttpInfoAsync(did, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await AdvertiserControllerRemoveDestinationWithHttpInfoAsync(did, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a sync destination Deletes the destination; members already pushed to the external system are not removed there. 404/403 when missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRemoveDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> AdvertiserControllerRemoveDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'did' is set
             if (did == null)
@@ -7810,6 +9151,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7821,10 +9163,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("did", Adviverse.Api.Client.ClientUtils.ParameterToString(did)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7836,23 +9189,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign group Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerRemoveGroup(string id)
+        /// <returns>AdvDeleted</returns>
+        public AdvDeleted AdvertiserControllerRemoveGroup(string id)
         {
-            AdvertiserControllerRemoveGroupWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = AdvertiserControllerRemoveGroupWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign group Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerRemoveGroupWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvDeleted</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvDeleted> AdvertiserControllerRemoveGroupWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7865,6 +9219,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7875,9 +9230,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdvDeleted>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7889,25 +9255,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign group Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerRemoveGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvDeleted</returns>
+        public async System.Threading.Tasks.Task<AdvDeleted> AdvertiserControllerRemoveGroupAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerRemoveGroupWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvDeleted> localVarResponse = await AdvertiserControllerRemoveGroupWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a campaign group Soft-deletes the group. Its ad sets are not deleted; they are detached (&#x60;group_id&#x60; set to null) and keep serving as standalone campaigns. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerRemoveGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvDeleted)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvDeleted>> AdvertiserControllerRemoveGroupWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7921,6 +9288,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -7932,10 +9300,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdvDeleted>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7947,25 +9326,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set DCO and product-ad flags on a creative Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerSetDco(string id, SetDcoDto setDcoDto)
+        /// <returns>AdvertiserControllerSetDco200Response</returns>
+        public AdvertiserControllerSetDco200Response AdvertiserControllerSetDco(string id, SetDcoDto setDcoDto)
         {
-            AdvertiserControllerSetDcoWithHttpInfo(id, setDcoDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerSetDco200Response> localVarResponse = AdvertiserControllerSetDcoWithHttpInfo(id, setDcoDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set DCO and product-ad flags on a creative Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerSetDcoWithHttpInfo(string id, SetDcoDto setDcoDto)
+        /// <returns>ApiResponse of AdvertiserControllerSetDco200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerSetDco200Response> AdvertiserControllerSetDcoWithHttpInfo(string id, SetDcoDto setDcoDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -7983,6 +9363,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -7994,9 +9375,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setDcoDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/advertiser/creatives/{id}/dco", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AdvertiserControllerSetDco200Response>("/v1/advertiser/creatives/{id}/dco", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8008,27 +9400,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set DCO and product-ad flags on a creative Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerSetDcoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerSetDco200Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerSetDco200Response> AdvertiserControllerSetDcoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerSetDcoWithHttpInfoAsync(id, setDcoDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerSetDco200Response> localVarResponse = await AdvertiserControllerSetDcoWithHttpInfoAsync(id, setDcoDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set DCO and product-ad flags on a creative Sets &#x60;isDco&#x60; (default true) and &#x60;dcoContext&#x60; (global, geo, device or audience; default global; 400 otherwise), and optionally &#x60;productAd&#x60; and &#x60;defaultProductId&#x60; for dynamic product ads. When DCO is on, the engine fills the creative per render from the component pools. 404 when the creative is not owned or has no campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setDcoDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerSetDcoWithHttpInfoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerSetDco200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerSetDco200Response>> AdvertiserControllerSetDcoWithHttpInfoAsync(string id, SetDcoDto setDcoDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8047,6 +9440,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8059,10 +9453,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setDcoDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/advertiser/creatives/{id}/dco", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AdvertiserControllerSetDco200Response>("/v1/advertiser/creatives/{id}/dco", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8074,23 +9479,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a campaign Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerStatus(string id)
+        /// <returns>AdvStatusResult</returns>
+        public AdvStatusResult AdvertiserControllerStatus(string id)
         {
-            AdvertiserControllerStatusWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = AdvertiserControllerStatusWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a campaign Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerStatusWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvStatusResult> AdvertiserControllerStatusWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8103,6 +9509,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8113,9 +9520,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/campaigns/{id}/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvStatusResult>("/v1/advertiser/campaigns/{id}/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8127,25 +9545,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a campaign Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvStatusResult</returns>
+        public async System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerStatusWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = await AdvertiserControllerStatusWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Activate or pause a campaign Sets the campaign status from the body field &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) and republishes the serving index. Returns the status that was written. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvStatusResult>> AdvertiserControllerStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8159,6 +9578,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8170,10 +9590,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/campaigns/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvStatusResult>("/v1/advertiser/campaigns/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8185,23 +9616,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit a campaign for moderation review Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerSubmit(string id)
+        /// <returns>AdvStatusResult</returns>
+        public AdvStatusResult AdvertiserControllerSubmit(string id)
         {
-            AdvertiserControllerSubmitWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = AdvertiserControllerSubmitWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit a campaign for moderation review Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerSubmitWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvStatusResult> AdvertiserControllerSubmitWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8214,6 +9646,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8224,9 +9657,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/campaigns/{id}/submit", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvStatusResult>("/v1/advertiser/campaigns/{id}/submit", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8238,25 +9682,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit a campaign for moderation review Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerSubmitAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvStatusResult</returns>
+        public async System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerSubmitAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerSubmitWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = await AdvertiserControllerSubmitWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit a campaign for moderation review Moves a &#x60;draft&#x60; campaign to &#x60;pending_review&#x60; and enqueues it in the moderation queue. A campaign that is not in draft keeps its status, but the response still reports &#x60;pending_review&#x60;. 404/403 as for GET campaign.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerSubmitWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvStatusResult>> AdvertiserControllerSubmitWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8270,6 +9715,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8281,10 +9727,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/campaigns/{id}/submit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvStatusResult>("/v1/advertiser/campaigns/{id}/submit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8296,23 +9753,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit a promote campaign for review Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerSubmitPromote(string id)
+        /// <returns>AdvStatusResult</returns>
+        public AdvStatusResult AdvertiserControllerSubmitPromote(string id)
         {
-            AdvertiserControllerSubmitPromoteWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = AdvertiserControllerSubmitPromoteWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit a promote campaign for review Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerSubmitPromoteWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvStatusResult</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvStatusResult> AdvertiserControllerSubmitPromoteWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8325,6 +9783,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8335,9 +9794,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/promote-campaigns/{id}/submit", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvStatusResult>("/v1/advertiser/promote-campaigns/{id}/submit", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8349,25 +9819,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit a promote campaign for review Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerSubmitPromoteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvStatusResult</returns>
+        public async System.Threading.Tasks.Task<AdvStatusResult> AdvertiserControllerSubmitPromoteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerSubmitPromoteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvStatusResult> localVarResponse = await AdvertiserControllerSubmitPromoteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit a promote campaign for review Moves a draft promote campaign to &#x60;pending_review&#x60; and enqueues it for moderation; a non-draft keeps its status. Responds 404 when missing and 403 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerSubmitPromoteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvStatusResult)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvStatusResult>> AdvertiserControllerSubmitPromoteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8381,6 +9852,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8392,10 +9864,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/promote-campaigns/{id}/submit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvStatusResult>("/v1/advertiser/promote-campaigns/{id}/submit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8407,23 +9890,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Sync a destination now Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerSyncDestination(string did)
+        /// <returns>AdvertiserControllerSyncDestination201Response</returns>
+        public AdvertiserControllerSyncDestination201Response AdvertiserControllerSyncDestination(string did)
         {
-            AdvertiserControllerSyncDestinationWithHttpInfo(did);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerSyncDestination201Response> localVarResponse = AdvertiserControllerSyncDestinationWithHttpInfo(did);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Sync a destination now Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerSyncDestinationWithHttpInfo(string did)
+        /// <returns>ApiResponse of AdvertiserControllerSyncDestination201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerSyncDestination201Response> AdvertiserControllerSyncDestinationWithHttpInfo(string did)
         {
             // verify the required parameter 'did' is set
             if (did == null)
@@ -8436,6 +9920,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8446,9 +9931,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("did", Adviverse.Api.Client.ClientUtils.ParameterToString(did)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/destinations/{did}/sync", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerSyncDestination201Response>("/v1/advertiser/destinations/{did}/sync", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8460,25 +9956,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Sync a destination now Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerSyncDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerSyncDestination201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerSyncDestination201Response> AdvertiserControllerSyncDestinationAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerSyncDestinationWithHttpInfoAsync(did, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerSyncDestination201Response> localVarResponse = await AdvertiserControllerSyncDestinationWithHttpInfoAsync(did, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Sync a destination now Pushes the audience&#39;s current members (up to 500,000, excluding opt-outs) to the destination immediately and records the outcome on the destination. Returns the sync status and member count. 404/403 when the destination is missing or not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerSyncDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerSyncDestination201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerSyncDestination201Response>> AdvertiserControllerSyncDestinationWithHttpInfoAsync(string did, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'did' is set
             if (did == null)
@@ -8492,6 +9989,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8503,10 +10001,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("did", Adviverse.Api.Client.ClientUtils.ParameterToString(did)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/destinations/{did}/sync", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerSyncDestination201Response>("/v1/advertiser/destinations/{did}/sync", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8518,23 +10027,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Queue HLS transcoding for a video creative Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerTranscodeCreative(string id)
+        /// <returns>AdvertiserControllerTranscodeCreative201Response</returns>
+        public AdvertiserControllerTranscodeCreative201Response AdvertiserControllerTranscodeCreative(string id)
         {
-            AdvertiserControllerTranscodeCreativeWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerTranscodeCreative201Response> localVarResponse = AdvertiserControllerTranscodeCreativeWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Queue HLS transcoding for a video creative Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerTranscodeCreativeWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdvertiserControllerTranscodeCreative201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerTranscodeCreative201Response> AdvertiserControllerTranscodeCreativeWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8547,6 +10057,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8557,9 +10068,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/creatives/{id}/transcode", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerTranscodeCreative201Response>("/v1/advertiser/creatives/{id}/transcode", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8571,25 +10093,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Queue HLS transcoding for a video creative Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerTranscodeCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerTranscodeCreative201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerTranscodeCreative201Response> AdvertiserControllerTranscodeCreativeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerTranscodeCreativeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerTranscodeCreative201Response> localVarResponse = await AdvertiserControllerTranscodeCreativeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Queue HLS transcoding for a video creative Starts (or restarts) transcoding the creative&#39;s video to HLS so SSAI can splice its segments. The job runs in the background and errors are not reported; the response only confirms it was queued. Responds 404 when the creative is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerTranscodeCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerTranscodeCreative201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerTranscodeCreative201Response>> AdvertiserControllerTranscodeCreativeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8603,6 +10126,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8614,10 +10138,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/creatives/{id}/transcode", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerTranscodeCreative201Response>("/v1/advertiser/creatives/{id}/transcode", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8629,25 +10164,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerUpdate(string id, UpdateCampaignDto updateCampaignDto)
+        /// <returns>AdvCampaignDetail</returns>
+        public AdvCampaignDetail AdvertiserControllerUpdate(string id, UpdateCampaignDto updateCampaignDto)
         {
-            AdvertiserControllerUpdateWithHttpInfo(id, updateCampaignDto);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignDetail> localVarResponse = AdvertiserControllerUpdateWithHttpInfo(id, updateCampaignDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUpdateWithHttpInfo(string id, UpdateCampaignDto updateCampaignDto)
+        /// <returns>ApiResponse of AdvCampaignDetail</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCampaignDetail> AdvertiserControllerUpdateWithHttpInfo(string id, UpdateCampaignDto updateCampaignDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8665,6 +10201,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8676,9 +10213,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateCampaignDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AdvCampaignDetail>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8690,27 +10238,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUpdateAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCampaignDetail</returns>
+        public async System.Threading.Tasks.Task<AdvCampaignDetail> AdvertiserControllerUpdateAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUpdateWithHttpInfoAsync(id, updateCampaignDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignDetail> localVarResponse = await AdvertiserControllerUpdateWithHttpInfoAsync(id, updateCampaignDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign Patches the campaign. Updatable: name, bidAmount, budgets, pacing, startAt/endAt, SKAdNetwork ids, houseAd, priorityTier, deliveryGoal/goalType, bidModifiers, portfolioFreqCap, sequenceGroup/sequenceOrder, suppressAfterConversion, holdoutPct (clamped 0-1), bidStrategy/targetCpa/targetRoas and utm (null resets to defaults). Passing &#x60;targeting&#x60; replaces the whole targeting row (omitted targeting fields are cleared). Format, pricing model and currency cannot change. Republishes the serving index and returns the same shape as GET; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUpdateWithHttpInfoAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCampaignDetail)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCampaignDetail>> AdvertiserControllerUpdateWithHttpInfoAsync(string id, UpdateCampaignDto updateCampaignDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8729,6 +10278,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8741,10 +10291,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateCampaignDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AdvCampaignDetail>("/v1/advertiser/campaigns/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8756,25 +10317,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update an audience Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createAudienceDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerUpdateAudience(string id, CreateAudienceDto createAudienceDto)
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        public AdvertiserControllerCreateAudience201Response AdvertiserControllerUpdateAudience(string id, CreateAudienceDto createAudienceDto)
         {
-            AdvertiserControllerUpdateAudienceWithHttpInfo(id, createAudienceDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = AdvertiserControllerUpdateAudienceWithHttpInfo(id, createAudienceDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update an audience Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createAudienceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUpdateAudienceWithHttpInfo(string id, CreateAudienceDto createAudienceDto)
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateAudienceWithHttpInfo(string id, CreateAudienceDto createAudienceDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8792,6 +10354,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8803,9 +10366,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = createAudienceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8817,27 +10391,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update an audience Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUpdateAudienceAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateAudienceAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUpdateAudienceWithHttpInfoAsync(id, createAudienceDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = await AdvertiserControllerUpdateAudienceWithHttpInfoAsync(id, createAudienceDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update an audience Updates &#x60;name&#x60; and/or &#x60;rule&#x60;. Setting a rule converts the audience to type &#x60;rule&#x60; and re-resolves its membership in the background. Responds 404 when the audience does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="createAudienceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUpdateAudienceWithHttpInfoAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerUpdateAudienceWithHttpInfoAsync(string id, CreateAudienceDto createAudienceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8856,6 +10431,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8868,10 +10444,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = createAudienceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/audiences/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -8883,25 +10470,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a creative Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerUpdateCreative(string id, UpdateCreativeDto updateCreativeDto)
+        /// <returns>AdvCreative</returns>
+        public AdvCreative AdvertiserControllerUpdateCreative(string id, UpdateCreativeDto updateCreativeDto)
         {
-            AdvertiserControllerUpdateCreativeWithHttpInfo(id, updateCreativeDto);
+            Adviverse.Api.Client.ApiResponse<AdvCreative> localVarResponse = AdvertiserControllerUpdateCreativeWithHttpInfo(id, updateCreativeDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a creative Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUpdateCreativeWithHttpInfo(string id, UpdateCreativeDto updateCreativeDto)
+        /// <returns>ApiResponse of AdvCreative</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCreative> AdvertiserControllerUpdateCreativeWithHttpInfo(string id, UpdateCreativeDto updateCreativeDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8919,6 +10507,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -8930,9 +10519,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AdvCreative>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -8944,27 +10544,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a creative Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUpdateCreativeAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCreative</returns>
+        public async System.Threading.Tasks.Task<AdvCreative> AdvertiserControllerUpdateCreativeAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUpdateCreativeWithHttpInfoAsync(id, updateCreativeDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCreative> localVarResponse = await AdvertiserControllerUpdateCreativeWithHttpInfoAsync(id, updateCreativeDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a creative Patches the creative&#39;s editable fields (asset/landing/icon/main-image URLs, copy, dimensions, weight, carousel items, video and VAST fields). URLs are SSRF-checked and the merged video fields re-validated (400). Any content change (asset, landing, copy, images, VAST tag, VPAID, companions) resets moderation to &#x60;pending&#x60; and re-runs the malware scan. Republishes the serving index; an empty patch returns the current row. 404 when not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCreativeDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUpdateCreativeWithHttpInfoAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCreative)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCreative>> AdvertiserControllerUpdateCreativeWithHttpInfoAsync(string id, UpdateCreativeDto updateCreativeDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -8983,6 +10584,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -8995,10 +10597,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateCreativeDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AdvCreative>("/v1/advertiser/creatives/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -9010,25 +10623,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a sync destination Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="updateDestinationDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerUpdateDestination(string did, UpdateDestinationDto updateDestinationDto)
+        /// <returns>AdvertiserControllerCreateAudience201Response</returns>
+        public AdvertiserControllerCreateAudience201Response AdvertiserControllerUpdateDestination(string did, UpdateDestinationDto updateDestinationDto)
         {
-            AdvertiserControllerUpdateDestinationWithHttpInfo(did, updateDestinationDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = AdvertiserControllerUpdateDestinationWithHttpInfo(did, updateDestinationDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a sync destination Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="updateDestinationDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUpdateDestinationWithHttpInfo(string did, UpdateDestinationDto updateDestinationDto)
+        /// <returns>ApiResponse of AdvertiserControllerCreateAudience201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateDestinationWithHttpInfo(string did, UpdateDestinationDto updateDestinationDto)
         {
             // verify the required parameter 'did' is set
             if (did == null)
@@ -9046,6 +10660,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -9057,9 +10672,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("did", Adviverse.Api.Client.ClientUtils.ParameterToString(did)); // path parameter
             localVarRequestOptions.Data = updateDestinationDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -9071,27 +10697,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a sync destination Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="updateDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUpdateDestinationAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerCreateAudience201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerCreateAudience201Response> AdvertiserControllerUpdateDestinationAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUpdateDestinationWithHttpInfoAsync(did, updateDestinationDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response> localVarResponse = await AdvertiserControllerUpdateDestinationWithHttpInfoAsync(did, updateDestinationDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a sync destination Updates the destination&#39;s &#x60;config&#x60; and/or &#x60;active&#x60; flag. Responds 404 when it does not exist and 403 when it belongs to another account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="did"></param>
         /// <param name="updateDestinationDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUpdateDestinationWithHttpInfoAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerCreateAudience201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerCreateAudience201Response>> AdvertiserControllerUpdateDestinationWithHttpInfoAsync(string did, UpdateDestinationDto updateDestinationDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'did' is set
             if (did == null)
@@ -9110,6 +10737,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -9122,10 +10750,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("did", Adviverse.Api.Client.ClientUtils.ParameterToString(did)); // path parameter
             localVarRequestOptions.Data = updateDestinationDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AdvertiserControllerCreateAudience201Response>("/v1/advertiser/destinations/{did}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -9137,25 +10776,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign group Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignGroupDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerUpdateGroup(string id, UpdateCampaignGroupDto updateCampaignGroupDto)
+        /// <returns>AdvCampaignGroup</returns>
+        public AdvCampaignGroup AdvertiserControllerUpdateGroup(string id, UpdateCampaignGroupDto updateCampaignGroupDto)
         {
-            AdvertiserControllerUpdateGroupWithHttpInfo(id, updateCampaignGroupDto);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> localVarResponse = AdvertiserControllerUpdateGroupWithHttpInfo(id, updateCampaignGroupDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign group Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignGroupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUpdateGroupWithHttpInfo(string id, UpdateCampaignGroupDto updateCampaignGroupDto)
+        /// <returns>ApiResponse of AdvCampaignGroup</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> AdvertiserControllerUpdateGroupWithHttpInfo(string id, UpdateCampaignGroupDto updateCampaignGroupDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -9173,6 +10813,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -9184,9 +10825,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateCampaignGroupDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AdvCampaignGroup>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -9198,27 +10850,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign group Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUpdateGroupAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvCampaignGroup</returns>
+        public async System.Threading.Tasks.Task<AdvCampaignGroup> AdvertiserControllerUpdateGroupAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUpdateGroupWithHttpInfoAsync(id, updateCampaignGroupDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvCampaignGroup> localVarResponse = await AdvertiserControllerUpdateGroupWithHttpInfoAsync(id, updateCampaignGroupDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a campaign group Patches &#x60;name&#x60;, &#x60;status&#x60; (active | paused | draft) and/or &#x60;objective&#x60;. Status cascades to the group&#39;s ad sets: &#x60;paused&#x60; pauses every active ad set, &#x60;active&#x60; re-activates paused ones (drafts stay draft), and the serving index is republished. Responds 404 when the group is not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateCampaignGroupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUpdateGroupWithHttpInfoAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvCampaignGroup)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvCampaignGroup>> AdvertiserControllerUpdateGroupWithHttpInfoAsync(string id, UpdateCampaignGroupDto updateCampaignGroupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -9237,6 +10890,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -9249,10 +10903,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateCampaignGroupDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AdvCampaignGroup>("/v1/advertiser/campaign-groups/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -9264,21 +10929,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Upload a creative asset file Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerUploadCreative()
+        /// <returns>AdvertiserControllerUploadCreative201Response</returns>
+        public AdvertiserControllerUploadCreative201Response AdvertiserControllerUploadCreative()
         {
-            AdvertiserControllerUploadCreativeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadCreative201Response> localVarResponse = AdvertiserControllerUploadCreativeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Upload a creative asset file Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUploadCreativeWithHttpInfo()
+        /// <returns>ApiResponse of AdvertiserControllerUploadCreative201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadCreative201Response> AdvertiserControllerUploadCreativeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -9287,6 +10953,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -9296,9 +10963,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/creatives/upload", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerUploadCreative201Response>("/v1/advertiser/creatives/upload", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -9310,23 +10988,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Upload a creative asset file Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUploadCreativeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerUploadCreative201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerUploadCreative201Response> AdvertiserControllerUploadCreativeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUploadCreativeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadCreative201Response> localVarResponse = await AdvertiserControllerUploadCreativeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Upload a creative asset file Multipart upload with the file in field &#x60;file&#x60; (400 if missing). The file is ClamAV-scanned (fail-open: &#x60;skipped&#x60; when the scanner is unavailable), stored on object storage, and PNG/GIF/JPEG dimensions are detected. Pass the returned &#x60;assetUrl&#x60; to POST /v1/advertiser/creatives; this call does not create a creative.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUploadCreativeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerUploadCreative201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadCreative201Response>> AdvertiserControllerUploadCreativeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -9336,6 +11015,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -9346,10 +11026,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/creatives/upload", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerUploadCreative201Response>("/v1/advertiser/creatives/upload", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -9361,21 +11052,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Upload a playable (HTML5) ZIP bundle Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void AdvertiserControllerUploadPlayable()
+        /// <returns>AdvertiserControllerUploadPlayable201Response</returns>
+        public AdvertiserControllerUploadPlayable201Response AdvertiserControllerUploadPlayable()
         {
-            AdvertiserControllerUploadPlayableWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadPlayable201Response> localVarResponse = AdvertiserControllerUploadPlayableWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Upload a playable (HTML5) ZIP bundle Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUploadPlayableWithHttpInfo()
+        /// <returns>ApiResponse of AdvertiserControllerUploadPlayable201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadPlayable201Response> AdvertiserControllerUploadPlayableWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -9384,6 +11076,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -9393,9 +11086,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/creatives/playable", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerUploadPlayable201Response>("/v1/advertiser/creatives/playable", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -9407,23 +11111,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Upload a playable (HTML5) ZIP bundle Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUploadPlayableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerUploadPlayable201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerUploadPlayable201Response> AdvertiserControllerUploadPlayableAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUploadPlayableWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadPlayable201Response> localVarResponse = await AdvertiserControllerUploadPlayableWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Upload a playable (HTML5) ZIP bundle Multipart upload of a ZIP in field &#x60;file&#x60;. The bundle is malware-scanned and validated: it must have an &#x60;index.html&#x60; at its root, only allowed file types, no unsafe paths, and stay within file-count and size limits (400 otherwise, including zip-bomb expansion). The sandbox/MRAID runtime is injected into the entry document and the files are hosted on the CDN. Pass the returned &#x60;assetUrl&#x60; with &#x60;type: html5&#x60; to POST creatives.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUploadPlayableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerUploadPlayable201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerUploadPlayable201Response>> AdvertiserControllerUploadPlayableWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -9433,6 +11138,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -9443,10 +11149,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/creatives/playable", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerUploadPlayable201Response>("/v1/advertiser/creatives/playable", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -9458,23 +11175,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Bulk upsert marketplace catalog items Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpsertCatalogDto"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerUpsertCatalog(BulkUpsertCatalogDto bulkUpsertCatalogDto)
+        /// <returns>AdvertiserControllerUpsertCatalog201Response</returns>
+        public AdvertiserControllerUpsertCatalog201Response AdvertiserControllerUpsertCatalog(BulkUpsertCatalogDto bulkUpsertCatalogDto)
         {
-            AdvertiserControllerUpsertCatalogWithHttpInfo(bulkUpsertCatalogDto);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerUpsertCatalog201Response> localVarResponse = AdvertiserControllerUpsertCatalogWithHttpInfo(bulkUpsertCatalogDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Bulk upsert marketplace catalog items Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpsertCatalogDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUpsertCatalogWithHttpInfo(BulkUpsertCatalogDto bulkUpsertCatalogDto)
+        /// <returns>ApiResponse of AdvertiserControllerUpsertCatalog201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvertiserControllerUpsertCatalog201Response> AdvertiserControllerUpsertCatalogWithHttpInfo(BulkUpsertCatalogDto bulkUpsertCatalogDto)
         {
             // verify the required parameter 'bulkUpsertCatalogDto' is set
             if (bulkUpsertCatalogDto == null)
@@ -9488,6 +11206,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -9498,9 +11217,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = bulkUpsertCatalogDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvertiserControllerUpsertCatalog201Response>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -9512,25 +11242,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Bulk upsert marketplace catalog items Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpsertCatalogDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUpsertCatalogAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvertiserControllerUpsertCatalog201Response</returns>
+        public async System.Threading.Tasks.Task<AdvertiserControllerUpsertCatalog201Response> AdvertiserControllerUpsertCatalogAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUpsertCatalogWithHttpInfoAsync(bulkUpsertCatalogDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvertiserControllerUpsertCatalog201Response> localVarResponse = await AdvertiserControllerUpsertCatalogWithHttpInfoAsync(bulkUpsertCatalogDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Bulk upsert marketplace catalog items Upserts &#x60;items&#x60; into the marketplace catalog keyed by &#x60;externalId&#x60; (items without one are dropped) and mirrors each to Redis for serve-time rendering and keyword matching of sponsored products. Responds 400 when &#x60;items&#x60; is empty, no item has an externalId, or more than 50,000 items are sent.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpsertCatalogDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUpsertCatalogWithHttpInfoAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvertiserControllerUpsertCatalog201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvertiserControllerUpsertCatalog201Response>> AdvertiserControllerUpsertCatalogWithHttpInfoAsync(BulkUpsertCatalogDto bulkUpsertCatalogDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'bulkUpsertCatalogDto' is set
             if (bulkUpsertCatalogDto == null)
@@ -9545,6 +11276,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -9556,10 +11288,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = bulkUpsertCatalogDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvertiserControllerUpsertCatalog201Response>("/v1/advertiser/marketplace-catalog", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -9571,25 +11314,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a campaign&#39;s conversion config Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="body"></param>
-        /// <returns></returns>
-        public void AdvertiserControllerUpsertConversionConfig(string id, Object body)
+        /// <returns>AdvConversionConfig</returns>
+        public AdvConversionConfig AdvertiserControllerUpsertConversionConfig(string id, Object body)
         {
-            AdvertiserControllerUpsertConversionConfigWithHttpInfo(id, body);
+            Adviverse.Api.Client.ApiResponse<AdvConversionConfig> localVarResponse = AdvertiserControllerUpsertConversionConfigWithHttpInfo(id, body);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a campaign&#39;s conversion config Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="body"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> AdvertiserControllerUpsertConversionConfigWithHttpInfo(string id, Object body)
+        /// <returns>ApiResponse of AdvConversionConfig</returns>
+        public Adviverse.Api.Client.ApiResponse<AdvConversionConfig> AdvertiserControllerUpsertConversionConfigWithHttpInfo(string id, Object body)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -9607,6 +11351,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -9618,9 +11363,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = body;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AdvConversionConfig>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -9632,27 +11388,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a campaign&#39;s conversion config Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AdvertiserControllerUpsertConversionConfigAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdvConversionConfig</returns>
+        public async System.Threading.Tasks.Task<AdvConversionConfig> AdvertiserControllerUpsertConversionConfigAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await AdvertiserControllerUpsertConversionConfigWithHttpInfoAsync(id, body, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdvConversionConfig> localVarResponse = await AdvertiserControllerUpsertConversionConfigWithHttpInfoAsync(id, body, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a campaign&#39;s conversion config Upserts the conversion config. Body fields: &#x60;eventType&#x60; (default purchase), &#x60;payoutValue&#x60; (also stored as conversion_value), &#x60;postbackUrl&#x60;, &#x60;dedupeWindowSec&#x60; (default 0), &#x60;attributionWindowDays&#x60; (default 30), &#x60;cpaMode&#x60; flat|percent, &#x60;cpaPercent&#x60;, &#x60;minOrderValue&#x60; (fraud floor) and &#x60;viewThroughHours&#x60;. Omitted fields are reset to their defaults rather than kept. Returns the stored config; 404/403 as for GET.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> AdvertiserControllerUpsertConversionConfigWithHttpInfoAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdvConversionConfig)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdvConversionConfig>> AdvertiserControllerUpsertConversionConfigWithHttpInfoAsync(string id, Object body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -9671,6 +11428,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -9683,10 +11441,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = body;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AdvConversionConfig>("/v1/advertiser/campaigns/{id}/conversion-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

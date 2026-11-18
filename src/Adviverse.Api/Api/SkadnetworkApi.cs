@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,37 +28,43 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SkadnetworkControllerHealth();
-
-        /// <summary>
-        /// 
+        /// Check the SKAdNetwork postback endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SkadnetworkControllerHealthWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void SkadnetworkControllerPostback();
+        /// <returns>SkadnetworkControllerHealth200Response</returns>
+        SkadnetworkControllerHealth200Response SkadnetworkControllerHealth();
 
         /// <summary>
-        /// 
+        /// Check the SKAdNetwork postback endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SkadnetworkControllerPostbackWithHttpInfo();
+        /// <returns>ApiResponse of SkadnetworkControllerHealth200Response</returns>
+        ApiResponse<SkadnetworkControllerHealth200Response> SkadnetworkControllerHealthWithHttpInfo();
+        /// <summary>
+        /// Receive an Apple SKAdNetwork install postback
+        /// </summary>
+        /// <remarks>
+        /// Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>SkadnetworkControllerPostback200Response</returns>
+        SkadnetworkControllerPostback200Response SkadnetworkControllerPostback();
+
+        /// <summary>
+        /// Receive an Apple SKAdNetwork install postback
+        /// </summary>
+        /// <remarks>
+        /// Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of SkadnetworkControllerPostback200Response</returns>
+        ApiResponse<SkadnetworkControllerPostback200Response> SkadnetworkControllerPostbackWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -68,47 +75,47 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Check the SKAdNetwork postback endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SkadnetworkControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SkadnetworkControllerHealth200Response</returns>
+        System.Threading.Tasks.Task<SkadnetworkControllerHealth200Response> SkadnetworkControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Check the SKAdNetwork postback endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SkadnetworkControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SkadnetworkControllerHealth200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SkadnetworkControllerHealth200Response>> SkadnetworkControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Receive an Apple SKAdNetwork install postback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SkadnetworkControllerPostbackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SkadnetworkControllerPostback200Response</returns>
+        System.Threading.Tasks.Task<SkadnetworkControllerPostback200Response> SkadnetworkControllerPostbackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Receive an Apple SKAdNetwork install postback
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SkadnetworkControllerPostbackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SkadnetworkControllerPostback200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SkadnetworkControllerPostback200Response>> SkadnetworkControllerPostbackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -323,21 +330,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Check the SKAdNetwork postback endpoint Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SkadnetworkControllerHealth()
+        /// <returns>SkadnetworkControllerHealth200Response</returns>
+        public SkadnetworkControllerHealth200Response SkadnetworkControllerHealth()
         {
-            SkadnetworkControllerHealthWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<SkadnetworkControllerHealth200Response> localVarResponse = SkadnetworkControllerHealthWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Check the SKAdNetwork postback endpoint Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SkadnetworkControllerHealthWithHttpInfo()
+        /// <returns>ApiResponse of SkadnetworkControllerHealth200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SkadnetworkControllerHealth200Response> SkadnetworkControllerHealthWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -346,6 +354,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -357,7 +366,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SkadnetworkControllerHealth200Response>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -369,23 +378,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Check the SKAdNetwork postback endpoint Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SkadnetworkControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SkadnetworkControllerHealth200Response</returns>
+        public async System.Threading.Tasks.Task<SkadnetworkControllerHealth200Response> SkadnetworkControllerHealthAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SkadnetworkControllerHealthWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SkadnetworkControllerHealth200Response> localVarResponse = await SkadnetworkControllerHealthWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Check the SKAdNetwork postback endpoint Public liveness check for the registered postback URL.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SkadnetworkControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SkadnetworkControllerHealth200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SkadnetworkControllerHealth200Response>> SkadnetworkControllerHealthWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -395,6 +405,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -408,7 +419,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SkadnetworkControllerHealth200Response>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -420,21 +431,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive an Apple SKAdNetwork install postback Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void SkadnetworkControllerPostback()
+        /// <returns>SkadnetworkControllerPostback200Response</returns>
+        public SkadnetworkControllerPostback200Response SkadnetworkControllerPostback()
         {
-            SkadnetworkControllerPostbackWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<SkadnetworkControllerPostback200Response> localVarResponse = SkadnetworkControllerPostbackWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive an Apple SKAdNetwork install postback Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> SkadnetworkControllerPostbackWithHttpInfo()
+        /// <returns>ApiResponse of SkadnetworkControllerPostback200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SkadnetworkControllerPostback200Response> SkadnetworkControllerPostbackWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -443,6 +455,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -454,7 +467,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SkadnetworkControllerPostback200Response>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -466,23 +479,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive an Apple SKAdNetwork install postback Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SkadnetworkControllerPostbackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SkadnetworkControllerPostback200Response</returns>
+        public async System.Threading.Tasks.Task<SkadnetworkControllerPostback200Response> SkadnetworkControllerPostbackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await SkadnetworkControllerPostbackWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SkadnetworkControllerPostback200Response> localVarResponse = await SkadnetworkControllerPostbackWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive an Apple SKAdNetwork install postback Public, rate-limited endpoint Apple POSTs signed install postbacks to. Every postback is stored once per &#x60;transaction-id&#x60;; the signature is verified, the campaign resolved from &#x60;source-identifier&#x60;/&#x60;campaign-id&#x60; (and &#x60;app-id&#x60;), and won, verified postbacks are emitted as conversions. Always answers 200 so Apple does not retry; the outcome is in &#x60;status&#x60;: attributed, duplicate, invalid_signature, verified_unmatched, verified_lost, wrong_network, unsupported, bad_request or error.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> SkadnetworkControllerPostbackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SkadnetworkControllerPostback200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SkadnetworkControllerPostback200Response>> SkadnetworkControllerPostbackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -492,6 +506,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -505,7 +520,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SkadnetworkControllerPostback200Response>("/v1/skadnetwork/postback", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

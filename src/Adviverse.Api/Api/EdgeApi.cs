@@ -27,23 +27,26 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="domain"></param>
-        /// <returns></returns>
-        void EdgeControllerDomainAllowed(string domain);
-
-        /// <summary>
-        /// 
+        /// Check whether the edge may issue TLS for a domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="domain"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> EdgeControllerDomainAllowedWithHttpInfo(string domain);
+        /// <returns>string</returns>
+        string EdgeControllerDomainAllowed(string domain);
+
+        /// <summary>
+        /// Check whether the edge may issue TLS for a domain
+        /// </summary>
+        /// <remarks>
+        /// Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="domain"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> EdgeControllerDomainAllowedWithHttpInfo(string domain);
         #endregion Synchronous Operations
     }
 
@@ -54,28 +57,28 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Check whether the edge may issue TLS for a domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="domain"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task EdgeControllerDomainAllowedAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> EdgeControllerDomainAllowedAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Check whether the edge may issue TLS for a domain
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="domain"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> EdgeControllerDomainAllowedWithHttpInfoAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> EdgeControllerDomainAllowedWithHttpInfoAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -290,23 +293,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Check whether the edge may issue TLS for a domain Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="domain"></param>
-        /// <returns></returns>
-        public void EdgeControllerDomainAllowed(string domain)
+        /// <returns>string</returns>
+        public string EdgeControllerDomainAllowed(string domain)
         {
-            EdgeControllerDomainAllowedWithHttpInfo(domain);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = EdgeControllerDomainAllowedWithHttpInfo(domain);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Check whether the edge may issue TLS for a domain Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="domain"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> EdgeControllerDomainAllowedWithHttpInfo(string domain)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> EdgeControllerDomainAllowedWithHttpInfo(string domain)
         {
             // verify the required parameter 'domain' is set
             if (domain == null)
@@ -319,6 +323,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -331,7 +336,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/edge/domain-allowed", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/v1/edge/domain-allowed", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -343,25 +348,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Check whether the edge may issue TLS for a domain Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="domain"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task EdgeControllerDomainAllowedAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> EdgeControllerDomainAllowedAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await EdgeControllerDomainAllowedWithHttpInfoAsync(domain, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await EdgeControllerDomainAllowedWithHttpInfoAsync(domain, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Check whether the edge may issue TLS for a domain Public, unauthenticated endpoint called by the TLS edge&#39;s on-demand certificate check, not by users. Returns 200 with body &#x60;ok&#x60; only if &#x60;?domain&#x3D;&#x60; is a verified publisher serving domain on a live property; otherwise 403.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="domain"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> EdgeControllerDomainAllowedWithHttpInfoAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> EdgeControllerDomainAllowedWithHttpInfoAsync(string domain, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'domain' is set
             if (domain == null)
@@ -375,6 +381,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
 
@@ -389,7 +396,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/edge/domain-allowed", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/v1/edge/domain-allowed", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

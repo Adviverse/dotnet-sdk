@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,21 +28,24 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void StatsControllerGet();
-
-        /// <summary>
-        /// 
+        /// Get public network stats
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> StatsControllerGetWithHttpInfo();
+        /// <returns>StatsControllerGet200Response</returns>
+        StatsControllerGet200Response StatsControllerGet();
+
+        /// <summary>
+        /// Get public network stats
+        /// </summary>
+        /// <remarks>
+        /// Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of StatsControllerGet200Response</returns>
+        ApiResponse<StatsControllerGet200Response> StatsControllerGetWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -52,26 +56,26 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get public network stats
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task StatsControllerGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of StatsControllerGet200Response</returns>
+        System.Threading.Tasks.Task<StatsControllerGet200Response> StatsControllerGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get public network stats
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> StatsControllerGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (StatsControllerGet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<StatsControllerGet200Response>> StatsControllerGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -286,21 +290,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get public network stats Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void StatsControllerGet()
+        /// <returns>StatsControllerGet200Response</returns>
+        public StatsControllerGet200Response StatsControllerGet()
         {
-            StatsControllerGetWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<StatsControllerGet200Response> localVarResponse = StatsControllerGetWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get public network stats Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> StatsControllerGetWithHttpInfo()
+        /// <returns>ApiResponse of StatsControllerGet200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<StatsControllerGet200Response> StatsControllerGetWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -309,6 +314,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -320,7 +326,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/stats", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<StatsControllerGet200Response>("/v1/stats", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -332,23 +338,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get public network stats Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task StatsControllerGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of StatsControllerGet200Response</returns>
+        public async System.Threading.Tasks.Task<StatsControllerGet200Response> StatsControllerGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await StatsControllerGetWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<StatsControllerGet200Response> localVarResponse = await StatsControllerGetWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get public network stats Public, unauthenticated marketing figures: total impressions served across the network and total amount paid out to publishers (settled payouts). Cached in Redis for 10 minutes.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> StatsControllerGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (StatsControllerGet200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<StatsControllerGet200Response>> StatsControllerGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -358,6 +365,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -371,7 +379,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<StatsControllerGet200Response>("/v1/stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

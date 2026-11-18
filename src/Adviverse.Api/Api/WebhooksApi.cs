@@ -28,167 +28,194 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="limit"> (optional)</param>
-        /// <returns></returns>
-        void WebhooksControllerDeliveries(string id, decimal? limit = default(decimal?));
-
-        /// <summary>
-        /// 
+        /// List recent deliveries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerDeliveriesWithHttpInfo(string id, decimal? limit = default(decimal?));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void WebhooksControllerEvents();
+        /// <returns>List&lt;WebhookDelivery&gt;</returns>
+        List<WebhookDelivery> WebhooksControllerDeliveries(string id, decimal? limit = default(decimal?));
 
         /// <summary>
-        /// 
+        /// List recent deliveries
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerEventsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void WebhooksControllerList();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerListWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void WebhooksControllerPing(string id);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerPingWithHttpInfo(string id);
+        /// <param name="limit"> (optional)</param>
+        /// <returns>ApiResponse of List&lt;WebhookDelivery&gt;</returns>
+        ApiResponse<List<WebhookDelivery>> WebhooksControllerDeliveriesWithHttpInfo(string id, decimal? limit = default(decimal?));
         /// <summary>
-        /// 
+        /// List webhook event types
         /// </summary>
+        /// <remarks>
+        /// Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>WebhooksControllerEvents200Response</returns>
+        WebhooksControllerEvents200Response WebhooksControllerEvents();
+
+        /// <summary>
+        /// List webhook event types
+        /// </summary>
+        /// <remarks>
+        /// Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of WebhooksControllerEvents200Response</returns>
+        ApiResponse<WebhooksControllerEvents200Response> WebhooksControllerEventsWithHttpInfo();
+        /// <summary>
+        /// List webhook endpoints
+        /// </summary>
+        /// <remarks>
+        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;WebhookEndpoint&gt;</returns>
+        List<WebhookEndpoint> WebhooksControllerList();
+
+        /// <summary>
+        /// List webhook endpoints
+        /// </summary>
+        /// <remarks>
+        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;WebhookEndpoint&gt;</returns>
+        ApiResponse<List<WebhookEndpoint>> WebhooksControllerListWithHttpInfo();
+        /// <summary>
+        /// Send a test ping
+        /// </summary>
+        /// <remarks>
+        /// Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>WebhookDeliveryResult</returns>
+        WebhookDeliveryResult WebhooksControllerPing(string id);
+
+        /// <summary>
+        /// Send a test ping
+        /// </summary>
+        /// <remarks>
+        /// Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of WebhookDeliveryResult</returns>
+        ApiResponse<WebhookDeliveryResult> WebhooksControllerPingWithHttpInfo(string id);
+        /// <summary>
+        /// Redeliver a past webhook
+        /// </summary>
+        /// <remarks>
+        /// Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
-        /// <returns></returns>
-        void WebhooksControllerRedeliver(string deliveryId);
+        /// <returns>WebhookDeliveryResult</returns>
+        WebhookDeliveryResult WebhooksControllerRedeliver(string deliveryId);
 
         /// <summary>
-        /// 
+        /// Redeliver a past webhook
         /// </summary>
         /// <remarks>
-        /// 
+        /// Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerRedeliverWithHttpInfo(string deliveryId);
+        /// <returns>ApiResponse of WebhookDeliveryResult</returns>
+        ApiResponse<WebhookDeliveryResult> WebhooksControllerRedeliverWithHttpInfo(string deliveryId);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void WebhooksControllerRotateSecret(string id);
-
-        /// <summary>
-        /// 
+        /// Rotate a webhook signing secret
         /// </summary>
         /// <remarks>
-        /// 
+        /// Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerRotateSecretWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subscribeWebhookDto"></param>
-        /// <returns></returns>
-        void WebhooksControllerSubscribe(SubscribeWebhookDto subscribeWebhookDto);
+        /// <returns>WebhookEndpoint</returns>
+        WebhookEndpoint WebhooksControllerRotateSecret(string id);
 
         /// <summary>
-        /// 
+        /// Rotate a webhook signing secret
         /// </summary>
         /// <remarks>
-        /// 
+        /// Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of WebhookEndpoint</returns>
+        ApiResponse<WebhookEndpoint> WebhooksControllerRotateSecretWithHttpInfo(string id);
+        /// <summary>
+        /// Create a webhook endpoint
+        /// </summary>
+        /// <remarks>
+        /// Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscribeWebhookDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerSubscribeWithHttpInfo(SubscribeWebhookDto subscribeWebhookDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void WebhooksControllerUnsubscribe(string id);
+        /// <returns>WebhookEndpoint</returns>
+        WebhookEndpoint WebhooksControllerSubscribe(SubscribeWebhookDto subscribeWebhookDto);
 
         /// <summary>
-        /// 
+        /// Create a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="subscribeWebhookDto"></param>
+        /// <returns>ApiResponse of WebhookEndpoint</returns>
+        ApiResponse<WebhookEndpoint> WebhooksControllerSubscribeWithHttpInfo(SubscribeWebhookDto subscribeWebhookDto);
+        /// <summary>
+        /// Delete a webhook endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerUnsubscribeWithHttpInfo(string id);
+        /// <returns>WebhooksControllerUnsubscribe200Response</returns>
+        WebhooksControllerUnsubscribe200Response WebhooksControllerUnsubscribe(string id);
+
         /// <summary>
-        /// 
+        /// Delete a webhook endpoint
         /// </summary>
+        /// <remarks>
+        /// Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of WebhooksControllerUnsubscribe200Response</returns>
+        ApiResponse<WebhooksControllerUnsubscribe200Response> WebhooksControllerUnsubscribeWithHttpInfo(string id);
+        /// <summary>
+        /// Update a webhook endpoint
+        /// </summary>
+        /// <remarks>
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
-        /// <returns></returns>
-        void WebhooksControllerUpdate(string id, UpdateWebhookDto updateWebhookDto);
+        /// <returns>WebhookEndpoint</returns>
+        WebhookEndpoint WebhooksControllerUpdate(string id, UpdateWebhookDto updateWebhookDto);
 
         /// <summary>
-        /// 
+        /// Update a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> WebhooksControllerUpdateWithHttpInfo(string id, UpdateWebhookDto updateWebhookDto);
+        /// <returns>ApiResponse of WebhookEndpoint</returns>
+        ApiResponse<WebhookEndpoint> WebhooksControllerUpdateWithHttpInfo(string id, UpdateWebhookDto updateWebhookDto);
         #endregion Synchronous Operations
     }
 
@@ -199,212 +226,212 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List recent deliveries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerDeliveriesAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;WebhookDelivery&gt;</returns>
+        System.Threading.Tasks.Task<List<WebhookDelivery>> WebhooksControllerDeliveriesAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List recent deliveries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerDeliveriesWithHttpInfoAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;WebhookDelivery&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<WebhookDelivery>>> WebhooksControllerDeliveriesWithHttpInfoAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List webhook event types
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerEventsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of WebhooksControllerEvents200Response</returns>
+        System.Threading.Tasks.Task<WebhooksControllerEvents200Response> WebhooksControllerEventsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List webhook event types
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerEventsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WebhooksControllerEvents200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhooksControllerEvents200Response>> WebhooksControllerEventsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List webhook endpoints
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;WebhookEndpoint&gt;</returns>
+        System.Threading.Tasks.Task<List<WebhookEndpoint>> WebhooksControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List webhook endpoints
         /// </summary>
         /// <remarks>
-        /// 
+        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;WebhookEndpoint&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<WebhookEndpoint>>> WebhooksControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Send a test ping
         /// </summary>
         /// <remarks>
-        /// 
+        /// Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerPingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of WebhookDeliveryResult</returns>
+        System.Threading.Tasks.Task<WebhookDeliveryResult> WebhooksControllerPingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Send a test ping
         /// </summary>
         /// <remarks>
-        /// 
+        /// Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerPingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WebhookDeliveryResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookDeliveryResult>> WebhooksControllerPingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Redeliver a past webhook
         /// </summary>
         /// <remarks>
-        /// 
+        /// Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerRedeliverAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of WebhookDeliveryResult</returns>
+        System.Threading.Tasks.Task<WebhookDeliveryResult> WebhooksControllerRedeliverAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Redeliver a past webhook
         /// </summary>
         /// <remarks>
-        /// 
+        /// Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerRedeliverWithHttpInfoAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WebhookDeliveryResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookDeliveryResult>> WebhooksControllerRedeliverWithHttpInfoAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Rotate a webhook signing secret
         /// </summary>
         /// <remarks>
-        /// 
+        /// Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerRotateSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of WebhookEndpoint</returns>
+        System.Threading.Tasks.Task<WebhookEndpoint> WebhooksControllerRotateSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Rotate a webhook signing secret
         /// </summary>
         /// <remarks>
-        /// 
+        /// Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerRotateSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WebhookEndpoint)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookEndpoint>> WebhooksControllerRotateSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscribeWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerSubscribeAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of WebhookEndpoint</returns>
+        System.Threading.Tasks.Task<WebhookEndpoint> WebhooksControllerSubscribeAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscribeWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerSubscribeWithHttpInfoAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WebhookEndpoint)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookEndpoint>> WebhooksControllerSubscribeWithHttpInfoAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerUnsubscribeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of WebhooksControllerUnsubscribe200Response</returns>
+        System.Threading.Tasks.Task<WebhooksControllerUnsubscribe200Response> WebhooksControllerUnsubscribeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerUnsubscribeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WebhooksControllerUnsubscribe200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhooksControllerUnsubscribe200Response>> WebhooksControllerUnsubscribeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task WebhooksControllerUpdateAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of WebhookEndpoint</returns>
+        System.Threading.Tasks.Task<WebhookEndpoint> WebhooksControllerUpdateAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// 
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> WebhooksControllerUpdateWithHttpInfoAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WebhookEndpoint)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookEndpoint>> WebhooksControllerUpdateWithHttpInfoAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -619,25 +646,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent deliveries Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"> (optional)</param>
-        /// <returns></returns>
-        public void WebhooksControllerDeliveries(string id, decimal? limit = default(decimal?))
+        /// <returns>List&lt;WebhookDelivery&gt;</returns>
+        public List<WebhookDelivery> WebhooksControllerDeliveries(string id, decimal? limit = default(decimal?))
         {
-            WebhooksControllerDeliveriesWithHttpInfo(id, limit);
+            Adviverse.Api.Client.ApiResponse<List<WebhookDelivery>> localVarResponse = WebhooksControllerDeliveriesWithHttpInfo(id, limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent deliveries Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerDeliveriesWithHttpInfo(string id, decimal? limit = default(decimal?))
+        /// <returns>ApiResponse of List&lt;WebhookDelivery&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<WebhookDelivery>> WebhooksControllerDeliveriesWithHttpInfo(string id, decimal? limit = default(decimal?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -650,6 +678,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -664,9 +693,20 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/webhooks/{id}/deliveries", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<WebhookDelivery>>("/v1/webhooks/{id}/deliveries", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -678,27 +718,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List recent deliveries Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerDeliveriesAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;WebhookDelivery&gt;</returns>
+        public async System.Threading.Tasks.Task<List<WebhookDelivery>> WebhooksControllerDeliveriesAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerDeliveriesWithHttpInfoAsync(id, limit, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<WebhookDelivery>> localVarResponse = await WebhooksControllerDeliveriesWithHttpInfoAsync(id, limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List recent deliveries Lists delivery attempts for one endpoint, newest first. &#x60;limit&#x60; defaults to 50 (max 200). Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerDeliveriesWithHttpInfoAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;WebhookDelivery&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<WebhookDelivery>>> WebhooksControllerDeliveriesWithHttpInfoAsync(string id, decimal? limit = default(decimal?), System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -712,6 +753,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -727,10 +769,21 @@ namespace Adviverse.Api.Api
                 localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/webhooks/{id}/deliveries", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<WebhookDelivery>>("/v1/webhooks/{id}/deliveries", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -742,21 +795,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List webhook event types Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void WebhooksControllerEvents()
+        /// <returns>WebhooksControllerEvents200Response</returns>
+        public WebhooksControllerEvents200Response WebhooksControllerEvents()
         {
-            WebhooksControllerEventsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<WebhooksControllerEvents200Response> localVarResponse = WebhooksControllerEventsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List webhook event types Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerEventsWithHttpInfo()
+        /// <returns>ApiResponse of WebhooksControllerEvents200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhooksControllerEvents200Response> WebhooksControllerEventsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -765,6 +819,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -774,9 +829,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/webhooks/events", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<WebhooksControllerEvents200Response>("/v1/webhooks/events", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -788,23 +854,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List webhook event types Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerEventsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of WebhooksControllerEvents200Response</returns>
+        public async System.Threading.Tasks.Task<WebhooksControllerEvents200Response> WebhooksControllerEventsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerEventsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<WebhooksControllerEvents200Response> localVarResponse = await WebhooksControllerEventsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List webhook event types Returns the event type names a webhook endpoint can subscribe to.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerEventsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WebhooksControllerEvents200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhooksControllerEvents200Response>> WebhooksControllerEventsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -814,6 +881,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -824,10 +892,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/webhooks/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<WebhooksControllerEvents200Response>("/v1/webhooks/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -839,21 +918,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void WebhooksControllerList()
+        /// <returns>List&lt;WebhookEndpoint&gt;</returns>
+        public List<WebhookEndpoint> WebhooksControllerList()
         {
-            WebhooksControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<WebhookEndpoint>> localVarResponse = WebhooksControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;WebhookEndpoint&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<WebhookEndpoint>> WebhooksControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -862,6 +942,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -871,9 +952,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/webhooks", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<WebhookEndpoint>>("/v1/webhooks", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -885,23 +977,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;WebhookEndpoint&gt;</returns>
+        public async System.Threading.Tasks.Task<List<WebhookEndpoint>> WebhooksControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<WebhookEndpoint>> localVarResponse = await WebhooksControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;WebhookEndpoint&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<WebhookEndpoint>>> WebhooksControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -911,6 +1004,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -921,10 +1015,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/webhooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<WebhookEndpoint>>("/v1/webhooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -936,23 +1041,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Send a test ping Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void WebhooksControllerPing(string id)
+        /// <returns>WebhookDeliveryResult</returns>
+        public WebhookDeliveryResult WebhooksControllerPing(string id)
         {
-            WebhooksControllerPingWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult> localVarResponse = WebhooksControllerPingWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Send a test ping Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerPingWithHttpInfo(string id)
+        /// <returns>ApiResponse of WebhookDeliveryResult</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult> WebhooksControllerPingWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -965,6 +1071,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -975,9 +1082,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/webhooks/{id}/ping", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<WebhookDeliveryResult>("/v1/webhooks/{id}/ping", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -989,25 +1107,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Send a test ping Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerPingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of WebhookDeliveryResult</returns>
+        public async System.Threading.Tasks.Task<WebhookDeliveryResult> WebhooksControllerPingAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerPingWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult> localVarResponse = await WebhooksControllerPingWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Send a test ping Synchronously delivers a signed &#x60;ping&#x60; event to the endpoint and reports the result. The attempt is logged as a delivery and retried later if it failed. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerPingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WebhookDeliveryResult)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult>> WebhooksControllerPingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1021,6 +1140,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1032,10 +1152,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/webhooks/{id}/ping", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<WebhookDeliveryResult>("/v1/webhooks/{id}/ping", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1047,23 +1178,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Redeliver a past webhook Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
-        /// <returns></returns>
-        public void WebhooksControllerRedeliver(string deliveryId)
+        /// <returns>WebhookDeliveryResult</returns>
+        public WebhookDeliveryResult WebhooksControllerRedeliver(string deliveryId)
         {
-            WebhooksControllerRedeliverWithHttpInfo(deliveryId);
+            Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult> localVarResponse = WebhooksControllerRedeliverWithHttpInfo(deliveryId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Redeliver a past webhook Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerRedeliverWithHttpInfo(string deliveryId)
+        /// <returns>ApiResponse of WebhookDeliveryResult</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult> WebhooksControllerRedeliverWithHttpInfo(string deliveryId)
         {
             // verify the required parameter 'deliveryId' is set
             if (deliveryId == null)
@@ -1076,6 +1208,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1086,9 +1219,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("deliveryId", Adviverse.Api.Client.ClientUtils.ParameterToString(deliveryId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/webhooks/deliveries/{deliveryId}/redeliver", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<WebhookDeliveryResult>("/v1/webhooks/deliveries/{deliveryId}/redeliver", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1100,25 +1244,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Redeliver a past webhook Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerRedeliverAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of WebhookDeliveryResult</returns>
+        public async System.Threading.Tasks.Task<WebhookDeliveryResult> WebhooksControllerRedeliverAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerRedeliverWithHttpInfoAsync(deliveryId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult> localVarResponse = await WebhooksControllerRedeliverWithHttpInfoAsync(deliveryId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Redeliver a past webhook Re-sends the exact stored payload of a past delivery as a new attempt, with a signature computed from the endpoint&#39;s current secret. Returns 400 if the delivery does not belong to this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deliveryId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerRedeliverWithHttpInfoAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WebhookDeliveryResult)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhookDeliveryResult>> WebhooksControllerRedeliverWithHttpInfoAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'deliveryId' is set
             if (deliveryId == null)
@@ -1132,6 +1277,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1143,10 +1289,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("deliveryId", Adviverse.Api.Client.ClientUtils.ParameterToString(deliveryId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/webhooks/deliveries/{deliveryId}/redeliver", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<WebhookDeliveryResult>("/v1/webhooks/deliveries/{deliveryId}/redeliver", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1158,23 +1315,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rotate a webhook signing secret Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void WebhooksControllerRotateSecret(string id)
+        /// <returns>WebhookEndpoint</returns>
+        public WebhookEndpoint WebhooksControllerRotateSecret(string id)
         {
-            WebhooksControllerRotateSecretWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<WebhookEndpoint> localVarResponse = WebhooksControllerRotateSecretWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rotate a webhook signing secret Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerRotateSecretWithHttpInfo(string id)
+        /// <returns>ApiResponse of WebhookEndpoint</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhookEndpoint> WebhooksControllerRotateSecretWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1187,6 +1345,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1197,9 +1356,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/webhooks/{id}/rotate-secret", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<WebhookEndpoint>("/v1/webhooks/{id}/rotate-secret", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1211,25 +1381,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Rotate a webhook signing secret Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerRotateSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of WebhookEndpoint</returns>
+        public async System.Threading.Tasks.Task<WebhookEndpoint> WebhooksControllerRotateSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerRotateSecretWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<WebhookEndpoint> localVarResponse = await WebhooksControllerRotateSecretWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Rotate a webhook signing secret Generates a new &#x60;whsec_&#x60; signing secret. The old secret stops verifying immediately, so update the receiver right away. Returns 400 if the endpoint is not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerRotateSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WebhookEndpoint)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhookEndpoint>> WebhooksControllerRotateSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1243,6 +1414,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1254,10 +1426,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/webhooks/{id}/rotate-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<WebhookEndpoint>("/v1/webhooks/{id}/rotate-secret", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1269,23 +1452,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a webhook endpoint Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscribeWebhookDto"></param>
-        /// <returns></returns>
-        public void WebhooksControllerSubscribe(SubscribeWebhookDto subscribeWebhookDto)
+        /// <returns>WebhookEndpoint</returns>
+        public WebhookEndpoint WebhooksControllerSubscribe(SubscribeWebhookDto subscribeWebhookDto)
         {
-            WebhooksControllerSubscribeWithHttpInfo(subscribeWebhookDto);
+            Adviverse.Api.Client.ApiResponse<WebhookEndpoint> localVarResponse = WebhooksControllerSubscribeWithHttpInfo(subscribeWebhookDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a webhook endpoint Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscribeWebhookDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerSubscribeWithHttpInfo(SubscribeWebhookDto subscribeWebhookDto)
+        /// <returns>ApiResponse of WebhookEndpoint</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhookEndpoint> WebhooksControllerSubscribeWithHttpInfo(SubscribeWebhookDto subscribeWebhookDto)
         {
             // verify the required parameter 'subscribeWebhookDto' is set
             if (subscribeWebhookDto == null)
@@ -1299,6 +1483,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1309,9 +1494,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = subscribeWebhookDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/webhooks", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<WebhookEndpoint>("/v1/webhooks", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1323,25 +1519,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a webhook endpoint Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscribeWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerSubscribeAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of WebhookEndpoint</returns>
+        public async System.Threading.Tasks.Task<WebhookEndpoint> WebhooksControllerSubscribeAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerSubscribeWithHttpInfoAsync(subscribeWebhookDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<WebhookEndpoint> localVarResponse = await WebhooksControllerSubscribeWithHttpInfoAsync(subscribeWebhookDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a webhook endpoint Registers &#x60;url&#x60; to receive the listed &#x60;events&#x60; (non-empty array). The URL is checked by the SSRF guard (localhost, private and metadata addresses are rejected with 400). A &#x60;whsec_&#x60; signing secret is generated and returned. Deliveries are JSON &#x60;{ event, data, ts }&#x60; POSTs signed with HMAC-SHA256 of the body in &#x60;X-Adviverse-Signature&#x60;; failures are retried with backoff.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscribeWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerSubscribeWithHttpInfoAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WebhookEndpoint)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhookEndpoint>> WebhooksControllerSubscribeWithHttpInfoAsync(SubscribeWebhookDto subscribeWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'subscribeWebhookDto' is set
             if (subscribeWebhookDto == null)
@@ -1356,6 +1553,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1367,10 +1565,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = subscribeWebhookDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/webhooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<WebhookEndpoint>("/v1/webhooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1382,23 +1591,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a webhook endpoint Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void WebhooksControllerUnsubscribe(string id)
+        /// <returns>WebhooksControllerUnsubscribe200Response</returns>
+        public WebhooksControllerUnsubscribe200Response WebhooksControllerUnsubscribe(string id)
         {
-            WebhooksControllerUnsubscribeWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<WebhooksControllerUnsubscribe200Response> localVarResponse = WebhooksControllerUnsubscribeWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a webhook endpoint Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerUnsubscribeWithHttpInfo(string id)
+        /// <returns>ApiResponse of WebhooksControllerUnsubscribe200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhooksControllerUnsubscribe200Response> WebhooksControllerUnsubscribeWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1411,6 +1621,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1421,9 +1632,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<WebhooksControllerUnsubscribe200Response>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1435,25 +1657,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a webhook endpoint Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerUnsubscribeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of WebhooksControllerUnsubscribe200Response</returns>
+        public async System.Threading.Tasks.Task<WebhooksControllerUnsubscribe200Response> WebhooksControllerUnsubscribeAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerUnsubscribeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<WebhooksControllerUnsubscribe200Response> localVarResponse = await WebhooksControllerUnsubscribeWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a webhook endpoint Deletes the subscription. Unknown or foreign ids are a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerUnsubscribeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WebhooksControllerUnsubscribe200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhooksControllerUnsubscribe200Response>> WebhooksControllerUnsubscribeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1467,6 +1690,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1478,10 +1702,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<WebhooksControllerUnsubscribe200Response>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1493,25 +1728,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
-        /// <returns></returns>
-        public void WebhooksControllerUpdate(string id, UpdateWebhookDto updateWebhookDto)
+        /// <returns>WebhookEndpoint</returns>
+        public WebhookEndpoint WebhooksControllerUpdate(string id, UpdateWebhookDto updateWebhookDto)
         {
-            WebhooksControllerUpdateWithHttpInfo(id, updateWebhookDto);
+            Adviverse.Api.Client.ApiResponse<WebhookEndpoint> localVarResponse = WebhooksControllerUpdateWithHttpInfo(id, updateWebhookDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> WebhooksControllerUpdateWithHttpInfo(string id, UpdateWebhookDto updateWebhookDto)
+        /// <returns>ApiResponse of WebhookEndpoint</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhookEndpoint> WebhooksControllerUpdateWithHttpInfo(string id, UpdateWebhookDto updateWebhookDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1529,6 +1765,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1540,9 +1777,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateWebhookDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<WebhookEndpoint>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1554,27 +1802,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task WebhooksControllerUpdateAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of WebhookEndpoint</returns>
+        public async System.Threading.Tasks.Task<WebhookEndpoint> WebhooksControllerUpdateAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await WebhooksControllerUpdateWithHttpInfoAsync(id, updateWebhookDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<WebhookEndpoint> localVarResponse = await WebhooksControllerUpdateWithHttpInfoAsync(id, updateWebhookDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateWebhookDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> WebhooksControllerUpdateWithHttpInfoAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WebhookEndpoint)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhookEndpoint>> WebhooksControllerUpdateWithHttpInfoAsync(string id, UpdateWebhookDto updateWebhookDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1593,6 +1842,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1605,10 +1855,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateWebhookDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<WebhookEndpoint>("/v1/webhooks/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

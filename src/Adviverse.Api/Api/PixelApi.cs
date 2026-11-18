@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,317 +28,371 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="days"></param>
-        /// <param name="pixelId"></param>
-        /// <returns></returns>
-        void PixelControllerAttribution(string days, string pixelId);
-
-        /// <summary>
-        /// 
+        /// Closed-loop attribution by traffic source
         /// </summary>
         /// <remarks>
-        /// 
+        /// Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerAttributionWithHttpInfo(string days, string pixelId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerCliLinkCode();
+        /// <returns>PixelControllerAttribution200Response</returns>
+        PixelControllerAttribution200Response PixelControllerAttribution(string days, string pixelId);
 
         /// <summary>
-        /// 
+        /// Closed-loop attribution by traffic source
         /// </summary>
         /// <remarks>
-        /// 
+        /// Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerCliLinkCodeWithHttpInfo();
+        /// <param name="days"></param>
+        /// <param name="pixelId"></param>
+        /// <returns>ApiResponse of PixelControllerAttribution200Response</returns>
+        ApiResponse<PixelControllerAttribution200Response> PixelControllerAttributionWithHttpInfo(string days, string pixelId);
         /// <summary>
-        /// 
+        /// Generate a one-time CLI link code
         /// </summary>
+        /// <remarks>
+        /// Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerCliLinkExchange();
+        /// <returns>PixelControllerCliLinkCode201Response</returns>
+        PixelControllerCliLinkCode201Response PixelControllerCliLinkCode();
 
         /// <summary>
-        /// 
+        /// Generate a one-time CLI link code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerCliLinkExchangeWithHttpInfo();
+        /// <returns>ApiResponse of PixelControllerCliLinkCode201Response</returns>
+        ApiResponse<PixelControllerCliLinkCode201Response> PixelControllerCliLinkCodeWithHttpInfo();
         /// <summary>
-        /// 
+        /// Exchange a CLI link code for an email hash
         /// </summary>
+        /// <remarks>
+        /// Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerCreatePixel();
+        /// <returns>PixelControllerCliLinkExchange201Response</returns>
+        PixelControllerCliLinkExchange201Response PixelControllerCliLinkExchange();
 
         /// <summary>
-        /// 
+        /// Exchange a CLI link code for an email hash
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerCreatePixelWithHttpInfo();
+        /// <returns>ApiResponse of PixelControllerCliLinkExchange201Response</returns>
+        ApiResponse<PixelControllerCliLinkExchange201Response> PixelControllerCliLinkExchangeWithHttpInfo();
         /// <summary>
-        /// 
+        /// Create a pixel
         /// </summary>
+        /// <remarks>
+        /// Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AudiencePixel</returns>
+        AudiencePixel PixelControllerCreatePixel();
+
+        /// <summary>
+        /// Create a pixel
+        /// </summary>
+        /// <remarks>
+        /// Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AudiencePixel</returns>
+        ApiResponse<AudiencePixel> PixelControllerCreatePixelWithHttpInfo();
+        /// <summary>
+        /// Delete a pixel
+        /// </summary>
+        /// <remarks>
+        /// Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        void PixelControllerDeletePixel(string id);
+        /// <returns>PixelControllerDeletePixel200Response</returns>
+        PixelControllerDeletePixel200Response PixelControllerDeletePixel(string id);
 
         /// <summary>
-        /// 
+        /// Delete a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerDeletePixelWithHttpInfo(string id);
+        /// <returns>ApiResponse of PixelControllerDeletePixel200Response</returns>
+        ApiResponse<PixelControllerDeletePixel200Response> PixelControllerDeletePixelWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="days"></param>
-        /// <param name="pixelId"></param>
-        /// <returns></returns>
-        void PixelControllerEvents(string days, string pixelId);
-
-        /// <summary>
-        /// 
+        /// Per-event activity totals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerEventsWithHttpInfo(string days, string pixelId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pixelId"></param>
-        /// <returns></returns>
-        void PixelControllerGetPixel(string pixelId);
+        /// <returns>List&lt;PixelControllerEvents200ResponseInner&gt;</returns>
+        List<PixelControllerEvents200ResponseInner> PixelControllerEvents(string days, string pixelId);
 
         /// <summary>
-        /// 
+        /// Per-event activity totals
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerGetPixelWithHttpInfo(string pixelId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="days"></param>
-        /// <param name="pixelId"></param>
-        /// <returns></returns>
-        void PixelControllerInsights(string days, string pixelId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerInsightsWithHttpInfo(string days, string pixelId);
+        /// <returns>ApiResponse of List&lt;PixelControllerEvents200ResponseInner&gt;</returns>
+        ApiResponse<List<PixelControllerEvents200ResponseInner>> PixelControllerEventsWithHttpInfo(string days, string pixelId);
         /// <summary>
-        /// 
+        /// Get one pixel and its install snippet
         /// </summary>
+        /// <remarks>
+        /// Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pixelId"></param>
+        /// <returns>AudiencePixel</returns>
+        AudiencePixel PixelControllerGetPixel(string pixelId);
+
+        /// <summary>
+        /// Get one pixel and its install snippet
+        /// </summary>
+        /// <remarks>
+        /// Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pixelId"></param>
+        /// <returns>ApiResponse of AudiencePixel</returns>
+        ApiResponse<AudiencePixel> PixelControllerGetPixelWithHttpInfo(string pixelId);
+        /// <summary>
+        /// Pixel funnel, ROAS summary and daily trend
+        /// </summary>
+        /// <remarks>
+        /// Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="days"></param>
+        /// <param name="pixelId"></param>
+        /// <returns>PixelControllerInsights200Response</returns>
+        PixelControllerInsights200Response PixelControllerInsights(string days, string pixelId);
+
+        /// <summary>
+        /// Pixel funnel, ROAS summary and daily trend
+        /// </summary>
+        /// <remarks>
+        /// Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="days"></param>
+        /// <param name="pixelId"></param>
+        /// <returns>ApiResponse of PixelControllerInsights200Response</returns>
+        ApiResponse<PixelControllerInsights200Response> PixelControllerInsightsWithHttpInfo(string days, string pixelId);
+        /// <summary>
+        /// Serve the pixel JavaScript library
+        /// </summary>
+        /// <remarks>
+        /// Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void PixelControllerLibrary();
 
         /// <summary>
-        /// 
+        /// Serve the pixel JavaScript library
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> PixelControllerLibraryWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerListPixels();
-
-        /// <summary>
-        /// 
+        /// List the account&#39;s pixels
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerListPixelsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="days"></param>
-        /// <param name="pixelId"></param>
-        /// <returns></returns>
-        void PixelControllerProducts(string days, string pixelId);
+        /// <returns>List&lt;AudiencePixel&gt;</returns>
+        List<AudiencePixel> PixelControllerListPixels();
 
         /// <summary>
-        /// 
+        /// List the account&#39;s pixels
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AudiencePixel&gt;</returns>
+        ApiResponse<List<AudiencePixel>> PixelControllerListPixelsWithHttpInfo();
+        /// <summary>
+        /// Product-level analytics
+        /// </summary>
+        /// <remarks>
+        /// Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerProductsWithHttpInfo(string days, string pixelId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerSetRealtime();
+        /// <returns>List&lt;PixelControllerProducts200ResponseInner&gt;</returns>
+        List<PixelControllerProducts200ResponseInner> PixelControllerProducts(string days, string pixelId);
 
         /// <summary>
-        /// 
+        /// Product-level analytics
         /// </summary>
         /// <remarks>
-        /// 
+        /// Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerSetRealtimeWithHttpInfo();
+        /// <param name="days"></param>
+        /// <param name="pixelId"></param>
+        /// <returns>ApiResponse of List&lt;PixelControllerProducts200ResponseInner&gt;</returns>
+        ApiResponse<List<PixelControllerProducts200ResponseInner>> PixelControllerProductsWithHttpInfo(string days, string pixelId);
         /// <summary>
-        /// 
+        /// Toggle real-time audiences for a pixel
         /// </summary>
+        /// <remarks>
+        /// Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerTrack();
+        /// <returns>PixelControllerSetRealtime201Response</returns>
+        PixelControllerSetRealtime201Response PixelControllerSetRealtime();
 
         /// <summary>
-        /// 
+        /// Toggle real-time audiences for a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerTrackWithHttpInfo();
+        /// <returns>ApiResponse of PixelControllerSetRealtime201Response</returns>
+        ApiResponse<PixelControllerSetRealtime201Response> PixelControllerSetRealtimeWithHttpInfo();
         /// <summary>
-        /// 
+        /// Ingest a pixel event
         /// </summary>
+        /// <remarks>
+        /// Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerTrackCoding();
+        /// <returns>PixelControllerTrack201Response</returns>
+        PixelControllerTrack201Response PixelControllerTrack();
 
         /// <summary>
-        /// 
+        /// Ingest a pixel event
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerTrackCodingWithHttpInfo();
+        /// <returns>ApiResponse of PixelControllerTrack201Response</returns>
+        ApiResponse<PixelControllerTrack201Response> PixelControllerTrackWithHttpInfo();
         /// <summary>
-        /// 
+        /// Record terminal coding-context keywords
         /// </summary>
+        /// <remarks>
+        /// Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>PixelControllerTrackCoding201Response</returns>
+        PixelControllerTrackCoding201Response PixelControllerTrackCoding();
+
+        /// <summary>
+        /// Record terminal coding-context keywords
+        /// </summary>
+        /// <remarks>
+        /// Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of PixelControllerTrackCoding201Response</returns>
+        ApiResponse<PixelControllerTrackCoding201Response> PixelControllerTrackCodingWithHttpInfo();
+        /// <summary>
+        /// Ingest a pixel event via image beacon
+        /// </summary>
+        /// <remarks>
+        /// The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void PixelControllerTrackGet();
 
         /// <summary>
-        /// 
+        /// Ingest a pixel event via image beacon
         /// </summary>
         /// <remarks>
-        /// 
+        /// The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> PixelControllerTrackGetWithHttpInfo();
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerTrait();
-
-        /// <summary>
-        /// 
+        /// Set user traits for the visitor
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerTraitWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="user"></param>
-        /// <param name="pixelId"></param>
-        /// <returns></returns>
-        void PixelControllerTraitLookup(string user, string pixelId);
+        /// <returns>PixelControllerTrait201Response</returns>
+        PixelControllerTrait201Response PixelControllerTrait();
 
         /// <summary>
-        /// 
+        /// Set user traits for the visitor
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of PixelControllerTrait201Response</returns>
+        ApiResponse<PixelControllerTrait201Response> PixelControllerTraitWithHttpInfo();
+        /// <summary>
+        /// Look up a user&#39;s CDP traits
+        /// </summary>
+        /// <remarks>
+        /// Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="user"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerTraitLookupWithHttpInfo(string user, string pixelId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PixelControllerUpdateSettings();
+        /// <returns>PixelControllerTraitLookup200Response</returns>
+        PixelControllerTraitLookup200Response PixelControllerTraitLookup(string user, string pixelId);
 
         /// <summary>
-        /// 
+        /// Look up a user&#39;s CDP traits
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PixelControllerUpdateSettingsWithHttpInfo();
+        /// <param name="user"></param>
+        /// <param name="pixelId"></param>
+        /// <returns>ApiResponse of PixelControllerTraitLookup200Response</returns>
+        ApiResponse<PixelControllerTraitLookup200Response> PixelControllerTraitLookupWithHttpInfo(string user, string pixelId);
+        /// <summary>
+        /// Update pixel settings
+        /// </summary>
+        /// <remarks>
+        /// Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>AudiencePixel</returns>
+        AudiencePixel PixelControllerUpdateSettings();
+
+        /// <summary>
+        /// Update pixel settings
+        /// </summary>
+        /// <remarks>
+        /// Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of AudiencePixel</returns>
+        ApiResponse<AudiencePixel> PixelControllerUpdateSettingsWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -348,194 +403,194 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Closed-loop attribution by traffic source
         /// </summary>
         /// <remarks>
-        /// 
+        /// Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerAttributionAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerAttribution200Response</returns>
+        System.Threading.Tasks.Task<PixelControllerAttribution200Response> PixelControllerAttributionAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Closed-loop attribution by traffic source
         /// </summary>
         /// <remarks>
-        /// 
+        /// Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerAttributionWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerAttribution200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerAttribution200Response>> PixelControllerAttributionWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Generate a one-time CLI link code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerCliLinkCodeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerCliLinkCode201Response</returns>
+        System.Threading.Tasks.Task<PixelControllerCliLinkCode201Response> PixelControllerCliLinkCodeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Generate a one-time CLI link code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerCliLinkCodeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerCliLinkCode201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerCliLinkCode201Response>> PixelControllerCliLinkCodeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Exchange a CLI link code for an email hash
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerCliLinkExchangeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerCliLinkExchange201Response</returns>
+        System.Threading.Tasks.Task<PixelControllerCliLinkExchange201Response> PixelControllerCliLinkExchangeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Exchange a CLI link code for an email hash
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerCliLinkExchangeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerCliLinkExchange201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerCliLinkExchange201Response>> PixelControllerCliLinkExchangeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerCreatePixelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AudiencePixel</returns>
+        System.Threading.Tasks.Task<AudiencePixel> PixelControllerCreatePixelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerCreatePixelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AudiencePixel)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AudiencePixel>> PixelControllerCreatePixelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerDeletePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerDeletePixel200Response</returns>
+        System.Threading.Tasks.Task<PixelControllerDeletePixel200Response> PixelControllerDeletePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerDeletePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerDeletePixel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerDeletePixel200Response>> PixelControllerDeletePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Per-event activity totals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerEventsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;PixelControllerEvents200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<PixelControllerEvents200ResponseInner>> PixelControllerEventsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Per-event activity totals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerEventsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;PixelControllerEvents200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<PixelControllerEvents200ResponseInner>>> PixelControllerEventsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get one pixel and its install snippet
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerGetPixelAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AudiencePixel</returns>
+        System.Threading.Tasks.Task<AudiencePixel> PixelControllerGetPixelAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get one pixel and its install snippet
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerGetPixelWithHttpInfoAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AudiencePixel)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AudiencePixel>> PixelControllerGetPixelWithHttpInfoAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Pixel funnel, ROAS summary and daily trend
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerInsightsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerInsights200Response</returns>
+        System.Threading.Tasks.Task<PixelControllerInsights200Response> PixelControllerInsightsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Pixel funnel, ROAS summary and daily trend
         /// </summary>
         /// <remarks>
-        /// 
+        /// Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerInsightsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerInsights200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerInsights200Response>> PixelControllerInsightsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Serve the pixel JavaScript library
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -543,129 +598,129 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task PixelControllerLibraryAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Serve the pixel JavaScript library
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerLibraryWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List the account&#39;s pixels
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerListPixelsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AudiencePixel&gt;</returns>
+        System.Threading.Tasks.Task<List<AudiencePixel>> PixelControllerListPixelsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List the account&#39;s pixels
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerListPixelsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AudiencePixel&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AudiencePixel>>> PixelControllerListPixelsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Product-level analytics
         /// </summary>
         /// <remarks>
-        /// 
+        /// Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerProductsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;PixelControllerProducts200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<PixelControllerProducts200ResponseInner>> PixelControllerProductsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Product-level analytics
         /// </summary>
         /// <remarks>
-        /// 
+        /// Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerProductsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;PixelControllerProducts200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<PixelControllerProducts200ResponseInner>>> PixelControllerProductsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Toggle real-time audiences for a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerSetRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerSetRealtime201Response</returns>
+        System.Threading.Tasks.Task<PixelControllerSetRealtime201Response> PixelControllerSetRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Toggle real-time audiences for a pixel
         /// </summary>
         /// <remarks>
-        /// 
+        /// Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerSetRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerSetRealtime201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerSetRealtime201Response>> PixelControllerSetRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Ingest a pixel event
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerTrackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerTrack201Response</returns>
+        System.Threading.Tasks.Task<PixelControllerTrack201Response> PixelControllerTrackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Ingest a pixel event
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerTrackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerTrack201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerTrack201Response>> PixelControllerTrackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Record terminal coding-context keywords
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerTrackCodingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerTrackCoding201Response</returns>
+        System.Threading.Tasks.Task<PixelControllerTrackCoding201Response> PixelControllerTrackCodingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Record terminal coding-context keywords
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerTrackCodingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerTrackCoding201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerTrackCoding201Response>> PixelControllerTrackCodingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Ingest a pixel event via image beacon
         /// </summary>
         /// <remarks>
-        /// 
+        /// The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -673,82 +728,82 @@ namespace Adviverse.Api.Api
         System.Threading.Tasks.Task PixelControllerTrackGetAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Ingest a pixel event via image beacon
         /// </summary>
         /// <remarks>
-        /// 
+        /// The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerTrackGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set user traits for the visitor
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerTraitAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerTrait201Response</returns>
+        System.Threading.Tasks.Task<PixelControllerTrait201Response> PixelControllerTraitAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set user traits for the visitor
         /// </summary>
         /// <remarks>
-        /// 
+        /// Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerTraitWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerTrait201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerTrait201Response>> PixelControllerTraitWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Look up a user&#39;s CDP traits
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="user"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerTraitLookupAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerTraitLookup200Response</returns>
+        System.Threading.Tasks.Task<PixelControllerTraitLookup200Response> PixelControllerTraitLookupAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Look up a user&#39;s CDP traits
         /// </summary>
         /// <remarks>
-        /// 
+        /// Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="user"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerTraitLookupWithHttpInfoAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerTraitLookup200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerTraitLookup200Response>> PixelControllerTraitLookupWithHttpInfoAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update pixel settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PixelControllerUpdateSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AudiencePixel</returns>
+        System.Threading.Tasks.Task<AudiencePixel> PixelControllerUpdateSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update pixel settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PixelControllerUpdateSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AudiencePixel)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AudiencePixel>> PixelControllerUpdateSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -963,25 +1018,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Closed-loop attribution by traffic source Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns></returns>
-        public void PixelControllerAttribution(string days, string pixelId)
+        /// <returns>PixelControllerAttribution200Response</returns>
+        public PixelControllerAttribution200Response PixelControllerAttribution(string days, string pixelId)
         {
-            PixelControllerAttributionWithHttpInfo(days, pixelId);
+            Adviverse.Api.Client.ApiResponse<PixelControllerAttribution200Response> localVarResponse = PixelControllerAttributionWithHttpInfo(days, pixelId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Closed-loop attribution by traffic source Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerAttributionWithHttpInfo(string days, string pixelId)
+        /// <returns>ApiResponse of PixelControllerAttribution200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerAttribution200Response> PixelControllerAttributionWithHttpInfo(string days, string pixelId)
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -998,6 +1054,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1009,9 +1066,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/pixel/attribution", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PixelControllerAttribution200Response>("/v1/advertiser/pixel/attribution", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1023,27 +1091,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Closed-loop attribution by traffic source Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerAttributionAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerAttribution200Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerAttribution200Response> PixelControllerAttributionAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerAttributionWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerAttribution200Response> localVarResponse = await PixelControllerAttributionWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Closed-loop attribution by traffic source Breaks the funnel down by last-touch source (UTM source, else the referring host, else \&quot;direct\&quot;), medium and campaign over the last &#x60;days&#x60; (default 30, max 180): visitors, checkouts, purchases, abandoned checkouts, lost deals, revenue and lost value. Also returns account totals, lost-deal reasons and a first-touch source breakdown. Self-referrals are folded into \&quot;direct\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerAttributionWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerAttribution200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerAttribution200Response>> PixelControllerAttributionWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -1061,6 +1130,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1073,10 +1143,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/pixel/attribution", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PixelControllerAttribution200Response>("/v1/advertiser/pixel/attribution", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1088,21 +1169,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Generate a one-time CLI link code Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerCliLinkCode()
+        /// <returns>PixelControllerCliLinkCode201Response</returns>
+        public PixelControllerCliLinkCode201Response PixelControllerCliLinkCode()
         {
-            PixelControllerCliLinkCodeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkCode201Response> localVarResponse = PixelControllerCliLinkCodeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Generate a one-time CLI link code Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerCliLinkCodeWithHttpInfo()
+        /// <returns>ApiResponse of PixelControllerCliLinkCode201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkCode201Response> PixelControllerCliLinkCodeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1111,6 +1193,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1120,9 +1203,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/cli-link-code", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PixelControllerCliLinkCode201Response>("/v1/advertiser/cli-link-code", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1134,23 +1228,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Generate a one-time CLI link code Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerCliLinkCodeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerCliLinkCode201Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerCliLinkCode201Response> PixelControllerCliLinkCodeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerCliLinkCodeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkCode201Response> localVarResponse = await PixelControllerCliLinkCodeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Generate a one-time CLI link code Creates a single-use code, valid for 10 minutes, that a terminal client exchanges at /v1/track/link for the SHA-256 hash of the account email. This links CLI ad requests to the account identity without the raw email ever leaving the server. Returns 404 if the account has no email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerCliLinkCodeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerCliLinkCode201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkCode201Response>> PixelControllerCliLinkCodeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1160,6 +1255,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1170,10 +1266,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/cli-link-code", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PixelControllerCliLinkCode201Response>("/v1/advertiser/cli-link-code", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1185,21 +1292,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Exchange a CLI link code for an email hash Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerCliLinkExchange()
+        /// <returns>PixelControllerCliLinkExchange201Response</returns>
+        public PixelControllerCliLinkExchange201Response PixelControllerCliLinkExchange()
         {
-            PixelControllerCliLinkExchangeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkExchange201Response> localVarResponse = PixelControllerCliLinkExchangeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Exchange a CLI link code for an email hash Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerCliLinkExchangeWithHttpInfo()
+        /// <returns>ApiResponse of PixelControllerCliLinkExchange201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkExchange201Response> PixelControllerCliLinkExchangeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1208,6 +1316,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1219,7 +1328,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/track/link", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PixelControllerCliLinkExchange201Response>("/v1/track/link", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1231,23 +1340,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Exchange a CLI link code for an email hash Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerCliLinkExchangeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerCliLinkExchange201Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerCliLinkExchange201Response> PixelControllerCliLinkExchangeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerCliLinkExchangeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkExchange201Response> localVarResponse = await PixelControllerCliLinkExchangeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Exchange a CLI link code for an email hash Public. Trades the &#x60;code&#x60; issued by /v1/advertiser/cli-link-code for the account&#39;s email hash (&#x60;em&#x60;), which the CLI then sends on ad requests. Codes are single-use and deleted on exchange; unknown or expired codes return &#x60;{ok:false}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerCliLinkExchangeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerCliLinkExchange201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerCliLinkExchange201Response>> PixelControllerCliLinkExchangeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1257,6 +1367,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1270,7 +1381,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/track/link", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PixelControllerCliLinkExchange201Response>("/v1/track/link", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1282,21 +1393,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a pixel Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerCreatePixel()
+        /// <returns>AudiencePixel</returns>
+        public AudiencePixel PixelControllerCreatePixel()
         {
-            PixelControllerCreatePixelWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AudiencePixel> localVarResponse = PixelControllerCreatePixelWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a pixel Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerCreatePixelWithHttpInfo()
+        /// <returns>ApiResponse of AudiencePixel</returns>
+        public Adviverse.Api.Client.ApiResponse<AudiencePixel> PixelControllerCreatePixelWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1305,6 +1417,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1314,9 +1427,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AudiencePixel>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1328,23 +1452,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create a pixel Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerCreatePixelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AudiencePixel</returns>
+        public async System.Threading.Tasks.Task<AudiencePixel> PixelControllerCreatePixelAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerCreatePixelWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AudiencePixel> localVarResponse = await PixelControllerCreatePixelWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create a pixel Creates an additional pixel under the account (agencies typically run one per client). Optional body field &#x60;name&#x60; (trimmed, max 80 chars, defaults to \&quot;Default pixel\&quot;). Returns the new pixel with its install snippet.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerCreatePixelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AudiencePixel)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AudiencePixel>> PixelControllerCreatePixelWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1354,6 +1479,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1364,10 +1490,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AudiencePixel>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1379,23 +1516,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a pixel Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void PixelControllerDeletePixel(string id)
+        /// <returns>PixelControllerDeletePixel200Response</returns>
+        public PixelControllerDeletePixel200Response PixelControllerDeletePixel(string id)
         {
-            PixelControllerDeletePixelWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> localVarResponse = PixelControllerDeletePixelWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a pixel Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerDeletePixelWithHttpInfo(string id)
+        /// <returns>ApiResponse of PixelControllerDeletePixel200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> PixelControllerDeletePixelWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1408,6 +1546,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1418,9 +1557,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/advertiser/pixels/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<PixelControllerDeletePixel200Response>("/v1/advertiser/pixels/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1432,25 +1582,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a pixel Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerDeletePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerDeletePixel200Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerDeletePixel200Response> PixelControllerDeletePixelAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerDeletePixelWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> localVarResponse = await PixelControllerDeletePixelWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a pixel Deletes the pixel &#x60;id&#x60; if it belongs to the account. An account always keeps at least one pixel, so deleting the last one fails with 400. Deleting an id the account does not own is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerDeletePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerDeletePixel200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response>> PixelControllerDeletePixelWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1464,6 +1615,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1475,10 +1627,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/advertiser/pixels/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<PixelControllerDeletePixel200Response>("/v1/advertiser/pixels/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1490,25 +1653,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Per-event activity totals Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns></returns>
-        public void PixelControllerEvents(string days, string pixelId)
+        /// <returns>List&lt;PixelControllerEvents200ResponseInner&gt;</returns>
+        public List<PixelControllerEvents200ResponseInner> PixelControllerEvents(string days, string pixelId)
         {
-            PixelControllerEventsWithHttpInfo(days, pixelId);
+            Adviverse.Api.Client.ApiResponse<List<PixelControllerEvents200ResponseInner>> localVarResponse = PixelControllerEventsWithHttpInfo(days, pixelId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Per-event activity totals Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerEventsWithHttpInfo(string days, string pixelId)
+        /// <returns>ApiResponse of List&lt;PixelControllerEvents200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<PixelControllerEvents200ResponseInner>> PixelControllerEventsWithHttpInfo(string days, string pixelId)
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -1525,6 +1689,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1536,9 +1701,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/pixel/events", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<PixelControllerEvents200ResponseInner>>("/v1/advertiser/pixel/events", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1550,27 +1726,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Per-event activity totals Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerEventsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;PixelControllerEvents200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<PixelControllerEvents200ResponseInner>> PixelControllerEventsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerEventsWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<PixelControllerEvents200ResponseInner>> localVarResponse = await PixelControllerEventsWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Per-event activity totals Aggregates pixel events from ClickHouse over the last &#x60;days&#x60; (default 30, clamped to 1-180), optionally filtered to &#x60;pixelId&#x60;. Returns one row per event name with event count, unique users and summed value, ordered by count.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerEventsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;PixelControllerEvents200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<PixelControllerEvents200ResponseInner>>> PixelControllerEventsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -1588,6 +1765,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1600,10 +1778,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/pixel/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<PixelControllerEvents200ResponseInner>>("/v1/advertiser/pixel/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1615,23 +1804,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get one pixel and its install snippet Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pixelId"></param>
-        /// <returns></returns>
-        public void PixelControllerGetPixel(string pixelId)
+        /// <returns>AudiencePixel</returns>
+        public AudiencePixel PixelControllerGetPixel(string pixelId)
         {
-            PixelControllerGetPixelWithHttpInfo(pixelId);
+            Adviverse.Api.Client.ApiResponse<AudiencePixel> localVarResponse = PixelControllerGetPixelWithHttpInfo(pixelId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get one pixel and its install snippet Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerGetPixelWithHttpInfo(string pixelId)
+        /// <returns>ApiResponse of AudiencePixel</returns>
+        public Adviverse.Api.Client.ApiResponse<AudiencePixel> PixelControllerGetPixelWithHttpInfo(string pixelId)
         {
             // verify the required parameter 'pixelId' is set
             if (pixelId == null)
@@ -1644,6 +1834,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1654,9 +1845,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/pixel", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AudiencePixel>("/v1/advertiser/pixel", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1668,25 +1870,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get one pixel and its install snippet Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerGetPixelAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AudiencePixel</returns>
+        public async System.Threading.Tasks.Task<AudiencePixel> PixelControllerGetPixelAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerGetPixelWithHttpInfoAsync(pixelId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AudiencePixel> localVarResponse = await PixelControllerGetPixelWithHttpInfoAsync(pixelId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get one pixel and its install snippet Returns the pixel named by the &#x60;pixelId&#x60; query param, or the account&#39;s primary pixel when omitted (created if the account has none). The response includes the pixel.js library URL, the base snippet to paste sitewide and the list of standard event names. Returns 404 when &#x60;pixelId&#x60; is not owned by the account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerGetPixelWithHttpInfoAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AudiencePixel)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AudiencePixel>> PixelControllerGetPixelWithHttpInfoAsync(string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'pixelId' is set
             if (pixelId == null)
@@ -1700,6 +1903,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1711,10 +1915,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/pixel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AudiencePixel>("/v1/advertiser/pixel", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1726,25 +1941,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pixel funnel, ROAS summary and daily trend Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns></returns>
-        public void PixelControllerInsights(string days, string pixelId)
+        /// <returns>PixelControllerInsights200Response</returns>
+        public PixelControllerInsights200Response PixelControllerInsights(string days, string pixelId)
         {
-            PixelControllerInsightsWithHttpInfo(days, pixelId);
+            Adviverse.Api.Client.ApiResponse<PixelControllerInsights200Response> localVarResponse = PixelControllerInsightsWithHttpInfo(days, pixelId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pixel funnel, ROAS summary and daily trend Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerInsightsWithHttpInfo(string days, string pixelId)
+        /// <returns>ApiResponse of PixelControllerInsights200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerInsights200Response> PixelControllerInsightsWithHttpInfo(string days, string pixelId)
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -1761,6 +1977,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1772,9 +1989,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/pixel/insights", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PixelControllerInsights200Response>("/v1/advertiser/pixel/insights", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1786,27 +2014,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pixel funnel, ROAS summary and daily trend Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerInsightsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerInsights200Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerInsights200Response> PixelControllerInsightsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerInsightsWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerInsights200Response> localVarResponse = await PixelControllerInsightsWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pixel funnel, ROAS summary and daily trend Builds the Pixel dashboard view over the last &#x60;days&#x60; (default 30, max 180), optionally scoped to &#x60;pixelId&#x60;: unique users per funnel stage, a summary of events, attributed conversions, revenue, ad spend and ROAS, and a daily events/conversions/revenue series. ROAS is 0 when there is no spend.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerInsightsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerInsights200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerInsights200Response>> PixelControllerInsightsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -1824,6 +2053,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1836,10 +2066,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/pixel/insights", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PixelControllerInsights200Response>("/v1/advertiser/pixel/insights", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1851,7 +2092,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Serve the pixel JavaScript library Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -1861,7 +2102,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Serve the pixel JavaScript library Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -1897,7 +2138,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Serve the pixel JavaScript library Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1908,7 +2149,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Serve the pixel JavaScript library Returns the pixel.js library that the base snippet loads asynchronously; it drains the &#x60;adq(...)&#x60; command queue and posts events to /v1/track/event. Served as JavaScript with a one-hour public cache.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1948,21 +2189,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the account&#39;s pixels Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerListPixels()
+        /// <returns>List&lt;AudiencePixel&gt;</returns>
+        public List<AudiencePixel> PixelControllerListPixels()
         {
-            PixelControllerListPixelsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AudiencePixel>> localVarResponse = PixelControllerListPixelsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the account&#39;s pixels Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerListPixelsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AudiencePixel&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AudiencePixel>> PixelControllerListPixelsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1971,6 +2213,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1980,9 +2223,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AudiencePixel>>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1994,23 +2248,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the account&#39;s pixels Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerListPixelsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AudiencePixel&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AudiencePixel>> PixelControllerListPixelsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerListPixelsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AudiencePixel>> localVarResponse = await PixelControllerListPixelsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the account&#39;s pixels Returns every pixel owned by the account, oldest first so the primary pixel stays on top. If the account has no pixel yet, a default one is created and returned. Team members scoped to specific pixels only see the pixels assigned to them.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerListPixelsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AudiencePixel&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AudiencePixel>>> PixelControllerListPixelsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2020,6 +2275,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2030,10 +2286,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AudiencePixel>>("/v1/advertiser/pixels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2045,25 +2312,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Product-level analytics Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns></returns>
-        public void PixelControllerProducts(string days, string pixelId)
+        /// <returns>List&lt;PixelControllerProducts200ResponseInner&gt;</returns>
+        public List<PixelControllerProducts200ResponseInner> PixelControllerProducts(string days, string pixelId)
         {
-            PixelControllerProductsWithHttpInfo(days, pixelId);
+            Adviverse.Api.Client.ApiResponse<List<PixelControllerProducts200ResponseInner>> localVarResponse = PixelControllerProductsWithHttpInfo(days, pixelId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Product-level analytics Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerProductsWithHttpInfo(string days, string pixelId)
+        /// <returns>ApiResponse of List&lt;PixelControllerProducts200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<PixelControllerProducts200ResponseInner>> PixelControllerProductsWithHttpInfo(string days, string pixelId)
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -2080,6 +2348,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2091,9 +2360,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/pixel/products", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<PixelControllerProducts200ResponseInner>>("/v1/advertiser/pixel/products", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2105,27 +2385,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Product-level analytics Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerProductsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;PixelControllerProducts200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<PixelControllerProducts200ResponseInner>> PixelControllerProductsAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerProductsWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<PixelControllerProducts200ResponseInner>> localVarResponse = await PixelControllerProductsWithHttpInfoAsync(days, pixelId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Product-level analytics Explodes the &#x60;content_ids&#x60; carried on pixel events and returns, per product id, unique users who viewed, added to cart, purchased or were lost, plus purchase revenue and lost value. Window is the last &#x60;days&#x60; (default 30, max 180), optional &#x60;pixelId&#x60; filter, limited to 200 products.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="days"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerProductsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;PixelControllerProducts200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<PixelControllerProducts200ResponseInner>>> PixelControllerProductsWithHttpInfoAsync(string days, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'days' is set
             if (days == null)
@@ -2143,6 +2424,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2155,10 +2437,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "days", days));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/pixel/products", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<PixelControllerProducts200ResponseInner>>("/v1/advertiser/pixel/products", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2170,21 +2463,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Toggle real-time audiences for a pixel Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerSetRealtime()
+        /// <returns>PixelControllerSetRealtime201Response</returns>
+        public PixelControllerSetRealtime201Response PixelControllerSetRealtime()
         {
-            PixelControllerSetRealtimeWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<PixelControllerSetRealtime201Response> localVarResponse = PixelControllerSetRealtimeWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Toggle real-time audiences for a pixel Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerSetRealtimeWithHttpInfo()
+        /// <returns>ApiResponse of PixelControllerSetRealtime201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerSetRealtime201Response> PixelControllerSetRealtimeWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2193,6 +2487,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2202,9 +2497,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/pixel/realtime", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PixelControllerSetRealtime201Response>("/v1/advertiser/pixel/realtime", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2216,23 +2522,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Toggle real-time audiences for a pixel Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerSetRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerSetRealtime201Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerSetRealtime201Response> PixelControllerSetRealtimeAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerSetRealtimeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerSetRealtime201Response> localVarResponse = await PixelControllerSetRealtimeWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Toggle real-time audiences for a pixel Turns real-time, action-based audience membership on or off (&#x60;enabled&#x60;) for &#x60;pixelId&#x60; (or the primary pixel). When on, each consented event and trait update is evaluated against the account&#39;s rule audiences by a background worker right after ingestion. Returns 404 for a pixel the account does not own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerSetRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerSetRealtime201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerSetRealtime201Response>> PixelControllerSetRealtimeWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2242,6 +2549,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2252,10 +2560,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/pixel/realtime", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PixelControllerSetRealtime201Response>("/v1/advertiser/pixel/realtime", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2267,21 +2586,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerTrack()
+        /// <returns>PixelControllerTrack201Response</returns>
+        public PixelControllerTrack201Response PixelControllerTrack()
         {
-            PixelControllerTrackWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<PixelControllerTrack201Response> localVarResponse = PixelControllerTrackWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerTrackWithHttpInfo()
+        /// <returns>ApiResponse of PixelControllerTrack201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerTrack201Response> PixelControllerTrackWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2290,6 +2610,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2301,7 +2622,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/track/event", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PixelControllerTrack201Response>("/v1/track/event", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2313,23 +2634,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerTrackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerTrack201Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerTrack201Response> PixelControllerTrackAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerTrackWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerTrack201Response> localVarResponse = await PixelControllerTrackWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event Called by pixel.js. Body carries &#x60;pixelId&#x60;, &#x60;event&#x60; (default PageView), optional &#x60;eventId&#x60; (deduplicated per account for 7 days), &#x60;url&#x60;, &#x60;referrer&#x60;, &#x60;params&#x60; (value, currency, content_ids, order_id...), UTM touch data, hashed &#x60;am&#x60; identifiers and consent flags. Events from hosts outside the pixel&#39;s allowed domains are rejected; without consent (GPC or consent:false) the event is stored for aggregate analytics only, with no identity linkage. Conversion events carrying an &#x60;adclid&#x60; are attributed to the clicked ad. Never throws: failures return &#x60;{status:\&quot;error\&quot;}&#x60; and the request sets the first-party uid cookie.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerTrackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerTrack201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerTrack201Response>> PixelControllerTrackWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2339,6 +2661,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2352,7 +2675,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/track/event", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PixelControllerTrack201Response>("/v1/track/event", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2364,21 +2687,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Record terminal coding-context keywords Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerTrackCoding()
+        /// <returns>PixelControllerTrackCoding201Response</returns>
+        public PixelControllerTrackCoding201Response PixelControllerTrackCoding()
         {
-            PixelControllerTrackCodingWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<PixelControllerTrackCoding201Response> localVarResponse = PixelControllerTrackCodingWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Record terminal coding-context keywords Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerTrackCodingWithHttpInfo()
+        /// <returns>ApiResponse of PixelControllerTrackCoding201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerTrackCoding201Response> PixelControllerTrackCodingWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2387,6 +2711,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2398,7 +2723,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/track/coding", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PixelControllerTrackCoding201Response>("/v1/track/coding", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2410,23 +2735,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Record terminal coding-context keywords Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerTrackCodingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerTrackCoding201Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerTrackCoding201Response> PixelControllerTrackCodingAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerTrackCodingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerTrackCoding201Response> localVarResponse = await PixelControllerTrackCodingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Record terminal coding-context keywords Public beacon for CLI/IDE clients. Body: &#x60;kw&#x60; (up to 20 keywords), &#x60;client&#x60;, and &#x60;em&#x60; (a SHA-256 email hash) or &#x60;uid&#x60;. Keywords are logged under a reserved network account keyed to the same email-derived canonical id the ad engine targets, so they feed developer interest segments. A valid &#x60;em&#x60; also writes the cross-surface identity link. Returns &#x60;skipped&#x60; when there are no keywords; never throws.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerTrackCodingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerTrackCoding201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerTrackCoding201Response>> PixelControllerTrackCodingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2436,6 +2762,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2449,7 +2776,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/track/coding", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PixelControllerTrackCoding201Response>("/v1/track/coding", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2461,7 +2788,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event via image beacon The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -2471,7 +2798,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event via image beacon The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -2507,7 +2834,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event via image beacon The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2518,7 +2845,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Ingest a pixel event via image beacon The noscript / image fallback for /v1/track/event. Query params &#x60;pixel_id&#x60;, &#x60;event&#x60;, &#x60;event_id&#x60;, &#x60;url&#x60; and &#x60;adclid&#x60; are read, and the full query string is stored as event params. Always responds with a 1x1 transparent GIF, even on failure.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2558,21 +2885,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set user traits for the visitor Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerTrait()
+        /// <returns>PixelControllerTrait201Response</returns>
+        public PixelControllerTrait201Response PixelControllerTrait()
         {
-            PixelControllerTraitWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<PixelControllerTrait201Response> localVarResponse = PixelControllerTraitWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set user traits for the visitor Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerTraitWithHttpInfo()
+        /// <returns>ApiResponse of PixelControllerTrait201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerTrait201Response> PixelControllerTraitWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2581,6 +2909,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2592,7 +2921,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/track/trait", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PixelControllerTrait201Response>("/v1/track/trait", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2604,23 +2933,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set user traits for the visitor Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerTraitAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerTrait201Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerTrait201Response> PixelControllerTraitAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerTraitWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerTrait201Response> localVarResponse = await PixelControllerTraitWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set user traits for the visitor Stores CDP profile traits (&#x60;traits&#x60; object) for the caller&#39;s uid, resolved to a canonical id using optional hashed &#x60;am&#x60; identifiers. Traits require consent, so GPC or consent:false skips the write. When the pixel has real-time audiences enabled, trait-based rule audiences are re-evaluated. Fail-soft: errors (including an unknown pixel) return &#x60;{status:\&quot;error\&quot;}&#x60;.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerTraitWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerTrait201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerTrait201Response>> PixelControllerTraitWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2630,6 +2960,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2643,7 +2974,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/track/trait", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PixelControllerTrait201Response>("/v1/track/trait", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2655,25 +2986,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Look up a user&#39;s CDP traits Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="user"></param>
         /// <param name="pixelId"></param>
-        /// <returns></returns>
-        public void PixelControllerTraitLookup(string user, string pixelId)
+        /// <returns>PixelControllerTraitLookup200Response</returns>
+        public PixelControllerTraitLookup200Response PixelControllerTraitLookup(string user, string pixelId)
         {
-            PixelControllerTraitLookupWithHttpInfo(user, pixelId);
+            Adviverse.Api.Client.ApiResponse<PixelControllerTraitLookup200Response> localVarResponse = PixelControllerTraitLookupWithHttpInfo(user, pixelId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Look up a user&#39;s CDP traits Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="user"></param>
         /// <param name="pixelId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerTraitLookupWithHttpInfo(string user, string pixelId)
+        /// <returns>ApiResponse of PixelControllerTraitLookup200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerTraitLookup200Response> PixelControllerTraitLookupWithHttpInfo(string user, string pixelId)
         {
             // verify the required parameter 'user' is set
             if (user == null)
@@ -2690,6 +3022,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2701,9 +3034,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "user", user));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/pixel/traits", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PixelControllerTraitLookup200Response>("/v1/advertiser/pixel/traits", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2715,27 +3059,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Look up a user&#39;s CDP traits Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="user"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerTraitLookupAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerTraitLookup200Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerTraitLookup200Response> PixelControllerTraitLookupAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerTraitLookupWithHttpInfoAsync(user, pixelId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerTraitLookup200Response> localVarResponse = await PixelControllerTraitLookupWithHttpInfoAsync(user, pixelId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Look up a user&#39;s CDP traits Resolves the &#x60;user&#x60; query value (a canonical &#x60;id_...&#x60;, a cookie uid, a SHA-256 email/phone hash, or a raw email which is hashed server-side) to a canonical id through the identity map and returns its stored traits. With &#x60;pixelId&#x60;, only traits set by that pixel are shown. Unknown identifiers return an empty canonical and no traits rather than an error.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="user"></param>
         /// <param name="pixelId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerTraitLookupWithHttpInfoAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerTraitLookup200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerTraitLookup200Response>> PixelControllerTraitLookupWithHttpInfoAsync(string user, string pixelId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'user' is set
             if (user == null)
@@ -2753,6 +3098,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2765,10 +3111,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "user", user));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "pixelId", pixelId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/pixel/traits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PixelControllerTraitLookup200Response>("/v1/advertiser/pixel/traits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2780,21 +3137,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update pixel settings Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PixelControllerUpdateSettings()
+        /// <returns>AudiencePixel</returns>
+        public AudiencePixel PixelControllerUpdateSettings()
         {
-            PixelControllerUpdateSettingsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<AudiencePixel> localVarResponse = PixelControllerUpdateSettingsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update pixel settings Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PixelControllerUpdateSettingsWithHttpInfo()
+        /// <returns>ApiResponse of AudiencePixel</returns>
+        public Adviverse.Api.Client.ApiResponse<AudiencePixel> PixelControllerUpdateSettingsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2803,6 +3161,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2812,9 +3171,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/advertiser/pixel/settings", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AudiencePixel>("/v1/advertiser/pixel/settings", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2826,23 +3196,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update pixel settings Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PixelControllerUpdateSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AudiencePixel</returns>
+        public async System.Threading.Tasks.Task<AudiencePixel> PixelControllerUpdateSettingsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PixelControllerUpdateSettingsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AudiencePixel> localVarResponse = await PixelControllerUpdateSettingsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update pixel settings Patches &#x60;name&#x60; (max 80 chars), &#x60;defaultConsent&#x60; (whether events without an explicit consent signal are treated as consented) and &#x60;allowedDomains&#x60; for &#x60;pixelId&#x60; (or the primary pixel). Domains are normalized to bare lowercase hosts, deduplicated and capped at 50; once set, events fired from other hosts are rejected. Omitted fields are left unchanged; returns the updated pixel, or 404 if not owned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PixelControllerUpdateSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AudiencePixel)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AudiencePixel>> PixelControllerUpdateSettingsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2852,6 +3223,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2862,10 +3234,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/advertiser/pixel/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AudiencePixel>("/v1/advertiser/pixel/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

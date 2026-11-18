@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using Adviverse.Api.Client;
+using Adviverse.Api.Model;
 
 namespace Adviverse.Api.Api
 {
@@ -27,75 +28,87 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="placementId"></param>
-        /// <returns></returns>
-        void PublisherInsightsControllerClearing(string placementId);
-
-        /// <summary>
-        /// 
+        /// Get the clearing-price distribution for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherInsightsControllerClearingWithHttpInfo(string placementId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void PublisherInsightsControllerDeals();
+        /// <returns>PublisherInsightsControllerClearing200Response</returns>
+        PublisherInsightsControllerClearing200Response PublisherInsightsControllerClearing(string placementId);
 
         /// <summary>
-        /// 
+        /// Get the clearing-price distribution for a placement
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherInsightsControllerDealsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="placementId"></param>
-        /// <returns></returns>
-        void PublisherInsightsControllerFloorRecommendation(string placementId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherInsightsControllerFloorRecommendationWithHttpInfo(string placementId);
+        /// <returns>ApiResponse of PublisherInsightsControllerClearing200Response</returns>
+        ApiResponse<PublisherInsightsControllerClearing200Response> PublisherInsightsControllerClearingWithHttpInfo(string placementId);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="placementId"></param>
-        /// <returns></returns>
-        void PublisherInsightsControllerNoFill(string placementId);
-
-        /// <summary>
-        /// 
+        /// Get performance of your deals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>PublisherInsightsControllerDeals200Response</returns>
+        PublisherInsightsControllerDeals200Response PublisherInsightsControllerDeals();
+
+        /// <summary>
+        /// Get performance of your deals
+        /// </summary>
+        /// <remarks>
+        /// Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of PublisherInsightsControllerDeals200Response</returns>
+        ApiResponse<PublisherInsightsControllerDeals200Response> PublisherInsightsControllerDealsWithHttpInfo();
+        /// <summary>
+        /// Get a revenue-maximizing floor recommendation
+        /// </summary>
+        /// <remarks>
+        /// Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PublisherInsightsControllerNoFillWithHttpInfo(string placementId);
+        /// <returns>PublisherInsightsControllerFloorRecommendation200Response</returns>
+        PublisherInsightsControllerFloorRecommendation200Response PublisherInsightsControllerFloorRecommendation(string placementId);
+
+        /// <summary>
+        /// Get a revenue-maximizing floor recommendation
+        /// </summary>
+        /// <remarks>
+        /// Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="placementId"></param>
+        /// <returns>ApiResponse of PublisherInsightsControllerFloorRecommendation200Response</returns>
+        ApiResponse<PublisherInsightsControllerFloorRecommendation200Response> PublisherInsightsControllerFloorRecommendationWithHttpInfo(string placementId);
+        /// <summary>
+        /// Get no-fill reasons for a placement
+        /// </summary>
+        /// <remarks>
+        /// Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="placementId"></param>
+        /// <returns>PublisherInsightsControllerNoFill200Response</returns>
+        PublisherInsightsControllerNoFill200Response PublisherInsightsControllerNoFill(string placementId);
+
+        /// <summary>
+        /// Get no-fill reasons for a placement
+        /// </summary>
+        /// <remarks>
+        /// Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="placementId"></param>
+        /// <returns>ApiResponse of PublisherInsightsControllerNoFill200Response</returns>
+        ApiResponse<PublisherInsightsControllerNoFill200Response> PublisherInsightsControllerNoFillWithHttpInfo(string placementId);
         #endregion Synchronous Operations
     }
 
@@ -106,95 +119,95 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get the clearing-price distribution for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherInsightsControllerClearingAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherInsightsControllerClearing200Response</returns>
+        System.Threading.Tasks.Task<PublisherInsightsControllerClearing200Response> PublisherInsightsControllerClearingAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the clearing-price distribution for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherInsightsControllerClearingWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerClearing200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherInsightsControllerClearing200Response>> PublisherInsightsControllerClearingWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get performance of your deals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherInsightsControllerDealsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherInsightsControllerDeals200Response</returns>
+        System.Threading.Tasks.Task<PublisherInsightsControllerDeals200Response> PublisherInsightsControllerDealsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get performance of your deals
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherInsightsControllerDealsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerDeals200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherInsightsControllerDeals200Response>> PublisherInsightsControllerDealsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a revenue-maximizing floor recommendation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherInsightsControllerFloorRecommendationAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherInsightsControllerFloorRecommendation200Response</returns>
+        System.Threading.Tasks.Task<PublisherInsightsControllerFloorRecommendation200Response> PublisherInsightsControllerFloorRecommendationAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a revenue-maximizing floor recommendation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherInsightsControllerFloorRecommendationWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerFloorRecommendation200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherInsightsControllerFloorRecommendation200Response>> PublisherInsightsControllerFloorRecommendationWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get no-fill reasons for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PublisherInsightsControllerNoFillAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PublisherInsightsControllerNoFill200Response</returns>
+        System.Threading.Tasks.Task<PublisherInsightsControllerNoFill200Response> PublisherInsightsControllerNoFillAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get no-fill reasons for a placement
         /// </summary>
         /// <remarks>
-        /// 
+        /// Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PublisherInsightsControllerNoFillWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerNoFill200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PublisherInsightsControllerNoFill200Response>> PublisherInsightsControllerNoFillWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -409,23 +422,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the clearing-price distribution for a placement For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns></returns>
-        public void PublisherInsightsControllerClearing(string placementId)
+        /// <returns>PublisherInsightsControllerClearing200Response</returns>
+        public PublisherInsightsControllerClearing200Response PublisherInsightsControllerClearing(string placementId)
         {
-            PublisherInsightsControllerClearingWithHttpInfo(placementId);
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerClearing200Response> localVarResponse = PublisherInsightsControllerClearingWithHttpInfo(placementId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the clearing-price distribution for a placement For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherInsightsControllerClearingWithHttpInfo(string placementId)
+        /// <returns>ApiResponse of PublisherInsightsControllerClearing200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerClearing200Response> PublisherInsightsControllerClearingWithHttpInfo(string placementId)
         {
             // verify the required parameter 'placementId' is set
             if (placementId == null)
@@ -438,6 +452,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -448,9 +463,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "placementId", placementId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/insights/clearing", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PublisherInsightsControllerClearing200Response>("/v1/publisher/insights/clearing", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -462,25 +488,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the clearing-price distribution for a placement For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherInsightsControllerClearingAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherInsightsControllerClearing200Response</returns>
+        public async System.Threading.Tasks.Task<PublisherInsightsControllerClearing200Response> PublisherInsightsControllerClearingAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherInsightsControllerClearingWithHttpInfoAsync(placementId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerClearing200Response> localVarResponse = await PublisherInsightsControllerClearingWithHttpInfoAsync(placementId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the clearing-price distribution for a placement For about 10 candidate floors across the placement&#39;s observed clearing range, returns &#x60;fillRate&#x60; (share of bids clearing at or above the floor) and &#x60;expectedRevenue&#x60; (floor x fillRate), plus clearing p50/p90 and sample size. Requires &#x60;?placementId&#x3D;&#x60;; only your own revenue data is exposed. 404 if the placement is not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherInsightsControllerClearingWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerClearing200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerClearing200Response>> PublisherInsightsControllerClearingWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'placementId' is set
             if (placementId == null)
@@ -494,6 +521,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -505,10 +533,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "placementId", placementId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/insights/clearing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PublisherInsightsControllerClearing200Response>("/v1/publisher/insights/clearing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -520,21 +559,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get performance of your deals Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void PublisherInsightsControllerDeals()
+        /// <returns>PublisherInsightsControllerDeals200Response</returns>
+        public PublisherInsightsControllerDeals200Response PublisherInsightsControllerDeals()
         {
-            PublisherInsightsControllerDealsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerDeals200Response> localVarResponse = PublisherInsightsControllerDealsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get performance of your deals Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherInsightsControllerDealsWithHttpInfo()
+        /// <returns>ApiResponse of PublisherInsightsControllerDeals200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerDeals200Response> PublisherInsightsControllerDealsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -543,6 +583,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -552,9 +593,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/insights/deals", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PublisherInsightsControllerDeals200Response>("/v1/publisher/insights/deals", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -566,23 +618,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get performance of your deals Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherInsightsControllerDealsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherInsightsControllerDeals200Response</returns>
+        public async System.Threading.Tasks.Task<PublisherInsightsControllerDeals200Response> PublisherInsightsControllerDealsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherInsightsControllerDealsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerDeals200Response> localVarResponse = await PublisherInsightsControllerDealsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get performance of your deals Returns every deal you own with attributed impressions, clicks, revenue and eCPM, sorted by revenue. Deals with no delivery show zeros; if analytics is unavailable metrics fall back to zero rather than failing.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherInsightsControllerDealsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerDeals200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerDeals200Response>> PublisherInsightsControllerDealsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -592,6 +645,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -602,10 +656,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/insights/deals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PublisherInsightsControllerDeals200Response>("/v1/publisher/insights/deals", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -617,23 +682,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a revenue-maximizing floor recommendation Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns></returns>
-        public void PublisherInsightsControllerFloorRecommendation(string placementId)
+        /// <returns>PublisherInsightsControllerFloorRecommendation200Response</returns>
+        public PublisherInsightsControllerFloorRecommendation200Response PublisherInsightsControllerFloorRecommendation(string placementId)
         {
-            PublisherInsightsControllerFloorRecommendationWithHttpInfo(placementId);
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerFloorRecommendation200Response> localVarResponse = PublisherInsightsControllerFloorRecommendationWithHttpInfo(placementId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a revenue-maximizing floor recommendation Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherInsightsControllerFloorRecommendationWithHttpInfo(string placementId)
+        /// <returns>ApiResponse of PublisherInsightsControllerFloorRecommendation200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerFloorRecommendation200Response> PublisherInsightsControllerFloorRecommendationWithHttpInfo(string placementId)
         {
             // verify the required parameter 'placementId' is set
             if (placementId == null)
@@ -646,6 +712,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -656,9 +723,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "placementId", placementId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/insights/floor-recommendation", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PublisherInsightsControllerFloorRecommendation200Response>("/v1/publisher/insights/floor-recommendation", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -670,25 +748,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a revenue-maximizing floor recommendation Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherInsightsControllerFloorRecommendationAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherInsightsControllerFloorRecommendation200Response</returns>
+        public async System.Threading.Tasks.Task<PublisherInsightsControllerFloorRecommendation200Response> PublisherInsightsControllerFloorRecommendationAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherInsightsControllerFloorRecommendationWithHttpInfoAsync(placementId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerFloorRecommendation200Response> localVarResponse = await PublisherInsightsControllerFloorRecommendationWithHttpInfoAsync(placementId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a revenue-maximizing floor recommendation Picks the floor that maximizes expected revenue on the placement&#39;s empirical fill curve and a matching soft reserve, with the expected revenue lift versus the current floor. With fewer than 500 recent cleared impressions it keeps the current floor and explains why in &#x60;note&#x60;. Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherInsightsControllerFloorRecommendationWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerFloorRecommendation200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerFloorRecommendation200Response>> PublisherInsightsControllerFloorRecommendationWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'placementId' is set
             if (placementId == null)
@@ -702,6 +781,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -713,10 +793,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "placementId", placementId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/insights/floor-recommendation", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PublisherInsightsControllerFloorRecommendation200Response>("/v1/publisher/insights/floor-recommendation", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -728,23 +819,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get no-fill reasons for a placement Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns></returns>
-        public void PublisherInsightsControllerNoFill(string placementId)
+        /// <returns>PublisherInsightsControllerNoFill200Response</returns>
+        public PublisherInsightsControllerNoFill200Response PublisherInsightsControllerNoFill(string placementId)
         {
-            PublisherInsightsControllerNoFillWithHttpInfo(placementId);
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerNoFill200Response> localVarResponse = PublisherInsightsControllerNoFillWithHttpInfo(placementId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get no-fill reasons for a placement Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> PublisherInsightsControllerNoFillWithHttpInfo(string placementId)
+        /// <returns>ApiResponse of PublisherInsightsControllerNoFill200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerNoFill200Response> PublisherInsightsControllerNoFillWithHttpInfo(string placementId)
         {
             // verify the required parameter 'placementId' is set
             if (placementId == null)
@@ -757,6 +849,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -767,9 +860,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "placementId", placementId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/insights/no-fill", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PublisherInsightsControllerNoFill200Response>("/v1/publisher/insights/no-fill", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -781,25 +885,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get no-fill reasons for a placement Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PublisherInsightsControllerNoFillAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PublisherInsightsControllerNoFill200Response</returns>
+        public async System.Threading.Tasks.Task<PublisherInsightsControllerNoFill200Response> PublisherInsightsControllerNoFillAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PublisherInsightsControllerNoFillWithHttpInfoAsync(placementId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerNoFill200Response> localVarResponse = await PublisherInsightsControllerNoFillWithHttpInfoAsync(placementId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get no-fill reasons for a placement Breaks down the placement&#39;s last 30 days of requests into filled vs. no-fill, with each no-fill reason&#39;s count and percentage share. &#x60;fillRate&#x60; and &#x60;pct&#x60; are percentages (0-100). Requires &#x60;?placementId&#x3D;&#x60;; 404 if not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="placementId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> PublisherInsightsControllerNoFillWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PublisherInsightsControllerNoFill200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PublisherInsightsControllerNoFill200Response>> PublisherInsightsControllerNoFillWithHttpInfoAsync(string placementId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'placementId' is set
             if (placementId == null)
@@ -813,6 +918,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -824,10 +930,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "placementId", placementId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/insights/no-fill", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PublisherInsightsControllerNoFill200Response>("/v1/publisher/insights/no-fill", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

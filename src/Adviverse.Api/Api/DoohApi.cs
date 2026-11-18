@@ -28,275 +28,320 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void DoohControllerGetSetup();
-
-        /// <summary>
-        /// 
+        /// Get your DOOH network registration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DoohControllerGetSetupWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status"></param>
-        /// <returns></returns>
-        void DoohControllerList(string status);
+        /// <returns>SupDoohPartner</returns>
+        SupDoohPartner DoohControllerGetSetup();
 
         /// <summary>
-        /// 
+        /// Get your DOOH network registration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of SupDoohPartner</returns>
+        ApiResponse<SupDoohPartner> DoohControllerGetSetupWithHttpInfo();
+        /// <summary>
+        /// List DOOH partner registrations
+        /// </summary>
+        /// <remarks>
+        /// Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="status"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DoohControllerListWithHttpInfo(string status);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="doohSetupDto"></param>
-        /// <returns></returns>
-        void DoohControllerSaveSetup(DoohSetupDto doohSetupDto);
+        /// <returns>List&lt;DoohControllerList200ResponseInner&gt;</returns>
+        List<DoohControllerList200ResponseInner> DoohControllerList(string status);
 
         /// <summary>
-        /// 
+        /// List DOOH partner registrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>ApiResponse of List&lt;DoohControllerList200ResponseInner&gt;</returns>
+        ApiResponse<List<DoohControllerList200ResponseInner>> DoohControllerListWithHttpInfo(string status);
+        /// <summary>
+        /// Create or update your DOOH network registration
+        /// </summary>
+        /// <remarks>
+        /// Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="doohSetupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DoohControllerSaveSetupWithHttpInfo(DoohSetupDto doohSetupDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void DoohControllerSetStatus(string id);
+        /// <returns>DoohControllerSaveSetup201Response</returns>
+        DoohControllerSaveSetup201Response DoohControllerSaveSetup(DoohSetupDto doohSetupDto);
 
         /// <summary>
-        /// 
+        /// Create or update your DOOH network registration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="doohSetupDto"></param>
+        /// <returns>ApiResponse of DoohControllerSaveSetup201Response</returns>
+        ApiResponse<DoohControllerSaveSetup201Response> DoohControllerSaveSetupWithHttpInfo(DoohSetupDto doohSetupDto);
+        /// <summary>
+        /// Set a DOOH registration&#39;s onboarding status
+        /// </summary>
+        /// <remarks>
+        /// Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DoohControllerSetStatusWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ScreensControllerAdminScreens();
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        AuthControllerResendVerification201Response DoohControllerSetStatus(string id);
 
         /// <summary>
-        /// 
+        /// Set a DOOH registration&#39;s onboarding status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerAdminScreensWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        ApiResponse<AuthControllerResendVerification201Response> DoohControllerSetStatusWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// List all paired DOOH screens
         /// </summary>
+        /// <remarks>
+        /// Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ScreensControllerAdminScreens200ResponseInner&gt;</returns>
+        List<ScreensControllerAdminScreens200ResponseInner> ScreensControllerAdminScreens();
+
+        /// <summary>
+        /// List all paired DOOH screens
+        /// </summary>
+        /// <remarks>
+        /// Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ScreensControllerAdminScreens200ResponseInner&gt;</returns>
+        ApiResponse<List<ScreensControllerAdminScreens200ResponseInner>> ScreensControllerAdminScreensWithHttpInfo();
+        /// <summary>
+        /// Get DOOH proof-of-play for your campaigns
+        /// </summary>
+        /// <remarks>
+        /// Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        void ScreensControllerAdvertiserPlays(string from, string to);
+        /// <returns>SupDoohPlayReport</returns>
+        SupDoohPlayReport ScreensControllerAdvertiserPlays(string from, string to);
 
         /// <summary>
-        /// 
+        /// Get DOOH proof-of-play for your campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerAdvertiserPlaysWithHttpInfo(string from, string to);
+        /// <returns>ApiResponse of SupDoohPlayReport</returns>
+        ApiResponse<SupDoohPlayReport> ScreensControllerAdvertiserPlaysWithHttpInfo(string from, string to);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ScreensControllerAttest();
-
-        /// <summary>
-        /// 
+        /// Upload a proof-of-play screenshot
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerAttestWithHttpInfo();
+        /// <returns>ScreensControllerAttest201Response</returns>
+        ScreensControllerAttest201Response ScreensControllerAttest();
+
         /// <summary>
-        /// 
+        /// Upload a proof-of-play screenshot
         /// </summary>
+        /// <remarks>
+        /// Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ScreensControllerAttest201Response</returns>
+        ApiResponse<ScreensControllerAttest201Response> ScreensControllerAttestWithHttpInfo();
+        /// <summary>
+        /// Claim a DOOH screen by its pairing code
+        /// </summary>
+        /// <remarks>
+        /// Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
-        /// <returns></returns>
-        void ScreensControllerClaim(ClaimScreenDto claimScreenDto);
+        /// <returns>SupDoohScreen</returns>
+        SupDoohScreen ScreensControllerClaim(ClaimScreenDto claimScreenDto);
 
         /// <summary>
-        /// 
+        /// Claim a DOOH screen by its pairing code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerClaimWithHttpInfo(ClaimScreenDto claimScreenDto);
+        /// <returns>ApiResponse of SupDoohScreen</returns>
+        ApiResponse<SupDoohScreen> ScreensControllerClaimWithHttpInfo(ClaimScreenDto claimScreenDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void ScreensControllerGet(string id);
-
-        /// <summary>
-        /// 
+        /// Get a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerGetWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ScreensControllerList();
+        /// <returns>SupDoohScreen</returns>
+        SupDoohScreen ScreensControllerGet(string id);
 
         /// <summary>
-        /// 
+        /// Get a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerListWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of SupDoohScreen</returns>
+        ApiResponse<SupDoohScreen> ScreensControllerGetWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// List your DOOH screens
         /// </summary>
+        /// <remarks>
+        /// Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ScreensControllerList200ResponseInner&gt;</returns>
+        List<ScreensControllerList200ResponseInner> ScreensControllerList();
+
+        /// <summary>
+        /// List your DOOH screens
+        /// </summary>
+        /// <remarks>
+        /// Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ScreensControllerList200ResponseInner&gt;</returns>
+        ApiResponse<List<ScreensControllerList200ResponseInner>> ScreensControllerListWithHttpInfo();
+        /// <summary>
+        /// Start pairing a DOOH screen
+        /// </summary>
+        /// <remarks>
+        /// Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
-        /// <returns></returns>
-        void ScreensControllerPairInit(PairInitDto pairInitDto);
+        /// <returns>ScreensControllerPairInit201Response</returns>
+        ScreensControllerPairInit201Response ScreensControllerPairInit(PairInitDto pairInitDto);
 
         /// <summary>
-        /// 
+        /// Start pairing a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerPairInitWithHttpInfo(PairInitDto pairInitDto);
+        /// <returns>ApiResponse of ScreensControllerPairInit201Response</returns>
+        ApiResponse<ScreensControllerPairInit201Response> ScreensControllerPairInitWithHttpInfo(PairInitDto pairInitDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pollToken"></param>
-        /// <returns></returns>
-        void ScreensControllerPairStatus(string pollToken);
-
-        /// <summary>
-        /// 
+        /// Poll a DOOH screen&#39;s pairing status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerPairStatusWithHttpInfo(string pollToken);
+        /// <returns>ScreensControllerPairStatus200Response</returns>
+        ScreensControllerPairStatus200Response ScreensControllerPairStatus(string pollToken);
+
         /// <summary>
-        /// 
+        /// Poll a DOOH screen&#39;s pairing status
         /// </summary>
+        /// <remarks>
+        /// Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pollToken"></param>
+        /// <returns>ApiResponse of ScreensControllerPairStatus200Response</returns>
+        ApiResponse<ScreensControllerPairStatus200Response> ScreensControllerPairStatusWithHttpInfo(string pollToken);
+        /// <summary>
+        /// Get your DOOH proof-of-play report
+        /// </summary>
+        /// <remarks>
+        /// Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        void ScreensControllerPublisherPlays(string from, string to);
+        /// <returns>SupDoohPlayReport</returns>
+        SupDoohPlayReport ScreensControllerPublisherPlays(string from, string to);
 
         /// <summary>
-        /// 
+        /// Get your DOOH proof-of-play report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerPublisherPlaysWithHttpInfo(string from, string to);
+        /// <returns>ApiResponse of SupDoohPlayReport</returns>
+        ApiResponse<SupDoohPlayReport> ScreensControllerPublisherPlaysWithHttpInfo(string from, string to);
         /// <summary>
-        /// 
+        /// Pause or activate a DOOH screen
         /// </summary>
+        /// <remarks>
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
-        /// <returns></returns>
-        void ScreensControllerSetStatus(string id, SetScreenStatusDto setScreenStatusDto);
+        /// <returns>ScreensControllerSetStatus201Response</returns>
+        ScreensControllerSetStatus201Response ScreensControllerSetStatus(string id, SetScreenStatusDto setScreenStatusDto);
 
         /// <summary>
-        /// 
+        /// Pause or activate a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerSetStatusWithHttpInfo(string id, SetScreenStatusDto setScreenStatusDto);
+        /// <returns>ApiResponse of ScreensControllerSetStatus201Response</returns>
+        ApiResponse<ScreensControllerSetStatus201Response> ScreensControllerSetStatusWithHttpInfo(string id, SetScreenStatusDto setScreenStatusDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="updateScreenDto"></param>
-        /// <returns></returns>
-        void ScreensControllerUpdate(string id, UpdateScreenDto updateScreenDto);
-
-        /// <summary>
-        /// 
+        /// Update a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateScreenDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ScreensControllerUpdateWithHttpInfo(string id, UpdateScreenDto updateScreenDto);
+        /// <returns>SupDoohScreen</returns>
+        SupDoohScreen ScreensControllerUpdate(string id, UpdateScreenDto updateScreenDto);
+
+        /// <summary>
+        /// Update a DOOH screen
+        /// </summary>
+        /// <remarks>
+        /// Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateScreenDto"></param>
+        /// <returns>ApiResponse of SupDoohScreen</returns>
+        ApiResponse<SupDoohScreen> ScreensControllerUpdateWithHttpInfo(string id, UpdateScreenDto updateScreenDto);
         #endregion Synchronous Operations
     }
 
@@ -307,350 +352,350 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get your DOOH network registration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DoohControllerGetSetupAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupDoohPartner</returns>
+        System.Threading.Tasks.Task<SupDoohPartner> DoohControllerGetSetupAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get your DOOH network registration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DoohControllerGetSetupWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupDoohPartner)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupDoohPartner>> DoohControllerGetSetupWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List DOOH partner registrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="status"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DoohControllerListAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;DoohControllerList200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<DoohControllerList200ResponseInner>> DoohControllerListAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List DOOH partner registrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="status"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DoohControllerListWithHttpInfoAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;DoohControllerList200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<DoohControllerList200ResponseInner>>> DoohControllerListWithHttpInfoAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create or update your DOOH network registration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="doohSetupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DoohControllerSaveSetupAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of DoohControllerSaveSetup201Response</returns>
+        System.Threading.Tasks.Task<DoohControllerSaveSetup201Response> DoohControllerSaveSetupAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create or update your DOOH network registration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="doohSetupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DoohControllerSaveSetupWithHttpInfoAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DoohControllerSaveSetup201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DoohControllerSaveSetup201Response>> DoohControllerSaveSetupWithHttpInfoAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set a DOOH registration&#39;s onboarding status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DoohControllerSetStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        System.Threading.Tasks.Task<AuthControllerResendVerification201Response> DoohControllerSetStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set a DOOH registration&#39;s onboarding status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DoohControllerSetStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthControllerResendVerification201Response>> DoohControllerSetStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List all paired DOOH screens
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerAdminScreensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ScreensControllerAdminScreens200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ScreensControllerAdminScreens200ResponseInner>> ScreensControllerAdminScreensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List all paired DOOH screens
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerAdminScreensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ScreensControllerAdminScreens200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ScreensControllerAdminScreens200ResponseInner>>> ScreensControllerAdminScreensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get DOOH proof-of-play for your campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerAdvertiserPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupDoohPlayReport</returns>
+        System.Threading.Tasks.Task<SupDoohPlayReport> ScreensControllerAdvertiserPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get DOOH proof-of-play for your campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerAdvertiserPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupDoohPlayReport)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupDoohPlayReport>> ScreensControllerAdvertiserPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Upload a proof-of-play screenshot
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerAttestAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ScreensControllerAttest201Response</returns>
+        System.Threading.Tasks.Task<ScreensControllerAttest201Response> ScreensControllerAttestAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Upload a proof-of-play screenshot
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerAttestWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ScreensControllerAttest201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScreensControllerAttest201Response>> ScreensControllerAttestWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Claim a DOOH screen by its pairing code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerClaimAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupDoohScreen</returns>
+        System.Threading.Tasks.Task<SupDoohScreen> ScreensControllerClaimAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Claim a DOOH screen by its pairing code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerClaimWithHttpInfoAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupDoohScreen)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupDoohScreen>> ScreensControllerClaimWithHttpInfoAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupDoohScreen</returns>
+        System.Threading.Tasks.Task<SupDoohScreen> ScreensControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupDoohScreen)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupDoohScreen>> ScreensControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your DOOH screens
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;ScreensControllerList200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<ScreensControllerList200ResponseInner>> ScreensControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your DOOH screens
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;ScreensControllerList200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ScreensControllerList200ResponseInner>>> ScreensControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start pairing a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerPairInitAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ScreensControllerPairInit201Response</returns>
+        System.Threading.Tasks.Task<ScreensControllerPairInit201Response> ScreensControllerPairInitAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start pairing a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerPairInitWithHttpInfoAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ScreensControllerPairInit201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScreensControllerPairInit201Response>> ScreensControllerPairInitWithHttpInfoAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Poll a DOOH screen&#39;s pairing status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ScreensControllerPairStatus200Response</returns>
+        System.Threading.Tasks.Task<ScreensControllerPairStatus200Response> ScreensControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Poll a DOOH screen&#39;s pairing status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ScreensControllerPairStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScreensControllerPairStatus200Response>> ScreensControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get your DOOH proof-of-play report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerPublisherPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupDoohPlayReport</returns>
+        System.Threading.Tasks.Task<SupDoohPlayReport> ScreensControllerPublisherPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get your DOOH proof-of-play report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerPublisherPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupDoohPlayReport)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupDoohPlayReport>> ScreensControllerPublisherPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Pause or activate a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerSetStatusAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ScreensControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<ScreensControllerSetStatus201Response> ScreensControllerSetStatusAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Pause or activate a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerSetStatusWithHttpInfoAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ScreensControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScreensControllerSetStatus201Response>> ScreensControllerSetStatusWithHttpInfoAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ScreensControllerUpdateAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupDoohScreen</returns>
+        System.Threading.Tasks.Task<SupDoohScreen> ScreensControllerUpdateAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a DOOH screen
         /// </summary>
         /// <remarks>
-        /// 
+        /// Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ScreensControllerUpdateWithHttpInfoAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupDoohScreen)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupDoohScreen>> ScreensControllerUpdateWithHttpInfoAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -865,21 +910,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH network registration Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void DoohControllerGetSetup()
+        /// <returns>SupDoohPartner</returns>
+        public SupDoohPartner DoohControllerGetSetup()
         {
-            DoohControllerGetSetupWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<SupDoohPartner> localVarResponse = DoohControllerGetSetupWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH network registration Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DoohControllerGetSetupWithHttpInfo()
+        /// <returns>ApiResponse of SupDoohPartner</returns>
+        public Adviverse.Api.Client.ApiResponse<SupDoohPartner> DoohControllerGetSetupWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -888,6 +934,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -897,9 +944,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/dooh/setup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SupDoohPartner>("/v1/dooh/setup", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -911,23 +969,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH network registration Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DoohControllerGetSetupAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupDoohPartner</returns>
+        public async System.Threading.Tasks.Task<SupDoohPartner> DoohControllerGetSetupAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DoohControllerGetSetupWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupDoohPartner> localVarResponse = await DoohControllerGetSetupWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH network registration Returns the account&#39;s DOOH partner registration (company, contact, screen count, venue types, integration, onboarding status), or null if it has not registered one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DoohControllerGetSetupWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupDoohPartner)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupDoohPartner>> DoohControllerGetSetupWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -937,6 +996,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -947,10 +1007,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/dooh/setup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SupDoohPartner>("/v1/dooh/setup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -962,23 +1033,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List DOOH partner registrations Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="status"></param>
-        /// <returns></returns>
-        public void DoohControllerList(string status)
+        /// <returns>List&lt;DoohControllerList200ResponseInner&gt;</returns>
+        public List<DoohControllerList200ResponseInner> DoohControllerList(string status)
         {
-            DoohControllerListWithHttpInfo(status);
+            Adviverse.Api.Client.ApiResponse<List<DoohControllerList200ResponseInner>> localVarResponse = DoohControllerListWithHttpInfo(status);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List DOOH partner registrations Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="status"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DoohControllerListWithHttpInfo(string status)
+        /// <returns>ApiResponse of List&lt;DoohControllerList200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<DoohControllerList200ResponseInner>> DoohControllerListWithHttpInfo(string status)
         {
             // verify the required parameter 'status' is set
             if (status == null)
@@ -991,6 +1063,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1001,9 +1074,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "status", status));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/dooh/partners", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<DoohControllerList200ResponseInner>>("/v1/admin/dooh/partners", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1015,25 +1099,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List DOOH partner registrations Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="status"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DoohControllerListAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;DoohControllerList200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<DoohControllerList200ResponseInner>> DoohControllerListAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DoohControllerListWithHttpInfoAsync(status, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<DoohControllerList200ResponseInner>> localVarResponse = await DoohControllerListWithHttpInfoAsync(status, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List DOOH partner registrations Admin view of up to 500 DOOH registrations, newest first, each with the registering account&#39;s email. Optional &#x60;?status&#x3D;&#x60; filters by new, contacted, onboarding, live or rejected (other values are ignored).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="status"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DoohControllerListWithHttpInfoAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;DoohControllerList200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<DoohControllerList200ResponseInner>>> DoohControllerListWithHttpInfoAsync(string status, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'status' is set
             if (status == null)
@@ -1047,6 +1132,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1058,10 +1144,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "status", status));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/dooh/partners", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<DoohControllerList200ResponseInner>>("/v1/admin/dooh/partners", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1073,23 +1170,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or update your DOOH network registration Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="doohSetupDto"></param>
-        /// <returns></returns>
-        public void DoohControllerSaveSetup(DoohSetupDto doohSetupDto)
+        /// <returns>DoohControllerSaveSetup201Response</returns>
+        public DoohControllerSaveSetup201Response DoohControllerSaveSetup(DoohSetupDto doohSetupDto)
         {
-            DoohControllerSaveSetupWithHttpInfo(doohSetupDto);
+            Adviverse.Api.Client.ApiResponse<DoohControllerSaveSetup201Response> localVarResponse = DoohControllerSaveSetupWithHttpInfo(doohSetupDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or update your DOOH network registration Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="doohSetupDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DoohControllerSaveSetupWithHttpInfo(DoohSetupDto doohSetupDto)
+        /// <returns>ApiResponse of DoohControllerSaveSetup201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<DoohControllerSaveSetup201Response> DoohControllerSaveSetupWithHttpInfo(DoohSetupDto doohSetupDto)
         {
             // verify the required parameter 'doohSetupDto' is set
             if (doohSetupDto == null)
@@ -1103,6 +1201,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1113,9 +1212,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = doohSetupDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/dooh/setup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<DoohControllerSaveSetup201Response>("/v1/dooh/setup", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1127,25 +1237,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or update your DOOH network registration Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="doohSetupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DoohControllerSaveSetupAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of DoohControllerSaveSetup201Response</returns>
+        public async System.Threading.Tasks.Task<DoohControllerSaveSetup201Response> DoohControllerSaveSetupAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DoohControllerSaveSetupWithHttpInfoAsync(doohSetupDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<DoohControllerSaveSetup201Response> localVarResponse = await DoohControllerSaveSetupWithHttpInfoAsync(doohSetupDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or update your DOOH network registration Upserts the account&#39;s single DOOH registration. &#x60;company&#x60; is required; &#x60;contactName&#x60;, &#x60;email&#x60;, &#x60;website&#x60;, &#x60;country&#x60;, &#x60;screenCount&#x60;, &#x60;venueTypes&#x60; (max 20), &#x60;integration&#x60; and &#x60;notes&#x60; are optional and trimmed to length limits. Returns the row id and its current onboarding status. 400 if &#x60;company&#x60; is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="doohSetupDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DoohControllerSaveSetupWithHttpInfoAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DoohControllerSaveSetup201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<DoohControllerSaveSetup201Response>> DoohControllerSaveSetupWithHttpInfoAsync(DoohSetupDto doohSetupDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'doohSetupDto' is set
             if (doohSetupDto == null)
@@ -1160,6 +1271,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1171,10 +1283,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = doohSetupDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/dooh/setup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<DoohControllerSaveSetup201Response>("/v1/dooh/setup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1186,23 +1309,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a DOOH registration&#39;s onboarding status Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void DoohControllerSetStatus(string id)
+        /// <returns>AuthControllerResendVerification201Response</returns>
+        public AuthControllerResendVerification201Response DoohControllerSetStatus(string id)
         {
-            DoohControllerSetStatusWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = DoohControllerSetStatusWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a DOOH registration&#39;s onboarding status Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> DoohControllerSetStatusWithHttpInfo(string id)
+        /// <returns>ApiResponse of AuthControllerResendVerification201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> DoohControllerSetStatusWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1215,6 +1339,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1225,9 +1350,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/admin/dooh/partners/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AuthControllerResendVerification201Response>("/v1/admin/dooh/partners/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1239,25 +1375,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a DOOH registration&#39;s onboarding status Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DoohControllerSetStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AuthControllerResendVerification201Response</returns>
+        public async System.Threading.Tasks.Task<AuthControllerResendVerification201Response> DoohControllerSetStatusAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await DoohControllerSetStatusWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response> localVarResponse = await DoohControllerSetStatusWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a DOOH registration&#39;s onboarding status Moves a registration to &#x60;status&#x60; new, contacted, onboarding, live or rejected. 400 for any other value. Returns ok even if the id does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> DoohControllerSetStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthControllerResendVerification201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AuthControllerResendVerification201Response>> DoohControllerSetStatusWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1271,6 +1408,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1282,10 +1420,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/admin/dooh/partners/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AuthControllerResendVerification201Response>("/v1/admin/dooh/partners/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1297,21 +1446,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all paired DOOH screens Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ScreensControllerAdminScreens()
+        /// <returns>List&lt;ScreensControllerAdminScreens200ResponseInner&gt;</returns>
+        public List<ScreensControllerAdminScreens200ResponseInner> ScreensControllerAdminScreens()
         {
-            ScreensControllerAdminScreensWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ScreensControllerAdminScreens200ResponseInner>> localVarResponse = ScreensControllerAdminScreensWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all paired DOOH screens Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerAdminScreensWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ScreensControllerAdminScreens200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ScreensControllerAdminScreens200ResponseInner>> ScreensControllerAdminScreensWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1320,6 +1470,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1329,9 +1480,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/dooh/screens", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ScreensControllerAdminScreens200ResponseInner>>("/v1/admin/dooh/screens", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1343,23 +1505,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all paired DOOH screens Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerAdminScreensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ScreensControllerAdminScreens200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ScreensControllerAdminScreens200ResponseInner>> ScreensControllerAdminScreensAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerAdminScreensWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ScreensControllerAdminScreens200ResponseInner>> localVarResponse = await ScreensControllerAdminScreensWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all paired DOOH screens Admin fleet overview: up to 2000 claimed screens across all accounts, newest first, with serving tag and owner email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerAdminScreensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ScreensControllerAdminScreens200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ScreensControllerAdminScreens200ResponseInner>>> ScreensControllerAdminScreensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1369,6 +1532,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1379,10 +1543,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/dooh/screens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ScreensControllerAdminScreens200ResponseInner>>("/v1/admin/dooh/screens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1394,25 +1569,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get DOOH proof-of-play for your campaigns Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        public void ScreensControllerAdvertiserPlays(string from, string to)
+        /// <returns>SupDoohPlayReport</returns>
+        public SupDoohPlayReport ScreensControllerAdvertiserPlays(string from, string to)
         {
-            ScreensControllerAdvertiserPlaysWithHttpInfo(from, to);
+            Adviverse.Api.Client.ApiResponse<SupDoohPlayReport> localVarResponse = ScreensControllerAdvertiserPlaysWithHttpInfo(from, to);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get DOOH proof-of-play for your campaigns Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerAdvertiserPlaysWithHttpInfo(string from, string to)
+        /// <returns>ApiResponse of SupDoohPlayReport</returns>
+        public Adviverse.Api.Client.ApiResponse<SupDoohPlayReport> ScreensControllerAdvertiserPlaysWithHttpInfo(string from, string to)
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -1429,6 +1605,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1440,9 +1617,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/dooh/plays", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SupDoohPlayReport>("/v1/advertiser/dooh/plays", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1454,27 +1642,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get DOOH proof-of-play for your campaigns Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerAdvertiserPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupDoohPlayReport</returns>
+        public async System.Threading.Tasks.Task<SupDoohPlayReport> ScreensControllerAdvertiserPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerAdvertiserPlaysWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupDoohPlayReport> localVarResponse = await ScreensControllerAdvertiserPlaysWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get DOOH proof-of-play for your campaigns Advertiser verification report over your campaigns&#39; DOOH plays between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days), including venue name and any screenshot attestation per play. Same shape as the publisher report.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerAdvertiserPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupDoohPlayReport)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupDoohPlayReport>> ScreensControllerAdvertiserPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -1492,6 +1681,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1504,10 +1694,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/dooh/plays", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SupDoohPlayReport>("/v1/advertiser/dooh/plays", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1519,21 +1720,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Upload a proof-of-play screenshot Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ScreensControllerAttest()
+        /// <returns>ScreensControllerAttest201Response</returns>
+        public ScreensControllerAttest201Response ScreensControllerAttest()
         {
-            ScreensControllerAttestWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ScreensControllerAttest201Response> localVarResponse = ScreensControllerAttestWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Upload a proof-of-play screenshot Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerAttestWithHttpInfo()
+        /// <returns>ApiResponse of ScreensControllerAttest201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ScreensControllerAttest201Response> ScreensControllerAttestWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1542,6 +1744,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1553,7 +1756,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/dooh/attest", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ScreensControllerAttest201Response>("/v1/dooh/attest", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1565,23 +1768,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Upload a proof-of-play screenshot Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerAttestAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ScreensControllerAttest201Response</returns>
+        public async System.Threading.Tasks.Task<ScreensControllerAttest201Response> ScreensControllerAttestAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerAttestWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerAttest201Response> localVarResponse = await ScreensControllerAttestWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Upload a proof-of-play screenshot Public, rate-limited endpoint used by the native DOOH player, authenticated by the active screen&#39;s serving &#x60;tag&#x60;. Body &#x60;image&#x60; is a base64 JPEG (data-URL prefix allowed, max ~2.5 MB). The image is stored and attached to the play identified by &#x60;popToken&#x60;, or to the screen&#39;s most recent play if omitted, and also counts as a heartbeat. 400 if tag/image are missing or the image is invalid, 404 if the tag is not an active screen.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerAttestWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ScreensControllerAttest201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ScreensControllerAttest201Response>> ScreensControllerAttestWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1591,6 +1795,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1604,7 +1809,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/dooh/attest", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ScreensControllerAttest201Response>("/v1/dooh/attest", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1616,23 +1821,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Claim a DOOH screen by its pairing code Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
-        /// <returns></returns>
-        public void ScreensControllerClaim(ClaimScreenDto claimScreenDto)
+        /// <returns>SupDoohScreen</returns>
+        public SupDoohScreen ScreensControllerClaim(ClaimScreenDto claimScreenDto)
         {
-            ScreensControllerClaimWithHttpInfo(claimScreenDto);
+            Adviverse.Api.Client.ApiResponse<SupDoohScreen> localVarResponse = ScreensControllerClaimWithHttpInfo(claimScreenDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Claim a DOOH screen by its pairing code Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerClaimWithHttpInfo(ClaimScreenDto claimScreenDto)
+        /// <returns>ApiResponse of SupDoohScreen</returns>
+        public Adviverse.Api.Client.ApiResponse<SupDoohScreen> ScreensControllerClaimWithHttpInfo(ClaimScreenDto claimScreenDto)
         {
             // verify the required parameter 'claimScreenDto' is set
             if (claimScreenDto == null)
@@ -1646,6 +1852,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1656,9 +1863,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = claimScreenDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/dooh/screens/claim", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SupDoohScreen>("/v1/dooh/screens/claim", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1670,25 +1888,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Claim a DOOH screen by its pairing code Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerClaimAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupDoohScreen</returns>
+        public async System.Threading.Tasks.Task<SupDoohScreen> ScreensControllerClaimAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerClaimWithHttpInfoAsync(claimScreenDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupDoohScreen> localVarResponse = await ScreensControllerClaimWithHttpInfoAsync(claimScreenDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Claim a DOOH screen by its pairing code Attaches the pending screen showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;dooh&#x60; placement under your DOOH property (created on first use) and stores venue details (&#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, resolution, &#x60;lat&#x60;/&#x60;lng&#x60;, &#x60;timezone&#x60;, &#x60;loopSeconds&#x60; default 8, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; default 1). Republishes the serving index. 404 if no screen is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerClaimWithHttpInfoAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupDoohScreen)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupDoohScreen>> ScreensControllerClaimWithHttpInfoAsync(ClaimScreenDto claimScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'claimScreenDto' is set
             if (claimScreenDto == null)
@@ -1703,6 +1922,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1714,10 +1934,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = claimScreenDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/dooh/screens/claim", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SupDoohScreen>("/v1/dooh/screens/claim", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1729,23 +1960,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a DOOH screen Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void ScreensControllerGet(string id)
+        /// <returns>SupDoohScreen</returns>
+        public SupDoohScreen ScreensControllerGet(string id)
         {
-            ScreensControllerGetWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SupDoohScreen> localVarResponse = ScreensControllerGetWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a DOOH screen Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerGetWithHttpInfo(string id)
+        /// <returns>ApiResponse of SupDoohScreen</returns>
+        public Adviverse.Api.Client.ApiResponse<SupDoohScreen> ScreensControllerGetWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1758,6 +1990,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1768,9 +2001,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SupDoohScreen>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1782,25 +2026,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a DOOH screen Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupDoohScreen</returns>
+        public async System.Threading.Tasks.Task<SupDoohScreen> ScreensControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupDoohScreen> localVarResponse = await ScreensControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a DOOH screen Returns one of your screens with its serving tag. 404 if it does not exist, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupDoohScreen)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupDoohScreen>> ScreensControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1814,6 +2059,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1825,10 +2071,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SupDoohScreen>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1840,21 +2097,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your DOOH screens Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ScreensControllerList()
+        /// <returns>List&lt;ScreensControllerList200ResponseInner&gt;</returns>
+        public List<ScreensControllerList200ResponseInner> ScreensControllerList()
         {
-            ScreensControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<ScreensControllerList200ResponseInner>> localVarResponse = ScreensControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your DOOH screens Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;ScreensControllerList200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<ScreensControllerList200ResponseInner>> ScreensControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1863,6 +2121,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1872,9 +2131,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/dooh/screens", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<ScreensControllerList200ResponseInner>>("/v1/dooh/screens", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1886,23 +2156,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your DOOH screens Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;ScreensControllerList200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ScreensControllerList200ResponseInner>> ScreensControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<ScreensControllerList200ResponseInner>> localVarResponse = await ScreensControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your DOOH screens Returns your screen fleet, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time and player version taken from live heartbeat data when available.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;ScreensControllerList200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<ScreensControllerList200ResponseInner>>> ScreensControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1912,6 +2183,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1922,10 +2194,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/dooh/screens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<ScreensControllerList200ResponseInner>>("/v1/dooh/screens", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1937,23 +2220,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a DOOH screen Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
-        /// <returns></returns>
-        public void ScreensControllerPairInit(PairInitDto pairInitDto)
+        /// <returns>ScreensControllerPairInit201Response</returns>
+        public ScreensControllerPairInit201Response ScreensControllerPairInit(PairInitDto pairInitDto)
         {
-            ScreensControllerPairInitWithHttpInfo(pairInitDto);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response> localVarResponse = ScreensControllerPairInitWithHttpInfo(pairInitDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a DOOH screen Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerPairInitWithHttpInfo(PairInitDto pairInitDto)
+        /// <returns>ApiResponse of ScreensControllerPairInit201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response> ScreensControllerPairInitWithHttpInfo(PairInitDto pairInitDto)
         {
             // verify the required parameter 'pairInitDto' is set
             if (pairInitDto == null)
@@ -1967,6 +2251,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1979,7 +2264,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/dooh/pair-init", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ScreensControllerPairInit201Response>("/v1/dooh/pair-init", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1991,25 +2276,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a DOOH screen Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerPairInitAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ScreensControllerPairInit201Response</returns>
+        public async System.Threading.Tasks.Task<ScreensControllerPairInit201Response> ScreensControllerPairInitAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerPairInitWithHttpInfoAsync(pairInitDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response> localVarResponse = await ScreensControllerPairInitWithHttpInfoAsync(pairInitDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a DOOH screen Public, rate-limited endpoint the DOOH player calls on first boot. Creates a pending screen and returns a human-readable &#x60;pairingCode&#x60; to show on the display plus a secret &#x60;pollToken&#x60;. Optional body &#x60;version&#x60; records the player version.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerPairInitWithHttpInfoAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ScreensControllerPairInit201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response>> ScreensControllerPairInitWithHttpInfoAsync(PairInitDto pairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'pairInitDto' is set
             if (pairInitDto == null)
@@ -2024,6 +2310,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2038,7 +2325,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/dooh/pair-init", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ScreensControllerPairInit201Response>("/v1/dooh/pair-init", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2050,23 +2337,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Poll a DOOH screen&#39;s pairing status Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
-        /// <returns></returns>
-        public void ScreensControllerPairStatus(string pollToken)
+        /// <returns>ScreensControllerPairStatus200Response</returns>
+        public ScreensControllerPairStatus200Response ScreensControllerPairStatus(string pollToken)
         {
-            ScreensControllerPairStatusWithHttpInfo(pollToken);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response> localVarResponse = ScreensControllerPairStatusWithHttpInfo(pollToken);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Poll a DOOH screen&#39;s pairing status Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerPairStatusWithHttpInfo(string pollToken)
+        /// <returns>ApiResponse of ScreensControllerPairStatus200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response> ScreensControllerPairStatusWithHttpInfo(string pollToken)
         {
             // verify the required parameter 'pollToken' is set
             if (pollToken == null)
@@ -2079,6 +2367,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2091,7 +2380,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/dooh/pair-status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ScreensControllerPairStatus200Response>("/v1/dooh/pair-status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2103,25 +2392,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Poll a DOOH screen&#39;s pairing status Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ScreensControllerPairStatus200Response</returns>
+        public async System.Threading.Tasks.Task<ScreensControllerPairStatus200Response> ScreensControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerPairStatusWithHttpInfoAsync(pollToken, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response> localVarResponse = await ScreensControllerPairStatusWithHttpInfoAsync(pollToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Poll a DOOH screen&#39;s pairing status Public, rate-limited. The player polls with &#x60;?pollToken&#x3D;&#x60; until a publisher claims its code; then it receives its serving &#x60;tag&#x60; and &#x60;servingBase&#x60;. 404 for an unknown poll token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ScreensControllerPairStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response>> ScreensControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'pollToken' is set
             if (pollToken == null)
@@ -2135,6 +2425,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2149,7 +2440,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/dooh/pair-status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ScreensControllerPairStatus200Response>("/v1/dooh/pair-status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2161,25 +2452,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH proof-of-play report Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        public void ScreensControllerPublisherPlays(string from, string to)
+        /// <returns>SupDoohPlayReport</returns>
+        public SupDoohPlayReport ScreensControllerPublisherPlays(string from, string to)
         {
-            ScreensControllerPublisherPlaysWithHttpInfo(from, to);
+            Adviverse.Api.Client.ApiResponse<SupDoohPlayReport> localVarResponse = ScreensControllerPublisherPlaysWithHttpInfo(from, to);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH proof-of-play report Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerPublisherPlaysWithHttpInfo(string from, string to)
+        /// <returns>ApiResponse of SupDoohPlayReport</returns>
+        public Adviverse.Api.Client.ApiResponse<SupDoohPlayReport> ScreensControllerPublisherPlaysWithHttpInfo(string from, string to)
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -2196,6 +2488,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2207,9 +2500,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/dooh/plays", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SupDoohPlayReport>("/v1/dooh/plays", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2221,27 +2525,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH proof-of-play report Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerPublisherPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupDoohPlayReport</returns>
+        public async System.Threading.Tasks.Task<SupDoohPlayReport> ScreensControllerPublisherPlaysAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerPublisherPlaysWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupDoohPlayReport> localVarResponse = await ScreensControllerPublisherPlaysWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your DOOH proof-of-play report Summarizes and lists (up to 2000) plays on your screens between &#x60;from&#x60; and &#x60;to&#x60; (ISO dates; default last 30 days): play and completion counts, completion rate (0-1), spend on completed plays, and distinct screens.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerPublisherPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupDoohPlayReport)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupDoohPlayReport>> ScreensControllerPublisherPlaysWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -2259,6 +2564,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2271,10 +2577,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/dooh/plays", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SupDoohPlayReport>("/v1/dooh/plays", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2286,25 +2603,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a DOOH screen Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
-        /// <returns></returns>
-        public void ScreensControllerSetStatus(string id, SetScreenStatusDto setScreenStatusDto)
+        /// <returns>ScreensControllerSetStatus201Response</returns>
+        public ScreensControllerSetStatus201Response ScreensControllerSetStatus(string id, SetScreenStatusDto setScreenStatusDto)
         {
-            ScreensControllerSetStatusWithHttpInfo(id, setScreenStatusDto);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response> localVarResponse = ScreensControllerSetStatusWithHttpInfo(id, setScreenStatusDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a DOOH screen Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerSetStatusWithHttpInfo(string id, SetScreenStatusDto setScreenStatusDto)
+        /// <returns>ApiResponse of ScreensControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response> ScreensControllerSetStatusWithHttpInfo(string id, SetScreenStatusDto setScreenStatusDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2322,6 +2640,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2333,9 +2652,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setScreenStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/dooh/screens/{id}/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ScreensControllerSetStatus201Response>("/v1/dooh/screens/{id}/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2347,27 +2677,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a DOOH screen Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerSetStatusAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ScreensControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<ScreensControllerSetStatus201Response> ScreensControllerSetStatusAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerSetStatusWithHttpInfoAsync(id, setScreenStatusDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response> localVarResponse = await ScreensControllerSetStatusWithHttpInfoAsync(id, setScreenStatusDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a DOOH screen Sets &#x60;status&#x60; (&#x60;active&#x60; or &#x60;paused&#x60;) on both the screen and its placement, then republishes the index so serving stops or resumes. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setScreenStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerSetStatusWithHttpInfoAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ScreensControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response>> ScreensControllerSetStatusWithHttpInfoAsync(string id, SetScreenStatusDto setScreenStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2386,6 +2717,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2398,10 +2730,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setScreenStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/dooh/screens/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ScreensControllerSetStatus201Response>("/v1/dooh/screens/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2413,25 +2756,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a DOOH screen Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateScreenDto"></param>
-        /// <returns></returns>
-        public void ScreensControllerUpdate(string id, UpdateScreenDto updateScreenDto)
+        /// <returns>SupDoohScreen</returns>
+        public SupDoohScreen ScreensControllerUpdate(string id, UpdateScreenDto updateScreenDto)
         {
-            ScreensControllerUpdateWithHttpInfo(id, updateScreenDto);
+            Adviverse.Api.Client.ApiResponse<SupDoohScreen> localVarResponse = ScreensControllerUpdateWithHttpInfo(id, updateScreenDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a DOOH screen Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateScreenDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ScreensControllerUpdateWithHttpInfo(string id, UpdateScreenDto updateScreenDto)
+        /// <returns>ApiResponse of SupDoohScreen</returns>
+        public Adviverse.Api.Client.ApiResponse<SupDoohScreen> ScreensControllerUpdateWithHttpInfo(string id, UpdateScreenDto updateScreenDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2449,6 +2793,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2460,9 +2805,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateScreenDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<SupDoohScreen>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2474,27 +2830,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a DOOH screen Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ScreensControllerUpdateAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupDoohScreen</returns>
+        public async System.Threading.Tasks.Task<SupDoohScreen> ScreensControllerUpdateAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ScreensControllerUpdateWithHttpInfoAsync(id, updateScreenDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupDoohScreen> localVarResponse = await ScreensControllerUpdateWithHttpInfoAsync(id, updateScreenDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a DOOH screen Edits &#x60;venueName&#x60;, &#x60;venueType&#x60;, &#x60;orientation&#x60;, &#x60;loopSeconds&#x60;, &#x60;floorCpm&#x60; and &#x60;audienceMultiplier&#x60; on a paired screen, keeping its placement settings in sync, and republishes the index. 400 if the screen is not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateScreenDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ScreensControllerUpdateWithHttpInfoAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupDoohScreen)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupDoohScreen>> ScreensControllerUpdateWithHttpInfoAsync(string id, UpdateScreenDto updateScreenDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2513,6 +2870,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2525,10 +2883,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateScreenDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<SupDoohScreen>("/v1/dooh/screens/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

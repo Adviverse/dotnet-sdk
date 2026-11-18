@@ -28,275 +28,320 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MetaverseControllerAdminWorlds();
-
-        /// <summary>
-        /// 
+        /// List all world integrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerAdminWorldsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <returns></returns>
-        void MetaverseControllerAdvertiserViews(string from, string to);
+        /// <returns>List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;</returns>
+        List<MetaverseControllerAdminWorlds200ResponseInner> MetaverseControllerAdminWorlds();
 
         /// <summary>
-        /// 
+        /// List all world integrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;</returns>
+        ApiResponse<List<MetaverseControllerAdminWorlds200ResponseInner>> MetaverseControllerAdminWorldsWithHttpInfo();
+        /// <summary>
+        /// Get metaverse proof-of-view for your campaigns
+        /// </summary>
+        /// <remarks>
+        /// Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerAdvertiserViewsWithHttpInfo(string from, string to);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="claimSurfaceDto"></param>
-        /// <returns></returns>
-        void MetaverseControllerClaim(ClaimSurfaceDto claimSurfaceDto);
+        /// <returns>SupSurfaceReport</returns>
+        SupSurfaceReport MetaverseControllerAdvertiserViews(string from, string to);
 
         /// <summary>
-        /// 
+        /// Get metaverse proof-of-view for your campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns>ApiResponse of SupSurfaceReport</returns>
+        ApiResponse<SupSurfaceReport> MetaverseControllerAdvertiserViewsWithHttpInfo(string from, string to);
+        /// <summary>
+        /// Claim a metaverse surface by its pairing code
+        /// </summary>
+        /// <remarks>
+        /// Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimSurfaceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerClaimWithHttpInfo(ClaimSurfaceDto claimSurfaceDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWorldDto"></param>
-        /// <returns></returns>
-        void MetaverseControllerCreateWorld(CreateWorldDto createWorldDto);
+        /// <returns>SupSurface</returns>
+        SupSurface MetaverseControllerClaim(ClaimSurfaceDto claimSurfaceDto);
 
         /// <summary>
-        /// 
+        /// Claim a metaverse surface by its pairing code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimSurfaceDto"></param>
+        /// <returns>ApiResponse of SupSurface</returns>
+        ApiResponse<SupSurface> MetaverseControllerClaimWithHttpInfo(ClaimSurfaceDto claimSurfaceDto);
+        /// <summary>
+        /// Register a metaverse world integration
+        /// </summary>
+        /// <remarks>
+        /// Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWorldDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerCreateWorldWithHttpInfo(CreateWorldDto createWorldDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void MetaverseControllerGet(string id);
+        /// <returns>MetaverseControllerCreateWorld201Response</returns>
+        MetaverseControllerCreateWorld201Response MetaverseControllerCreateWorld(CreateWorldDto createWorldDto);
 
         /// <summary>
-        /// 
+        /// Register a metaverse world integration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWorldDto"></param>
+        /// <returns>ApiResponse of MetaverseControllerCreateWorld201Response</returns>
+        ApiResponse<MetaverseControllerCreateWorld201Response> MetaverseControllerCreateWorldWithHttpInfo(CreateWorldDto createWorldDto);
+        /// <summary>
+        /// Get a metaverse surface
+        /// </summary>
+        /// <remarks>
+        /// Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerGetWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MetaverseControllerList();
+        /// <returns>SupSurface</returns>
+        SupSurface MetaverseControllerGet(string id);
 
         /// <summary>
-        /// 
+        /// Get a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerListWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of SupSurface</returns>
+        ApiResponse<SupSurface> MetaverseControllerGetWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// List your metaverse surfaces
         /// </summary>
+        /// <remarks>
+        /// Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MetaverseControllerListWorlds();
+        /// <returns>List&lt;MetaverseControllerList200ResponseInner&gt;</returns>
+        List<MetaverseControllerList200ResponseInner> MetaverseControllerList();
 
         /// <summary>
-        /// 
+        /// List your metaverse surfaces
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerListWorldsWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;MetaverseControllerList200ResponseInner&gt;</returns>
+        ApiResponse<List<MetaverseControllerList200ResponseInner>> MetaverseControllerListWithHttpInfo();
         /// <summary>
-        /// 
+        /// List your world integrations
         /// </summary>
+        /// <remarks>
+        /// Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;SupWorld&gt;</returns>
+        List<SupWorld> MetaverseControllerListWorlds();
+
+        /// <summary>
+        /// List your world integrations
+        /// </summary>
+        /// <remarks>
+        /// Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;SupWorld&gt;</returns>
+        ApiResponse<List<SupWorld>> MetaverseControllerListWorldsWithHttpInfo();
+        /// <summary>
+        /// Start pairing a metaverse ad surface
+        /// </summary>
+        /// <remarks>
+        /// Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
-        /// <returns></returns>
-        void MetaverseControllerPairInit(SurfacePairInitDto surfacePairInitDto);
+        /// <returns>ScreensControllerPairInit201Response</returns>
+        ScreensControllerPairInit201Response MetaverseControllerPairInit(SurfacePairInitDto surfacePairInitDto);
 
         /// <summary>
-        /// 
+        /// Start pairing a metaverse ad surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerPairInitWithHttpInfo(SurfacePairInitDto surfacePairInitDto);
+        /// <returns>ApiResponse of ScreensControllerPairInit201Response</returns>
+        ApiResponse<ScreensControllerPairInit201Response> MetaverseControllerPairInitWithHttpInfo(SurfacePairInitDto surfacePairInitDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pollToken"></param>
-        /// <returns></returns>
-        void MetaverseControllerPairStatus(string pollToken);
-
-        /// <summary>
-        /// 
+        /// Poll a metaverse surface&#39;s pairing status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerPairStatusWithHttpInfo(string pollToken);
+        /// <returns>ScreensControllerPairStatus200Response</returns>
+        ScreensControllerPairStatus200Response MetaverseControllerPairStatus(string pollToken);
+
         /// <summary>
-        /// 
+        /// Poll a metaverse surface&#39;s pairing status
         /// </summary>
+        /// <remarks>
+        /// Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pollToken"></param>
+        /// <returns>ApiResponse of ScreensControllerPairStatus200Response</returns>
+        ApiResponse<ScreensControllerPairStatus200Response> MetaverseControllerPairStatusWithHttpInfo(string pollToken);
+        /// <summary>
+        /// Get your metaverse proof-of-view report
+        /// </summary>
+        /// <remarks>
+        /// Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        void MetaverseControllerPublisherViews(string from, string to);
+        /// <returns>SupSurfaceReport</returns>
+        SupSurfaceReport MetaverseControllerPublisherViews(string from, string to);
 
         /// <summary>
-        /// 
+        /// Get your metaverse proof-of-view report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerPublisherViewsWithHttpInfo(string from, string to);
+        /// <returns>ApiResponse of SupSurfaceReport</returns>
+        ApiResponse<SupSurfaceReport> MetaverseControllerPublisherViewsWithHttpInfo(string from, string to);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MetaverseControllerScoreNow();
-
-        /// <summary>
-        /// 
+        /// Run world trust scoring now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerScoreNowWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="setSurfaceStatusDto"></param>
-        /// <returns></returns>
-        void MetaverseControllerSetStatus(string id, SetSurfaceStatusDto setSurfaceStatusDto);
+        /// <returns>MetaverseControllerScoreNow201Response</returns>
+        MetaverseControllerScoreNow201Response MetaverseControllerScoreNow();
 
         /// <summary>
-        /// 
+        /// Run world trust scoring now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of MetaverseControllerScoreNow201Response</returns>
+        ApiResponse<MetaverseControllerScoreNow201Response> MetaverseControllerScoreNowWithHttpInfo();
+        /// <summary>
+        /// Pause or activate a metaverse surface
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setSurfaceStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerSetStatusWithHttpInfo(string id, SetSurfaceStatusDto setSurfaceStatusDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="setWorldTrustDto"></param>
-        /// <returns></returns>
-        void MetaverseControllerSetWorldTrust(string id, SetWorldTrustDto setWorldTrustDto);
+        /// <returns>ScreensControllerSetStatus201Response</returns>
+        ScreensControllerSetStatus201Response MetaverseControllerSetStatus(string id, SetSurfaceStatusDto setSurfaceStatusDto);
 
         /// <summary>
-        /// 
+        /// Pause or activate a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="setSurfaceStatusDto"></param>
+        /// <returns>ApiResponse of ScreensControllerSetStatus201Response</returns>
+        ApiResponse<ScreensControllerSetStatus201Response> MetaverseControllerSetStatusWithHttpInfo(string id, SetSurfaceStatusDto setSurfaceStatusDto);
+        /// <summary>
+        /// Set a world&#39;s trust tier
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setWorldTrustDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerSetWorldTrustWithHttpInfo(string id, SetWorldTrustDto setWorldTrustDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void MetaverseControllerTrustScores();
+        /// <returns>MetaverseControllerSetWorldTrust201Response</returns>
+        MetaverseControllerSetWorldTrust201Response MetaverseControllerSetWorldTrust(string id, SetWorldTrustDto setWorldTrustDto);
 
         /// <summary>
-        /// 
+        /// Set a world&#39;s trust tier
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerTrustScoresWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="updateSurfaceDto"></param>
-        /// <returns></returns>
-        void MetaverseControllerUpdate(string id, UpdateSurfaceDto updateSurfaceDto);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="setWorldTrustDto"></param>
+        /// <returns>ApiResponse of MetaverseControllerSetWorldTrust201Response</returns>
+        ApiResponse<MetaverseControllerSetWorldTrust201Response> MetaverseControllerSetWorldTrustWithHttpInfo(string id, SetWorldTrustDto setWorldTrustDto);
+        /// <summary>
+        /// List world trust scores
+        /// </summary>
+        /// <remarks>
+        /// Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;MetaverseControllerTrustScores200ResponseInner&gt;</returns>
+        List<MetaverseControllerTrustScores200ResponseInner> MetaverseControllerTrustScores();
+
+        /// <summary>
+        /// List world trust scores
+        /// </summary>
+        /// <remarks>
+        /// Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;MetaverseControllerTrustScores200ResponseInner&gt;</returns>
+        ApiResponse<List<MetaverseControllerTrustScores200ResponseInner>> MetaverseControllerTrustScoresWithHttpInfo();
+        /// <summary>
+        /// Update a metaverse surface
+        /// </summary>
+        /// <remarks>
+        /// Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
         /// <param name="updateSurfaceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> MetaverseControllerUpdateWithHttpInfo(string id, UpdateSurfaceDto updateSurfaceDto);
+        /// <returns>SupSurface</returns>
+        SupSurface MetaverseControllerUpdate(string id, UpdateSurfaceDto updateSurfaceDto);
+
+        /// <summary>
+        /// Update a metaverse surface
+        /// </summary>
+        /// <remarks>
+        /// Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateSurfaceDto"></param>
+        /// <returns>ApiResponse of SupSurface</returns>
+        ApiResponse<SupSurface> MetaverseControllerUpdateWithHttpInfo(string id, UpdateSurfaceDto updateSurfaceDto);
         #endregion Synchronous Operations
     }
 
@@ -307,350 +352,350 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List all world integrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerAdminWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<MetaverseControllerAdminWorlds200ResponseInner>> MetaverseControllerAdminWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List all world integrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerAdminWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<MetaverseControllerAdminWorlds200ResponseInner>>> MetaverseControllerAdminWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get metaverse proof-of-view for your campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerAdvertiserViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupSurfaceReport</returns>
+        System.Threading.Tasks.Task<SupSurfaceReport> MetaverseControllerAdvertiserViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get metaverse proof-of-view for your campaigns
         /// </summary>
         /// <remarks>
-        /// 
+        /// Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerAdvertiserViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupSurfaceReport)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupSurfaceReport>> MetaverseControllerAdvertiserViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Claim a metaverse surface by its pairing code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerClaimAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupSurface</returns>
+        System.Threading.Tasks.Task<SupSurface> MetaverseControllerClaimAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Claim a metaverse surface by its pairing code
         /// </summary>
         /// <remarks>
-        /// 
+        /// Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerClaimWithHttpInfoAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupSurface)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupSurface>> MetaverseControllerClaimWithHttpInfoAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Register a metaverse world integration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWorldDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerCreateWorldAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of MetaverseControllerCreateWorld201Response</returns>
+        System.Threading.Tasks.Task<MetaverseControllerCreateWorld201Response> MetaverseControllerCreateWorldAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Register a metaverse world integration
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWorldDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerCreateWorldWithHttpInfoAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (MetaverseControllerCreateWorld201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MetaverseControllerCreateWorld201Response>> MetaverseControllerCreateWorldWithHttpInfoAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupSurface</returns>
+        System.Threading.Tasks.Task<SupSurface> MetaverseControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupSurface)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupSurface>> MetaverseControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your metaverse surfaces
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;MetaverseControllerList200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<MetaverseControllerList200ResponseInner>> MetaverseControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your metaverse surfaces
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;MetaverseControllerList200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<MetaverseControllerList200ResponseInner>>> MetaverseControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List your world integrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerListWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;SupWorld&gt;</returns>
+        System.Threading.Tasks.Task<List<SupWorld>> MetaverseControllerListWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List your world integrations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerListWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;SupWorld&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<SupWorld>>> MetaverseControllerListWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start pairing a metaverse ad surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerPairInitAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ScreensControllerPairInit201Response</returns>
+        System.Threading.Tasks.Task<ScreensControllerPairInit201Response> MetaverseControllerPairInitAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start pairing a metaverse ad surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerPairInitWithHttpInfoAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ScreensControllerPairInit201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScreensControllerPairInit201Response>> MetaverseControllerPairInitWithHttpInfoAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Poll a metaverse surface&#39;s pairing status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ScreensControllerPairStatus200Response</returns>
+        System.Threading.Tasks.Task<ScreensControllerPairStatus200Response> MetaverseControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Poll a metaverse surface&#39;s pairing status
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ScreensControllerPairStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScreensControllerPairStatus200Response>> MetaverseControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get your metaverse proof-of-view report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerPublisherViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupSurfaceReport</returns>
+        System.Threading.Tasks.Task<SupSurfaceReport> MetaverseControllerPublisherViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get your metaverse proof-of-view report
         /// </summary>
         /// <remarks>
-        /// 
+        /// Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerPublisherViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupSurfaceReport)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupSurfaceReport>> MetaverseControllerPublisherViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Run world trust scoring now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerScoreNowAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of MetaverseControllerScoreNow201Response</returns>
+        System.Threading.Tasks.Task<MetaverseControllerScoreNow201Response> MetaverseControllerScoreNowAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Run world trust scoring now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerScoreNowWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (MetaverseControllerScoreNow201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MetaverseControllerScoreNow201Response>> MetaverseControllerScoreNowWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Pause or activate a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setSurfaceStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerSetStatusAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ScreensControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<ScreensControllerSetStatus201Response> MetaverseControllerSetStatusAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Pause or activate a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setSurfaceStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerSetStatusWithHttpInfoAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ScreensControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScreensControllerSetStatus201Response>> MetaverseControllerSetStatusWithHttpInfoAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Set a world&#39;s trust tier
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setWorldTrustDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerSetWorldTrustAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of MetaverseControllerSetWorldTrust201Response</returns>
+        System.Threading.Tasks.Task<MetaverseControllerSetWorldTrust201Response> MetaverseControllerSetWorldTrustAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Set a world&#39;s trust tier
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setWorldTrustDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerSetWorldTrustWithHttpInfoAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (MetaverseControllerSetWorldTrust201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MetaverseControllerSetWorldTrust201Response>> MetaverseControllerSetWorldTrustWithHttpInfoAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List world trust scores
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerTrustScoresAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;MetaverseControllerTrustScores200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<MetaverseControllerTrustScores200ResponseInner>> MetaverseControllerTrustScoresAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List world trust scores
         /// </summary>
         /// <remarks>
-        /// 
+        /// Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerTrustScoresWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;MetaverseControllerTrustScores200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<MetaverseControllerTrustScores200ResponseInner>>> MetaverseControllerTrustScoresWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task MetaverseControllerUpdateAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SupSurface</returns>
+        System.Threading.Tasks.Task<SupSurface> MetaverseControllerUpdateAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a metaverse surface
         /// </summary>
         /// <remarks>
-        /// 
+        /// Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetaverseControllerUpdateWithHttpInfoAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SupSurface)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupSurface>> MetaverseControllerUpdateWithHttpInfoAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -865,21 +910,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all world integrations Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MetaverseControllerAdminWorlds()
+        /// <returns>List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;</returns>
+        public List<MetaverseControllerAdminWorlds200ResponseInner> MetaverseControllerAdminWorlds()
         {
-            MetaverseControllerAdminWorldsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<MetaverseControllerAdminWorlds200ResponseInner>> localVarResponse = MetaverseControllerAdminWorldsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all world integrations Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerAdminWorldsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<MetaverseControllerAdminWorlds200ResponseInner>> MetaverseControllerAdminWorldsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -888,6 +934,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -897,9 +944,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/metaverse/worlds", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<MetaverseControllerAdminWorlds200ResponseInner>>("/v1/admin/metaverse/worlds", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -911,23 +969,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all world integrations Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerAdminWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<MetaverseControllerAdminWorlds200ResponseInner>> MetaverseControllerAdminWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerAdminWorldsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<MetaverseControllerAdminWorlds200ResponseInner>> localVarResponse = await MetaverseControllerAdminWorldsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all world integrations Admin view of up to 1000 world integrations across all accounts, with the operator&#39;s email.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerAdminWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;MetaverseControllerAdminWorlds200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<MetaverseControllerAdminWorlds200ResponseInner>>> MetaverseControllerAdminWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -937,6 +996,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -947,10 +1007,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/metaverse/worlds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<MetaverseControllerAdminWorlds200ResponseInner>>("/v1/admin/metaverse/worlds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -962,25 +1033,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get metaverse proof-of-view for your campaigns Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        public void MetaverseControllerAdvertiserViews(string from, string to)
+        /// <returns>SupSurfaceReport</returns>
+        public SupSurfaceReport MetaverseControllerAdvertiserViews(string from, string to)
         {
-            MetaverseControllerAdvertiserViewsWithHttpInfo(from, to);
+            Adviverse.Api.Client.ApiResponse<SupSurfaceReport> localVarResponse = MetaverseControllerAdvertiserViewsWithHttpInfo(from, to);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get metaverse proof-of-view for your campaigns Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerAdvertiserViewsWithHttpInfo(string from, string to)
+        /// <returns>ApiResponse of SupSurfaceReport</returns>
+        public Adviverse.Api.Client.ApiResponse<SupSurfaceReport> MetaverseControllerAdvertiserViewsWithHttpInfo(string from, string to)
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -997,6 +1069,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1008,9 +1081,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/advertiser/metaverse/views", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SupSurfaceReport>("/v1/advertiser/metaverse/views", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1022,27 +1106,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get metaverse proof-of-view for your campaigns Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerAdvertiserViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupSurfaceReport</returns>
+        public async System.Threading.Tasks.Task<SupSurfaceReport> MetaverseControllerAdvertiserViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerAdvertiserViewsWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupSurfaceReport> localVarResponse = await MetaverseControllerAdvertiserViewsWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get metaverse proof-of-view for your campaigns Same report as the publisher view, scoped to surface events on your campaigns between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerAdvertiserViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupSurfaceReport)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupSurfaceReport>> MetaverseControllerAdvertiserViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -1060,6 +1145,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1072,10 +1158,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/advertiser/metaverse/views", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SupSurfaceReport>("/v1/advertiser/metaverse/views", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1087,23 +1184,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Claim a metaverse surface by its pairing code Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimSurfaceDto"></param>
-        /// <returns></returns>
-        public void MetaverseControllerClaim(ClaimSurfaceDto claimSurfaceDto)
+        /// <returns>SupSurface</returns>
+        public SupSurface MetaverseControllerClaim(ClaimSurfaceDto claimSurfaceDto)
         {
-            MetaverseControllerClaimWithHttpInfo(claimSurfaceDto);
+            Adviverse.Api.Client.ApiResponse<SupSurface> localVarResponse = MetaverseControllerClaimWithHttpInfo(claimSurfaceDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Claim a metaverse surface by its pairing code Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimSurfaceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerClaimWithHttpInfo(ClaimSurfaceDto claimSurfaceDto)
+        /// <returns>ApiResponse of SupSurface</returns>
+        public Adviverse.Api.Client.ApiResponse<SupSurface> MetaverseControllerClaimWithHttpInfo(ClaimSurfaceDto claimSurfaceDto)
         {
             // verify the required parameter 'claimSurfaceDto' is set
             if (claimSurfaceDto == null)
@@ -1117,6 +1215,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1127,9 +1226,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = claimSurfaceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/metaverse/surfaces/claim", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SupSurface>("/v1/metaverse/surfaces/claim", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1141,25 +1251,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Claim a metaverse surface by its pairing code Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerClaimAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupSurface</returns>
+        public async System.Threading.Tasks.Task<SupSurface> MetaverseControllerClaimAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerClaimWithHttpInfoAsync(claimSurfaceDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupSurface> localVarResponse = await MetaverseControllerClaimWithHttpInfoAsync(claimSurfaceDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Claim a metaverse surface by its pairing code Attaches the pending surface showing &#x60;code&#x60; to your account and starts serving: creates a &#x60;surface&#x60; placement (signed with the world&#39;s attestation key) under a per-world property that inherits the world&#39;s trust tier. Optional spatial details: &#x60;shopId&#x60;, &#x60;world&#x60;, &#x60;surfaceType&#x60;, &#x60;posX/Y/Z&#x60;, &#x60;widthM&#x60;, &#x60;heightM&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; (default 1), &#x60;maxDistanceM&#x60;. 404 if no surface is waiting for that code.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="claimSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerClaimWithHttpInfoAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupSurface)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupSurface>> MetaverseControllerClaimWithHttpInfoAsync(ClaimSurfaceDto claimSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'claimSurfaceDto' is set
             if (claimSurfaceDto == null)
@@ -1174,6 +1285,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1185,10 +1297,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = claimSurfaceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/metaverse/surfaces/claim", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SupSurface>("/v1/metaverse/surfaces/claim", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1200,23 +1323,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a metaverse world integration Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWorldDto"></param>
-        /// <returns></returns>
-        public void MetaverseControllerCreateWorld(CreateWorldDto createWorldDto)
+        /// <returns>MetaverseControllerCreateWorld201Response</returns>
+        public MetaverseControllerCreateWorld201Response MetaverseControllerCreateWorld(CreateWorldDto createWorldDto)
         {
-            MetaverseControllerCreateWorldWithHttpInfo(createWorldDto);
+            Adviverse.Api.Client.ApiResponse<MetaverseControllerCreateWorld201Response> localVarResponse = MetaverseControllerCreateWorldWithHttpInfo(createWorldDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a metaverse world integration Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWorldDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerCreateWorldWithHttpInfo(CreateWorldDto createWorldDto)
+        /// <returns>ApiResponse of MetaverseControllerCreateWorld201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<MetaverseControllerCreateWorld201Response> MetaverseControllerCreateWorldWithHttpInfo(CreateWorldDto createWorldDto)
         {
             // verify the required parameter 'createWorldDto' is set
             if (createWorldDto == null)
@@ -1230,6 +1354,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1240,9 +1365,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createWorldDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<MetaverseControllerCreateWorld201Response>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1254,25 +1390,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register a metaverse world integration Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWorldDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerCreateWorldAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of MetaverseControllerCreateWorld201Response</returns>
+        public async System.Threading.Tasks.Task<MetaverseControllerCreateWorld201Response> MetaverseControllerCreateWorldAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerCreateWorldWithHttpInfoAsync(createWorldDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<MetaverseControllerCreateWorld201Response> localVarResponse = await MetaverseControllerCreateWorldWithHttpInfoAsync(createWorldDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register a metaverse world integration Creates a world integration for a metaverse operator from &#x60;name&#x60; (required) and optional &#x60;networkId&#x60;. New worlds start &#x60;unverified&#x60; (their surfaces serve CPA-only until trusted). The response includes &#x60;signing_secret&#x60;, which the world&#39;s server uses to attest proofs of view; it is returned only here. 400 if name is empty.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWorldDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerCreateWorldWithHttpInfoAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (MetaverseControllerCreateWorld201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<MetaverseControllerCreateWorld201Response>> MetaverseControllerCreateWorldWithHttpInfoAsync(CreateWorldDto createWorldDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createWorldDto' is set
             if (createWorldDto == null)
@@ -1287,6 +1424,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1298,10 +1436,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createWorldDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<MetaverseControllerCreateWorld201Response>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1313,23 +1462,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a metaverse surface Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void MetaverseControllerGet(string id)
+        /// <returns>SupSurface</returns>
+        public SupSurface MetaverseControllerGet(string id)
         {
-            MetaverseControllerGetWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SupSurface> localVarResponse = MetaverseControllerGetWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a metaverse surface Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerGetWithHttpInfo(string id)
+        /// <returns>ApiResponse of SupSurface</returns>
+        public Adviverse.Api.Client.ApiResponse<SupSurface> MetaverseControllerGetWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1342,6 +1492,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1352,9 +1503,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SupSurface>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1366,25 +1528,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a metaverse surface Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupSurface</returns>
+        public async System.Threading.Tasks.Task<SupSurface> MetaverseControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupSurface> localVarResponse = await MetaverseControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a metaverse surface Returns one of your surfaces with its serving tag. 404 if not found, 403 if another account owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupSurface)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupSurface>> MetaverseControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1398,6 +1561,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1409,10 +1573,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SupSurface>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1424,21 +1599,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your metaverse surfaces Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MetaverseControllerList()
+        /// <returns>List&lt;MetaverseControllerList200ResponseInner&gt;</returns>
+        public List<MetaverseControllerList200ResponseInner> MetaverseControllerList()
         {
-            MetaverseControllerListWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<MetaverseControllerList200ResponseInner>> localVarResponse = MetaverseControllerListWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your metaverse surfaces Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerListWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;MetaverseControllerList200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<MetaverseControllerList200ResponseInner>> MetaverseControllerListWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1447,6 +1623,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1456,9 +1633,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/metaverse/surfaces", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<MetaverseControllerList200ResponseInner>>("/v1/metaverse/surfaces", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1470,23 +1658,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your metaverse surfaces Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;MetaverseControllerList200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<MetaverseControllerList200ResponseInner>> MetaverseControllerListAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<MetaverseControllerList200ResponseInner>> localVarResponse = await MetaverseControllerListWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your metaverse surfaces Returns your surfaces, newest first, with &#x60;online&#x60; (heartbeat within 5 minutes) and the latest heartbeat time.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;MetaverseControllerList200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<MetaverseControllerList200ResponseInner>>> MetaverseControllerListWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1496,6 +1685,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1506,10 +1696,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/metaverse/surfaces", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<MetaverseControllerList200ResponseInner>>("/v1/metaverse/surfaces", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1521,21 +1722,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your world integrations Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MetaverseControllerListWorlds()
+        /// <returns>List&lt;SupWorld&gt;</returns>
+        public List<SupWorld> MetaverseControllerListWorlds()
         {
-            MetaverseControllerListWorldsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<SupWorld>> localVarResponse = MetaverseControllerListWorldsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your world integrations Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerListWorldsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;SupWorld&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<SupWorld>> MetaverseControllerListWorldsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1544,6 +1746,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1553,9 +1756,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<SupWorld>>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1567,23 +1781,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List your world integrations Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerListWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;SupWorld&gt;</returns>
+        public async System.Threading.Tasks.Task<List<SupWorld>> MetaverseControllerListWorldsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerListWorldsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<SupWorld>> localVarResponse = await MetaverseControllerListWorldsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List your world integrations Returns the caller&#39;s world integrations (without signing secrets), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerListWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;SupWorld&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<SupWorld>>> MetaverseControllerListWorldsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1593,6 +1808,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1603,10 +1819,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<SupWorld>>("/v1/metaverse/worlds", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1618,23 +1845,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a metaverse ad surface Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
-        /// <returns></returns>
-        public void MetaverseControllerPairInit(SurfacePairInitDto surfacePairInitDto)
+        /// <returns>ScreensControllerPairInit201Response</returns>
+        public ScreensControllerPairInit201Response MetaverseControllerPairInit(SurfacePairInitDto surfacePairInitDto)
         {
-            MetaverseControllerPairInitWithHttpInfo(surfacePairInitDto);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response> localVarResponse = MetaverseControllerPairInitWithHttpInfo(surfacePairInitDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a metaverse ad surface Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerPairInitWithHttpInfo(SurfacePairInitDto surfacePairInitDto)
+        /// <returns>ApiResponse of ScreensControllerPairInit201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response> MetaverseControllerPairInitWithHttpInfo(SurfacePairInitDto surfacePairInitDto)
         {
             // verify the required parameter 'surfacePairInitDto' is set
             if (surfacePairInitDto == null)
@@ -1648,6 +1876,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1660,7 +1889,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/metaverse/pair-init", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ScreensControllerPairInit201Response>("/v1/metaverse/pair-init", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1672,25 +1901,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a metaverse ad surface Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerPairInitAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ScreensControllerPairInit201Response</returns>
+        public async System.Threading.Tasks.Task<ScreensControllerPairInit201Response> MetaverseControllerPairInitAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerPairInitWithHttpInfoAsync(surfacePairInitDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response> localVarResponse = await MetaverseControllerPairInitWithHttpInfoAsync(surfacePairInitDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start pairing a metaverse ad surface Public, rate-limited. A world client calls this with &#x60;worldId&#x60; (must be an active world) and optional &#x60;surfaceType&#x60; (screen, poster, portal; default screen). Returns a pairing code to show in-world and a poll token. 404 for an unknown world.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="surfacePairInitDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerPairInitWithHttpInfoAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ScreensControllerPairInit201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ScreensControllerPairInit201Response>> MetaverseControllerPairInitWithHttpInfoAsync(SurfacePairInitDto surfacePairInitDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'surfacePairInitDto' is set
             if (surfacePairInitDto == null)
@@ -1705,6 +1935,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1719,7 +1950,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/metaverse/pair-init", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ScreensControllerPairInit201Response>("/v1/metaverse/pair-init", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1731,23 +1962,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Poll a metaverse surface&#39;s pairing status Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
-        /// <returns></returns>
-        public void MetaverseControllerPairStatus(string pollToken)
+        /// <returns>ScreensControllerPairStatus200Response</returns>
+        public ScreensControllerPairStatus200Response MetaverseControllerPairStatus(string pollToken)
         {
-            MetaverseControllerPairStatusWithHttpInfo(pollToken);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response> localVarResponse = MetaverseControllerPairStatusWithHttpInfo(pollToken);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Poll a metaverse surface&#39;s pairing status Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerPairStatusWithHttpInfo(string pollToken)
+        /// <returns>ApiResponse of ScreensControllerPairStatus200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response> MetaverseControllerPairStatusWithHttpInfo(string pollToken)
         {
             // verify the required parameter 'pollToken' is set
             if (pollToken == null)
@@ -1760,6 +1992,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1772,7 +2005,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/metaverse/pair-status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ScreensControllerPairStatus200Response>("/v1/metaverse/pair-status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1784,25 +2017,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Poll a metaverse surface&#39;s pairing status Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ScreensControllerPairStatus200Response</returns>
+        public async System.Threading.Tasks.Task<ScreensControllerPairStatus200Response> MetaverseControllerPairStatusAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerPairStatusWithHttpInfoAsync(pollToken, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response> localVarResponse = await MetaverseControllerPairStatusWithHttpInfoAsync(pollToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Poll a metaverse surface&#39;s pairing status Public, rate-limited. Poll with &#x60;?pollToken&#x3D;&#x60; until a shop owner claims the code, then receive the serving &#x60;tag&#x60;. 404 for an unknown token.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pollToken"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ScreensControllerPairStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ScreensControllerPairStatus200Response>> MetaverseControllerPairStatusWithHttpInfoAsync(string pollToken, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'pollToken' is set
             if (pollToken == null)
@@ -1816,6 +2050,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1830,7 +2065,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/metaverse/pair-status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ScreensControllerPairStatus200Response>("/v1/metaverse/pair-status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1842,25 +2077,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your metaverse proof-of-view report Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns></returns>
-        public void MetaverseControllerPublisherViews(string from, string to)
+        /// <returns>SupSurfaceReport</returns>
+        public SupSurfaceReport MetaverseControllerPublisherViews(string from, string to)
         {
-            MetaverseControllerPublisherViewsWithHttpInfo(from, to);
+            Adviverse.Api.Client.ApiResponse<SupSurfaceReport> localVarResponse = MetaverseControllerPublisherViewsWithHttpInfo(from, to);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your metaverse proof-of-view report Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerPublisherViewsWithHttpInfo(string from, string to)
+        /// <returns>ApiResponse of SupSurfaceReport</returns>
+        public Adviverse.Api.Client.ApiResponse<SupSurfaceReport> MetaverseControllerPublisherViewsWithHttpInfo(string from, string to)
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -1877,6 +2113,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1888,9 +2125,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/metaverse/views", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SupSurfaceReport>("/v1/metaverse/views", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1902,27 +2150,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get your metaverse proof-of-view report Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerPublisherViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupSurfaceReport</returns>
+        public async System.Threading.Tasks.Task<SupSurfaceReport> MetaverseControllerPublisherViewsAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerPublisherViewsWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupSurfaceReport> localVarResponse = await MetaverseControllerPublisherViewsWithHttpInfoAsync(from, to, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get your metaverse proof-of-view report Summarizes and lists (up to 2000) surface events on your surfaces between &#x60;from&#x60; and &#x60;to&#x60; (default last 30 days): views, valid views, portal enters and completes, spend, and distinct surfaces.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerPublisherViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupSurfaceReport)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupSurfaceReport>> MetaverseControllerPublisherViewsWithHttpInfoAsync(string from, string to, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'from' is set
             if (from == null)
@@ -1940,6 +2189,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1952,10 +2202,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "from", from));
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "to", to));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/metaverse/views", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SupSurfaceReport>("/v1/metaverse/views", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1967,21 +2228,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Run world trust scoring now Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MetaverseControllerScoreNow()
+        /// <returns>MetaverseControllerScoreNow201Response</returns>
+        public MetaverseControllerScoreNow201Response MetaverseControllerScoreNow()
         {
-            MetaverseControllerScoreNowWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<MetaverseControllerScoreNow201Response> localVarResponse = MetaverseControllerScoreNowWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Run world trust scoring now Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerScoreNowWithHttpInfo()
+        /// <returns>ApiResponse of MetaverseControllerScoreNow201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<MetaverseControllerScoreNow201Response> MetaverseControllerScoreNowWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1990,6 +2252,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1999,9 +2262,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/metaverse/score-now", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<MetaverseControllerScoreNow201Response>("/v1/admin/metaverse/score-now", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2013,23 +2287,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Run world trust scoring now Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerScoreNowAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of MetaverseControllerScoreNow201Response</returns>
+        public async System.Threading.Tasks.Task<MetaverseControllerScoreNow201Response> MetaverseControllerScoreNowAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerScoreNowWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<MetaverseControllerScoreNow201Response> localVarResponse = await MetaverseControllerScoreNowWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Run world trust scoring now Scores every active world&#39;s last 7 days of surface traffic immediately (normally a scheduled job), stores the snapshots, and promotes or demotes worlds whose computed tier differs from their current one.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerScoreNowWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (MetaverseControllerScoreNow201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<MetaverseControllerScoreNow201Response>> MetaverseControllerScoreNowWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2039,6 +2314,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2049,10 +2325,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/metaverse/score-now", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<MetaverseControllerScoreNow201Response>("/v1/admin/metaverse/score-now", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2064,25 +2351,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a metaverse surface Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setSurfaceStatusDto"></param>
-        /// <returns></returns>
-        public void MetaverseControllerSetStatus(string id, SetSurfaceStatusDto setSurfaceStatusDto)
+        /// <returns>ScreensControllerSetStatus201Response</returns>
+        public ScreensControllerSetStatus201Response MetaverseControllerSetStatus(string id, SetSurfaceStatusDto setSurfaceStatusDto)
         {
-            MetaverseControllerSetStatusWithHttpInfo(id, setSurfaceStatusDto);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response> localVarResponse = MetaverseControllerSetStatusWithHttpInfo(id, setSurfaceStatusDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a metaverse surface Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setSurfaceStatusDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerSetStatusWithHttpInfo(string id, SetSurfaceStatusDto setSurfaceStatusDto)
+        /// <returns>ApiResponse of ScreensControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response> MetaverseControllerSetStatusWithHttpInfo(string id, SetSurfaceStatusDto setSurfaceStatusDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2100,6 +2388,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2111,9 +2400,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setSurfaceStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/metaverse/surfaces/{id}/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ScreensControllerSetStatus201Response>("/v1/metaverse/surfaces/{id}/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2125,27 +2425,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a metaverse surface Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setSurfaceStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerSetStatusAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ScreensControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<ScreensControllerSetStatus201Response> MetaverseControllerSetStatusAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerSetStatusWithHttpInfoAsync(id, setSurfaceStatusDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response> localVarResponse = await MetaverseControllerSetStatusWithHttpInfoAsync(id, setSurfaceStatusDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pause or activate a metaverse surface Sets &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;) on the surface and its placement and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setSurfaceStatusDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerSetStatusWithHttpInfoAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ScreensControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ScreensControllerSetStatus201Response>> MetaverseControllerSetStatusWithHttpInfoAsync(string id, SetSurfaceStatusDto setSurfaceStatusDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2164,6 +2465,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2176,10 +2478,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setSurfaceStatusDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/metaverse/surfaces/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ScreensControllerSetStatus201Response>("/v1/metaverse/surfaces/{id}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2191,25 +2504,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s trust tier Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setWorldTrustDto"></param>
-        /// <returns></returns>
-        public void MetaverseControllerSetWorldTrust(string id, SetWorldTrustDto setWorldTrustDto)
+        /// <returns>MetaverseControllerSetWorldTrust201Response</returns>
+        public MetaverseControllerSetWorldTrust201Response MetaverseControllerSetWorldTrust(string id, SetWorldTrustDto setWorldTrustDto)
         {
-            MetaverseControllerSetWorldTrustWithHttpInfo(id, setWorldTrustDto);
+            Adviverse.Api.Client.ApiResponse<MetaverseControllerSetWorldTrust201Response> localVarResponse = MetaverseControllerSetWorldTrustWithHttpInfo(id, setWorldTrustDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s trust tier Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setWorldTrustDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerSetWorldTrustWithHttpInfo(string id, SetWorldTrustDto setWorldTrustDto)
+        /// <returns>ApiResponse of MetaverseControllerSetWorldTrust201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<MetaverseControllerSetWorldTrust201Response> MetaverseControllerSetWorldTrustWithHttpInfo(string id, SetWorldTrustDto setWorldTrustDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2227,6 +2541,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2238,9 +2553,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setWorldTrustDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/metaverse/worlds/{id}/trust", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<MetaverseControllerSetWorldTrust201Response>("/v1/admin/metaverse/worlds/{id}/trust", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2252,27 +2578,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s trust tier Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setWorldTrustDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerSetWorldTrustAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of MetaverseControllerSetWorldTrust201Response</returns>
+        public async System.Threading.Tasks.Task<MetaverseControllerSetWorldTrust201Response> MetaverseControllerSetWorldTrustAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerSetWorldTrustWithHttpInfoAsync(id, setWorldTrustDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<MetaverseControllerSetWorldTrust201Response> localVarResponse = await MetaverseControllerSetWorldTrustWithHttpInfoAsync(id, setWorldTrustDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Set a world&#39;s trust tier Sets &#x60;trust&#x60; to &#x60;trusted&#x60; (surfaces may sell CPM) or &#x60;unverified&#x60; (CPA-only), cascades it to the world&#39;s surface properties, and republishes the index. 404 if the world does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="setWorldTrustDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerSetWorldTrustWithHttpInfoAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (MetaverseControllerSetWorldTrust201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<MetaverseControllerSetWorldTrust201Response>> MetaverseControllerSetWorldTrustWithHttpInfoAsync(string id, SetWorldTrustDto setWorldTrustDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2291,6 +2618,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2303,10 +2631,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = setWorldTrustDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/metaverse/worlds/{id}/trust", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<MetaverseControllerSetWorldTrust201Response>("/v1/admin/metaverse/worlds/{id}/trust", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2318,21 +2657,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List world trust scores Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void MetaverseControllerTrustScores()
+        /// <returns>List&lt;MetaverseControllerTrustScores200ResponseInner&gt;</returns>
+        public List<MetaverseControllerTrustScores200ResponseInner> MetaverseControllerTrustScores()
         {
-            MetaverseControllerTrustScoresWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<MetaverseControllerTrustScores200ResponseInner>> localVarResponse = MetaverseControllerTrustScoresWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List world trust scores Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerTrustScoresWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;MetaverseControllerTrustScores200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<MetaverseControllerTrustScores200ResponseInner>> MetaverseControllerTrustScoresWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2341,6 +2681,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2350,9 +2691,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/metaverse/trust-scores", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<MetaverseControllerTrustScores200ResponseInner>>("/v1/admin/metaverse/trust-scores", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2364,23 +2716,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List world trust scores Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerTrustScoresAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;MetaverseControllerTrustScores200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<MetaverseControllerTrustScores200ResponseInner>> MetaverseControllerTrustScoresAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerTrustScoresWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<MetaverseControllerTrustScores200ResponseInner>> localVarResponse = await MetaverseControllerTrustScoresWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List world trust scores Admin view of the latest automatic trust-score snapshot per world (7-day view volume, valid and attested rates, unique-user ratio, dwell-time variation, the tier the scorer chose, and its factors).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerTrustScoresWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;MetaverseControllerTrustScores200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<MetaverseControllerTrustScores200ResponseInner>>> MetaverseControllerTrustScoresWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2390,6 +2743,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2400,10 +2754,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/metaverse/trust-scores", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<MetaverseControllerTrustScores200ResponseInner>>("/v1/admin/metaverse/trust-scores", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2415,25 +2780,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a metaverse surface Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateSurfaceDto"></param>
-        /// <returns></returns>
-        public void MetaverseControllerUpdate(string id, UpdateSurfaceDto updateSurfaceDto)
+        /// <returns>SupSurface</returns>
+        public SupSurface MetaverseControllerUpdate(string id, UpdateSurfaceDto updateSurfaceDto)
         {
-            MetaverseControllerUpdateWithHttpInfo(id, updateSurfaceDto);
+            Adviverse.Api.Client.ApiResponse<SupSurface> localVarResponse = MetaverseControllerUpdateWithHttpInfo(id, updateSurfaceDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a metaverse surface Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateSurfaceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> MetaverseControllerUpdateWithHttpInfo(string id, UpdateSurfaceDto updateSurfaceDto)
+        /// <returns>ApiResponse of SupSurface</returns>
+        public Adviverse.Api.Client.ApiResponse<SupSurface> MetaverseControllerUpdateWithHttpInfo(string id, UpdateSurfaceDto updateSurfaceDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2451,6 +2817,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2462,9 +2829,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateSurfaceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<SupSurface>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2476,27 +2854,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a metaverse surface Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task MetaverseControllerUpdateAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SupSurface</returns>
+        public async System.Threading.Tasks.Task<SupSurface> MetaverseControllerUpdateAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await MetaverseControllerUpdateWithHttpInfoAsync(id, updateSurfaceDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SupSurface> localVarResponse = await MetaverseControllerUpdateWithHttpInfoAsync(id, updateSurfaceDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a metaverse surface Edits &#x60;surfaceType&#x60;, &#x60;floorCpm&#x60;, &#x60;audienceMultiplier&#x60; and &#x60;maxDistanceM&#x60; on a paired surface (synced into its placement settings) and republishes the index. 400 if not paired yet; 404/403 as for get.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateSurfaceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> MetaverseControllerUpdateWithHttpInfoAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SupSurface)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SupSurface>> MetaverseControllerUpdateWithHttpInfoAsync(string id, UpdateSurfaceDto updateSurfaceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2515,6 +2894,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2527,10 +2907,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateSurfaceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<SupSurface>("/v1/metaverse/surfaces/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

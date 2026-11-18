@@ -28,172 +28,202 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void FinanceControllerBalance();
-
-        /// <summary>
-        /// 
+        /// Get the caller&#39;s available and held balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerBalanceWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="hmac"></param>
-        /// <returns></returns>
-        void FinanceControllerCryptoWebhook(string hmac);
+        /// <returns>FinBalance</returns>
+        FinBalance FinanceControllerBalance();
 
         /// <summary>
-        /// 
+        /// Get the caller&#39;s available and held balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of FinBalance</returns>
+        ApiResponse<FinBalance> FinanceControllerBalanceWithHttpInfo();
+        /// <summary>
+        /// Receive OxaPay crypto webhooks
+        /// </summary>
+        /// <remarks>
+        /// Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="hmac"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerCryptoWebhookWithHttpInfo(string hmac);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void FinanceControllerCurrencies();
+        /// <returns>string</returns>
+        string FinanceControllerCryptoWebhook(string hmac);
 
         /// <summary>
-        /// 
+        /// Receive OxaPay crypto webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerCurrenciesWithHttpInfo();
+        /// <param name="hmac"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> FinanceControllerCryptoWebhookWithHttpInfo(string hmac);
         /// <summary>
-        /// 
+        /// List registered currencies and token rates
         /// </summary>
+        /// <remarks>
+        /// Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;FinCurrencyRate&gt;</returns>
+        List<FinCurrencyRate> FinanceControllerCurrencies();
+
+        /// <summary>
+        /// List registered currencies and token rates
+        /// </summary>
+        /// <remarks>
+        /// Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;FinCurrencyRate&gt;</returns>
+        ApiResponse<List<FinCurrencyRate>> FinanceControllerCurrenciesWithHttpInfo();
+        /// <summary>
+        /// Start a deposit
+        /// </summary>
+        /// <remarks>
+        /// Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
-        /// <returns></returns>
-        void FinanceControllerDeposit(DepositDto depositDto);
+        /// <returns>FinDepositResult</returns>
+        FinDepositResult FinanceControllerDeposit(DepositDto depositDto);
 
         /// <summary>
-        /// 
+        /// Start a deposit
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerDepositWithHttpInfo(DepositDto depositDto);
+        /// <returns>ApiResponse of FinDepositResult</returns>
+        ApiResponse<FinDepositResult> FinanceControllerDepositWithHttpInfo(DepositDto depositDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void FinanceControllerDeposits();
-
-        /// <summary>
-        /// 
+        /// List the caller&#39;s deposits
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerDepositsWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void FinanceControllerHistory();
+        /// <returns>List&lt;FinDeposit&gt;</returns>
+        List<FinDeposit> FinanceControllerDeposits();
 
         /// <summary>
-        /// 
+        /// List the caller&#39;s deposits
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerHistoryWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;FinDeposit&gt;</returns>
+        ApiResponse<List<FinDeposit>> FinanceControllerDepositsWithHttpInfo();
         /// <summary>
-        /// 
+        /// List the caller&#39;s ledger entries
         /// </summary>
+        /// <remarks>
+        /// Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void FinanceControllerMethods();
+        /// <returns>List&lt;FinLedgerEntry&gt;</returns>
+        List<FinLedgerEntry> FinanceControllerHistory();
 
         /// <summary>
-        /// 
+        /// List the caller&#39;s ledger entries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerMethodsWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;FinLedgerEntry&gt;</returns>
+        ApiResponse<List<FinLedgerEntry>> FinanceControllerHistoryWithHttpInfo();
         /// <summary>
-        /// 
+        /// List configured deposit and payout rails
         /// </summary>
+        /// <remarks>
+        /// Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>FinanceControllerMethods200Response</returns>
+        FinanceControllerMethods200Response FinanceControllerMethods();
+
+        /// <summary>
+        /// List configured deposit and payout rails
+        /// </summary>
+        /// <remarks>
+        /// Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of FinanceControllerMethods200Response</returns>
+        ApiResponse<FinanceControllerMethods200Response> FinanceControllerMethodsWithHttpInfo();
+        /// <summary>
+        /// Request a payout
+        /// </summary>
+        /// <remarks>
+        /// Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
-        /// <returns></returns>
-        void FinanceControllerPayout(PayoutDto payoutDto);
+        /// <returns>FinanceControllerPayout201Response</returns>
+        FinanceControllerPayout201Response FinanceControllerPayout(PayoutDto payoutDto);
 
         /// <summary>
-        /// 
+        /// Request a payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerPayoutWithHttpInfo(PayoutDto payoutDto);
+        /// <returns>ApiResponse of FinanceControllerPayout201Response</returns>
+        ApiResponse<FinanceControllerPayout201Response> FinanceControllerPayoutWithHttpInfo(PayoutDto payoutDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void FinanceControllerPayouts();
-
-        /// <summary>
-        /// 
+        /// List the caller&#39;s payouts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerPayoutsWithHttpInfo();
+        /// <returns>List&lt;FinPayout&gt;</returns>
+        List<FinPayout> FinanceControllerPayouts();
+
         /// <summary>
-        /// 
+        /// List the caller&#39;s payouts
         /// </summary>
+        /// <remarks>
+        /// Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;FinPayout&gt;</returns>
+        ApiResponse<List<FinPayout>> FinanceControllerPayoutsWithHttpInfo();
+        /// <summary>
+        /// Receive PayPal order webhooks
+        /// </summary>
+        /// <remarks>
+        /// Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
         /// <param name="paypalTransmissionTime"></param>
         /// <param name="paypalCertUrl"></param>
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
-        /// <returns></returns>
-        void FinanceControllerPaypalWebhook(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig);
+        /// <returns>FinanceControllerPaypalWebhook201Response</returns>
+        FinanceControllerPaypalWebhook201Response FinanceControllerPaypalWebhook(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig);
 
         /// <summary>
-        /// 
+        /// Receive PayPal order webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
@@ -201,78 +231,90 @@ namespace Adviverse.Api.Api
         /// <param name="paypalCertUrl"></param>
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerPaypalWebhookWithHttpInfo(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig);
+        /// <returns>ApiResponse of FinanceControllerPaypalWebhook201Response</returns>
+        ApiResponse<FinanceControllerPaypalWebhook201Response> FinanceControllerPaypalWebhookWithHttpInfo(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="stripeSignature"></param>
-        /// <returns></returns>
-        void FinanceControllerStripeWebhook(string stripeSignature);
-
-        /// <summary>
-        /// 
+        /// Receive Stripe payment webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="stripeSignature"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerStripeWebhookWithHttpInfo(string stripeSignature);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="taxFormDto"></param>
-        /// <returns></returns>
-        void FinanceControllerSubmitTaxForm(TaxFormDto taxFormDto);
+        /// <returns>FinanceControllerStripeWebhook201Response</returns>
+        FinanceControllerStripeWebhook201Response FinanceControllerStripeWebhook(string stripeSignature);
 
         /// <summary>
-        /// 
+        /// Receive Stripe payment webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="stripeSignature"></param>
+        /// <returns>ApiResponse of FinanceControllerStripeWebhook201Response</returns>
+        ApiResponse<FinanceControllerStripeWebhook201Response> FinanceControllerStripeWebhookWithHttpInfo(string stripeSignature);
+        /// <summary>
+        /// Submit or replace the tax form
+        /// </summary>
+        /// <remarks>
+        /// Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="taxFormDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerSubmitTaxFormWithHttpInfo(TaxFormDto taxFormDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void FinanceControllerTaxForm();
+        /// <returns>FinTaxForm</returns>
+        FinTaxForm FinanceControllerSubmitTaxForm(TaxFormDto taxFormDto);
 
         /// <summary>
-        /// 
+        /// Submit or replace the tax form
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerTaxFormWithHttpInfo();
+        /// <param name="taxFormDto"></param>
+        /// <returns>ApiResponse of FinTaxForm</returns>
+        ApiResponse<FinTaxForm> FinanceControllerSubmitTaxFormWithHttpInfo(TaxFormDto taxFormDto);
         /// <summary>
-        /// 
+        /// Get the caller&#39;s tax form (masked)
         /// </summary>
+        /// <remarks>
+        /// Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currencyDto"></param>
-        /// <returns></returns>
-        void FinanceControllerUpsertCurrency(CurrencyDto currencyDto);
+        /// <returns>FinTaxForm</returns>
+        FinTaxForm FinanceControllerTaxForm();
 
         /// <summary>
-        /// 
+        /// Get the caller&#39;s tax form (masked)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of FinTaxForm</returns>
+        ApiResponse<FinTaxForm> FinanceControllerTaxFormWithHttpInfo();
+        /// <summary>
+        /// Register or update the caller&#39;s token rate
+        /// </summary>
+        /// <remarks>
+        /// Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FinanceControllerUpsertCurrencyWithHttpInfo(CurrencyDto currencyDto);
+        /// <returns>FinCurrencyRate</returns>
+        FinCurrencyRate FinanceControllerUpsertCurrency(CurrencyDto currencyDto);
+
+        /// <summary>
+        /// Register or update the caller&#39;s token rate
+        /// </summary>
+        /// <remarks>
+        /// Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currencyDto"></param>
+        /// <returns>ApiResponse of FinCurrencyRate</returns>
+        ApiResponse<FinCurrencyRate> FinanceControllerUpsertCurrencyWithHttpInfo(CurrencyDto currencyDto);
         #endregion Synchronous Operations
     }
 
@@ -283,205 +325,205 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Get the caller&#39;s available and held balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerBalanceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinBalance</returns>
+        System.Threading.Tasks.Task<FinBalance> FinanceControllerBalanceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the caller&#39;s available and held balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerBalanceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinBalance)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinBalance>> FinanceControllerBalanceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Receive OxaPay crypto webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="hmac"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerCryptoWebhookAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> FinanceControllerCryptoWebhookAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Receive OxaPay crypto webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="hmac"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerCryptoWebhookWithHttpInfoAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> FinanceControllerCryptoWebhookWithHttpInfoAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List registered currencies and token rates
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerCurrenciesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;FinCurrencyRate&gt;</returns>
+        System.Threading.Tasks.Task<List<FinCurrencyRate>> FinanceControllerCurrenciesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List registered currencies and token rates
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerCurrenciesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;FinCurrencyRate&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<FinCurrencyRate>>> FinanceControllerCurrenciesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start a deposit
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerDepositAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinDepositResult</returns>
+        System.Threading.Tasks.Task<FinDepositResult> FinanceControllerDepositAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Start a deposit
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerDepositWithHttpInfoAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinDepositResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinDepositResult>> FinanceControllerDepositWithHttpInfoAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List the caller&#39;s deposits
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerDepositsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;FinDeposit&gt;</returns>
+        System.Threading.Tasks.Task<List<FinDeposit>> FinanceControllerDepositsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List the caller&#39;s deposits
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerDepositsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;FinDeposit&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<FinDeposit>>> FinanceControllerDepositsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List the caller&#39;s ledger entries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerHistoryAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;FinLedgerEntry&gt;</returns>
+        System.Threading.Tasks.Task<List<FinLedgerEntry>> FinanceControllerHistoryAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List the caller&#39;s ledger entries
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerHistoryWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;FinLedgerEntry&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<FinLedgerEntry>>> FinanceControllerHistoryWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List configured deposit and payout rails
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerMethodsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinanceControllerMethods200Response</returns>
+        System.Threading.Tasks.Task<FinanceControllerMethods200Response> FinanceControllerMethodsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List configured deposit and payout rails
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerMethodsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinanceControllerMethods200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinanceControllerMethods200Response>> FinanceControllerMethodsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Request a payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerPayoutAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinanceControllerPayout201Response</returns>
+        System.Threading.Tasks.Task<FinanceControllerPayout201Response> FinanceControllerPayoutAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Request a payout
         /// </summary>
         /// <remarks>
-        /// 
+        /// Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerPayoutWithHttpInfoAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinanceControllerPayout201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinanceControllerPayout201Response>> FinanceControllerPayoutWithHttpInfoAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List the caller&#39;s payouts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerPayoutsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;FinPayout&gt;</returns>
+        System.Threading.Tasks.Task<List<FinPayout>> FinanceControllerPayoutsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List the caller&#39;s payouts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerPayoutsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;FinPayout&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<FinPayout>>> FinanceControllerPayoutsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Receive PayPal order webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
@@ -490,14 +532,14 @@ namespace Adviverse.Api.Api
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerPaypalWebhookAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinanceControllerPaypalWebhook201Response</returns>
+        System.Threading.Tasks.Task<FinanceControllerPaypalWebhook201Response> FinanceControllerPaypalWebhookAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Receive PayPal order webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
@@ -506,98 +548,98 @@ namespace Adviverse.Api.Api
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerPaypalWebhookWithHttpInfoAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinanceControllerPaypalWebhook201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinanceControllerPaypalWebhook201Response>> FinanceControllerPaypalWebhookWithHttpInfoAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Receive Stripe payment webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="stripeSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerStripeWebhookAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinanceControllerStripeWebhook201Response</returns>
+        System.Threading.Tasks.Task<FinanceControllerStripeWebhook201Response> FinanceControllerStripeWebhookAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Receive Stripe payment webhooks
         /// </summary>
         /// <remarks>
-        /// 
+        /// Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="stripeSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerStripeWebhookWithHttpInfoAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinanceControllerStripeWebhook201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinanceControllerStripeWebhook201Response>> FinanceControllerStripeWebhookWithHttpInfoAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Submit or replace the tax form
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="taxFormDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerSubmitTaxFormAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinTaxForm</returns>
+        System.Threading.Tasks.Task<FinTaxForm> FinanceControllerSubmitTaxFormAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Submit or replace the tax form
         /// </summary>
         /// <remarks>
-        /// 
+        /// Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="taxFormDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerSubmitTaxFormWithHttpInfoAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinTaxForm)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinTaxForm>> FinanceControllerSubmitTaxFormWithHttpInfoAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the caller&#39;s tax form (masked)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerTaxFormAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinTaxForm</returns>
+        System.Threading.Tasks.Task<FinTaxForm> FinanceControllerTaxFormAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the caller&#39;s tax form (masked)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerTaxFormWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinTaxForm)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinTaxForm>> FinanceControllerTaxFormWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Register or update the caller&#39;s token rate
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FinanceControllerUpsertCurrencyAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of FinCurrencyRate</returns>
+        System.Threading.Tasks.Task<FinCurrencyRate> FinanceControllerUpsertCurrencyAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Register or update the caller&#39;s token rate
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FinanceControllerUpsertCurrencyWithHttpInfoAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FinCurrencyRate)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FinCurrencyRate>> FinanceControllerUpsertCurrencyWithHttpInfoAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -812,21 +854,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s available and held balance Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void FinanceControllerBalance()
+        /// <returns>FinBalance</returns>
+        public FinBalance FinanceControllerBalance()
         {
-            FinanceControllerBalanceWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<FinBalance> localVarResponse = FinanceControllerBalanceWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s available and held balance Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerBalanceWithHttpInfo()
+        /// <returns>ApiResponse of FinBalance</returns>
+        public Adviverse.Api.Client.ApiResponse<FinBalance> FinanceControllerBalanceWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -835,6 +878,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -844,9 +888,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/finance/balance", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FinBalance>("/v1/finance/balance", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -858,23 +913,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s available and held balance Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerBalanceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinBalance</returns>
+        public async System.Threading.Tasks.Task<FinBalance> FinanceControllerBalanceAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerBalanceWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinBalance> localVarResponse = await FinanceControllerBalanceWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s available and held balance Returns the materialized balance row for the caller&#39;s account: available funds, funds held (pending payouts and unmatured earnings) and the account currency. Returns zeros in USD when no ledger activity exists.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerBalanceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinBalance)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinBalance>> FinanceControllerBalanceWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -884,6 +940,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -894,10 +951,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/finance/balance", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FinBalance>("/v1/finance/balance", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -909,23 +977,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive OxaPay crypto webhooks Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="hmac"></param>
-        /// <returns></returns>
-        public void FinanceControllerCryptoWebhook(string hmac)
+        /// <returns>string</returns>
+        public string FinanceControllerCryptoWebhook(string hmac)
         {
-            FinanceControllerCryptoWebhookWithHttpInfo(hmac);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = FinanceControllerCryptoWebhookWithHttpInfo(hmac);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive OxaPay crypto webhooks Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="hmac"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerCryptoWebhookWithHttpInfo(string hmac)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> FinanceControllerCryptoWebhookWithHttpInfo(string hmac)
         {
             // verify the required parameter 'hmac' is set
             if (hmac == null)
@@ -938,6 +1007,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -950,7 +1020,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/finance/webhook/crypto", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<string>("/v1/finance/webhook/crypto", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -962,25 +1032,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive OxaPay crypto webhooks Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="hmac"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerCryptoWebhookAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> FinanceControllerCryptoWebhookAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerCryptoWebhookWithHttpInfoAsync(hmac, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await FinanceControllerCryptoWebhookWithHttpInfoAsync(hmac, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive OxaPay crypto webhooks Called by OxaPay. Verifies the &#x60;hmac&#x60; header (HMAC-SHA512 of the raw body). Payment callbacks (merchant key) credit the deposit when status is &#39;Paid&#39;; payout callbacks (payout key) settle the held funds as paid on &#39;Confirmed&#39; or return them on &#39;Failed&#39;/&#39;Rejected&#39;. Always answers 200 with the plain body &#39;ok&#39; once verified so OxaPay stops retrying.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="hmac"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerCryptoWebhookWithHttpInfoAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> FinanceControllerCryptoWebhookWithHttpInfoAsync(string hmac, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'hmac' is set
             if (hmac == null)
@@ -994,6 +1065,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain"
             };
 
 
@@ -1008,7 +1080,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/finance/webhook/crypto", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<string>("/v1/finance/webhook/crypto", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1020,21 +1092,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List registered currencies and token rates Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void FinanceControllerCurrencies()
+        /// <returns>List&lt;FinCurrencyRate&gt;</returns>
+        public List<FinCurrencyRate> FinanceControllerCurrencies()
         {
-            FinanceControllerCurrenciesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<FinCurrencyRate>> localVarResponse = FinanceControllerCurrenciesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List registered currencies and token rates Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerCurrenciesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;FinCurrencyRate&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<FinCurrencyRate>> FinanceControllerCurrenciesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1043,6 +1116,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1052,9 +1126,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/finance/currencies", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<FinCurrencyRate>>("/v1/finance/currencies", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1066,23 +1151,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List registered currencies and token rates Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerCurrenciesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;FinCurrencyRate&gt;</returns>
+        public async System.Threading.Tasks.Task<List<FinCurrencyRate>> FinanceControllerCurrenciesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerCurrenciesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<FinCurrencyRate>> localVarResponse = await FinanceControllerCurrenciesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List registered currencies and token rates Returns every row of currency_rates (fiat codes and tenant-registered tokens) with its USD rate in micro-USD, optional live price feed and last update, ordered by most recently updated.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerCurrenciesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;FinCurrencyRate&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<FinCurrencyRate>>> FinanceControllerCurrenciesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1092,6 +1178,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1102,10 +1189,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/finance/currencies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<FinCurrencyRate>>("/v1/finance/currencies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1117,23 +1215,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a deposit Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
-        /// <returns></returns>
-        public void FinanceControllerDeposit(DepositDto depositDto)
+        /// <returns>FinDepositResult</returns>
+        public FinDepositResult FinanceControllerDeposit(DepositDto depositDto)
         {
-            FinanceControllerDepositWithHttpInfo(depositDto);
+            Adviverse.Api.Client.ApiResponse<FinDepositResult> localVarResponse = FinanceControllerDepositWithHttpInfo(depositDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a deposit Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerDepositWithHttpInfo(DepositDto depositDto)
+        /// <returns>ApiResponse of FinDepositResult</returns>
+        public Adviverse.Api.Client.ApiResponse<FinDepositResult> FinanceControllerDepositWithHttpInfo(DepositDto depositDto)
         {
             // verify the required parameter 'depositDto' is set
             if (depositDto == null)
@@ -1147,6 +1246,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1157,9 +1257,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = depositDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/finance/deposit", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<FinDepositResult>("/v1/finance/deposit", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1171,25 +1282,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Start a deposit Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerDepositAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinDepositResult</returns>
+        public async System.Threading.Tasks.Task<FinDepositResult> FinanceControllerDepositAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerDepositWithHttpInfoAsync(depositDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinDepositResult> localVarResponse = await FinanceControllerDepositWithHttpInfoAsync(depositDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Start a deposit Creates a pending deposit for &#x60;amount&#x60; (0.01..1,000,000, 2 dp) through &#x60;provider&#x60;: stripe (default) / card, paypal, crypto, wire, paxum, or mock (refused in production). The deposit is denominated in the account&#39;s currency; tokens not at USD par are charged to the provider in USD. Hosted-checkout providers return a redirectUrl and are credited later by webhook; wire/paxum return transfer instructions and are credited when ops confirm receipt; mock completes immediately. An unconfigured provider is refused.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depositDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerDepositWithHttpInfoAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinDepositResult)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinDepositResult>> FinanceControllerDepositWithHttpInfoAsync(DepositDto depositDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'depositDto' is set
             if (depositDto == null)
@@ -1204,6 +1316,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1215,10 +1328,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = depositDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/finance/deposit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<FinDepositResult>("/v1/finance/deposit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1230,21 +1354,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s deposits Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void FinanceControllerDeposits()
+        /// <returns>List&lt;FinDeposit&gt;</returns>
+        public List<FinDeposit> FinanceControllerDeposits()
         {
-            FinanceControllerDepositsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<FinDeposit>> localVarResponse = FinanceControllerDepositsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s deposits Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerDepositsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;FinDeposit&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<FinDeposit>> FinanceControllerDepositsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1253,6 +1378,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1262,9 +1388,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/finance/deposits", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<FinDeposit>>("/v1/finance/deposits", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1276,23 +1413,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s deposits Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerDepositsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;FinDeposit&gt;</returns>
+        public async System.Threading.Tasks.Task<List<FinDeposit>> FinanceControllerDepositsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerDepositsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<FinDeposit>> localVarResponse = await FinanceControllerDepositsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s deposits Returns the caller&#39;s 100 most recent deposits (all statuses), newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerDepositsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;FinDeposit&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<FinDeposit>>> FinanceControllerDepositsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1302,6 +1440,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1312,10 +1451,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/finance/deposits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<FinDeposit>>("/v1/finance/deposits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1327,21 +1477,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s ledger entries Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void FinanceControllerHistory()
+        /// <returns>List&lt;FinLedgerEntry&gt;</returns>
+        public List<FinLedgerEntry> FinanceControllerHistory()
         {
-            FinanceControllerHistoryWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<FinLedgerEntry>> localVarResponse = FinanceControllerHistoryWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s ledger entries Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerHistoryWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;FinLedgerEntry&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<FinLedgerEntry>> FinanceControllerHistoryWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1350,6 +1501,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1359,9 +1511,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/finance/ledger", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<FinLedgerEntry>>("/v1/finance/ledger", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1373,23 +1536,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s ledger entries Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerHistoryAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;FinLedgerEntry&gt;</returns>
+        public async System.Threading.Tasks.Task<List<FinLedgerEntry>> FinanceControllerHistoryAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerHistoryWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<FinLedgerEntry>> localVarResponse = await FinanceControllerHistoryWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s ledger entries Returns the caller&#39;s 100 most recent ledger entries, newest first. Every money movement is one immutable, signed entry with a running balance_after and a unique idempotency key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerHistoryWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;FinLedgerEntry&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<FinLedgerEntry>>> FinanceControllerHistoryWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1399,6 +1563,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1409,10 +1574,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/finance/ledger", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<FinLedgerEntry>>("/v1/finance/ledger", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1424,21 +1600,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List configured deposit and payout rails Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void FinanceControllerMethods()
+        /// <returns>FinanceControllerMethods200Response</returns>
+        public FinanceControllerMethods200Response FinanceControllerMethods()
         {
-            FinanceControllerMethodsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<FinanceControllerMethods200Response> localVarResponse = FinanceControllerMethodsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List configured deposit and payout rails Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerMethodsWithHttpInfo()
+        /// <returns>ApiResponse of FinanceControllerMethods200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<FinanceControllerMethods200Response> FinanceControllerMethodsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1447,6 +1624,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1456,9 +1634,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/finance/methods", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FinanceControllerMethods200Response>("/v1/finance/methods", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1470,23 +1659,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List configured deposit and payout rails Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerMethodsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinanceControllerMethods200Response</returns>
+        public async System.Threading.Tasks.Task<FinanceControllerMethods200Response> FinanceControllerMethodsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerMethodsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinanceControllerMethods200Response> localVarResponse = await FinanceControllerMethodsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List configured deposit and payout rails Returns the payment rails usable in this environment, derived from configured provider credentials. Deposit rails can include card, crypto, paypal, wire, paxum (and mock outside production); payout rails crypto, paxum and wire (wire payout is always offered as a manual bank transfer).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, publisher, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerMethodsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinanceControllerMethods200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinanceControllerMethods200Response>> FinanceControllerMethodsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1496,6 +1686,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1506,10 +1697,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/finance/methods", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FinanceControllerMethods200Response>("/v1/finance/methods", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1521,23 +1723,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Request a payout Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
-        /// <returns></returns>
-        public void FinanceControllerPayout(PayoutDto payoutDto)
+        /// <returns>FinanceControllerPayout201Response</returns>
+        public FinanceControllerPayout201Response FinanceControllerPayout(PayoutDto payoutDto)
         {
-            FinanceControllerPayoutWithHttpInfo(payoutDto);
+            Adviverse.Api.Client.ApiResponse<FinanceControllerPayout201Response> localVarResponse = FinanceControllerPayoutWithHttpInfo(payoutDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Request a payout Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerPayoutWithHttpInfo(PayoutDto payoutDto)
+        /// <returns>ApiResponse of FinanceControllerPayout201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<FinanceControllerPayout201Response> FinanceControllerPayoutWithHttpInfo(PayoutDto payoutDto)
         {
             // verify the required parameter 'payoutDto' is set
             if (payoutDto == null)
@@ -1551,6 +1754,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1561,9 +1765,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = payoutDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/finance/payout", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<FinanceControllerPayout201Response>("/v1/finance/payout", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1575,25 +1790,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Request a payout Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerPayoutAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinanceControllerPayout201Response</returns>
+        public async System.Threading.Tasks.Task<FinanceControllerPayout201Response> FinanceControllerPayoutAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerPayoutWithHttpInfoAsync(payoutDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinanceControllerPayout201Response> localVarResponse = await FinanceControllerPayoutWithHttpInfoAsync(payoutDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Request a payout Requests a withdrawal of &#x60;amount&#x60; via &#x60;method&#x60; (crypto, paxum or wire) to &#x60;destination&#x60; (method-specific object). Enforces the minimum payout and, when configured, a tax form on file. Inside one transaction the balance row is locked, available funds are re-checked (400 &#39;insufficient available balance&#39;), and the amount is moved from available to held. Dispatch to the provider happens later; the payout starts in status &#39;requested&#39;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payoutDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerPayoutWithHttpInfoAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinanceControllerPayout201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinanceControllerPayout201Response>> FinanceControllerPayoutWithHttpInfoAsync(PayoutDto payoutDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'payoutDto' is set
             if (payoutDto == null)
@@ -1608,6 +1824,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1619,10 +1836,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = payoutDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/finance/payout", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<FinanceControllerPayout201Response>("/v1/finance/payout", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1634,21 +1862,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s payouts Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void FinanceControllerPayouts()
+        /// <returns>List&lt;FinPayout&gt;</returns>
+        public List<FinPayout> FinanceControllerPayouts()
         {
-            FinanceControllerPayoutsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<FinPayout>> localVarResponse = FinanceControllerPayoutsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s payouts Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerPayoutsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;FinPayout&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<FinPayout>> FinanceControllerPayoutsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1657,6 +1886,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1666,9 +1896,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/finance/payouts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<FinPayout>>("/v1/finance/payouts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1680,23 +1921,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s payouts Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerPayoutsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;FinPayout&gt;</returns>
+        public async System.Threading.Tasks.Task<List<FinPayout>> FinanceControllerPayoutsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerPayoutsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<FinPayout>> localVarResponse = await FinanceControllerPayoutsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List the caller&#39;s payouts Returns the publisher&#39;s 100 most recent payout requests, newest first, with status, method, destination and provider reference.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerPayoutsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;FinPayout&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<FinPayout>>> FinanceControllerPayoutsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1706,6 +1948,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1716,10 +1959,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/finance/payouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<FinPayout>>("/v1/finance/payouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1731,7 +1985,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive PayPal order webhooks Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
@@ -1739,14 +1993,15 @@ namespace Adviverse.Api.Api
         /// <param name="paypalCertUrl"></param>
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
-        /// <returns></returns>
-        public void FinanceControllerPaypalWebhook(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig)
+        /// <returns>FinanceControllerPaypalWebhook201Response</returns>
+        public FinanceControllerPaypalWebhook201Response FinanceControllerPaypalWebhook(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig)
         {
-            FinanceControllerPaypalWebhookWithHttpInfo(paypalTransmissionId, paypalTransmissionTime, paypalCertUrl, paypalAuthAlgo, paypalTransmissionSig);
+            Adviverse.Api.Client.ApiResponse<FinanceControllerPaypalWebhook201Response> localVarResponse = FinanceControllerPaypalWebhookWithHttpInfo(paypalTransmissionId, paypalTransmissionTime, paypalCertUrl, paypalAuthAlgo, paypalTransmissionSig);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive PayPal order webhooks Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
@@ -1754,8 +2009,8 @@ namespace Adviverse.Api.Api
         /// <param name="paypalCertUrl"></param>
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerPaypalWebhookWithHttpInfo(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig)
+        /// <returns>ApiResponse of FinanceControllerPaypalWebhook201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<FinanceControllerPaypalWebhook201Response> FinanceControllerPaypalWebhookWithHttpInfo(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig)
         {
             // verify the required parameter 'paypalTransmissionId' is set
             if (paypalTransmissionId == null)
@@ -1784,6 +2039,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1800,7 +2056,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/finance/webhook/paypal", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<FinanceControllerPaypalWebhook201Response>("/v1/finance/webhook/paypal", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1812,7 +2068,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive PayPal order webhooks Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
@@ -1821,14 +2077,15 @@ namespace Adviverse.Api.Api
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerPaypalWebhookAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinanceControllerPaypalWebhook201Response</returns>
+        public async System.Threading.Tasks.Task<FinanceControllerPaypalWebhook201Response> FinanceControllerPaypalWebhookAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerPaypalWebhookWithHttpInfoAsync(paypalTransmissionId, paypalTransmissionTime, paypalCertUrl, paypalAuthAlgo, paypalTransmissionSig, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinanceControllerPaypalWebhook201Response> localVarResponse = await FinanceControllerPaypalWebhookWithHttpInfoAsync(paypalTransmissionId, paypalTransmissionTime, paypalCertUrl, paypalAuthAlgo, paypalTransmissionSig, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive PayPal order webhooks Called by PayPal. Verifies the PayPal-Transmission-* headers via PayPal&#39;s verify-webhook-signature API before any crediting (400 if unverifiable or PayPal is not configured). CHECKOUT.ORDER.APPROVED captures the order and credits the matching deposit; PAYMENT.CAPTURE.COMPLETED credits directly. Crediting is idempotent; other events are ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="paypalTransmissionId"></param>
@@ -1837,8 +2094,8 @@ namespace Adviverse.Api.Api
         /// <param name="paypalAuthAlgo"></param>
         /// <param name="paypalTransmissionSig"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerPaypalWebhookWithHttpInfoAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinanceControllerPaypalWebhook201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinanceControllerPaypalWebhook201Response>> FinanceControllerPaypalWebhookWithHttpInfoAsync(string paypalTransmissionId, string paypalTransmissionTime, string paypalCertUrl, string paypalAuthAlgo, string paypalTransmissionSig, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'paypalTransmissionId' is set
             if (paypalTransmissionId == null)
@@ -1868,6 +2125,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1886,7 +2144,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/finance/webhook/paypal", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<FinanceControllerPaypalWebhook201Response>("/v1/finance/webhook/paypal", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1898,23 +2156,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive Stripe payment webhooks Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="stripeSignature"></param>
-        /// <returns></returns>
-        public void FinanceControllerStripeWebhook(string stripeSignature)
+        /// <returns>FinanceControllerStripeWebhook201Response</returns>
+        public FinanceControllerStripeWebhook201Response FinanceControllerStripeWebhook(string stripeSignature)
         {
-            FinanceControllerStripeWebhookWithHttpInfo(stripeSignature);
+            Adviverse.Api.Client.ApiResponse<FinanceControllerStripeWebhook201Response> localVarResponse = FinanceControllerStripeWebhookWithHttpInfo(stripeSignature);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive Stripe payment webhooks Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="stripeSignature"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerStripeWebhookWithHttpInfo(string stripeSignature)
+        /// <returns>ApiResponse of FinanceControllerStripeWebhook201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<FinanceControllerStripeWebhook201Response> FinanceControllerStripeWebhookWithHttpInfo(string stripeSignature)
         {
             // verify the required parameter 'stripeSignature' is set
             if (stripeSignature == null)
@@ -1927,6 +2186,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1939,7 +2199,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/finance/webhook/stripe", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<FinanceControllerStripeWebhook201Response>("/v1/finance/webhook/stripe", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1951,25 +2211,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Receive Stripe payment webhooks Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="stripeSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerStripeWebhookAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinanceControllerStripeWebhook201Response</returns>
+        public async System.Threading.Tasks.Task<FinanceControllerStripeWebhook201Response> FinanceControllerStripeWebhookAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerStripeWebhookWithHttpInfoAsync(stripeSignature, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinanceControllerStripeWebhook201Response> localVarResponse = await FinanceControllerStripeWebhookWithHttpInfoAsync(stripeSignature, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Receive Stripe payment webhooks Called by Stripe, not by API clients. Verifies the &#x60;stripe-signature&#x60; header against the raw body (400 on failure or if Stripe is not configured). On checkout.session.completed (paid) or payment_intent.succeeded it resolves the deposit from metadata or provider_ref and credits it to the ledger idempotently; other event types are acknowledged and ignored.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="stripeSignature"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerStripeWebhookWithHttpInfoAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinanceControllerStripeWebhook201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinanceControllerStripeWebhook201Response>> FinanceControllerStripeWebhookWithHttpInfoAsync(string stripeSignature, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'stripeSignature' is set
             if (stripeSignature == null)
@@ -1983,6 +2244,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1997,7 +2259,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/finance/webhook/stripe", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<FinanceControllerStripeWebhook201Response>("/v1/finance/webhook/stripe", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2009,23 +2271,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit or replace the tax form Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="taxFormDto"></param>
-        /// <returns></returns>
-        public void FinanceControllerSubmitTaxForm(TaxFormDto taxFormDto)
+        /// <returns>FinTaxForm</returns>
+        public FinTaxForm FinanceControllerSubmitTaxForm(TaxFormDto taxFormDto)
         {
-            FinanceControllerSubmitTaxFormWithHttpInfo(taxFormDto);
+            Adviverse.Api.Client.ApiResponse<FinTaxForm> localVarResponse = FinanceControllerSubmitTaxFormWithHttpInfo(taxFormDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit or replace the tax form Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="taxFormDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerSubmitTaxFormWithHttpInfo(TaxFormDto taxFormDto)
+        /// <returns>ApiResponse of FinTaxForm</returns>
+        public Adviverse.Api.Client.ApiResponse<FinTaxForm> FinanceControllerSubmitTaxFormWithHttpInfo(TaxFormDto taxFormDto)
         {
             // verify the required parameter 'taxFormDto' is set
             if (taxFormDto == null)
@@ -2039,6 +2302,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2049,9 +2313,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = taxFormDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<FinTaxForm>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2063,25 +2338,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Submit or replace the tax form Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="taxFormDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerSubmitTaxFormAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinTaxForm</returns>
+        public async System.Threading.Tasks.Task<FinTaxForm> FinanceControllerSubmitTaxFormAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerSubmitTaxFormWithHttpInfoAsync(taxFormDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinTaxForm> localVarResponse = await FinanceControllerSubmitTaxFormWithHttpInfoAsync(taxFormDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Submit or replace the tax form Upserts the publisher&#39;s tax form. Body: &#x60;formType&#x60; (w9|w8ben), &#x60;legalName&#x60;, optional &#x60;taxClassification&#x60;, &#x60;taxId&#x60; (SSN/EIN/TIN, encrypted at rest; only the last 4 digits are kept in clear), &#x60;address&#x60;, 2-letter &#x60;country&#x60; and &#x60;certified&#x60; (must be true). Status resets to &#39;submitted&#39;. Returns the masked view.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="taxFormDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerSubmitTaxFormWithHttpInfoAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinTaxForm)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinTaxForm>> FinanceControllerSubmitTaxFormWithHttpInfoAsync(TaxFormDto taxFormDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'taxFormDto' is set
             if (taxFormDto == null)
@@ -2096,6 +2372,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2107,10 +2384,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = taxFormDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<FinTaxForm>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2122,21 +2410,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s tax form (masked) Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void FinanceControllerTaxForm()
+        /// <returns>FinTaxForm</returns>
+        public FinTaxForm FinanceControllerTaxForm()
         {
-            FinanceControllerTaxFormWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<FinTaxForm> localVarResponse = FinanceControllerTaxFormWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s tax form (masked) Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerTaxFormWithHttpInfo()
+        /// <returns>ApiResponse of FinTaxForm</returns>
+        public Adviverse.Api.Client.ApiResponse<FinTaxForm> FinanceControllerTaxFormWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -2145,6 +2434,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2154,9 +2444,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FinTaxForm>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2168,23 +2469,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s tax form (masked) Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerTaxFormAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinTaxForm</returns>
+        public async System.Threading.Tasks.Task<FinTaxForm> FinanceControllerTaxFormAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerTaxFormWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinTaxForm> localVarResponse = await FinanceControllerTaxFormWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the caller&#39;s tax form (masked) Returns the publisher&#39;s W-9 / W-8BEN on file with the tax id masked to its last 4 digits, or &#x60;{ onFile: false }&#x60; if none has been submitted.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerTaxFormWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinTaxForm)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinTaxForm>> FinanceControllerTaxFormWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -2194,6 +2496,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2204,10 +2507,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FinTaxForm>("/v1/finance/tax-form", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2219,23 +2533,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register or update the caller&#39;s token rate Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyDto"></param>
-        /// <returns></returns>
-        public void FinanceControllerUpsertCurrency(CurrencyDto currencyDto)
+        /// <returns>FinCurrencyRate</returns>
+        public FinCurrencyRate FinanceControllerUpsertCurrency(CurrencyDto currencyDto)
         {
-            FinanceControllerUpsertCurrencyWithHttpInfo(currencyDto);
+            Adviverse.Api.Client.ApiResponse<FinCurrencyRate> localVarResponse = FinanceControllerUpsertCurrencyWithHttpInfo(currencyDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register or update the caller&#39;s token rate Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> FinanceControllerUpsertCurrencyWithHttpInfo(CurrencyDto currencyDto)
+        /// <returns>ApiResponse of FinCurrencyRate</returns>
+        public Adviverse.Api.Client.ApiResponse<FinCurrencyRate> FinanceControllerUpsertCurrencyWithHttpInfo(CurrencyDto currencyDto)
         {
             // verify the required parameter 'currencyDto' is set
             if (currencyDto == null)
@@ -2249,6 +2564,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2259,9 +2575,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = currencyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/finance/currencies", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<FinCurrencyRate>("/v1/finance/currencies", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2273,25 +2600,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Register or update the caller&#39;s token rate Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FinanceControllerUpsertCurrencyAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of FinCurrencyRate</returns>
+        public async System.Threading.Tasks.Task<FinCurrencyRate> FinanceControllerUpsertCurrencyAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await FinanceControllerUpsertCurrencyWithHttpInfoAsync(currencyDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<FinCurrencyRate> localVarResponse = await FinanceControllerUpsertCurrencyWithHttpInfoAsync(currencyDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Register or update the caller&#39;s token rate Creates or updates a currency code (2-12 uppercase alphanumerics) owned by the caller. Body: &#x60;code&#x60;, &#x60;name&#x60;, and either &#x60;usdMicro&#x60; (micro-USD per unit) or &#x60;rateUrl&#x60; (a price API polled to keep the rate current, SSRF-guarded) with optional &#x60;rateJsonPath&#x60; (dot-path to the price). When rateUrl is given it is fetched once to seed the rate. Fails with 400 if the code belongs to another account or no positive rate can be determined.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> FinanceControllerUpsertCurrencyWithHttpInfoAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FinCurrencyRate)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<FinCurrencyRate>> FinanceControllerUpsertCurrencyWithHttpInfoAsync(CurrencyDto currencyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'currencyDto' is set
             if (currencyDto == null)
@@ -2306,6 +2634,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2317,10 +2646,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = currencyDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/finance/currencies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<FinCurrencyRate>("/v1/finance/currencies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

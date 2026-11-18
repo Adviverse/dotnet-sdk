@@ -28,147 +28,171 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="generateInvoiceDto"></param>
-        /// <returns></returns>
-        void BillingControllerGenerate(GenerateInvoiceDto generateInvoiceDto);
-
-        /// <summary>
-        /// 
+        /// Generate a draft invoice for an account (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateInvoiceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerGenerateWithHttpInfo(GenerateInvoiceDto generateInvoiceDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void BillingControllerGet(string id);
+        /// <returns>BillingControllerGenerate201Response</returns>
+        BillingControllerGenerate201Response BillingControllerGenerate(GenerateInvoiceDto generateInvoiceDto);
 
         /// <summary>
-        /// 
+        /// Generate a draft invoice for an account (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateInvoiceDto"></param>
+        /// <returns>ApiResponse of BillingControllerGenerate201Response</returns>
+        ApiResponse<BillingControllerGenerate201Response> BillingControllerGenerateWithHttpInfo(GenerateInvoiceDto generateInvoiceDto);
+        /// <summary>
+        /// Get an invoice with its line items
+        /// </summary>
+        /// <remarks>
+        /// Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerGetWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void BillingControllerIssue(string id);
+        /// <returns>BillingInvoiceWithLines</returns>
+        BillingInvoiceWithLines BillingControllerGet(string id);
 
         /// <summary>
-        /// 
+        /// Get an invoice with its line items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerIssueWithHttpInfo(string id);
+        /// <returns>ApiResponse of BillingInvoiceWithLines</returns>
+        ApiResponse<BillingInvoiceWithLines> BillingControllerGetWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Issue a draft invoice (admin)
         /// </summary>
+        /// <remarks>
+        /// Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>BillingInvoice</returns>
+        BillingInvoice BillingControllerIssue(string id);
+
+        /// <summary>
+        /// Issue a draft invoice (admin)
+        /// </summary>
+        /// <remarks>
+        /// Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of BillingInvoice</returns>
+        ApiResponse<BillingInvoice> BillingControllerIssueWithHttpInfo(string id);
+        /// <summary>
+        /// List invoices
+        /// </summary>
+        /// <remarks>
+        /// Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <returns></returns>
-        void BillingControllerList(string accountId);
+        /// <returns>List&lt;BillingInvoice&gt;</returns>
+        List<BillingInvoice> BillingControllerList(string accountId);
 
         /// <summary>
-        /// 
+        /// List invoices
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerListWithHttpInfo(string accountId);
+        /// <returns>ApiResponse of List&lt;BillingInvoice&gt;</returns>
+        ApiResponse<List<BillingInvoice>> BillingControllerListWithHttpInfo(string accountId);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void BillingControllerPay(string id);
-
-        /// <summary>
-        /// 
+        /// Pay an issued invoice from the balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerPayWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void BillingControllerRender(string id);
+        /// <returns>BillingInvoice</returns>
+        BillingInvoice BillingControllerPay(string id);
 
         /// <summary>
-        /// 
+        /// Pay an issued invoice from the balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerRenderWithHttpInfo(string id);
+        /// <returns>ApiResponse of BillingInvoice</returns>
+        ApiResponse<BillingInvoice> BillingControllerPayWithHttpInfo(string id);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void BillingControllerStatement();
-
-        /// <summary>
-        /// 
+        /// Render an invoice as HTML
         /// </summary>
         /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerStatementWithHttpInfo();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void BillingControllerVoid(string id);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
+        /// Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> BillingControllerVoidWithHttpInfo(string id);
+        /// <returns>string</returns>
+        string BillingControllerRender(string id);
+
+        /// <summary>
+        /// Render an invoice as HTML
+        /// </summary>
+        /// <remarks>
+        /// Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> BillingControllerRenderWithHttpInfo(string id);
+        /// <summary>
+        /// Get an account statement from the ledger
+        /// </summary>
+        /// <remarks>
+        /// Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>BillingControllerStatement200Response</returns>
+        BillingControllerStatement200Response BillingControllerStatement();
+
+        /// <summary>
+        /// Get an account statement from the ledger
+        /// </summary>
+        /// <remarks>
+        /// Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of BillingControllerStatement200Response</returns>
+        ApiResponse<BillingControllerStatement200Response> BillingControllerStatementWithHttpInfo();
+        /// <summary>
+        /// Void an invoice (admin)
+        /// </summary>
+        /// <remarks>
+        /// Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>BillingInvoice</returns>
+        BillingInvoice BillingControllerVoid(string id);
+
+        /// <summary>
+        /// Void an invoice (admin)
+        /// </summary>
+        /// <remarks>
+        /// Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of BillingInvoice</returns>
+        ApiResponse<BillingInvoice> BillingControllerVoidWithHttpInfo(string id);
         #endregion Synchronous Operations
     }
 
@@ -179,187 +203,187 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Generate a draft invoice for an account (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateInvoiceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerGenerateAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BillingControllerGenerate201Response</returns>
+        System.Threading.Tasks.Task<BillingControllerGenerate201Response> BillingControllerGenerateAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Generate a draft invoice for an account (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateInvoiceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerGenerateWithHttpInfoAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BillingControllerGenerate201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingControllerGenerate201Response>> BillingControllerGenerateWithHttpInfoAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get an invoice with its line items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BillingInvoiceWithLines</returns>
+        System.Threading.Tasks.Task<BillingInvoiceWithLines> BillingControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get an invoice with its line items
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BillingInvoiceWithLines)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingInvoiceWithLines>> BillingControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Issue a draft invoice (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerIssueAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BillingInvoice</returns>
+        System.Threading.Tasks.Task<BillingInvoice> BillingControllerIssueAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Issue a draft invoice (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerIssueWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BillingInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingInvoice>> BillingControllerIssueWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List invoices
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerListAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;BillingInvoice&gt;</returns>
+        System.Threading.Tasks.Task<List<BillingInvoice>> BillingControllerListAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List invoices
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerListWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;BillingInvoice&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<BillingInvoice>>> BillingControllerListWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Pay an issued invoice from the balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerPayAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BillingInvoice</returns>
+        System.Threading.Tasks.Task<BillingInvoice> BillingControllerPayAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Pay an issued invoice from the balance
         /// </summary>
         /// <remarks>
-        /// 
+        /// Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerPayWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BillingInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingInvoice>> BillingControllerPayWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Render an invoice as HTML
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerRenderAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> BillingControllerRenderAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Render an invoice as HTML
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerRenderWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> BillingControllerRenderWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get an account statement from the ledger
         /// </summary>
         /// <remarks>
-        /// 
+        /// Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerStatementAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BillingControllerStatement200Response</returns>
+        System.Threading.Tasks.Task<BillingControllerStatement200Response> BillingControllerStatementAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get an account statement from the ledger
         /// </summary>
         /// <remarks>
-        /// 
+        /// Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerStatementWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BillingControllerStatement200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingControllerStatement200Response>> BillingControllerStatementWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Void an invoice (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BillingControllerVoidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of BillingInvoice</returns>
+        System.Threading.Tasks.Task<BillingInvoice> BillingControllerVoidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Void an invoice (admin)
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BillingControllerVoidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BillingInvoice)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingInvoice>> BillingControllerVoidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -574,23 +598,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Generate a draft invoice for an account (admin) Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateInvoiceDto"></param>
-        /// <returns></returns>
-        public void BillingControllerGenerate(GenerateInvoiceDto generateInvoiceDto)
+        /// <returns>BillingControllerGenerate201Response</returns>
+        public BillingControllerGenerate201Response BillingControllerGenerate(GenerateInvoiceDto generateInvoiceDto)
         {
-            BillingControllerGenerateWithHttpInfo(generateInvoiceDto);
+            Adviverse.Api.Client.ApiResponse<BillingControllerGenerate201Response> localVarResponse = BillingControllerGenerateWithHttpInfo(generateInvoiceDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Generate a draft invoice for an account (admin) Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateInvoiceDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerGenerateWithHttpInfo(GenerateInvoiceDto generateInvoiceDto)
+        /// <returns>ApiResponse of BillingControllerGenerate201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<BillingControllerGenerate201Response> BillingControllerGenerateWithHttpInfo(GenerateInvoiceDto generateInvoiceDto)
         {
             // verify the required parameter 'generateInvoiceDto' is set
             if (generateInvoiceDto == null)
@@ -604,6 +629,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -614,9 +640,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = generateInvoiceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/billing/invoices/generate", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<BillingControllerGenerate201Response>("/v1/billing/invoices/generate", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -628,25 +665,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Generate a draft invoice for an account (admin) Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateInvoiceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerGenerateAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BillingControllerGenerate201Response</returns>
+        public async System.Threading.Tasks.Task<BillingControllerGenerate201Response> BillingControllerGenerateAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerGenerateWithHttpInfoAsync(generateInvoiceDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BillingControllerGenerate201Response> localVarResponse = await BillingControllerGenerateWithHttpInfoAsync(generateInvoiceDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Generate a draft invoice for an account (admin) Creates a draft invoice for &#x60;accountId&#x60; over &#x60;periodStart&#x60;..&#x60;periodEnd&#x60; (YYYY-MM-DD, inclusive). The charge equals the account&#39;s ledger &#39;spend&#39; for the period; ClickHouse impression/click counts only label zero-amount detail lines. Tax comes from tax_rates for the account&#39;s tax_country (0 if none). Numbered INV-YYYY-NNNNNN. 404 if the account does not exist.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateInvoiceDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerGenerateWithHttpInfoAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BillingControllerGenerate201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BillingControllerGenerate201Response>> BillingControllerGenerateWithHttpInfoAsync(GenerateInvoiceDto generateInvoiceDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'generateInvoiceDto' is set
             if (generateInvoiceDto == null)
@@ -661,6 +699,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -672,10 +711,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = generateInvoiceDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/billing/invoices/generate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BillingControllerGenerate201Response>("/v1/billing/invoices/generate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -687,23 +737,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with its line items Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void BillingControllerGet(string id)
+        /// <returns>BillingInvoiceWithLines</returns>
+        public BillingInvoiceWithLines BillingControllerGet(string id)
         {
-            BillingControllerGetWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<BillingInvoiceWithLines> localVarResponse = BillingControllerGetWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with its line items Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerGetWithHttpInfo(string id)
+        /// <returns>ApiResponse of BillingInvoiceWithLines</returns>
+        public Adviverse.Api.Client.ApiResponse<BillingInvoiceWithLines> BillingControllerGetWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -716,6 +767,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -726,9 +778,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/billing/invoices/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<BillingInvoiceWithLines>("/v1/billing/invoices/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -740,25 +803,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with its line items Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BillingInvoiceWithLines</returns>
+        public async System.Threading.Tasks.Task<BillingInvoiceWithLines> BillingControllerGetAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BillingInvoiceWithLines> localVarResponse = await BillingControllerGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an invoice with its line items Returns one invoice by id with its lines. Advertisers may only read their own invoices (403 otherwise); 404 if not found.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BillingInvoiceWithLines)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BillingInvoiceWithLines>> BillingControllerGetWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -772,6 +836,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -783,10 +848,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/billing/invoices/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<BillingInvoiceWithLines>("/v1/billing/invoices/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -798,23 +874,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Issue a draft invoice (admin) Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void BillingControllerIssue(string id)
+        /// <returns>BillingInvoice</returns>
+        public BillingInvoice BillingControllerIssue(string id)
         {
-            BillingControllerIssueWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<BillingInvoice> localVarResponse = BillingControllerIssueWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Issue a draft invoice (admin) Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerIssueWithHttpInfo(string id)
+        /// <returns>ApiResponse of BillingInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<BillingInvoice> BillingControllerIssueWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -827,6 +904,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -837,9 +915,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/billing/invoices/{id}/issue", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<BillingInvoice>("/v1/billing/invoices/{id}/issue", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -851,25 +940,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Issue a draft invoice (admin) Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerIssueAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BillingInvoice</returns>
+        public async System.Threading.Tasks.Task<BillingInvoice> BillingControllerIssueAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerIssueWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BillingInvoice> localVarResponse = await BillingControllerIssueWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Issue a draft invoice (admin) Moves a draft invoice to &#39;issued&#39;, setting issued_at to now and due_date from the account&#39;s payment_terms_days. 400 if the invoice is not a draft.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerIssueWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BillingInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BillingInvoice>> BillingControllerIssueWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -883,6 +973,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -894,10 +985,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/billing/invoices/{id}/issue", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BillingInvoice>("/v1/billing/invoices/{id}/issue", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -909,23 +1011,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List invoices Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <returns></returns>
-        public void BillingControllerList(string accountId)
+        /// <returns>List&lt;BillingInvoice&gt;</returns>
+        public List<BillingInvoice> BillingControllerList(string accountId)
         {
-            BillingControllerListWithHttpInfo(accountId);
+            Adviverse.Api.Client.ApiResponse<List<BillingInvoice>> localVarResponse = BillingControllerListWithHttpInfo(accountId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List invoices Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerListWithHttpInfo(string accountId)
+        /// <returns>ApiResponse of List&lt;BillingInvoice&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<BillingInvoice>> BillingControllerListWithHttpInfo(string accountId)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -938,6 +1041,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -948,9 +1052,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/billing/invoices", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<BillingInvoice>>("/v1/billing/invoices", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -962,25 +1077,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List invoices Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerListAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;BillingInvoice&gt;</returns>
+        public async System.Threading.Tasks.Task<List<BillingInvoice>> BillingControllerListAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerListWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<BillingInvoice>> localVarResponse = await BillingControllerListWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List invoices Returns up to 500 invoices, newest first. Advertisers see only their own; admins see all and may filter with &#x60;?accountId&#x3D;&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerListWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;BillingInvoice&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<BillingInvoice>>> BillingControllerListWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -994,6 +1110,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1005,10 +1122,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/billing/invoices", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<BillingInvoice>>("/v1/billing/invoices", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1020,23 +1148,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pay an issued invoice from the balance Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void BillingControllerPay(string id)
+        /// <returns>BillingInvoice</returns>
+        public BillingInvoice BillingControllerPay(string id)
         {
-            BillingControllerPayWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<BillingInvoice> localVarResponse = BillingControllerPayWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pay an issued invoice from the balance Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerPayWithHttpInfo(string id)
+        /// <returns>ApiResponse of BillingInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<BillingInvoice> BillingControllerPayWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1049,6 +1178,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1059,9 +1189,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/billing/invoices/{id}/pay", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<BillingInvoice>("/v1/billing/invoices/{id}/pay", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1073,25 +1214,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Pay an issued invoice from the balance Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerPayAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BillingInvoice</returns>
+        public async System.Threading.Tasks.Task<BillingInvoice> BillingControllerPayAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerPayWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BillingInvoice> localVarResponse = await BillingControllerPayWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Pay an issued invoice from the balance Posts an &#39;invoice_payment&#39; debit for the invoice total against the account&#39;s available balance (idempotent per invoice) and marks the invoice paid. Already-paid invoices are returned unchanged; other non-issued statuses return 400, and insufficient funds return 400. Advertisers may pay only their own invoices.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerPayWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BillingInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BillingInvoice>> BillingControllerPayWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1105,6 +1247,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1116,10 +1259,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/billing/invoices/{id}/pay", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BillingInvoice>("/v1/billing/invoices/{id}/pay", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1131,23 +1285,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render an invoice as HTML Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void BillingControllerRender(string id)
+        /// <returns>string</returns>
+        public string BillingControllerRender(string id)
         {
-            BillingControllerRenderWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = BillingControllerRenderWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render an invoice as HTML Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerRenderWithHttpInfo(string id)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> BillingControllerRenderWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1160,6 +1315,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1170,9 +1326,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/billing/invoices/{id}/render", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/v1/billing/invoices/{id}/render", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1184,25 +1351,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render an invoice as HTML Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerRenderAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> BillingControllerRenderAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerRenderWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await BillingControllerRenderWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render an invoice as HTML Returns a self-contained printable HTML document for the invoice (number, status, period, dates, line items and totals). Same access rules as fetching the invoice.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerRenderWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> BillingControllerRenderWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1216,6 +1384,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
 
@@ -1227,10 +1396,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/billing/invoices/{id}/render", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/v1/billing/invoices/{id}/render", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1242,21 +1422,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an account statement from the ledger Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void BillingControllerStatement()
+        /// <returns>BillingControllerStatement200Response</returns>
+        public BillingControllerStatement200Response BillingControllerStatement()
         {
-            BillingControllerStatementWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<BillingControllerStatement200Response> localVarResponse = BillingControllerStatementWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an account statement from the ledger Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerStatementWithHttpInfo()
+        /// <returns>ApiResponse of BillingControllerStatement200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<BillingControllerStatement200Response> BillingControllerStatementWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1265,6 +1446,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1274,9 +1456,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/billing/statement", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<BillingControllerStatement200Response>("/v1/billing/statement", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1288,23 +1481,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get an account statement from the ledger Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerStatementAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BillingControllerStatement200Response</returns>
+        public async System.Threading.Tasks.Task<BillingControllerStatement200Response> BillingControllerStatementAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerStatementWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BillingControllerStatement200Response> localVarResponse = await BillingControllerStatementWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get an account statement from the ledger Derives a statement over &#x60;from&#x60;..&#x60;to&#x60; (YYYY-MM-DD; defaults 2020-01-01 to today) from ledger entries that touched the available balance: opening balance, charges (debits), payments (credits), closing balance, and up to 1000 entries in the window. Admins may pass &#x60;?accountId&#x3D;&#x60;; advertisers always get their own.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerStatementWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BillingControllerStatement200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BillingControllerStatement200Response>> BillingControllerStatementWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1314,6 +1508,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1324,10 +1519,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/billing/statement", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<BillingControllerStatement200Response>("/v1/billing/statement", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1339,23 +1545,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice (admin) Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void BillingControllerVoid(string id)
+        /// <returns>BillingInvoice</returns>
+        public BillingInvoice BillingControllerVoid(string id)
         {
-            BillingControllerVoidWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<BillingInvoice> localVarResponse = BillingControllerVoidWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice (admin) Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> BillingControllerVoidWithHttpInfo(string id)
+        /// <returns>ApiResponse of BillingInvoice</returns>
+        public Adviverse.Api.Client.ApiResponse<BillingInvoice> BillingControllerVoidWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1368,6 +1575,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1378,9 +1586,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/billing/invoices/{id}/void", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<BillingInvoice>("/v1/billing/invoices/{id}/void", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1392,25 +1611,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice (admin) Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BillingControllerVoidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of BillingInvoice</returns>
+        public async System.Threading.Tasks.Task<BillingInvoice> BillingControllerVoidAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await BillingControllerVoidWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<BillingInvoice> localVarResponse = await BillingControllerVoidWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Void an invoice (admin) Marks any unpaid invoice as &#39;void&#39;. Paid invoices cannot be voided (400); an already-void invoice is returned unchanged.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> BillingControllerVoidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BillingInvoice)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<BillingInvoice>> BillingControllerVoidWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1424,6 +1644,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1435,10 +1656,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/billing/invoices/{id}/void", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BillingInvoice>("/v1/billing/invoices/{id}/void", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

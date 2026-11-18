@@ -28,59 +28,68 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="propertyId"></param>
-        /// <param name="createComboDto"></param>
-        /// <returns></returns>
-        void ComboControllerCreateCombo(string propertyId, CreateComboDto createComboDto);
-
-        /// <summary>
-        /// 
+        /// Provision a combo of placements on a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="createComboDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComboControllerCreateComboWithHttpInfo(string propertyId, CreateComboDto createComboDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="propertyId"></param>
-        /// <returns></returns>
-        void ComboControllerListCombos(string propertyId);
+        /// <returns>ComboControllerCreateCombo201Response</returns>
+        ComboControllerCreateCombo201Response ComboControllerCreateCombo(string propertyId, CreateComboDto createComboDto);
 
         /// <summary>
-        /// 
+        /// Provision a combo of placements on a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComboControllerListCombosWithHttpInfo(string propertyId);
+        /// <param name="createComboDto"></param>
+        /// <returns>ApiResponse of ComboControllerCreateCombo201Response</returns>
+        ApiResponse<ComboControllerCreateCombo201Response> ComboControllerCreateComboWithHttpInfo(string propertyId, CreateComboDto createComboDto);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ComboControllerListPresets();
-
-        /// <summary>
-        /// 
+        /// List combos on a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ComboControllerListPresetsWithHttpInfo();
+        /// <param name="propertyId"></param>
+        /// <returns>ComboControllerListCombos200Response</returns>
+        ComboControllerListCombos200Response ComboControllerListCombos(string propertyId);
+
+        /// <summary>
+        /// List combos on a property
+        /// </summary>
+        /// <remarks>
+        /// Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="propertyId"></param>
+        /// <returns>ApiResponse of ComboControllerListCombos200Response</returns>
+        ApiResponse<ComboControllerListCombos200Response> ComboControllerListCombosWithHttpInfo(string propertyId);
+        /// <summary>
+        /// List combo layout presets
+        /// </summary>
+        /// <remarks>
+        /// Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ComboControllerListPresets200Response</returns>
+        ComboControllerListPresets200Response ComboControllerListPresets();
+
+        /// <summary>
+        /// List combo layout presets
+        /// </summary>
+        /// <remarks>
+        /// Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ComboControllerListPresets200Response</returns>
+        ApiResponse<ComboControllerListPresets200Response> ComboControllerListPresetsWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -91,74 +100,74 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Provision a combo of placements on a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="createComboDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComboControllerCreateComboAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComboControllerCreateCombo201Response</returns>
+        System.Threading.Tasks.Task<ComboControllerCreateCombo201Response> ComboControllerCreateComboAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Provision a combo of placements on a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="createComboDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComboControllerCreateComboWithHttpInfoAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComboControllerCreateCombo201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComboControllerCreateCombo201Response>> ComboControllerCreateComboWithHttpInfoAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List combos on a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComboControllerListCombosAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComboControllerListCombos200Response</returns>
+        System.Threading.Tasks.Task<ComboControllerListCombos200Response> ComboControllerListCombosAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List combos on a property
         /// </summary>
         /// <remarks>
-        /// 
+        /// Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComboControllerListCombosWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComboControllerListCombos200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComboControllerListCombos200Response>> ComboControllerListCombosWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List combo layout presets
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ComboControllerListPresetsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComboControllerListPresets200Response</returns>
+        System.Threading.Tasks.Task<ComboControllerListPresets200Response> ComboControllerListPresetsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List combo layout presets
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ComboControllerListPresetsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComboControllerListPresets200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComboControllerListPresets200Response>> ComboControllerListPresetsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -373,25 +382,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Provision a combo of placements on a property Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="createComboDto"></param>
-        /// <returns></returns>
-        public void ComboControllerCreateCombo(string propertyId, CreateComboDto createComboDto)
+        /// <returns>ComboControllerCreateCombo201Response</returns>
+        public ComboControllerCreateCombo201Response ComboControllerCreateCombo(string propertyId, CreateComboDto createComboDto)
         {
-            ComboControllerCreateComboWithHttpInfo(propertyId, createComboDto);
+            Adviverse.Api.Client.ApiResponse<ComboControllerCreateCombo201Response> localVarResponse = ComboControllerCreateComboWithHttpInfo(propertyId, createComboDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Provision a combo of placements on a property Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="createComboDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComboControllerCreateComboWithHttpInfo(string propertyId, CreateComboDto createComboDto)
+        /// <returns>ApiResponse of ComboControllerCreateCombo201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComboControllerCreateCombo201Response> ComboControllerCreateComboWithHttpInfo(string propertyId, CreateComboDto createComboDto)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -409,6 +419,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -420,9 +431,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("propertyId", Adviverse.Api.Client.ClientUtils.ParameterToString(propertyId)); // path parameter
             localVarRequestOptions.Data = createComboDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ComboControllerCreateCombo201Response>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -434,27 +456,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Provision a combo of placements on a property Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="createComboDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComboControllerCreateComboAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComboControllerCreateCombo201Response</returns>
+        public async System.Threading.Tasks.Task<ComboControllerCreateCombo201Response> ComboControllerCreateComboAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComboControllerCreateComboWithHttpInfoAsync(propertyId, createComboDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComboControllerCreateCombo201Response> localVarResponse = await ComboControllerCreateComboWithHttpInfoAsync(propertyId, createComboDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Provision a combo of placements on a property Creates several placements at once under one generated &#x60;comboId&#x60; and returns a single combined embed snippet to paste before &#x60;&lt;/body&gt;&#x60;. Send either &#x60;presetKey&#x60; or a custom &#x60;units&#x60; array (formats banner, native, popunder, social_bar, interstitial, in_page_push, direct_link), plus optional &#x60;namePrefix&#x60; and shared floor/rev-share/auction/house settings applied to every unit. Adds a warning if the property already has a popunder. 400 for an unknown preset or a non-combinable format; 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="createComboDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComboControllerCreateComboWithHttpInfoAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComboControllerCreateCombo201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComboControllerCreateCombo201Response>> ComboControllerCreateComboWithHttpInfoAsync(string propertyId, CreateComboDto createComboDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -473,6 +496,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -485,10 +509,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("propertyId", Adviverse.Api.Client.ClientUtils.ParameterToString(propertyId)); // path parameter
             localVarRequestOptions.Data = createComboDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ComboControllerCreateCombo201Response>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -500,23 +535,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List combos on a property Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
-        /// <returns></returns>
-        public void ComboControllerListCombos(string propertyId)
+        /// <returns>ComboControllerListCombos200Response</returns>
+        public ComboControllerListCombos200Response ComboControllerListCombos(string propertyId)
         {
-            ComboControllerListCombosWithHttpInfo(propertyId);
+            Adviverse.Api.Client.ApiResponse<ComboControllerListCombos200Response> localVarResponse = ComboControllerListCombosWithHttpInfo(propertyId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List combos on a property Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComboControllerListCombosWithHttpInfo(string propertyId)
+        /// <returns>ApiResponse of ComboControllerListCombos200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComboControllerListCombos200Response> ComboControllerListCombosWithHttpInfo(string propertyId)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -529,6 +565,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -539,9 +576,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("propertyId", Adviverse.Api.Client.ClientUtils.ParameterToString(propertyId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ComboControllerListCombos200Response>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -553,25 +601,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List combos on a property Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComboControllerListCombosAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComboControllerListCombos200Response</returns>
+        public async System.Threading.Tasks.Task<ComboControllerListCombos200Response> ComboControllerListCombosAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComboControllerListCombosWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComboControllerListCombos200Response> localVarResponse = await ComboControllerListCombosWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List combos on a property Groups the property&#39;s live placements by &#x60;combo_id&#x60; (ungrouped placements are omitted) and rebuilds each group&#39;s combined snippet. 404/403 if the property is missing or not yours.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComboControllerListCombosWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComboControllerListCombos200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComboControllerListCombos200Response>> ComboControllerListCombosWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -585,6 +634,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -596,10 +646,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("propertyId", Adviverse.Api.Client.ClientUtils.ParameterToString(propertyId)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ComboControllerListCombos200Response>("/v1/publisher/properties/{propertyId}/combos", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -611,21 +672,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List combo layout presets Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ComboControllerListPresets()
+        /// <returns>ComboControllerListPresets200Response</returns>
+        public ComboControllerListPresets200Response ComboControllerListPresets()
         {
-            ComboControllerListPresetsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<ComboControllerListPresets200Response> localVarResponse = ComboControllerListPresetsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List combo layout presets Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> ComboControllerListPresetsWithHttpInfo()
+        /// <returns>ApiResponse of ComboControllerListPresets200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComboControllerListPresets200Response> ComboControllerListPresetsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -634,6 +696,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -643,9 +706,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/publisher/combo-presets", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ComboControllerListPresets200Response>("/v1/publisher/combo-presets", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -657,23 +731,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List combo layout presets Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ComboControllerListPresetsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComboControllerListPresets200Response</returns>
+        public async System.Threading.Tasks.Task<ComboControllerListPresets200Response> ComboControllerListPresetsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ComboControllerListPresetsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComboControllerListPresets200Response> localVarResponse = await ComboControllerListPresetsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List combo layout presets Returns the static catalog of combo presets (&#x60;standard_combo&#x60;, &#x60;leaderboard_pop&#x60;, &#x60;social_push&#x60;, &#x60;sticky_interstitial&#x60;, &#x60;full_monetization&#x60;), each with the placement units it provisions. Preset keys are stable.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> ComboControllerListPresetsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComboControllerListPresets200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComboControllerListPresets200Response>> ComboControllerListPresetsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -683,6 +758,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -693,10 +769,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/publisher/combo-presets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ComboControllerListPresets200Response>("/v1/publisher/combo-presets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

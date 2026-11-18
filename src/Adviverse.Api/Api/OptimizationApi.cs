@@ -28,127 +28,148 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void OptimizationControllerAckAlert(string id);
-
-        /// <summary>
-        /// 
+        /// Acknowledge an alert
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OptimizationControllerAckAlertWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAutomationRuleDto"></param>
-        /// <returns></returns>
-        void OptimizationControllerCreateRule(CreateAutomationRuleDto createAutomationRuleDto);
+        /// <returns>OptimizationControllerAckAlert201Response</returns>
+        OptimizationControllerAckAlert201Response OptimizationControllerAckAlert(string id);
 
         /// <summary>
-        /// 
+        /// Acknowledge an alert
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of OptimizationControllerAckAlert201Response</returns>
+        ApiResponse<OptimizationControllerAckAlert201Response> OptimizationControllerAckAlertWithHttpInfo(string id);
+        /// <summary>
+        /// Create an automation rule
+        /// </summary>
+        /// <remarks>
+        /// Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAutomationRuleDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OptimizationControllerCreateRuleWithHttpInfo(CreateAutomationRuleDto createAutomationRuleDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void OptimizationControllerListAlerts();
+        /// <returns>AudienceAutomationRule</returns>
+        AudienceAutomationRule OptimizationControllerCreateRule(CreateAutomationRuleDto createAutomationRuleDto);
 
         /// <summary>
-        /// 
+        /// Create an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OptimizationControllerListAlertsWithHttpInfo();
+        /// <param name="createAutomationRuleDto"></param>
+        /// <returns>ApiResponse of AudienceAutomationRule</returns>
+        ApiResponse<AudienceAutomationRule> OptimizationControllerCreateRuleWithHttpInfo(CreateAutomationRuleDto createAutomationRuleDto);
         /// <summary>
-        /// 
+        /// List anomaly alerts
         /// </summary>
+        /// <remarks>
+        /// Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void OptimizationControllerListRules();
+        /// <returns>List&lt;OptimizationControllerListAlerts200ResponseInner&gt;</returns>
+        List<OptimizationControllerListAlerts200ResponseInner> OptimizationControllerListAlerts();
 
         /// <summary>
-        /// 
+        /// List anomaly alerts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OptimizationControllerListRulesWithHttpInfo();
+        /// <returns>ApiResponse of List&lt;OptimizationControllerListAlerts200ResponseInner&gt;</returns>
+        ApiResponse<List<OptimizationControllerListAlerts200ResponseInner>> OptimizationControllerListAlertsWithHttpInfo();
         /// <summary>
-        /// 
+        /// List automation rules
         /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;AudienceAutomationRule&gt;</returns>
+        List<AudienceAutomationRule> OptimizationControllerListRules();
+
+        /// <summary>
+        /// List automation rules
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;AudienceAutomationRule&gt;</returns>
+        ApiResponse<List<AudienceAutomationRule>> OptimizationControllerListRulesWithHttpInfo();
+        /// <summary>
+        /// List budget-optimizer reallocations
+        /// </summary>
+        /// <remarks>
+        /// Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns></returns>
-        void OptimizationControllerOptimizerLog(string limit);
+        /// <returns>List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;</returns>
+        List<OptimizationControllerOptimizerLog200ResponseInner> OptimizationControllerOptimizerLog(string limit);
 
         /// <summary>
-        /// 
+        /// List budget-optimizer reallocations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OptimizationControllerOptimizerLogWithHttpInfo(string limit);
+        /// <returns>ApiResponse of List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;</returns>
+        ApiResponse<List<OptimizationControllerOptimizerLog200ResponseInner>> OptimizationControllerOptimizerLogWithHttpInfo(string limit);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void OptimizationControllerRemoveRule(string id);
-
-        /// <summary>
-        /// 
+        /// Delete an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OptimizationControllerRemoveRuleWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void OptimizationControllerSetRuleEnabled(string id);
+        /// <returns>PixelControllerDeletePixel200Response</returns>
+        PixelControllerDeletePixel200Response OptimizationControllerRemoveRule(string id);
 
         /// <summary>
-        /// 
+        /// Delete an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> OptimizationControllerSetRuleEnabledWithHttpInfo(string id);
+        /// <returns>ApiResponse of PixelControllerDeletePixel200Response</returns>
+        ApiResponse<PixelControllerDeletePixel200Response> OptimizationControllerRemoveRuleWithHttpInfo(string id);
+        /// <summary>
+        /// Enable or disable an automation rule
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>AudienceAutomationRule</returns>
+        AudienceAutomationRule OptimizationControllerSetRuleEnabled(string id);
+
+        /// <summary>
+        /// Enable or disable an automation rule
+        /// </summary>
+        /// <remarks>
+        /// Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AudienceAutomationRule</returns>
+        ApiResponse<AudienceAutomationRule> OptimizationControllerSetRuleEnabledWithHttpInfo(string id);
         #endregion Synchronous Operations
     }
 
@@ -159,162 +180,162 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Acknowledge an alert
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OptimizationControllerAckAlertAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of OptimizationControllerAckAlert201Response</returns>
+        System.Threading.Tasks.Task<OptimizationControllerAckAlert201Response> OptimizationControllerAckAlertAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Acknowledge an alert
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OptimizationControllerAckAlertWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (OptimizationControllerAckAlert201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OptimizationControllerAckAlert201Response>> OptimizationControllerAckAlertWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAutomationRuleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OptimizationControllerCreateRuleAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AudienceAutomationRule</returns>
+        System.Threading.Tasks.Task<AudienceAutomationRule> OptimizationControllerCreateRuleAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAutomationRuleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OptimizationControllerCreateRuleWithHttpInfoAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AudienceAutomationRule)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AudienceAutomationRule>> OptimizationControllerCreateRuleWithHttpInfoAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List anomaly alerts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OptimizationControllerListAlertsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;OptimizationControllerListAlerts200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<OptimizationControllerListAlerts200ResponseInner>> OptimizationControllerListAlertsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List anomaly alerts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OptimizationControllerListAlertsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;OptimizationControllerListAlerts200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<OptimizationControllerListAlerts200ResponseInner>>> OptimizationControllerListAlertsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List automation rules
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OptimizationControllerListRulesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;AudienceAutomationRule&gt;</returns>
+        System.Threading.Tasks.Task<List<AudienceAutomationRule>> OptimizationControllerListRulesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List automation rules
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OptimizationControllerListRulesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;AudienceAutomationRule&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<AudienceAutomationRule>>> OptimizationControllerListRulesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List budget-optimizer reallocations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OptimizationControllerOptimizerLogAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;</returns>
+        System.Threading.Tasks.Task<List<OptimizationControllerOptimizerLog200ResponseInner>> OptimizationControllerOptimizerLogAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List budget-optimizer reallocations
         /// </summary>
         /// <remarks>
-        /// 
+        /// Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OptimizationControllerOptimizerLogWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<OptimizationControllerOptimizerLog200ResponseInner>>> OptimizationControllerOptimizerLogWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OptimizationControllerRemoveRuleAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PixelControllerDeletePixel200Response</returns>
+        System.Threading.Tasks.Task<PixelControllerDeletePixel200Response> OptimizationControllerRemoveRuleAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OptimizationControllerRemoveRuleWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PixelControllerDeletePixel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PixelControllerDeletePixel200Response>> OptimizationControllerRemoveRuleWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Enable or disable an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task OptimizationControllerSetRuleEnabledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AudienceAutomationRule</returns>
+        System.Threading.Tasks.Task<AudienceAutomationRule> OptimizationControllerSetRuleEnabledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Enable or disable an automation rule
         /// </summary>
         /// <remarks>
-        /// 
+        /// Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OptimizationControllerSetRuleEnabledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AudienceAutomationRule)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AudienceAutomationRule>> OptimizationControllerSetRuleEnabledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -529,23 +550,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Acknowledge an alert Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void OptimizationControllerAckAlert(string id)
+        /// <returns>OptimizationControllerAckAlert201Response</returns>
+        public OptimizationControllerAckAlert201Response OptimizationControllerAckAlert(string id)
         {
-            OptimizationControllerAckAlertWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<OptimizationControllerAckAlert201Response> localVarResponse = OptimizationControllerAckAlertWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Acknowledge an alert Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OptimizationControllerAckAlertWithHttpInfo(string id)
+        /// <returns>ApiResponse of OptimizationControllerAckAlert201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<OptimizationControllerAckAlert201Response> OptimizationControllerAckAlertWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -558,6 +580,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -568,9 +591,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/alerts/{id}/ack", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<OptimizationControllerAckAlert201Response>("/v1/alerts/{id}/ack", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -582,25 +616,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Acknowledge an alert Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OptimizationControllerAckAlertAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of OptimizationControllerAckAlert201Response</returns>
+        public async System.Threading.Tasks.Task<OptimizationControllerAckAlert201Response> OptimizationControllerAckAlertAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OptimizationControllerAckAlertWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<OptimizationControllerAckAlert201Response> localVarResponse = await OptimizationControllerAckAlertWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Acknowledge an alert Marks alert &#x60;id&#x60; as acknowledged. Ids not owned by the account are silently ignored, and the response is the same either way.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OptimizationControllerAckAlertWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (OptimizationControllerAckAlert201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<OptimizationControllerAckAlert201Response>> OptimizationControllerAckAlertWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -614,6 +649,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -625,10 +661,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/alerts/{id}/ack", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<OptimizationControllerAckAlert201Response>("/v1/alerts/{id}/ack", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -640,23 +687,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an automation rule Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAutomationRuleDto"></param>
-        /// <returns></returns>
-        public void OptimizationControllerCreateRule(CreateAutomationRuleDto createAutomationRuleDto)
+        /// <returns>AudienceAutomationRule</returns>
+        public AudienceAutomationRule OptimizationControllerCreateRule(CreateAutomationRuleDto createAutomationRuleDto)
         {
-            OptimizationControllerCreateRuleWithHttpInfo(createAutomationRuleDto);
+            Adviverse.Api.Client.ApiResponse<AudienceAutomationRule> localVarResponse = OptimizationControllerCreateRuleWithHttpInfo(createAutomationRuleDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an automation rule Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAutomationRuleDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OptimizationControllerCreateRuleWithHttpInfo(CreateAutomationRuleDto createAutomationRuleDto)
+        /// <returns>ApiResponse of AudienceAutomationRule</returns>
+        public Adviverse.Api.Client.ApiResponse<AudienceAutomationRule> OptimizationControllerCreateRuleWithHttpInfo(CreateAutomationRuleDto createAutomationRuleDto)
         {
             // verify the required parameter 'createAutomationRuleDto' is set
             if (createAutomationRuleDto == null)
@@ -670,6 +718,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -680,9 +729,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAutomationRuleDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/automation/rules", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AudienceAutomationRule>("/v1/automation/rules", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -694,25 +754,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create an automation rule Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAutomationRuleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OptimizationControllerCreateRuleAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AudienceAutomationRule</returns>
+        public async System.Threading.Tasks.Task<AudienceAutomationRule> OptimizationControllerCreateRuleAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OptimizationControllerCreateRuleWithHttpInfoAsync(createAutomationRuleDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AudienceAutomationRule> localVarResponse = await OptimizationControllerCreateRuleWithHttpInfoAsync(createAutomationRuleDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create an automation rule Creates a rule of the form \&quot;when &#x60;metric&#x60; (cpa, ctr, spend, conversions, fill_rate) is &#x60;operator&#x60; (gt or lt) &#x60;threshold&#x60; over &#x60;windowHours&#x60;, apply &#x60;action&#x60;\&quot; (pause, resume, notify or adjust_bid). &#x60;name&#x60;, &#x60;metric&#x60;, &#x60;operator&#x60;, &#x60;threshold&#x60; and &#x60;action&#x60; are required. &#x60;scope&#x60; is campaign (the default, which requires &#x60;targetId&#x60;) or all. &#x60;windowHours&#x60; defaults to 24 and is clamped to 1-720. &#x60;actionValue&#x60; is kept only for adjust_bid. Invalid input returns 400.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAutomationRuleDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OptimizationControllerCreateRuleWithHttpInfoAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AudienceAutomationRule)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AudienceAutomationRule>> OptimizationControllerCreateRuleWithHttpInfoAsync(CreateAutomationRuleDto createAutomationRuleDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createAutomationRuleDto' is set
             if (createAutomationRuleDto == null)
@@ -727,6 +788,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -738,10 +800,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createAutomationRuleDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/automation/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AudienceAutomationRule>("/v1/automation/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -753,21 +826,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List anomaly alerts Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void OptimizationControllerListAlerts()
+        /// <returns>List&lt;OptimizationControllerListAlerts200ResponseInner&gt;</returns>
+        public List<OptimizationControllerListAlerts200ResponseInner> OptimizationControllerListAlerts()
         {
-            OptimizationControllerListAlertsWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<OptimizationControllerListAlerts200ResponseInner>> localVarResponse = OptimizationControllerListAlertsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List anomaly alerts Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OptimizationControllerListAlertsWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;OptimizationControllerListAlerts200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<OptimizationControllerListAlerts200ResponseInner>> OptimizationControllerListAlertsWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -776,6 +850,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -785,9 +860,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/alerts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<OptimizationControllerListAlerts200ResponseInner>>("/v1/alerts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -799,23 +885,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List anomaly alerts Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OptimizationControllerListAlertsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;OptimizationControllerListAlerts200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<OptimizationControllerListAlerts200ResponseInner>> OptimizationControllerListAlertsAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OptimizationControllerListAlertsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<OptimizationControllerListAlerts200ResponseInner>> localVarResponse = await OptimizationControllerListAlertsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List anomaly alerts Returns up to 200 of the account&#39;s anomaly alerts, newest first. Alerts are raised by the hourly anomaly detector. Kinds include spend and CPA spikes, CTR and CVR drops, fill-rate drops and no-fill spikes.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OptimizationControllerListAlertsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;OptimizationControllerListAlerts200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<OptimizationControllerListAlerts200ResponseInner>>> OptimizationControllerListAlertsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -825,6 +912,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -835,10 +923,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/alerts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<OptimizationControllerListAlerts200ResponseInner>>("/v1/alerts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -850,21 +949,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List automation rules Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void OptimizationControllerListRules()
+        /// <returns>List&lt;AudienceAutomationRule&gt;</returns>
+        public List<AudienceAutomationRule> OptimizationControllerListRules()
         {
-            OptimizationControllerListRulesWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<List<AudienceAutomationRule>> localVarResponse = OptimizationControllerListRulesWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List automation rules Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OptimizationControllerListRulesWithHttpInfo()
+        /// <returns>ApiResponse of List&lt;AudienceAutomationRule&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<AudienceAutomationRule>> OptimizationControllerListRulesWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -873,6 +973,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -882,9 +983,20 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/automation/rules", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<AudienceAutomationRule>>("/v1/automation/rules", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -896,23 +1008,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List automation rules Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OptimizationControllerListRulesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;AudienceAutomationRule&gt;</returns>
+        public async System.Threading.Tasks.Task<List<AudienceAutomationRule>> OptimizationControllerListRulesAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OptimizationControllerListRulesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<AudienceAutomationRule>> localVarResponse = await OptimizationControllerListRulesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List automation rules Returns the account&#39;s automation rules, newest first. A background job evaluates each enabled rule&#39;s metric over its window and applies the action when the condition holds.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OptimizationControllerListRulesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;AudienceAutomationRule&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<AudienceAutomationRule>>> OptimizationControllerListRulesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -922,6 +1035,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -932,10 +1046,21 @@ namespace Adviverse.Api.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/automation/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AudienceAutomationRule>>("/v1/automation/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -947,23 +1072,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List budget-optimizer reallocations Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns></returns>
-        public void OptimizationControllerOptimizerLog(string limit)
+        /// <returns>List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;</returns>
+        public List<OptimizationControllerOptimizerLog200ResponseInner> OptimizationControllerOptimizerLog(string limit)
         {
-            OptimizationControllerOptimizerLogWithHttpInfo(limit);
+            Adviverse.Api.Client.ApiResponse<List<OptimizationControllerOptimizerLog200ResponseInner>> localVarResponse = OptimizationControllerOptimizerLogWithHttpInfo(limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List budget-optimizer reallocations Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OptimizationControllerOptimizerLogWithHttpInfo(string limit)
+        /// <returns>ApiResponse of List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<OptimizationControllerOptimizerLog200ResponseInner>> OptimizationControllerOptimizerLogWithHttpInfo(string limit)
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -976,6 +1102,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -986,9 +1113,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/optimizer/log", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<OptimizationControllerOptimizerLog200ResponseInner>>("/v1/optimizer/log", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1000,25 +1138,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List budget-optimizer reallocations Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OptimizationControllerOptimizerLogAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;</returns>
+        public async System.Threading.Tasks.Task<List<OptimizationControllerOptimizerLog200ResponseInner>> OptimizationControllerOptimizerLogAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OptimizationControllerOptimizerLogWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<OptimizationControllerOptimizerLog200ResponseInner>> localVarResponse = await OptimizationControllerOptimizerLogWithHttpInfoAsync(limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List budget-optimizer reallocations Audit log of the automatic budget reallocator. For auto-strategy campaigns it moves daily budget toward lower-CPA performers, keeps the advertiser&#39;s total budget unchanged and limits how far each campaign can move. Each row records the old and new budget and the CPA, conversions and spend that drove the change. &#x60;limit&#x60; defaults to 100 and is clamped to 1-500; newest first.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OptimizationControllerOptimizerLogWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;OptimizationControllerOptimizerLog200ResponseInner&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<OptimizationControllerOptimizerLog200ResponseInner>>> OptimizationControllerOptimizerLogWithHttpInfoAsync(string limit, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'limit' is set
             if (limit == null)
@@ -1032,6 +1171,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1043,10 +1183,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/optimizer/log", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<OptimizationControllerOptimizerLog200ResponseInner>>("/v1/optimizer/log", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1058,23 +1209,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete an automation rule Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void OptimizationControllerRemoveRule(string id)
+        /// <returns>PixelControllerDeletePixel200Response</returns>
+        public PixelControllerDeletePixel200Response OptimizationControllerRemoveRule(string id)
         {
-            OptimizationControllerRemoveRuleWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> localVarResponse = OptimizationControllerRemoveRuleWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete an automation rule Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OptimizationControllerRemoveRuleWithHttpInfo(string id)
+        /// <returns>ApiResponse of PixelControllerDeletePixel200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> OptimizationControllerRemoveRuleWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1087,6 +1239,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1097,9 +1250,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<PixelControllerDeletePixel200Response>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1111,25 +1275,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete an automation rule Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OptimizationControllerRemoveRuleAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PixelControllerDeletePixel200Response</returns>
+        public async System.Threading.Tasks.Task<PixelControllerDeletePixel200Response> OptimizationControllerRemoveRuleAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OptimizationControllerRemoveRuleWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response> localVarResponse = await OptimizationControllerRemoveRuleWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete an automation rule Deletes rule &#x60;id&#x60; if it belongs to the account. Deleting an id the account does not own is a silent no-op that still returns &#x60;{deleted:true}&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OptimizationControllerRemoveRuleWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PixelControllerDeletePixel200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PixelControllerDeletePixel200Response>> OptimizationControllerRemoveRuleWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1143,6 +1308,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1154,10 +1320,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<PixelControllerDeletePixel200Response>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1169,23 +1346,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Enable or disable an automation rule Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void OptimizationControllerSetRuleEnabled(string id)
+        /// <returns>AudienceAutomationRule</returns>
+        public AudienceAutomationRule OptimizationControllerSetRuleEnabled(string id)
         {
-            OptimizationControllerSetRuleEnabledWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AudienceAutomationRule> localVarResponse = OptimizationControllerSetRuleEnabledWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Enable or disable an automation rule Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> OptimizationControllerSetRuleEnabledWithHttpInfo(string id)
+        /// <returns>ApiResponse of AudienceAutomationRule</returns>
+        public Adviverse.Api.Client.ApiResponse<AudienceAutomationRule> OptimizationControllerSetRuleEnabledWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1198,6 +1376,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1208,9 +1387,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<AudienceAutomationRule>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1222,25 +1412,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Enable or disable an automation rule Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task OptimizationControllerSetRuleEnabledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AudienceAutomationRule</returns>
+        public async System.Threading.Tasks.Task<AudienceAutomationRule> OptimizationControllerSetRuleEnabledAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await OptimizationControllerSetRuleEnabledWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AudienceAutomationRule> localVarResponse = await OptimizationControllerSetRuleEnabledWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Enable or disable an automation rule Sets &#x60;enabled&#x60; from the request body on rule &#x60;id&#x60; without deleting it. Returns the updated rule. If the rule does not exist or is not owned by the account, the response is 400 \&quot;rule not found\&quot;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: advertiser.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> OptimizationControllerSetRuleEnabledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AudienceAutomationRule)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AudienceAutomationRule>> OptimizationControllerSetRuleEnabledWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1254,6 +1445,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1265,10 +1457,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<AudienceAutomationRule>("/v1/automation/rules/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

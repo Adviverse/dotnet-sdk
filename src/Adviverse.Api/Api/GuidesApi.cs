@@ -28,169 +28,196 @@ namespace Adviverse.Api.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="locale"></param>
-        /// <returns></returns>
-        void GuidesControllerAdminList(string locale);
-
-        /// <summary>
-        /// 
+        /// List all guides
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerAdminListWithHttpInfo(string locale);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createGuideDto"></param>
-        /// <returns></returns>
-        void GuidesControllerCreate(CreateGuideDto createGuideDto);
+        /// <returns>List&lt;Guide&gt;</returns>
+        List<Guide> GuidesControllerAdminList(string locale);
 
         /// <summary>
-        /// 
+        /// List all guides
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="locale"></param>
+        /// <returns>ApiResponse of List&lt;Guide&gt;</returns>
+        ApiResponse<List<Guide>> GuidesControllerAdminListWithHttpInfo(string locale);
+        /// <summary>
+        /// Create or replace a guide
+        /// </summary>
+        /// <remarks>
+        /// Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGuideDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerCreateWithHttpInfo(CreateGuideDto createGuideDto);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="slug"></param>
-        /// <param name="locale"></param>
-        /// <returns></returns>
-        void GuidesControllerGet(string slug, string locale);
+        /// <returns>Guide</returns>
+        Guide GuidesControllerCreate(CreateGuideDto createGuideDto);
 
         /// <summary>
-        /// 
+        /// Create or replace a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createGuideDto"></param>
+        /// <returns>ApiResponse of Guide</returns>
+        ApiResponse<Guide> GuidesControllerCreateWithHttpInfo(CreateGuideDto createGuideDto);
+        /// <summary>
+        /// Get a published guide
+        /// </summary>
+        /// <remarks>
+        /// Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerGetWithHttpInfo(string slug, string locale);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void GuidesControllerIndexHtml();
+        /// <returns>GuidesControllerGet200Response</returns>
+        GuidesControllerGet200Response GuidesControllerGet(string slug, string locale);
 
         /// <summary>
-        /// 
+        /// Get a published guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerIndexHtmlWithHttpInfo();
+        /// <param name="slug"></param>
+        /// <param name="locale"></param>
+        /// <returns>ApiResponse of GuidesControllerGet200Response</returns>
+        ApiResponse<GuidesControllerGet200Response> GuidesControllerGetWithHttpInfo(string slug, string locale);
         /// <summary>
-        /// 
+        /// Render the public docs index page
         /// </summary>
+        /// <remarks>
+        /// Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>string</returns>
+        string GuidesControllerIndexHtml();
+
+        /// <summary>
+        /// Render the public docs index page
+        /// </summary>
+        /// <remarks>
+        /// Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> GuidesControllerIndexHtmlWithHttpInfo();
+        /// <summary>
+        /// List published guides
+        /// </summary>
+        /// <remarks>
+        /// Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
-        /// <returns></returns>
-        void GuidesControllerList(string locale, string category);
+        /// <returns>List&lt;Guide&gt;</returns>
+        List<Guide> GuidesControllerList(string locale, string category);
 
         /// <summary>
-        /// 
+        /// List published guides
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerListWithHttpInfo(string locale, string category);
+        /// <returns>ApiResponse of List&lt;Guide&gt;</returns>
+        ApiResponse<List<Guide>> GuidesControllerListWithHttpInfo(string locale, string category);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="slug"></param>
-        /// <returns></returns>
-        void GuidesControllerPageHtml(string slug);
-
-        /// <summary>
-        /// 
+        /// Render a public guide page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerPageHtmlWithHttpInfo(string slug);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        void GuidesControllerRemove(string id);
+        /// <returns>string</returns>
+        string GuidesControllerPageHtml(string slug);
 
         /// <summary>
-        /// 
+        /// Render a public guide page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="slug"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> GuidesControllerPageHtmlWithHttpInfo(string slug);
+        /// <summary>
+        /// Delete a guide
+        /// </summary>
+        /// <remarks>
+        /// Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerRemoveWithHttpInfo(string id);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void GuidesControllerSitemap();
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        AdminControllerSetStatus201Response GuidesControllerRemove(string id);
 
         /// <summary>
-        /// 
+        /// Delete a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerSitemapWithHttpInfo();
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        ApiResponse<AdminControllerSetStatus201Response> GuidesControllerRemoveWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Get the docs sitemap
         /// </summary>
+        /// <remarks>
+        /// Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>string</returns>
+        string GuidesControllerSitemap();
+
+        /// <summary>
+        /// Get the docs sitemap
+        /// </summary>
+        /// <remarks>
+        /// Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> GuidesControllerSitemapWithHttpInfo();
+        /// <summary>
+        /// Update a guide
+        /// </summary>
+        /// <remarks>
+        /// Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
+        /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
-        /// <returns></returns>
-        void GuidesControllerUpdate(string id, UpdateGuideDto updateGuideDto);
+        /// <returns>Guide</returns>
+        Guide GuidesControllerUpdate(string id, UpdateGuideDto updateGuideDto);
 
         /// <summary>
-        /// 
+        /// Update a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GuidesControllerUpdateWithHttpInfo(string id, UpdateGuideDto updateGuideDto);
+        /// <returns>ApiResponse of Guide</returns>
+        ApiResponse<Guide> GuidesControllerUpdateWithHttpInfo(string id, UpdateGuideDto updateGuideDto);
         #endregion Synchronous Operations
     }
 
@@ -201,214 +228,214 @@ namespace Adviverse.Api.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// List all guides
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;Guide&gt;</returns>
+        System.Threading.Tasks.Task<List<Guide>> GuidesControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List all guides
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;Guide&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Guide>>> GuidesControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Create or replace a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerCreateAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of Guide</returns>
+        System.Threading.Tasks.Task<Guide> GuidesControllerCreateAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create or replace a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerCreateWithHttpInfoAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (Guide)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Guide>> GuidesControllerCreateWithHttpInfoAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a published guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of GuidesControllerGet200Response</returns>
+        System.Threading.Tasks.Task<GuidesControllerGet200Response> GuidesControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a published guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (GuidesControllerGet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GuidesControllerGet200Response>> GuidesControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Render the public docs index page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> GuidesControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Render the public docs index page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> GuidesControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List published guides
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerListAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;Guide&gt;</returns>
+        System.Threading.Tasks.Task<List<Guide>> GuidesControllerListAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List published guides
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerListWithHttpInfoAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;Guide&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Guide>>> GuidesControllerListWithHttpInfoAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Render a public guide page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> GuidesControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Render a public guide page
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> GuidesControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Delete a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> GuidesControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Delete a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> GuidesControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get the docs sitemap
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> GuidesControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get the docs sitemap
         /// </summary>
         /// <remarks>
-        /// 
+        /// Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> GuidesControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Update a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GuidesControllerUpdateAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of Guide</returns>
+        System.Threading.Tasks.Task<Guide> GuidesControllerUpdateAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Update a guide
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GuidesControllerUpdateWithHttpInfoAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (Guide)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Guide>> GuidesControllerUpdateWithHttpInfoAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -623,23 +650,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all guides Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
-        /// <returns></returns>
-        public void GuidesControllerAdminList(string locale)
+        /// <returns>List&lt;Guide&gt;</returns>
+        public List<Guide> GuidesControllerAdminList(string locale)
         {
-            GuidesControllerAdminListWithHttpInfo(locale);
+            Adviverse.Api.Client.ApiResponse<List<Guide>> localVarResponse = GuidesControllerAdminListWithHttpInfo(locale);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all guides Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerAdminListWithHttpInfo(string locale)
+        /// <returns>ApiResponse of List&lt;Guide&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<Guide>> GuidesControllerAdminListWithHttpInfo(string locale)
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -652,6 +680,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -662,9 +691,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "locale", locale));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/admin/guides", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<Guide>>("/v1/admin/guides", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -676,25 +716,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List all guides Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;Guide&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Guide>> GuidesControllerAdminListAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerAdminListWithHttpInfoAsync(locale, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<Guide>> localVarResponse = await GuidesControllerAdminListWithHttpInfoAsync(locale, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List all guides Returns every guide, including unpublished ones, optionally filtered by &#x60;locale&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;Guide&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<Guide>>> GuidesControllerAdminListWithHttpInfoAsync(string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -708,6 +749,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -719,10 +761,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.QueryParameters.Add(Adviverse.Api.Client.ClientUtils.ParameterToMultiMap("", "locale", locale));
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/admin/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<Guide>>("/v1/admin/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -734,23 +787,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a guide Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGuideDto"></param>
-        /// <returns></returns>
-        public void GuidesControllerCreate(CreateGuideDto createGuideDto)
+        /// <returns>Guide</returns>
+        public Guide GuidesControllerCreate(CreateGuideDto createGuideDto)
         {
-            GuidesControllerCreateWithHttpInfo(createGuideDto);
+            Adviverse.Api.Client.ApiResponse<Guide> localVarResponse = GuidesControllerCreateWithHttpInfo(createGuideDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a guide Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGuideDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerCreateWithHttpInfo(CreateGuideDto createGuideDto)
+        /// <returns>ApiResponse of Guide</returns>
+        public Adviverse.Api.Client.ApiResponse<Guide> GuidesControllerCreateWithHttpInfo(CreateGuideDto createGuideDto)
         {
             // verify the required parameter 'createGuideDto' is set
             if (createGuideDto == null)
@@ -764,6 +818,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -774,9 +829,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createGuideDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/admin/guides", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<Guide>("/v1/admin/guides", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -788,25 +854,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a guide Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerCreateAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of Guide</returns>
+        public async System.Threading.Tasks.Task<Guide> GuidesControllerCreateAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerCreateWithHttpInfoAsync(createGuideDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<Guide> localVarResponse = await GuidesControllerCreateWithHttpInfoAsync(createGuideDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Create or replace a guide Creates a guide from &#x60;slug&#x60; and &#x60;title&#x60; with optional &#x60;locale&#x60; (&#x60;en&#x60;), &#x60;category&#x60; (&#x60;Guides&#x60;), &#x60;summary&#x60;, Markdown &#x60;body&#x60;, &#x60;position&#x60; (0) and &#x60;published&#x60; (true). An existing guide with the same slug and locale is overwritten (upsert). Clears the public read cache.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerCreateWithHttpInfoAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (Guide)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Guide>> GuidesControllerCreateWithHttpInfoAsync(CreateGuideDto createGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createGuideDto' is set
             if (createGuideDto == null)
@@ -821,6 +888,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -832,10 +900,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = createGuideDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/admin/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Guide>("/v1/admin/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -847,25 +926,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a published guide Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
-        /// <returns></returns>
-        public void GuidesControllerGet(string slug, string locale)
+        /// <returns>GuidesControllerGet200Response</returns>
+        public GuidesControllerGet200Response GuidesControllerGet(string slug, string locale)
         {
-            GuidesControllerGetWithHttpInfo(slug, locale);
+            Adviverse.Api.Client.ApiResponse<GuidesControllerGet200Response> localVarResponse = GuidesControllerGetWithHttpInfo(slug, locale);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a published guide Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerGetWithHttpInfo(string slug, string locale)
+        /// <returns>ApiResponse of GuidesControllerGet200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<GuidesControllerGet200Response> GuidesControllerGetWithHttpInfo(string slug, string locale)
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -882,6 +962,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -895,7 +976,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/guides/{slug}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GuidesControllerGet200Response>("/v1/guides/{slug}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -907,27 +988,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get a published guide Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of GuidesControllerGet200Response</returns>
+        public async System.Threading.Tasks.Task<GuidesControllerGet200Response> GuidesControllerGetAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerGetWithHttpInfoAsync(slug, locale, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<GuidesControllerGet200Response> localVarResponse = await GuidesControllerGetWithHttpInfoAsync(slug, locale, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get a published guide Public. Returns a published guide by &#x60;slug&#x60; and &#x60;locale&#x60; (default &#x60;en&#x60;). An unknown or unpublished slug returns HTTP 200 with &#x60;{ error: \&quot;not_found\&quot; }&#x60;, not 404.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="locale"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (GuidesControllerGet200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<GuidesControllerGet200Response>> GuidesControllerGetWithHttpInfoAsync(string slug, string locale, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -945,6 +1027,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -960,7 +1043,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/guides/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GuidesControllerGet200Response>("/v1/guides/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -972,21 +1055,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render the public docs index page Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void GuidesControllerIndexHtml()
+        /// <returns>string</returns>
+        public string GuidesControllerIndexHtml()
         {
-            GuidesControllerIndexHtmlWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = GuidesControllerIndexHtmlWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render the public docs index page Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerIndexHtmlWithHttpInfo()
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> GuidesControllerIndexHtmlWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -995,6 +1079,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1006,7 +1091,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/guides", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/guides", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1018,23 +1103,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render the public docs index page Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> GuidesControllerIndexHtmlAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerIndexHtmlWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await GuidesControllerIndexHtmlWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render the public docs index page Public, server-rendered HTML for /guides: a card per published English guide plus category navigation. Cached (max-age 300, s-maxage 3600) for search engines.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> GuidesControllerIndexHtmlWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1044,6 +1130,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
 
@@ -1057,7 +1144,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1069,25 +1156,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List published guides Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
-        /// <returns></returns>
-        public void GuidesControllerList(string locale, string category)
+        /// <returns>List&lt;Guide&gt;</returns>
+        public List<Guide> GuidesControllerList(string locale, string category)
         {
-            GuidesControllerListWithHttpInfo(locale, category);
+            Adviverse.Api.Client.ApiResponse<List<Guide>> localVarResponse = GuidesControllerListWithHttpInfo(locale, category);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List published guides Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerListWithHttpInfo(string locale, string category)
+        /// <returns>ApiResponse of List&lt;Guide&gt;</returns>
+        public Adviverse.Api.Client.ApiResponse<List<Guide>> GuidesControllerListWithHttpInfo(string locale, string category)
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -1104,6 +1192,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1117,7 +1206,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/guides", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<Guide>>("/v1/guides", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1129,27 +1218,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// List published guides Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerListAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;Guide&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Guide>> GuidesControllerListAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerListWithHttpInfoAsync(locale, category, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<List<Guide>> localVarResponse = await GuidesControllerListWithHttpInfoAsync(locale, category, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// List published guides Public. Returns published guides for &#x60;locale&#x60; (default &#x60;en&#x60;), ordered by category, position and title, optionally filtered by &#x60;category&#x60;. Reads are cached in Redis for 60 seconds. This is the in-app docs feed, separate from the OpenAPI reference at /v1/docs.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="locale"></param>
         /// <param name="category"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerListWithHttpInfoAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;Guide&gt;)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<List<Guide>>> GuidesControllerListWithHttpInfoAsync(string locale, string category, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'locale' is set
             if (locale == null)
@@ -1167,6 +1257,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1182,7 +1273,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<Guide>>("/v1/guides", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1194,23 +1285,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render a public guide page Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
-        /// <returns></returns>
-        public void GuidesControllerPageHtml(string slug)
+        /// <returns>string</returns>
+        public string GuidesControllerPageHtml(string slug)
         {
-            GuidesControllerPageHtmlWithHttpInfo(slug);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = GuidesControllerPageHtmlWithHttpInfo(slug);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render a public guide page Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerPageHtmlWithHttpInfo(string slug)
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> GuidesControllerPageHtmlWithHttpInfo(string slug)
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -1223,6 +1315,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1235,7 +1328,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/guides/{slug}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/guides/{slug}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1247,25 +1340,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Render a public guide page Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> GuidesControllerPageHtmlAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerPageHtmlWithHttpInfoAsync(slug, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await GuidesControllerPageHtmlWithHttpInfoAsync(slug, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Render a public guide page Public, server-rendered HTML for one English guide, with its Markdown body rendered escape-first (raw HTML is neutralized), TechArticle JSON-LD and canonical URL. Unknown slugs return a 404 HTML page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="slug"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> GuidesControllerPageHtmlWithHttpInfoAsync(string slug, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'slug' is set
             if (slug == null)
@@ -1279,6 +1373,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/html"
             };
 
 
@@ -1293,7 +1388,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/guides/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/guides/{slug}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1305,23 +1400,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a guide Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns></returns>
-        public void GuidesControllerRemove(string id)
+        /// <returns>AdminControllerSetStatus201Response</returns>
+        public AdminControllerSetStatus201Response GuidesControllerRemove(string id)
         {
-            GuidesControllerRemoveWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = GuidesControllerRemoveWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a guide Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerRemoveWithHttpInfo(string id)
+        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> GuidesControllerRemoveWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1334,6 +1430,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1344,9 +1441,20 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<AdminControllerSetStatus201Response>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1358,25 +1466,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Delete a guide Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of AdminControllerSetStatus201Response</returns>
+        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> GuidesControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await GuidesControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Delete a guide Deletes the guide and clears the public cache. Returns &#x60;{ ok: true }&#x60; even for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> GuidesControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1390,6 +1499,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1401,10 +1511,21 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdminControllerSetStatus201Response>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1416,21 +1537,22 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the docs sitemap Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void GuidesControllerSitemap()
+        /// <returns>string</returns>
+        public string GuidesControllerSitemap()
         {
-            GuidesControllerSitemapWithHttpInfo();
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = GuidesControllerSitemapWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the docs sitemap Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerSitemapWithHttpInfo()
+        /// <returns>ApiResponse of string</returns>
+        public Adviverse.Api.Client.ApiResponse<string> GuidesControllerSitemapWithHttpInfo()
         {
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
 
@@ -1439,6 +1561,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/xml"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1450,7 +1573,7 @@ namespace Adviverse.Api.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/guides/sitemap.xml", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<string>("/guides/sitemap.xml", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1462,23 +1585,24 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Get the docs sitemap Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> GuidesControllerSitemapAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerSitemapWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<string> localVarResponse = await GuidesControllerSitemapWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Get the docs sitemap Public XML sitemap listing /guides and every published English guide page.  Auth: public, no credentials required.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<string>> GuidesControllerSitemapWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
@@ -1488,6 +1612,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/xml"
             };
 
 
@@ -1501,7 +1626,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/guides/sitemap.xml", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<string>("/guides/sitemap.xml", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1513,25 +1638,26 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a guide Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
-        /// <returns></returns>
-        public void GuidesControllerUpdate(string id, UpdateGuideDto updateGuideDto)
+        /// <returns>Guide</returns>
+        public Guide GuidesControllerUpdate(string id, UpdateGuideDto updateGuideDto)
         {
-            GuidesControllerUpdateWithHttpInfo(id, updateGuideDto);
+            Adviverse.Api.Client.ApiResponse<Guide> localVarResponse = GuidesControllerUpdateWithHttpInfo(id, updateGuideDto);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a guide Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Adviverse.Api.Client.ApiResponse<Object> GuidesControllerUpdateWithHttpInfo(string id, UpdateGuideDto updateGuideDto)
+        /// <returns>ApiResponse of Guide</returns>
+        public Adviverse.Api.Client.ApiResponse<Guide> GuidesControllerUpdateWithHttpInfo(string id, UpdateGuideDto updateGuideDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1549,6 +1675,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1560,9 +1687,20 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateGuideDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<Guide>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1574,27 +1712,28 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        ///  
+        /// Update a guide Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GuidesControllerUpdateAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of Guide</returns>
+        public async System.Threading.Tasks.Task<Guide> GuidesControllerUpdateAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await GuidesControllerUpdateWithHttpInfoAsync(id, updateGuideDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<Guide> localVarResponse = await GuidesControllerUpdateWithHttpInfoAsync(id, updateGuideDto, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Update a guide Partially updates any of slug, locale, title, category, summary, body, position and published, and clears the public cache. Returns the updated guide, or null for an unknown id.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateGuideDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Object>> GuidesControllerUpdateWithHttpInfoAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (Guide)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<Guide>> GuidesControllerUpdateWithHttpInfoAsync(string id, UpdateGuideDto updateGuideDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1613,6 +1752,7 @@ namespace Adviverse.Api.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1625,10 +1765,21 @@ namespace Adviverse.Api.Api
             localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateGuideDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<Guide>("/v1/admin/guides/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
