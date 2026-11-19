@@ -27,6 +27,7 @@ src/Adviverse.Api/Api/MfaApi.cs
 src/Adviverse.Api/Api/OptimizationApi.cs
 src/Adviverse.Api/Api/PixelApi.cs
 src/Adviverse.Api/Api/PortalApi.cs
+src/Adviverse.Api/Api/PropertyTrustApi.cs
 src/Adviverse.Api/Api/PublisherApi.cs
 src/Adviverse.Api/Api/PublisherInsightsApi.cs
 src/Adviverse.Api/Api/ReferralsApi.cs
@@ -68,6 +69,7 @@ src/Adviverse.Api/Model/AdminControllerProcessPayout201Response.cs
 src/Adviverse.Api/Model/AdminControllerQuality200ResponseInner.cs
 src/Adviverse.Api/Model/AdminControllerRescan201Response.cs
 src/Adviverse.Api/Model/AdminControllerSetStatus201Response.cs
+src/Adviverse.Api/Model/AdminTrustDto.cs
 src/Adviverse.Api/Model/AdvAdSetSummary.cs
 src/Adviverse.Api/Model/AdvAudience.cs
 src/Adviverse.Api/Model/AdvAudienceDestination.cs
@@ -290,6 +292,8 @@ src/Adviverse.Api/Model/MfaControllerRanked200ResponseInner.cs
 src/Adviverse.Api/Model/ModeledLookalikeDto.cs
 src/Adviverse.Api/Model/ModerationDecisionDto.cs
 src/Adviverse.Api/Model/NetworkSettingsDto.cs
+src/Adviverse.Api/Model/NicheClassification.cs
+src/Adviverse.Api/Model/NicheScore.cs
 src/Adviverse.Api/Model/OauthDiscordDto.cs
 src/Adviverse.Api/Model/OauthGoogleDto.cs
 src/Adviverse.Api/Model/OauthStartDto.cs
@@ -321,10 +325,13 @@ src/Adviverse.Api/Model/PortalTemplatesControllerListTemplates200ResponseInner.c
 src/Adviverse.Api/Model/PortalTemplatesControllerListTemplates200ResponseInnerFieldsInner.cs
 src/Adviverse.Api/Model/ProfileDto.cs
 src/Adviverse.Api/Model/PromoteCampaignReportingControllerSummary200Response.cs
+src/Adviverse.Api/Model/PropertyTrustControllerAdminList200ResponseInner.cs
+src/Adviverse.Api/Model/PropertyTrustControllerAdminSet201Response.cs
 src/Adviverse.Api/Model/PubComboPreset.cs
 src/Adviverse.Api/Model/PubComboPresetUnitsInner.cs
 src/Adviverse.Api/Model/PubPlacement.cs
 src/Adviverse.Api/Model/PubProperty.cs
+src/Adviverse.Api/Model/PubPropertyCategoriesInner.cs
 src/Adviverse.Api/Model/PubServingDomain.cs
 src/Adviverse.Api/Model/PublisherControllerDisableSigning200Response.cs
 src/Adviverse.Api/Model/PublisherControllerDomainConnect201Response.cs
@@ -475,6 +482,7 @@ src/Adviverse.Api/Model/SettingsControllerRotateTerminalToken201Response.cs
 src/Adviverse.Api/Model/SettingsControllerSetTerminalTokenPolicy200Response.cs
 src/Adviverse.Api/Model/SettingsControllerUpdateNetwork200Response.cs
 src/Adviverse.Api/Model/SignupDto.cs
+src/Adviverse.Api/Model/SiteNiche.cs
 src/Adviverse.Api/Model/SkadnetworkControllerHealth200Response.cs
 src/Adviverse.Api/Model/SkadnetworkControllerPostback200Response.cs
 src/Adviverse.Api/Model/StatsControllerGet200Response.cs
@@ -493,6 +501,8 @@ src/Adviverse.Api/Model/SurfacePairInitDto.cs
 src/Adviverse.Api/Model/TaxFormDto.cs
 src/Adviverse.Api/Model/TerminalSwitchDto.cs
 src/Adviverse.Api/Model/TrackConversionDto.cs
+src/Adviverse.Api/Model/TrustEvent.cs
+src/Adviverse.Api/Model/TrustProgress.cs
 src/Adviverse.Api/Model/UpdateAppDto.cs
 src/Adviverse.Api/Model/UpdateCampaignDto.cs
 src/Adviverse.Api/Model/UpdateCampaignGroupDto.cs
@@ -511,4 +521,5 @@ src/Adviverse.Api/Model/WebhookDelivery.cs
 src/Adviverse.Api/Model/WebhookDeliveryResult.cs
 src/Adviverse.Api/Model/WebhookEndpoint.cs
 src/Adviverse.Api/Model/WebhooksControllerEvents200Response.cs
+src/Adviverse.Api/Model/WebhooksControllerRevealSecret201Response.cs
 src/Adviverse.Api/Model/WebhooksControllerUnsubscribe200Response.cs

@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Adviverse.Api.Client.OpenAPIDateConverter;
 namespace Adviverse.Api.Model
 {
     /// <summary>
-    /// A &#x60;dooh_screens&#x60; row plus its placement &#x60;tag_key&#x60;.
+    /// A &#x60;dooh_screens&#x60; row plus its placement &#x60;tag_key&#x60;. Player credentials (&#x60;poll_token&#x60;, &#x60;pairing_token&#x60;) are never returned.
     /// </summary>
     [DataContract(Name = "SupDoohScreen")]
     public partial class SupDoohScreen : IValidatableObject
@@ -87,15 +87,13 @@ namespace Adviverse.Api.Model
         /// <param name="audienceMultiplier">Postgres NUMERIC, serialized as a decimal string.</param>
         /// <param name="status">status.</param>
         /// <param name="pairingCode">pairingCode.</param>
-        /// <param name="pollToken">pollToken.</param>
-        /// <param name="pairingToken">pairingToken.</param>
         /// <param name="pairedAt">pairedAt.</param>
         /// <param name="lastHeartbeatAt">lastHeartbeatAt.</param>
         /// <param name="playerVersion">playerVersion.</param>
         /// <param name="tagKey">tagKey.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public SupDoohScreen(Guid id = default(Guid), Guid? placementId = default(Guid?), Guid? accountId = default(Guid?), string venueName = default(string), string venueType = default(string), string orientation = default(string), int? resolutionW = default(int?), int? resolutionH = default(int?), decimal? lat = default(decimal?), decimal? lng = default(decimal?), string timezone = default(string), int loopSeconds = default(int), string audienceMultiplier = default(string), StatusEnum? status = default(StatusEnum?), string pairingCode = default(string), string pollToken = default(string), string pairingToken = default(string), DateTime? pairedAt = default(DateTime?), DateTime? lastHeartbeatAt = default(DateTime?), string playerVersion = default(string), string tagKey = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime))
+        public SupDoohScreen(Guid id = default(Guid), Guid? placementId = default(Guid?), Guid? accountId = default(Guid?), string venueName = default(string), string venueType = default(string), string orientation = default(string), int? resolutionW = default(int?), int? resolutionH = default(int?), decimal? lat = default(decimal?), decimal? lng = default(decimal?), string timezone = default(string), int loopSeconds = default(int), string audienceMultiplier = default(string), StatusEnum? status = default(StatusEnum?), string pairingCode = default(string), DateTime? pairedAt = default(DateTime?), DateTime? lastHeartbeatAt = default(DateTime?), string playerVersion = default(string), string tagKey = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime))
         {
             this.Id = id;
             this.PlacementId = placementId;
@@ -112,8 +110,6 @@ namespace Adviverse.Api.Model
             this.AudienceMultiplier = audienceMultiplier;
             this.Status = status;
             this.PairingCode = pairingCode;
-            this.PollToken = pollToken;
-            this.PairingToken = pairingToken;
             this.PairedAt = pairedAt;
             this.LastHeartbeatAt = lastHeartbeatAt;
             this.PlayerVersion = playerVersion;
@@ -209,18 +205,6 @@ namespace Adviverse.Api.Model
         public string PairingCode { get; set; }
 
         /// <summary>
-        /// Gets or Sets PollToken
-        /// </summary>
-        [DataMember(Name = "poll_token", EmitDefaultValue = true)]
-        public string PollToken { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PairingToken
-        /// </summary>
-        [DataMember(Name = "pairing_token", EmitDefaultValue = true)]
-        public string PairingToken { get; set; }
-
-        /// <summary>
         /// Gets or Sets PairedAt
         /// </summary>
         [DataMember(Name = "paired_at", EmitDefaultValue = true)]
@@ -285,8 +269,6 @@ namespace Adviverse.Api.Model
             sb.Append("  AudienceMultiplier: ").Append(AudienceMultiplier).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  PairingCode: ").Append(PairingCode).Append("\n");
-            sb.Append("  PollToken: ").Append(PollToken).Append("\n");
-            sb.Append("  PairingToken: ").Append(PairingToken).Append("\n");
             sb.Append("  PairedAt: ").Append(PairedAt).Append("\n");
             sb.Append("  LastHeartbeatAt: ").Append(LastHeartbeatAt).Append("\n");
             sb.Append("  PlayerVersion: ").Append(PlayerVersion).Append("\n");

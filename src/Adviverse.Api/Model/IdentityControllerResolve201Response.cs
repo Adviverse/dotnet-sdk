@@ -67,7 +67,7 @@ namespace Adviverse.Api.Model
         /// Initializes a new instance of the <see cref="IdentityControllerResolve201Response" /> class.
         /// </summary>
         /// <param name="canonicalId">canonicalId.</param>
-        /// <param name="unifiedId">unifiedId.</param>
+        /// <param name="unifiedId">Per-advertiser id for advertisers; the global email-derived id (or null) for admins.</param>
         /// <param name="consentState">consentState.</param>
         /// <param name="signals">Signals actually linked from this request (all supplied by the caller)..</param>
         public IdentityControllerResolve201Response(Guid canonicalId = default(Guid), string unifiedId = default(string), ConsentStateEnum? consentState = default(ConsentStateEnum?), List<IdentityControllerResolve201ResponseSignalsInner> signals = default(List<IdentityControllerResolve201ResponseSignalsInner>))
@@ -85,8 +85,9 @@ namespace Adviverse.Api.Model
         public Guid CanonicalId { get; set; }
 
         /// <summary>
-        /// Gets or Sets UnifiedId
+        /// Per-advertiser id for advertisers; the global email-derived id (or null) for admins
         /// </summary>
+        /// <value>Per-advertiser id for advertisers; the global email-derived id (or null) for admins</value>
         [DataMember(Name = "unifiedId", EmitDefaultValue = true)]
         public string UnifiedId { get; set; }
 

@@ -68,9 +68,9 @@ namespace Adviverse.Api.Model
         /// </summary>
         /// <param name="canonicalId">canonicalId.</param>
         /// <param name="unifiedId">unifiedId.</param>
-        /// <param name="householdId">householdId.</param>
+        /// <param name="householdId">Admins only.</param>
         /// <param name="consentState">consentState.</param>
-        /// <param name="attributes">attributes.</param>
+        /// <param name="attributes">Admins only.</param>
         /// <param name="firstSeen">firstSeen.</param>
         /// <param name="lastSeen">lastSeen.</param>
         public IdentityControllerGet200ResponseIdentity(Guid canonicalId = default(Guid), string unifiedId = default(string), string householdId = default(string), ConsentStateEnum? consentState = default(ConsentStateEnum?), Dictionary<string, Object> attributes = default(Dictionary<string, Object>), DateTime firstSeen = default(DateTime), DateTime lastSeen = default(DateTime))
@@ -98,14 +98,16 @@ namespace Adviverse.Api.Model
         public string UnifiedId { get; set; }
 
         /// <summary>
-        /// Gets or Sets HouseholdId
+        /// Admins only
         /// </summary>
+        /// <value>Admins only</value>
         [DataMember(Name = "household_id", EmitDefaultValue = true)]
         public string HouseholdId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Attributes
+        /// Admins only
         /// </summary>
+        /// <value>Admins only</value>
         [DataMember(Name = "attributes", EmitDefaultValue = false)]
         public Dictionary<string, Object> Attributes { get; set; }
 

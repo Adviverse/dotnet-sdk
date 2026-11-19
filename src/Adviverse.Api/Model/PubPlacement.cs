@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Adviverse.Api.Client.OpenAPIDateConverter;
 namespace Adviverse.Api.Model
 {
     /// <summary>
-    /// A &#x60;placements&#x60; row. All columns are returned, including &#x60;signing_secret&#x60;.
+    /// A &#x60;placements&#x60; row. The signing secret itself is never returned here (only from POST /v1/publisher/placements/{id}/signing-secret); &#x60;has_signing_secret&#x60; says whether one is set.
     /// </summary>
     [DataContract(Name = "PubPlacement")]
     public partial class PubPlacement : IValidatableObject
@@ -81,14 +81,14 @@ namespace Adviverse.Api.Model
         /// <param name="houseShare">Postgres NUMERIC, serialized as a decimal string.</param>
         /// <param name="houseBackfill">houseBackfill.</param>
         /// <param name="floorFallback">floorFallback.</param>
-        /// <param name="signingSecret">signingSecret.</param>
+        /// <param name="hasSigningSecret">True when a signing secret is set (signed-tag enforcement is on).</param>
         /// <param name="comboId">comboId.</param>
         /// <param name="comboLabel">comboLabel.</param>
         /// <param name="lastActiveAt">lastActiveAt.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
         /// <param name="deletedAt">deletedAt.</param>
-        public PubPlacement(Guid id = default(Guid), Guid propertyId = default(Guid), string name = default(string), string format = default(string), int? width = default(int?), int? height = default(int?), bool responsive = default(bool), string floorCpm = default(string), string floorSoft = default(string), bool floorAuto = default(bool), string revShare = default(string), string auctionType = default(string), string passbackUrl = default(string), Dictionary<string, Object> frequencyCap = default(Dictionary<string, Object>), StatusEnum? status = default(StatusEnum?), string tagKey = default(string), Dictionary<string, Object> settings = default(Dictionary<string, Object>), bool houseOnly = default(bool), string houseShare = default(string), bool houseBackfill = default(bool), bool floorFallback = default(bool), string signingSecret = default(string), Guid? comboId = default(Guid?), string comboLabel = default(string), DateTime? lastActiveAt = default(DateTime?), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
+        public PubPlacement(Guid id = default(Guid), Guid propertyId = default(Guid), string name = default(string), string format = default(string), int? width = default(int?), int? height = default(int?), bool responsive = default(bool), string floorCpm = default(string), string floorSoft = default(string), bool floorAuto = default(bool), string revShare = default(string), string auctionType = default(string), string passbackUrl = default(string), Dictionary<string, Object> frequencyCap = default(Dictionary<string, Object>), StatusEnum? status = default(StatusEnum?), string tagKey = default(string), Dictionary<string, Object> settings = default(Dictionary<string, Object>), bool houseOnly = default(bool), string houseShare = default(string), bool houseBackfill = default(bool), bool floorFallback = default(bool), bool hasSigningSecret = default(bool), Guid? comboId = default(Guid?), string comboLabel = default(string), DateTime? lastActiveAt = default(DateTime?), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
         {
             this.Id = id;
             this.PropertyId = propertyId;
@@ -111,7 +111,7 @@ namespace Adviverse.Api.Model
             this.HouseShare = houseShare;
             this.HouseBackfill = houseBackfill;
             this.FloorFallback = floorFallback;
-            this.SigningSecret = signingSecret;
+            this.HasSigningSecret = hasSigningSecret;
             this.ComboId = comboId;
             this.ComboLabel = comboLabel;
             this.LastActiveAt = lastActiveAt;
@@ -246,10 +246,11 @@ namespace Adviverse.Api.Model
         public bool FloorFallback { get; set; }
 
         /// <summary>
-        /// Gets or Sets SigningSecret
+        /// True when a signing secret is set (signed-tag enforcement is on)
         /// </summary>
-        [DataMember(Name = "signing_secret", EmitDefaultValue = true)]
-        public string SigningSecret { get; set; }
+        /// <value>True when a signing secret is set (signed-tag enforcement is on)</value>
+        [DataMember(Name = "has_signing_secret", EmitDefaultValue = true)]
+        public bool HasSigningSecret { get; set; }
 
         /// <summary>
         /// Gets or Sets ComboId
@@ -322,7 +323,7 @@ namespace Adviverse.Api.Model
             sb.Append("  HouseShare: ").Append(HouseShare).Append("\n");
             sb.Append("  HouseBackfill: ").Append(HouseBackfill).Append("\n");
             sb.Append("  FloorFallback: ").Append(FloorFallback).Append("\n");
-            sb.Append("  SigningSecret: ").Append(SigningSecret).Append("\n");
+            sb.Append("  HasSigningSecret: ").Append(HasSigningSecret).Append("\n");
             sb.Append("  ComboId: ").Append(ComboId).Append("\n");
             sb.Append("  ComboLabel: ").Append(ComboLabel).Append("\n");
             sb.Append("  LastActiveAt: ").Append(LastActiveAt).Append("\n");

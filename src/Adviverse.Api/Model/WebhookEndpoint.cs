@@ -45,8 +45,10 @@ namespace Adviverse.Api.Model
         /// <param name="events">events (required).</param>
         /// <param name="active">active (required).</param>
         /// <param name="createdAt">Not returned on create..</param>
-        /// <param name="secret">HMAC-SHA256 signing secret (whsec_...). (required).</param>
-        public WebhookEndpoint(Guid id = default(Guid), string url = default(string), List<string> events = default(List<string>), bool active = default(bool), DateTime createdAt = default(DateTime), string secret = default(string))
+        /// <param name="secret">HMAC-SHA256 signing secret (whsec_...). Returned only by create and rotate-secret..</param>
+        /// <param name="hasSecret">List/update only: whether a signing secret is set..</param>
+        /// <param name="secretHint">List/update only: last 4 characters of the secret..</param>
+        public WebhookEndpoint(Guid id = default(Guid), string url = default(string), List<string> events = default(List<string>), bool active = default(bool), DateTime createdAt = default(DateTime), string secret = default(string), bool hasSecret = default(bool), string secretHint = default(string))
         {
             this.Id = id;
             // to ensure "url" is required (not null)
@@ -62,13 +64,10 @@ namespace Adviverse.Api.Model
             }
             this.Events = events;
             this.Active = active;
-            // to ensure "secret" is required (not null)
-            if (secret == null)
-            {
-                throw new ArgumentNullException("secret is a required property for WebhookEndpoint and cannot be null");
-            }
-            this.Secret = secret;
             this.CreatedAt = createdAt;
+            this.Secret = secret;
+            this.HasSecret = hasSecret;
+            this.SecretHint = secretHint;
         }
 
         /// <summary>
@@ -103,11 +102,25 @@ namespace Adviverse.Api.Model
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// HMAC-SHA256 signing secret (whsec_...).
+        /// HMAC-SHA256 signing secret (whsec_...). Returned only by create and rotate-secret.
         /// </summary>
-        /// <value>HMAC-SHA256 signing secret (whsec_...).</value>
-        [DataMember(Name = "secret", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>HMAC-SHA256 signing secret (whsec_...). Returned only by create and rotate-secret.</value>
+        [DataMember(Name = "secret", EmitDefaultValue = false)]
         public string Secret { get; set; }
+
+        /// <summary>
+        /// List/update only: whether a signing secret is set.
+        /// </summary>
+        /// <value>List/update only: whether a signing secret is set.</value>
+        [DataMember(Name = "has_secret", EmitDefaultValue = true)]
+        public bool HasSecret { get; set; }
+
+        /// <summary>
+        /// List/update only: last 4 characters of the secret.
+        /// </summary>
+        /// <value>List/update only: last 4 characters of the secret.</value>
+        [DataMember(Name = "secret_hint", EmitDefaultValue = true)]
+        public string SecretHint { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -123,6 +136,8 @@ namespace Adviverse.Api.Model
             sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Secret: ").Append(Secret).Append("\n");
+            sb.Append("  HasSecret: ").Append(HasSecret).Append("\n");
+            sb.Append("  SecretHint: ").Append(SecretHint).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -33,6 +33,58 @@ namespace Adviverse.Api.Model
     public partial class PubProperty : IValidatableObject
     {
         /// <summary>
+        /// Defines CategorySource
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CategorySourceEnum
+        {
+            /// <summary>
+            /// Enum Auto for value: auto
+            /// </summary>
+            [EnumMember(Value = "auto")]
+            Auto = 1,
+
+            /// <summary>
+            /// Enum Manual for value: manual
+            /// </summary>
+            [EnumMember(Value = "manual")]
+            Manual = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets CategorySource
+        /// </summary>
+        [DataMember(Name = "category_source", EmitDefaultValue = false)]
+        public CategorySourceEnum? CategorySource { get; set; }
+        /// <summary>
+        /// unverified &#x3D; CPA-only demand; promoted automatically once proven clean
+        /// </summary>
+        /// <value>unverified &#x3D; CPA-only demand; promoted automatically once proven clean</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TrustTierEnum
+        {
+            /// <summary>
+            /// Enum Unverified for value: unverified
+            /// </summary>
+            [EnumMember(Value = "unverified")]
+            Unverified = 1,
+
+            /// <summary>
+            /// Enum Trusted for value: trusted
+            /// </summary>
+            [EnumMember(Value = "trusted")]
+            Trusted = 2
+        }
+
+
+        /// <summary>
+        /// unverified &#x3D; CPA-only demand; promoted automatically once proven clean
+        /// </summary>
+        /// <value>unverified &#x3D; CPA-only demand; promoted automatically once proven clean</value>
+        [DataMember(Name = "trust_tier", EmitDefaultValue = false)]
+        public TrustTierEnum? TrustTier { get; set; }
+        /// <summary>
         /// Defines VerificationStatus
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -96,7 +148,15 @@ namespace Adviverse.Api.Model
         /// <param name="kind">kind.</param>
         /// <param name="name">name.</param>
         /// <param name="domain">Hostname, CLI slug, or app bundle id.</param>
-        /// <param name="category">category.</param>
+        /// <param name="category">Site-niche id (GET /v1/site-niches); null when unknown.</param>
+        /// <param name="categorySource">categorySource.</param>
+        /// <param name="categories">categories.</param>
+        /// <param name="classifiedAt">classifiedAt.</param>
+        /// <param name="classifyError">classifyError.</param>
+        /// <param name="trustTier">unverified &#x3D; CPA-only demand; promoted automatically once proven clean.</param>
+        /// <param name="trustLocked">An admin pinned the trust tier; automatic changes are off.</param>
+        /// <param name="verifiedAt">verifiedAt.</param>
+        /// <param name="trustProgress">trustProgress.</param>
         /// <param name="verificationStatus">verificationStatus.</param>
         /// <param name="verificationMethod">verificationMethod.</param>
         /// <param name="verificationToken">verificationToken.</param>
@@ -116,7 +176,7 @@ namespace Adviverse.Api.Model
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
         /// <param name="deletedAt">deletedAt.</param>
-        public PubProperty(Guid id = default(Guid), Guid publisherId = default(Guid), string kind = default(string), string name = default(string), string domain = default(string), int? category = default(int?), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), string verificationMethod = default(string), string verificationToken = default(string), StatusEnum? status = default(StatusEnum?), string qualityScore = default(string), bool crossFill = default(bool), string servingDomain = default(string), bool servingDomainVerified = default(bool), DateTime? servingDomainCheckedAt = default(DateTime?), string bundleId = default(string), string storeUrl = default(string), string platform = default(string), string appStoreId = default(string), List<Dictionary<string, Object>> appAdsTxt = default(List<Dictionary<string, Object>>), List<string> skadnetworkIds = default(List<string>), Dictionary<string, Object> ctvMeta = default(Dictionary<string, Object>), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
+        public PubProperty(Guid id = default(Guid), Guid publisherId = default(Guid), string kind = default(string), string name = default(string), string domain = default(string), int? category = default(int?), CategorySourceEnum? categorySource = default(CategorySourceEnum?), List<PubPropertyCategoriesInner> categories = default(List<PubPropertyCategoriesInner>), DateTime? classifiedAt = default(DateTime?), string classifyError = default(string), TrustTierEnum? trustTier = default(TrustTierEnum?), bool trustLocked = default(bool), DateTime? verifiedAt = default(DateTime?), TrustProgress trustProgress = default(TrustProgress), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), string verificationMethod = default(string), string verificationToken = default(string), StatusEnum? status = default(StatusEnum?), string qualityScore = default(string), bool crossFill = default(bool), string servingDomain = default(string), bool servingDomainVerified = default(bool), DateTime? servingDomainCheckedAt = default(DateTime?), string bundleId = default(string), string storeUrl = default(string), string platform = default(string), string appStoreId = default(string), List<Dictionary<string, Object>> appAdsTxt = default(List<Dictionary<string, Object>>), List<string> skadnetworkIds = default(List<string>), Dictionary<string, Object> ctvMeta = default(Dictionary<string, Object>), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
         {
             this.Id = id;
             this.PublisherId = publisherId;
@@ -124,6 +184,14 @@ namespace Adviverse.Api.Model
             this.Name = name;
             this.Domain = domain;
             this.Category = category;
+            this.CategorySource = categorySource;
+            this.Categories = categories;
+            this.ClassifiedAt = classifiedAt;
+            this.ClassifyError = classifyError;
+            this.TrustTier = trustTier;
+            this.TrustLocked = trustLocked;
+            this.VerifiedAt = verifiedAt;
+            this.TrustProgress = trustProgress;
             this.VerificationStatus = verificationStatus;
             this.VerificationMethod = verificationMethod;
             this.VerificationToken = verificationToken;
@@ -178,10 +246,48 @@ namespace Adviverse.Api.Model
         public string Domain { get; set; }
 
         /// <summary>
-        /// Gets or Sets Category
+        /// Site-niche id (GET /v1/site-niches); null when unknown
         /// </summary>
+        /// <value>Site-niche id (GET /v1/site-niches); null when unknown</value>
         [DataMember(Name = "category", EmitDefaultValue = true)]
         public int? Category { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Categories
+        /// </summary>
+        [DataMember(Name = "categories", EmitDefaultValue = false)]
+        public List<PubPropertyCategoriesInner> Categories { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ClassifiedAt
+        /// </summary>
+        [DataMember(Name = "classified_at", EmitDefaultValue = true)]
+        public DateTime? ClassifiedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ClassifyError
+        /// </summary>
+        [DataMember(Name = "classify_error", EmitDefaultValue = true)]
+        public string ClassifyError { get; set; }
+
+        /// <summary>
+        /// An admin pinned the trust tier; automatic changes are off
+        /// </summary>
+        /// <value>An admin pinned the trust tier; automatic changes are off</value>
+        [DataMember(Name = "trust_locked", EmitDefaultValue = true)]
+        public bool TrustLocked { get; set; }
+
+        /// <summary>
+        /// Gets or Sets VerifiedAt
+        /// </summary>
+        [DataMember(Name = "verified_at", EmitDefaultValue = true)]
+        public DateTime? VerifiedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TrustProgress
+        /// </summary>
+        [DataMember(Name = "trust_progress", EmitDefaultValue = false)]
+        public TrustProgress TrustProgress { get; set; }
 
         /// <summary>
         /// Gets or Sets VerificationMethod
@@ -306,6 +412,14 @@ namespace Adviverse.Api.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Domain: ").Append(Domain).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
+            sb.Append("  CategorySource: ").Append(CategorySource).Append("\n");
+            sb.Append("  Categories: ").Append(Categories).Append("\n");
+            sb.Append("  ClassifiedAt: ").Append(ClassifiedAt).Append("\n");
+            sb.Append("  ClassifyError: ").Append(ClassifyError).Append("\n");
+            sb.Append("  TrustTier: ").Append(TrustTier).Append("\n");
+            sb.Append("  TrustLocked: ").Append(TrustLocked).Append("\n");
+            sb.Append("  VerifiedAt: ").Append(VerifiedAt).Append("\n");
+            sb.Append("  TrustProgress: ").Append(TrustProgress).Append("\n");
             sb.Append("  VerificationStatus: ").Append(VerificationStatus).Append("\n");
             sb.Append("  VerificationMethod: ").Append(VerificationMethod).Append("\n");
             sb.Append("  VerificationToken: ").Append(VerificationToken).Append("\n");

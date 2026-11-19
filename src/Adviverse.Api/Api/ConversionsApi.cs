@@ -90,7 +90,7 @@ namespace Adviverse.Api.Api
         /// Report a refund or chargeback for an order
         /// </summary>
         /// <remarks>
-        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -101,7 +101,7 @@ namespace Adviverse.Api.Api
         /// Report a refund or chargeback for an order
         /// </summary>
         /// <remarks>
-        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -185,7 +185,7 @@ namespace Adviverse.Api.Api
         /// Report a refund or chargeback for an order
         /// </summary>
         /// <remarks>
-        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -197,7 +197,7 @@ namespace Adviverse.Api.Api
         /// Report a refund or chargeback for an order
         /// </summary>
         /// <remarks>
-        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -733,7 +733,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -745,7 +745,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -775,6 +775,17 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = refundDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<ConversionsControllerTrackRefund201Response>("/v1/track/refund", localVarRequestOptions, this.Configuration);
@@ -789,7 +800,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -802,7 +813,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;, optionally narrowed by &#x60;advertiserId&#x60;/&#x60;advertiser_id&#x60;. Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: public, no credentials required.
+        /// Report a refund or chargeback for an order Claws back a held or settled per-checkout CPA conversion identified by &#x60;orderId&#x60;/&#x60;order_id&#x60;. Requires the advertiser API key (scope &#x60;write&#x60;) or session, and only touches that advertiser’s own orders (admins may pass &#x60;advertiserId&#x60;). Emits a compensating conversion event carrying the original payout and publisher earnings so the ledger posts exact reversing entries, then marks the row refunded. A missing order id returns &#x60;error&#x60;, an unknown order &#x60;not_found&#x60;, and a repeat call &#x60;already_refunded&#x60;.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;admin&#x60; (or &#x60;*&#x60;). Roles: advertiser, admin.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="refundDto"></param>
@@ -835,6 +846,17 @@ namespace Adviverse.Api.Api
 
             localVarRequestOptions.Data = refundDto;
 
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 

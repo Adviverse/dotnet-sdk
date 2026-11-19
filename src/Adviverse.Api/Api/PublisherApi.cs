@@ -216,7 +216,7 @@ namespace Adviverse.Api.Api
         /// List your properties
         /// </summary>
         /// <remarks>
-        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>List&lt;PubProperty&gt;</returns>
@@ -226,7 +226,7 @@ namespace Adviverse.Api.Api
         /// List your properties
         /// </summary>
         /// <remarks>
-        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of List&lt;PubProperty&gt;</returns>
@@ -409,7 +409,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -421,7 +421,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -686,7 +686,7 @@ namespace Adviverse.Api.Api
         /// List your properties
         /// </summary>
         /// <remarks>
-        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -697,7 +697,7 @@ namespace Adviverse.Api.Api
         /// List your properties
         /// </summary>
         /// <remarks>
-        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -897,7 +897,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -910,7 +910,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2389,7 +2389,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>List&lt;PubProperty&gt;</returns>
@@ -2400,7 +2400,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of List&lt;PubProperty&gt;</returns>
@@ -2448,7 +2448,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2460,7 +2460,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first. Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// List your properties Returns every non-deleted property (websites, CLI tools, mobile apps, CTV apps) owned by the publisher, newest first, each with &#x60;trust_progress&#x60; toward paid demand (null for CLI properties or when traffic stats are unavailable). Optional &#x60;limit&#x60; (1-500) and &#x60;offset&#x60; query params paginate; without &#x60;limit&#x60; the full set is returned.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3656,7 +3656,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3669,7 +3669,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3730,7 +3730,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3744,7 +3744,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>

@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Adviverse.Api.Client.OpenAPIDateConverter;
 namespace Adviverse.Api.Model
 {
     /// <summary>
-    /// A &#x60;surfaces&#x60; row plus its placement &#x60;tag_key&#x60;.
+    /// A &#x60;surfaces&#x60; row plus its placement &#x60;tag_key&#x60;. Player credentials (&#x60;poll_token&#x60;, &#x60;pairing_token&#x60;) are never returned.
     /// </summary>
     [DataContract(Name = "SupSurface")]
     public partial class SupSurface : IValidatableObject
@@ -81,11 +81,10 @@ namespace Adviverse.Api.Model
         /// <param name="audienceMultiplier">Postgres NUMERIC, serialized as a decimal string.</param>
         /// <param name="status">status.</param>
         /// <param name="pairingCode">pairingCode.</param>
-        /// <param name="pollToken">pollToken.</param>
         /// <param name="lastHeartbeatAt">lastHeartbeatAt.</param>
         /// <param name="tagKey">tagKey.</param>
         /// <param name="createdAt">createdAt.</param>
-        public SupSurface(Guid id = default(Guid), Guid? placementId = default(Guid?), Guid? accountId = default(Guid?), Guid? worldIntegrationId = default(Guid?), string shopId = default(string), string world = default(string), SurfaceTypeEnum? surfaceType = default(SurfaceTypeEnum?), decimal? posX = default(decimal?), decimal? posY = default(decimal?), decimal? posZ = default(decimal?), decimal? widthM = default(decimal?), decimal? heightM = default(decimal?), string audienceMultiplier = default(string), string status = default(string), string pairingCode = default(string), string pollToken = default(string), DateTime? lastHeartbeatAt = default(DateTime?), string tagKey = default(string), DateTime createdAt = default(DateTime))
+        public SupSurface(Guid id = default(Guid), Guid? placementId = default(Guid?), Guid? accountId = default(Guid?), Guid? worldIntegrationId = default(Guid?), string shopId = default(string), string world = default(string), SurfaceTypeEnum? surfaceType = default(SurfaceTypeEnum?), decimal? posX = default(decimal?), decimal? posY = default(decimal?), decimal? posZ = default(decimal?), decimal? widthM = default(decimal?), decimal? heightM = default(decimal?), string audienceMultiplier = default(string), string status = default(string), string pairingCode = default(string), DateTime? lastHeartbeatAt = default(DateTime?), string tagKey = default(string), DateTime createdAt = default(DateTime))
         {
             this.Id = id;
             this.PlacementId = placementId;
@@ -102,7 +101,6 @@ namespace Adviverse.Api.Model
             this.AudienceMultiplier = audienceMultiplier;
             this.Status = status;
             this.PairingCode = pairingCode;
-            this.PollToken = pollToken;
             this.LastHeartbeatAt = lastHeartbeatAt;
             this.TagKey = tagKey;
             this.CreatedAt = createdAt;
@@ -195,12 +193,6 @@ namespace Adviverse.Api.Model
         public string PairingCode { get; set; }
 
         /// <summary>
-        /// Gets or Sets PollToken
-        /// </summary>
-        [DataMember(Name = "poll_token", EmitDefaultValue = true)]
-        public string PollToken { get; set; }
-
-        /// <summary>
         /// Gets or Sets LastHeartbeatAt
         /// </summary>
         [DataMember(Name = "last_heartbeat_at", EmitDefaultValue = true)]
@@ -247,7 +239,6 @@ namespace Adviverse.Api.Model
             sb.Append("  AudienceMultiplier: ").Append(AudienceMultiplier).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  PairingCode: ").Append(PairingCode).Append("\n");
-            sb.Append("  PollToken: ").Append(PollToken).Append("\n");
             sb.Append("  LastHeartbeatAt: ").Append(LastHeartbeatAt).Append("\n");
             sb.Append("  TagKey: ").Append(TagKey).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");

@@ -73,7 +73,7 @@ namespace Adviverse.Api.Api
         /// List webhook endpoints
         /// </summary>
         /// <remarks>
-        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>List&lt;WebhookEndpoint&gt;</returns>
@@ -83,7 +83,7 @@ namespace Adviverse.Api.Api
         /// List webhook endpoints
         /// </summary>
         /// <remarks>
-        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of List&lt;WebhookEndpoint&gt;</returns>
@@ -130,6 +130,27 @@ namespace Adviverse.Api.Api
         /// <param name="deliveryId"></param>
         /// <returns>ApiResponse of WebhookDeliveryResult</returns>
         ApiResponse<WebhookDeliveryResult> WebhooksControllerRedeliverWithHttpInfo(string deliveryId);
+        /// <summary>
+        /// Reveal a webhook signing secret
+        /// </summary>
+        /// <remarks>
+        /// Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>WebhooksControllerRevealSecret201Response</returns>
+        WebhooksControllerRevealSecret201Response WebhooksControllerRevealSecret(string id);
+
+        /// <summary>
+        /// Reveal a webhook signing secret
+        /// </summary>
+        /// <remarks>
+        /// Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of WebhooksControllerRevealSecret201Response</returns>
+        ApiResponse<WebhooksControllerRevealSecret201Response> WebhooksControllerRevealSecretWithHttpInfo(string id);
         /// <summary>
         /// Rotate a webhook signing secret
         /// </summary>
@@ -197,7 +218,7 @@ namespace Adviverse.Api.Api
         /// Update a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -209,7 +230,7 @@ namespace Adviverse.Api.Api
         /// Update a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -275,7 +296,7 @@ namespace Adviverse.Api.Api
         /// List webhook endpoints
         /// </summary>
         /// <remarks>
-        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -286,7 +307,7 @@ namespace Adviverse.Api.Api
         /// List webhook endpoints
         /// </summary>
         /// <remarks>
-        /// Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -338,6 +359,29 @@ namespace Adviverse.Api.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebhookDeliveryResult)</returns>
         System.Threading.Tasks.Task<ApiResponse<WebhookDeliveryResult>> WebhooksControllerRedeliverWithHttpInfoAsync(string deliveryId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Reveal a webhook signing secret
+        /// </summary>
+        /// <remarks>
+        /// Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of WebhooksControllerRevealSecret201Response</returns>
+        System.Threading.Tasks.Task<WebhooksControllerRevealSecret201Response> WebhooksControllerRevealSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Reveal a webhook signing secret
+        /// </summary>
+        /// <remarks>
+        /// Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (WebhooksControllerRevealSecret201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhooksControllerRevealSecret201Response>> WebhooksControllerRevealSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Rotate a webhook signing secret
         /// </summary>
@@ -411,7 +455,7 @@ namespace Adviverse.Api.Api
         /// Update a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -424,7 +468,7 @@ namespace Adviverse.Api.Api
         /// Update a webhook endpoint
         /// </summary>
         /// <remarks>
-        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -918,7 +962,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>List&lt;WebhookEndpoint&gt;</returns>
@@ -929,7 +973,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of List&lt;WebhookEndpoint&gt;</returns>
@@ -977,7 +1021,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -989,7 +1033,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. Includes each endpoint&#39;s HMAC signing &#x60;secret&#x60; so the dashboard can show it for verifying the &#x60;X-Adviverse-Signature&#x60; header.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
+        /// List webhook endpoints Lists the account&#39;s webhook subscriptions, newest first. The signing secret is not returned: each endpoint has &#x60;has_secret&#x60; and &#x60;secret_hint&#x60; (its last 4 characters). Use POST /v1/webhooks/{id}/secret/reveal to fetch the secret.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1308,6 +1352,143 @@ namespace Adviverse.Api.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhooksControllerRedeliver", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reveal a webhook signing secret Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>WebhooksControllerRevealSecret201Response</returns>
+        public WebhooksControllerRevealSecret201Response WebhooksControllerRevealSecret(string id)
+        {
+            Adviverse.Api.Client.ApiResponse<WebhooksControllerRevealSecret201Response> localVarResponse = WebhooksControllerRevealSecretWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reveal a webhook signing secret Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of WebhooksControllerRevealSecret201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<WebhooksControllerRevealSecret201Response> WebhooksControllerRevealSecretWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'id' when calling WebhooksApi->WebhooksControllerRevealSecret");
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<WebhooksControllerRevealSecret201Response>("/v1/webhooks/{id}/secret/reveal", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("WebhooksControllerRevealSecret", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reveal a webhook signing secret Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of WebhooksControllerRevealSecret201Response</returns>
+        public async System.Threading.Tasks.Task<WebhooksControllerRevealSecret201Response> WebhooksControllerRevealSecretAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            Adviverse.Api.Client.ApiResponse<WebhooksControllerRevealSecret201Response> localVarResponse = await WebhooksControllerRevealSecretWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reveal a webhook signing secret Returns the endpoint&#39;s current &#x60;whsec_&#x60; HMAC signing secret, used to verify the &#x60;X-Adviverse-Signature&#x60; header. List and update never return it. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (WebhooksControllerRevealSecret201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<WebhooksControllerRevealSecret201Response>> WebhooksControllerRevealSecretWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'id' when calling WebhooksApi->WebhooksControllerRevealSecret");
+
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<WebhooksControllerRevealSecret201Response>("/v1/webhooks/{id}/secret/reveal", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("WebhooksControllerRevealSecret", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1728,7 +1909,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1741,7 +1922,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1802,7 +1983,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1816,7 +1997,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// Update a webhook endpoint Changes an endpoint&#39;s &#x60;url&#x60;, &#x60;events&#x60; and/or &#x60;active&#x60; flag (set false to pause deliveries); omitted fields are kept. A new URL goes through the SSRF guard and unknown event names are rejected with 400. Returns 400 if the endpoint is not found for this account. The secret is not returned (&#x60;has_secret&#x60; + &#x60;secret_hint&#x60; instead).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>

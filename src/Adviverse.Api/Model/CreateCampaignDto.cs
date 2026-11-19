@@ -166,6 +166,8 @@ namespace Adviverse.Api.Model
         /// <param name="targeting">targeting.</param>
         /// <param name="conversion">conversion.</param>
         /// <param name="houseAd">houseAd.</param>
+        /// <param name="autoOwnPlacements">autoOwnPlacements.</param>
+        /// <param name="networkExpansion">networkExpansion.</param>
         /// <param name="priorityTier">priorityTier.</param>
         /// <param name="deliveryGoal">deliveryGoal.</param>
         /// <param name="goalType">goalType.</param>
@@ -178,7 +180,7 @@ namespace Adviverse.Api.Model
         /// <param name="targetCpa">targetCpa.</param>
         /// <param name="targetRoas">targetRoas.</param>
         /// <param name="utm">utm.</param>
-        public CreateCampaignDto(string name = default(string), string groupId = default(string), string pricingModel = default(string), decimal bidAmount = default(decimal), string format = default(string), decimal budgetTotal = default(decimal), decimal budgetDaily = default(decimal), string pacing = default(string), string startAt = default(string), string endAt = default(string), string timezone = default(string), string currency = default(string), string dealType = default(string), string skanAppStoreId = default(string), string skanSourceId = default(string), Object brandSafety = default(Object), Object bidModifiers = default(Object), Object targeting = default(Object), Object conversion = default(Object), bool houseAd = default(bool), PriorityTierEnum? priorityTier = default(PriorityTierEnum?), decimal deliveryGoal = default(decimal), GoalTypeEnum? goalType = default(GoalTypeEnum?), Object portfolioFreqCap = default(Object), string sequenceGroup = default(string), decimal sequenceOrder = default(decimal), bool suppressAfterConversion = default(bool), decimal holdoutPct = default(decimal), BidStrategyEnum? bidStrategy = default(BidStrategyEnum?), decimal targetCpa = default(decimal), decimal targetRoas = default(decimal), Object utm = default(Object))
+        public CreateCampaignDto(string name = default(string), string groupId = default(string), string pricingModel = default(string), decimal bidAmount = default(decimal), string format = default(string), decimal budgetTotal = default(decimal), decimal budgetDaily = default(decimal), string pacing = default(string), string startAt = default(string), string endAt = default(string), string timezone = default(string), string currency = default(string), string dealType = default(string), string skanAppStoreId = default(string), string skanSourceId = default(string), Object brandSafety = default(Object), Object bidModifiers = default(Object), Object targeting = default(Object), Object conversion = default(Object), bool houseAd = default(bool), bool autoOwnPlacements = default(bool), bool networkExpansion = default(bool), PriorityTierEnum? priorityTier = default(PriorityTierEnum?), decimal deliveryGoal = default(decimal), GoalTypeEnum? goalType = default(GoalTypeEnum?), Object portfolioFreqCap = default(Object), string sequenceGroup = default(string), decimal sequenceOrder = default(decimal), bool suppressAfterConversion = default(bool), decimal holdoutPct = default(decimal), BidStrategyEnum? bidStrategy = default(BidStrategyEnum?), decimal targetCpa = default(decimal), decimal targetRoas = default(decimal), Object utm = default(Object))
         {
             this.Name = name;
             this.GroupId = groupId;
@@ -200,6 +202,8 @@ namespace Adviverse.Api.Model
             this.Targeting = targeting;
             this.Conversion = conversion;
             this.HouseAd = houseAd;
+            this.AutoOwnPlacements = autoOwnPlacements;
+            this.NetworkExpansion = networkExpansion;
             this.PriorityTier = priorityTier;
             this.DeliveryGoal = deliveryGoal;
             this.GoalType = goalType;
@@ -335,6 +339,18 @@ namespace Adviverse.Api.Model
         public bool HouseAd { get; set; }
 
         /// <summary>
+        /// Gets or Sets AutoOwnPlacements
+        /// </summary>
+        [DataMember(Name = "autoOwnPlacements", EmitDefaultValue = true)]
+        public bool AutoOwnPlacements { get; set; }
+
+        /// <summary>
+        /// Gets or Sets NetworkExpansion
+        /// </summary>
+        [DataMember(Name = "networkExpansion", EmitDefaultValue = true)]
+        public bool NetworkExpansion { get; set; }
+
+        /// <summary>
         /// Gets or Sets DeliveryGoal
         /// </summary>
         [DataMember(Name = "deliveryGoal", EmitDefaultValue = false)]
@@ -416,6 +432,8 @@ namespace Adviverse.Api.Model
             sb.Append("  Targeting: ").Append(Targeting).Append("\n");
             sb.Append("  Conversion: ").Append(Conversion).Append("\n");
             sb.Append("  HouseAd: ").Append(HouseAd).Append("\n");
+            sb.Append("  AutoOwnPlacements: ").Append(AutoOwnPlacements).Append("\n");
+            sb.Append("  NetworkExpansion: ").Append(NetworkExpansion).Append("\n");
             sb.Append("  PriorityTier: ").Append(PriorityTier).Append("\n");
             sb.Append("  DeliveryGoal: ").Append(DeliveryGoal).Append("\n");
             sb.Append("  GoalType: ").Append(GoalType).Append("\n");
