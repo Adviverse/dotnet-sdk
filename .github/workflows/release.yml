@@ -1,0 +1,27 @@
+name: release
+on:
+  push: { tags: ['v*'] }
+permissions:
+  contents: write       # GitHub release
+  id-token: write       # OIDC: provenance signing + registry trusted publishing
+  attestations: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: '8.0.x' }
+      - run: |
+          dotnet pack -c Release src/Adviverse.Api/Adviverse.Api.csproj -o out
+      - uses: actions/attest-build-provenance@v2
+        with: { subject-path: 'out/*.nupkg' }
+      - uses: softprops/action-gh-release@v2
+        with: { files: 'out/*.nupkg' }
+      # Enable after adding a trusted publishing policy on nuget.org (vars.NUGET_USER = nuget.org username).
+      - if: vars.NUGET_PUBLISH == 'true'
+        id: nuget
+        uses: NuGet/login@v1
+        with: { user: ${{ vars.NUGET_USER }} }
+      - if: vars.NUGET_PUBLISH == 'true'
+        run: dotnet nuget push 'out/*.nupkg' -k ${{ steps.nuget.outputs.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
