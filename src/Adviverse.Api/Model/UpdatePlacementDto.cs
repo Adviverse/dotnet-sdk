@@ -48,7 +48,8 @@ namespace Adviverse.Api.Model
         /// <param name="floorAuto">floorAuto.</param>
         /// <param name="floorSoft">floorSoft.</param>
         /// <param name="autoAds">autoAds.</param>
-        public UpdatePlacementDto(string name = default(string), decimal floorCpm = default(decimal), decimal revShare = default(decimal), string auctionType = default(string), string passbackUrl = default(string), string status = default(string), bool houseOnly = default(bool), decimal houseShare = default(decimal), bool houseBackfill = default(bool), bool floorFallback = default(bool), bool floorAuto = default(bool), decimal floorSoft = default(decimal), Object autoAds = default(Object))
+        /// <param name="frequencyCap">frequencyCap.</param>
+        public UpdatePlacementDto(string name = default(string), decimal floorCpm = default(decimal), decimal revShare = default(decimal), string auctionType = default(string), string passbackUrl = default(string), string status = default(string), bool houseOnly = default(bool), decimal houseShare = default(decimal), bool houseBackfill = default(bool), bool floorFallback = default(bool), bool floorAuto = default(bool), decimal floorSoft = default(decimal), Object autoAds = default(Object), Object frequencyCap = default(Object))
         {
             this.Name = name;
             this.FloorCpm = floorCpm;
@@ -63,6 +64,7 @@ namespace Adviverse.Api.Model
             this.FloorAuto = floorAuto;
             this.FloorSoft = floorSoft;
             this.AutoAds = autoAds;
+            this.FrequencyCap = frequencyCap;
         }
 
         /// <summary>
@@ -144,6 +146,12 @@ namespace Adviverse.Api.Model
         public Object AutoAds { get; set; }
 
         /// <summary>
+        /// Gets or Sets FrequencyCap
+        /// </summary>
+        [DataMember(Name = "frequencyCap", EmitDefaultValue = true)]
+        public Object FrequencyCap { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -164,6 +172,7 @@ namespace Adviverse.Api.Model
             sb.Append("  FloorAuto: ").Append(FloorAuto).Append("\n");
             sb.Append("  FloorSoft: ").Append(FloorSoft).Append("\n");
             sb.Append("  AutoAds: ").Append(AutoAds).Append("\n");
+            sb.Append("  FrequencyCap: ").Append(FrequencyCap).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

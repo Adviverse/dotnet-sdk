@@ -163,8 +163,8 @@ namespace Adviverse.Api.Api
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>AdminControllerSetStatus201Response</returns>
-        AdminControllerSetStatus201Response BlogControllerRemove(string id);
+        /// <returns>ComplianceControllerComplete201Response</returns>
+        ComplianceControllerComplete201Response BlogControllerRemove(string id);
 
         /// <summary>
         /// Delete a blog post
@@ -174,8 +174,8 @@ namespace Adviverse.Api.Api
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
-        ApiResponse<AdminControllerSetStatus201Response> BlogControllerRemoveWithHttpInfo(string id);
+        /// <returns>ApiResponse of ComplianceControllerComplete201Response</returns>
+        ApiResponse<ComplianceControllerComplete201Response> BlogControllerRemoveWithHttpInfo(string id);
         /// <summary>
         /// Get the blog sitemap
         /// </summary>
@@ -376,8 +376,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AdminControllerSetStatus201Response</returns>
-        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceControllerComplete201Response</returns>
+        System.Threading.Tasks.Task<ComplianceControllerComplete201Response> BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Delete a blog post
@@ -388,8 +388,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceControllerComplete201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceControllerComplete201Response>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Get the blog sitemap
         /// </summary>
@@ -1404,10 +1404,10 @@ namespace Adviverse.Api.Api
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>AdminControllerSetStatus201Response</returns>
-        public AdminControllerSetStatus201Response BlogControllerRemove(string id)
+        /// <returns>ComplianceControllerComplete201Response</returns>
+        public ComplianceControllerComplete201Response BlogControllerRemove(string id)
         {
-            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = BlogControllerRemoveWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> localVarResponse = BlogControllerRemoveWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
@@ -1416,8 +1416,8 @@ namespace Adviverse.Api.Api
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
-        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> BlogControllerRemoveWithHttpInfo(string id)
+        /// <returns>ApiResponse of ComplianceControllerComplete201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> BlogControllerRemoveWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1454,7 +1454,7 @@ namespace Adviverse.Api.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<AdminControllerSetStatus201Response>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<ComplianceControllerComplete201Response>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1471,10 +1471,10 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AdminControllerSetStatus201Response</returns>
-        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceControllerComplete201Response</returns>
+        public async System.Threading.Tasks.Task<ComplianceControllerComplete201Response> BlogControllerRemoveAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await BlogControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> localVarResponse = await BlogControllerRemoveWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1484,8 +1484,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceControllerComplete201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response>> BlogControllerRemoveWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1525,7 +1525,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<AdminControllerSetStatus201Response>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<ComplianceControllerComplete201Response>("/v1/admin/blog/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

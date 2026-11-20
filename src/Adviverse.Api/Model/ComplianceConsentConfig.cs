@@ -117,7 +117,9 @@ namespace Adviverse.Api.Model
         /// <param name="consentGrantValue">consentGrantValue.</param>
         /// <param name="tcfPurpose">tcfPurpose.</param>
         /// <param name="tcfVendorId">tcfVendorId.</param>
-        public ComplianceConsentConfig(string publisherId = default(string), string propertyId = default(string), ModeEnum? mode = default(ModeEnum?), bool defaultConsent = default(bool), bool honorGpc = default(bool), bool collectTcf = default(bool), bool collectGpp = default(bool), bool collectGpc = default(bool), bool resendOnChange = default(bool), ConsentSourceEnum? consentSource = default(ConsentSourceEnum?), string consentKey = default(string), string consentGrantValue = default(string), int tcfPurpose = default(int), int? tcfVendorId = default(int?))
+        /// <param name="contextualWithoutConsent">Ads always load: visitors who have not answered (or rejected) the CMP get contextual ads with no identifier; personalized still waits for consent. Same as the page flag window.ADVIVERSE_MIN_AC &#x3D; 0..</param>
+        /// <param name="enhancedCapping">Enhanced frequency capping: outside the EEA/UK, for visitors with no opt-out signal (GPC, US-privacy opt-out), contextual frequency caps also use browser signals and an SDK canvas hash (daily-rotating, per-site, never stored on the device). Off: caps use IP + user agent only and unusual contextual traffic is not served. Declare it in your privacy policy if you turn it on..</param>
+        public ComplianceConsentConfig(string publisherId = default(string), string propertyId = default(string), ModeEnum? mode = default(ModeEnum?), bool defaultConsent = default(bool), bool honorGpc = default(bool), bool collectTcf = default(bool), bool collectGpp = default(bool), bool collectGpc = default(bool), bool resendOnChange = default(bool), ConsentSourceEnum? consentSource = default(ConsentSourceEnum?), string consentKey = default(string), string consentGrantValue = default(string), int tcfPurpose = default(int), int? tcfVendorId = default(int?), bool contextualWithoutConsent = default(bool), bool enhancedCapping = default(bool))
         {
             this.PublisherId = publisherId;
             this.PropertyId = propertyId;
@@ -133,6 +135,8 @@ namespace Adviverse.Api.Model
             this.ConsentGrantValue = consentGrantValue;
             this.TcfPurpose = tcfPurpose;
             this.TcfVendorId = tcfVendorId;
+            this.ContextualWithoutConsent = contextualWithoutConsent;
+            this.EnhancedCapping = enhancedCapping;
         }
 
         /// <summary>
@@ -209,6 +213,20 @@ namespace Adviverse.Api.Model
         public int? TcfVendorId { get; set; }
 
         /// <summary>
+        /// Ads always load: visitors who have not answered (or rejected) the CMP get contextual ads with no identifier; personalized still waits for consent. Same as the page flag window.ADVIVERSE_MIN_AC &#x3D; 0.
+        /// </summary>
+        /// <value>Ads always load: visitors who have not answered (or rejected) the CMP get contextual ads with no identifier; personalized still waits for consent. Same as the page flag window.ADVIVERSE_MIN_AC &#x3D; 0.</value>
+        [DataMember(Name = "contextualWithoutConsent", EmitDefaultValue = true)]
+        public bool ContextualWithoutConsent { get; set; }
+
+        /// <summary>
+        /// Enhanced frequency capping: outside the EEA/UK, for visitors with no opt-out signal (GPC, US-privacy opt-out), contextual frequency caps also use browser signals and an SDK canvas hash (daily-rotating, per-site, never stored on the device). Off: caps use IP + user agent only and unusual contextual traffic is not served. Declare it in your privacy policy if you turn it on.
+        /// </summary>
+        /// <value>Enhanced frequency capping: outside the EEA/UK, for visitors with no opt-out signal (GPC, US-privacy opt-out), contextual frequency caps also use browser signals and an SDK canvas hash (daily-rotating, per-site, never stored on the device). Off: caps use IP + user agent only and unusual contextual traffic is not served. Declare it in your privacy policy if you turn it on.</value>
+        [DataMember(Name = "enhancedCapping", EmitDefaultValue = true)]
+        public bool EnhancedCapping { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -230,6 +248,8 @@ namespace Adviverse.Api.Model
             sb.Append("  ConsentGrantValue: ").Append(ConsentGrantValue).Append("\n");
             sb.Append("  TcfPurpose: ").Append(TcfPurpose).Append("\n");
             sb.Append("  TcfVendorId: ").Append(TcfVendorId).Append("\n");
+            sb.Append("  ContextualWithoutConsent: ").Append(ContextualWithoutConsent).Append("\n");
+            sb.Append("  EnhancedCapping: ").Append(EnhancedCapping).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

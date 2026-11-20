@@ -43,7 +43,10 @@ namespace Adviverse.Api.Model
         /// <param name="verified">verified (required).</param>
         /// <param name="token">token (required).</param>
         /// <param name="method">method (required).</param>
-        public PublisherControllerVerify201Response(bool verified = default(bool), string token = default(string), string method = default(string))
+        /// <param name="error">error (required).</param>
+        /// <param name="message">message (required).</param>
+        /// <param name="check">check (required).</param>
+        public PublisherControllerVerify201Response(bool verified = default(bool), string token = default(string), string method = default(string), string error = default(string), string message = default(string), PublisherControllerVerify201ResponseCheck check = default(PublisherControllerVerify201ResponseCheck))
         {
             this.Verified = verified;
             // to ensure "token" is required (not null)
@@ -58,6 +61,24 @@ namespace Adviverse.Api.Model
                 throw new ArgumentNullException("method is a required property for PublisherControllerVerify201Response and cannot be null");
             }
             this.Method = method;
+            // to ensure "error" is required (not null)
+            if (error == null)
+            {
+                throw new ArgumentNullException("error is a required property for PublisherControllerVerify201Response and cannot be null");
+            }
+            this.Error = error;
+            // to ensure "message" is required (not null)
+            if (message == null)
+            {
+                throw new ArgumentNullException("message is a required property for PublisherControllerVerify201Response and cannot be null");
+            }
+            this.Message = message;
+            // to ensure "check" is required (not null)
+            if (check == null)
+            {
+                throw new ArgumentNullException("check is a required property for PublisherControllerVerify201Response and cannot be null");
+            }
+            this.Check = check;
         }
 
         /// <summary>
@@ -79,6 +100,24 @@ namespace Adviverse.Api.Model
         public string Method { get; set; }
 
         /// <summary>
+        /// Gets or Sets Error
+        /// </summary>
+        [DataMember(Name = "error", IsRequired = true, EmitDefaultValue = true)]
+        public string Error { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Message
+        /// </summary>
+        [DataMember(Name = "message", IsRequired = true, EmitDefaultValue = true)]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Check
+        /// </summary>
+        [DataMember(Name = "check", IsRequired = true, EmitDefaultValue = true)]
+        public PublisherControllerVerify201ResponseCheck Check { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -89,6 +128,9 @@ namespace Adviverse.Api.Model
             sb.Append("  Verified: ").Append(Verified).Append("\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
+            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Check: ").Append(Check).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

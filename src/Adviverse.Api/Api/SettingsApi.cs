@@ -59,8 +59,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
-        /// <returns>AdminControllerSetStatus201Response</returns>
-        AdminControllerSetStatus201Response SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto);
+        /// <returns>ComplianceControllerComplete201Response</returns>
+        ComplianceControllerComplete201Response SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto);
 
         /// <summary>
         /// Set campaign brand-safety controls
@@ -71,8 +71,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
-        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
-        ApiResponse<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto);
+        /// <returns>ApiResponse of ComplianceControllerComplete201Response</returns>
+        ApiResponse<ComplianceControllerComplete201Response> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto);
         /// <summary>
         /// Create an API key
         /// </summary>
@@ -304,8 +304,8 @@ namespace Adviverse.Api.Api
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AdminControllerSetStatus201Response</returns>
-        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceControllerComplete201Response</returns>
+        System.Threading.Tasks.Task<ComplianceControllerComplete201Response> SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Set campaign brand-safety controls
@@ -317,8 +317,8 @@ namespace Adviverse.Api.Api
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceControllerComplete201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceControllerComplete201Response>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Create an API key
         /// </summary>
@@ -894,10 +894,10 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
-        /// <returns>AdminControllerSetStatus201Response</returns>
-        public AdminControllerSetStatus201Response SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto)
+        /// <returns>ComplianceControllerComplete201Response</returns>
+        public ComplianceControllerComplete201Response SettingsControllerBrandSafety(string id, BrandSafetyDto brandSafetyDto)
         {
-            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = SettingsControllerBrandSafetyWithHttpInfo(id, brandSafetyDto);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> localVarResponse = SettingsControllerBrandSafetyWithHttpInfo(id, brandSafetyDto);
             return localVarResponse.Data;
         }
 
@@ -907,8 +907,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
-        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
-        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto)
+        /// <returns>ApiResponse of ComplianceControllerComplete201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> SettingsControllerBrandSafetyWithHttpInfo(string id, BrandSafetyDto brandSafetyDto)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -951,7 +951,7 @@ namespace Adviverse.Api.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ComplianceControllerComplete201Response>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -969,10 +969,10 @@ namespace Adviverse.Api.Api
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AdminControllerSetStatus201Response</returns>
-        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceControllerComplete201Response</returns>
+        public async System.Threading.Tasks.Task<ComplianceControllerComplete201Response> SettingsControllerBrandSafetyAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await SettingsControllerBrandSafetyWithHttpInfoAsync(id, brandSafetyDto, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> localVarResponse = await SettingsControllerBrandSafetyWithHttpInfoAsync(id, brandSafetyDto, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -983,8 +983,8 @@ namespace Adviverse.Api.Api
         /// <param name="id"></param>
         /// <param name="brandSafetyDto"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceControllerComplete201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response>> SettingsControllerBrandSafetyWithHttpInfoAsync(string id, BrandSafetyDto brandSafetyDto, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1030,7 +1030,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ComplianceControllerComplete201Response>("/v1/advertiser/campaigns/{id}/brand-safety", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

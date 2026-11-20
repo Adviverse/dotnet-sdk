@@ -175,6 +175,27 @@ namespace Adviverse.Api.Api
         /// <returns>ApiResponse of PubProperty</returns>
         ApiResponse<PubProperty> PublisherControllerGetAppWithHttpInfo(string id);
         /// <summary>
+        /// Get one property
+        /// </summary>
+        /// <remarks>
+        /// Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>PubProperty</returns>
+        PubProperty PublisherControllerGetProperty(string id);
+
+        /// <summary>
+        /// Get one property
+        /// </summary>
+        /// <remarks>
+        /// Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PubProperty</returns>
+        ApiResponse<PubProperty> PublisherControllerGetPropertyWithHttpInfo(string id);
+        /// <summary>
         /// List your mobile and CTV apps
         /// </summary>
         /// <remarks>
@@ -386,7 +407,7 @@ namespace Adviverse.Api.Api
         /// Update a placement
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -398,7 +419,7 @@ namespace Adviverse.Api.Api
         /// Update a placement
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -409,7 +430,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -421,7 +442,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -432,7 +453,7 @@ namespace Adviverse.Api.Api
         /// Verify property ownership
         /// </summary>
         /// <remarks>
-        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -443,7 +464,7 @@ namespace Adviverse.Api.Api
         /// Verify property ownership
         /// </summary>
         /// <remarks>
-        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -640,6 +661,29 @@ namespace Adviverse.Api.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PubProperty)</returns>
         System.Threading.Tasks.Task<ApiResponse<PubProperty>> PublisherControllerGetAppWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Get one property
+        /// </summary>
+        /// <remarks>
+        /// Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PubProperty</returns>
+        System.Threading.Tasks.Task<PubProperty> PublisherControllerGetPropertyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get one property
+        /// </summary>
+        /// <remarks>
+        /// Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PubProperty>> PublisherControllerGetPropertyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// List your mobile and CTV apps
         /// </summary>
@@ -872,7 +916,7 @@ namespace Adviverse.Api.Api
         /// Update a placement
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -885,7 +929,7 @@ namespace Adviverse.Api.Api
         /// Update a placement
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -897,7 +941,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -910,7 +954,7 @@ namespace Adviverse.Api.Api
         /// Update a property
         /// </summary>
         /// <remarks>
-        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -922,7 +966,7 @@ namespace Adviverse.Api.Api
         /// Verify property ownership
         /// </summary>
         /// <remarks>
-        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -934,7 +978,7 @@ namespace Adviverse.Api.Api
         /// Verify property ownership
         /// </summary>
         /// <remarks>
-        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2136,6 +2180,143 @@ namespace Adviverse.Api.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("PublisherControllerGetApp", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get one property Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>PubProperty</returns>
+        public PubProperty PublisherControllerGetProperty(string id)
+        {
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = PublisherControllerGetPropertyWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get one property Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of PubProperty</returns>
+        public Adviverse.Api.Client.ApiResponse<PubProperty> PublisherControllerGetPropertyWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'id' when calling PublisherApi->PublisherControllerGetProperty");
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<PubProperty>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PublisherControllerGetProperty", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get one property Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PubProperty</returns>
+        public async System.Threading.Tasks.Task<PubProperty> PublisherControllerGetPropertyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            Adviverse.Api.Client.ApiResponse<PubProperty> localVarResponse = await PublisherControllerGetPropertyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get one property Returns one property (same shape as an item of the list, including &#x60;trust_progress&#x60; and the resolved consent switches &#x60;contextual_without_consent&#x60; / &#x60;enhanced_capping&#x60;). 404 if not found, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;read&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PubProperty)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<PubProperty>> PublisherControllerGetPropertyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Adviverse.Api.Client.ApiException(400, "Missing required parameter 'id' when calling PublisherApi->PublisherControllerGetProperty");
+
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Adviverse.Api.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PubProperty>("/v1/publisher/properties/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PublisherControllerGetProperty", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -3503,7 +3684,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3516,7 +3697,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3577,7 +3758,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3591,7 +3772,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a placement Patches &#x60;name&#x60;, &#x60;floorCpm&#x60;, &#x60;revShare&#x60;, &#x60;auctionType&#x60;, &#x60;passbackUrl&#x60;, &#x60;status&#x60; (&#x60;active&#x60;/&#x60;paused&#x60;), house/yield flags, and the dynamic-floor settings &#x60;floorAuto&#x60; (let the yield optimizer manage the floor) and &#x60;floorSoft&#x60; (soft reserve), and &#x60;frequencyCap&#x60; (&#x60;{ impressions, windowSeconds }&#x60;; &#x60;{}&#x60; or &#x60;null&#x60; removes it). Returns the updated row and republishes the serving index. 404 if the placement is not found among your properties.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3656,7 +3837,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3669,7 +3850,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3730,7 +3911,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3744,7 +3925,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Update a property Patches &#x60;name&#x60;, &#x60;domain&#x60;, &#x60;category&#x60;, &#x60;verificationMethod&#x60; and &#x60;crossFill&#x60; (opt in to filling this property with other-network demand). &#x60;contextualWithoutConsent&#x60; (Ads before consent: unanswered/rejected visitors get contextual ads, no identifier) and &#x60;enhancedCapping&#x60; (Enhanced frequency capping: outside the EEA/UK/CH, no GPC/opt-out, contextual caps add browser signals and an SDK canvas hash) are written to this property&#39;s consent config — the same settings as POST /v1/publisher/consent-config with this propertyId; the rest of that config is kept. &#x60;category&#x60; is a site-niche id from GET /v1/site-niches and marks the niche as set by hand (&#x60;category_source: manual&#x60;, never overwritten by auto-detection); send 0 to hand it back to auto-detection. 400 for an unknown id. Changing &#x60;domain&#x60; also drops a trusted property back to &#x60;unverified&#x60; (unless an admin locked its trust). Changing &#x60;domain&#x60; resets &#x60;verification_status&#x60; to &#x60;unverified&#x60;, so the property must be re-verified. Returns the updated row (unchanged row if no fields were sent) and republishes the serving index. 404 if the property does not exist, 403 if another publisher owns it.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3809,7 +3990,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3821,7 +4002,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3875,7 +4056,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3888,7 +4069,7 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
-        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. A failed check is not an error: it returns &#x60;verified: false&#x60; with the token and method to show the publisher.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
+        /// Verify property ownership Checks the property for its verification token using its method: &#x60;dns&#x60; looks up a TXT record at &#x60;adviverse-verify.&lt;domain&gt;&#x60;, &#x60;file&#x60; fetches &#x60;http://&lt;domain&gt;/.well-known/adviverse-verify.txt&#x60;, &#x60;meta&#x60; fetches the homepage and looks for the token. On success the property becomes &#x60;verified&#x60;, a &#x60;pending&#x60; property is auto-approved, and the serving index is republished so its placements start serving. File and meta checks add a cache-busting &#x60;?adviverse_verify&#x3D;&lt;ms&gt;&#x60; query so a CDN-cached page cannot fail them. A failed check is not an error: it returns &#x60;verified: false&#x60; with &#x60;error&#x60; (dns_lookup_failed | token_not_found | http_error | fetch_failed), a human &#x60;message&#x60;, and &#x60;check&#x60; (what was fetched or queried and what it answered, including &#x60;age&#x60; and &#x60;cf-cache-status&#x60;).  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;). Roles: publisher.
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>

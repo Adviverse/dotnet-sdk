@@ -163,6 +163,8 @@ namespace Adviverse.Api.Model
         /// <param name="status">status.</param>
         /// <param name="qualityScore">Postgres NUMERIC, serialized as a decimal string.</param>
         /// <param name="crossFill">crossFill.</param>
+        /// <param name="contextualWithoutConsent">Ads before consent (resolved: property consent config, else account default).</param>
+        /// <param name="enhancedCapping">Enhanced frequency capping (resolved like contextual_without_consent).</param>
         /// <param name="servingDomain">servingDomain.</param>
         /// <param name="servingDomainVerified">servingDomainVerified.</param>
         /// <param name="servingDomainCheckedAt">servingDomainCheckedAt.</param>
@@ -176,7 +178,7 @@ namespace Adviverse.Api.Model
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
         /// <param name="deletedAt">deletedAt.</param>
-        public PubProperty(Guid id = default(Guid), Guid publisherId = default(Guid), string kind = default(string), string name = default(string), string domain = default(string), int? category = default(int?), CategorySourceEnum? categorySource = default(CategorySourceEnum?), List<PubPropertyCategoriesInner> categories = default(List<PubPropertyCategoriesInner>), DateTime? classifiedAt = default(DateTime?), string classifyError = default(string), TrustTierEnum? trustTier = default(TrustTierEnum?), bool trustLocked = default(bool), DateTime? verifiedAt = default(DateTime?), TrustProgress trustProgress = default(TrustProgress), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), string verificationMethod = default(string), string verificationToken = default(string), StatusEnum? status = default(StatusEnum?), string qualityScore = default(string), bool crossFill = default(bool), string servingDomain = default(string), bool servingDomainVerified = default(bool), DateTime? servingDomainCheckedAt = default(DateTime?), string bundleId = default(string), string storeUrl = default(string), string platform = default(string), string appStoreId = default(string), List<Dictionary<string, Object>> appAdsTxt = default(List<Dictionary<string, Object>>), List<string> skadnetworkIds = default(List<string>), Dictionary<string, Object> ctvMeta = default(Dictionary<string, Object>), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
+        public PubProperty(Guid id = default(Guid), Guid publisherId = default(Guid), string kind = default(string), string name = default(string), string domain = default(string), int? category = default(int?), CategorySourceEnum? categorySource = default(CategorySourceEnum?), List<PubPropertyCategoriesInner> categories = default(List<PubPropertyCategoriesInner>), DateTime? classifiedAt = default(DateTime?), string classifyError = default(string), TrustTierEnum? trustTier = default(TrustTierEnum?), bool trustLocked = default(bool), DateTime? verifiedAt = default(DateTime?), TrustProgress trustProgress = default(TrustProgress), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), string verificationMethod = default(string), string verificationToken = default(string), StatusEnum? status = default(StatusEnum?), string qualityScore = default(string), bool crossFill = default(bool), bool contextualWithoutConsent = default(bool), bool enhancedCapping = default(bool), string servingDomain = default(string), bool servingDomainVerified = default(bool), DateTime? servingDomainCheckedAt = default(DateTime?), string bundleId = default(string), string storeUrl = default(string), string platform = default(string), string appStoreId = default(string), List<Dictionary<string, Object>> appAdsTxt = default(List<Dictionary<string, Object>>), List<string> skadnetworkIds = default(List<string>), Dictionary<string, Object> ctvMeta = default(Dictionary<string, Object>), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
         {
             this.Id = id;
             this.PublisherId = publisherId;
@@ -198,6 +200,8 @@ namespace Adviverse.Api.Model
             this.Status = status;
             this.QualityScore = qualityScore;
             this.CrossFill = crossFill;
+            this.ContextualWithoutConsent = contextualWithoutConsent;
+            this.EnhancedCapping = enhancedCapping;
             this.ServingDomain = servingDomain;
             this.ServingDomainVerified = servingDomainVerified;
             this.ServingDomainCheckedAt = servingDomainCheckedAt;
@@ -315,6 +319,20 @@ namespace Adviverse.Api.Model
         public bool CrossFill { get; set; }
 
         /// <summary>
+        /// Ads before consent (resolved: property consent config, else account default)
+        /// </summary>
+        /// <value>Ads before consent (resolved: property consent config, else account default)</value>
+        [DataMember(Name = "contextual_without_consent", EmitDefaultValue = true)]
+        public bool ContextualWithoutConsent { get; set; }
+
+        /// <summary>
+        /// Enhanced frequency capping (resolved like contextual_without_consent)
+        /// </summary>
+        /// <value>Enhanced frequency capping (resolved like contextual_without_consent)</value>
+        [DataMember(Name = "enhanced_capping", EmitDefaultValue = true)]
+        public bool EnhancedCapping { get; set; }
+
+        /// <summary>
         /// Gets or Sets ServingDomain
         /// </summary>
         [DataMember(Name = "serving_domain", EmitDefaultValue = true)]
@@ -426,6 +444,8 @@ namespace Adviverse.Api.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  QualityScore: ").Append(QualityScore).Append("\n");
             sb.Append("  CrossFill: ").Append(CrossFill).Append("\n");
+            sb.Append("  ContextualWithoutConsent: ").Append(ContextualWithoutConsent).Append("\n");
+            sb.Append("  EnhancedCapping: ").Append(EnhancedCapping).Append("\n");
             sb.Append("  ServingDomain: ").Append(ServingDomain).Append("\n");
             sb.Append("  ServingDomainVerified: ").Append(ServingDomainVerified).Append("\n");
             sb.Append("  ServingDomainCheckedAt: ").Append(ServingDomainCheckedAt).Append("\n");

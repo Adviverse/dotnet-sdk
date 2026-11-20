@@ -40,13 +40,17 @@ namespace Adviverse.Api.Model
         /// <param name="category">category.</param>
         /// <param name="verificationMethod">verificationMethod.</param>
         /// <param name="crossFill">crossFill.</param>
-        public UpdatePropertyDto(string name = default(string), string domain = default(string), decimal category = default(decimal), string verificationMethod = default(string), bool crossFill = default(bool))
+        /// <param name="contextualWithoutConsent">contextualWithoutConsent.</param>
+        /// <param name="enhancedCapping">enhancedCapping.</param>
+        public UpdatePropertyDto(string name = default(string), string domain = default(string), decimal category = default(decimal), string verificationMethod = default(string), bool crossFill = default(bool), bool contextualWithoutConsent = default(bool), bool enhancedCapping = default(bool))
         {
             this.Name = name;
             this.Domain = domain;
             this.Category = category;
             this.VerificationMethod = verificationMethod;
             this.CrossFill = crossFill;
+            this.ContextualWithoutConsent = contextualWithoutConsent;
+            this.EnhancedCapping = enhancedCapping;
         }
 
         /// <summary>
@@ -80,6 +84,18 @@ namespace Adviverse.Api.Model
         public bool CrossFill { get; set; }
 
         /// <summary>
+        /// Gets or Sets ContextualWithoutConsent
+        /// </summary>
+        [DataMember(Name = "contextualWithoutConsent", EmitDefaultValue = true)]
+        public bool ContextualWithoutConsent { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EnhancedCapping
+        /// </summary>
+        [DataMember(Name = "enhancedCapping", EmitDefaultValue = true)]
+        public bool EnhancedCapping { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -92,6 +108,8 @@ namespace Adviverse.Api.Model
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  VerificationMethod: ").Append(VerificationMethod).Append("\n");
             sb.Append("  CrossFill: ").Append(CrossFill).Append("\n");
+            sb.Append("  ContextualWithoutConsent: ").Append(ContextualWithoutConsent).Append("\n");
+            sb.Append("  EnhancedCapping: ").Append(EnhancedCapping).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

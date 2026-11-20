@@ -54,8 +54,8 @@ namespace Adviverse.Api.Api
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>AdminControllerSetStatus201Response</returns>
-        AdminControllerSetStatus201Response ComplianceControllerComplete(string id);
+        /// <returns>ComplianceControllerComplete201Response</returns>
+        ComplianceControllerComplete201Response ComplianceControllerComplete(string id);
 
         /// <summary>
         /// Complete a data-subject request
@@ -65,8 +65,8 @@ namespace Adviverse.Api.Api
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
-        ApiResponse<AdminControllerSetStatus201Response> ComplianceControllerCompleteWithHttpInfo(string id);
+        /// <returns>ApiResponse of ComplianceControllerComplete201Response</returns>
+        ApiResponse<ComplianceControllerComplete201Response> ComplianceControllerCompleteWithHttpInfo(string id);
         /// <summary>
         /// Log a consent signal
         /// </summary>
@@ -310,8 +310,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AdminControllerSetStatus201Response</returns>
-        System.Threading.Tasks.Task<AdminControllerSetStatus201Response> ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ComplianceControllerComplete201Response</returns>
+        System.Threading.Tasks.Task<ComplianceControllerComplete201Response> ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Complete a data-subject request
@@ -322,8 +322,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AdminControllerSetStatus201Response>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ComplianceControllerComplete201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComplianceControllerComplete201Response>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Log a consent signal
         /// </summary>
@@ -867,10 +867,10 @@ namespace Adviverse.Api.Api
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>AdminControllerSetStatus201Response</returns>
-        public AdminControllerSetStatus201Response ComplianceControllerComplete(string id)
+        /// <returns>ComplianceControllerComplete201Response</returns>
+        public ComplianceControllerComplete201Response ComplianceControllerComplete(string id)
         {
-            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = ComplianceControllerCompleteWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> localVarResponse = ComplianceControllerCompleteWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
@@ -879,8 +879,8 @@ namespace Adviverse.Api.Api
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of AdminControllerSetStatus201Response</returns>
-        public Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> ComplianceControllerCompleteWithHttpInfo(string id)
+        /// <returns>ApiResponse of ComplianceControllerComplete201Response</returns>
+        public Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> ComplianceControllerCompleteWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -917,7 +917,7 @@ namespace Adviverse.Api.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AdminControllerSetStatus201Response>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ComplianceControllerComplete201Response>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -934,10 +934,10 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AdminControllerSetStatus201Response</returns>
-        public async System.Threading.Tasks.Task<AdminControllerSetStatus201Response> ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ComplianceControllerComplete201Response</returns>
+        public async System.Threading.Tasks.Task<ComplianceControllerComplete201Response> ComplianceControllerCompleteAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response> localVarResponse = await ComplianceControllerCompleteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response> localVarResponse = await ComplianceControllerCompleteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -947,8 +947,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AdminControllerSetStatus201Response)</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<AdminControllerSetStatus201Response>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ComplianceControllerComplete201Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<ComplianceControllerComplete201Response>> ComplianceControllerCompleteWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -988,7 +988,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<AdminControllerSetStatus201Response>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ComplianceControllerComplete201Response>("/v1/admin/dsar/{id}/complete", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

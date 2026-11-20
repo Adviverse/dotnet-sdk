@@ -121,7 +121,9 @@ namespace Adviverse.Api.Model
         /// <param name="consentGrantValue">consentGrantValue.</param>
         /// <param name="tcfPurpose">tcfPurpose.</param>
         /// <param name="tcfVendorId">tcfVendorId.</param>
-        public ConsentConfigDto(string propertyId = default(string), ModeEnum mode = default(ModeEnum), bool defaultConsent = default(bool), bool honorGpc = default(bool), bool collectTcf = default(bool), bool collectGpp = default(bool), bool collectGpc = default(bool), bool resendOnChange = default(bool), ConsentSourceEnum? consentSource = default(ConsentSourceEnum?), string consentKey = default(string), string consentGrantValue = default(string), decimal tcfPurpose = default(decimal), decimal tcfVendorId = default(decimal))
+        /// <param name="contextualWithoutConsent">contextualWithoutConsent.</param>
+        /// <param name="enhancedCapping">enhancedCapping.</param>
+        public ConsentConfigDto(string propertyId = default(string), ModeEnum mode = default(ModeEnum), bool defaultConsent = default(bool), bool honorGpc = default(bool), bool collectTcf = default(bool), bool collectGpp = default(bool), bool collectGpc = default(bool), bool resendOnChange = default(bool), ConsentSourceEnum? consentSource = default(ConsentSourceEnum?), string consentKey = default(string), string consentGrantValue = default(string), decimal tcfPurpose = default(decimal), decimal tcfVendorId = default(decimal), bool contextualWithoutConsent = default(bool), bool enhancedCapping = default(bool))
         {
             this.Mode = mode;
             this.DefaultConsent = defaultConsent;
@@ -136,6 +138,8 @@ namespace Adviverse.Api.Model
             this.ConsentGrantValue = consentGrantValue;
             this.TcfPurpose = tcfPurpose;
             this.TcfVendorId = tcfVendorId;
+            this.ContextualWithoutConsent = contextualWithoutConsent;
+            this.EnhancedCapping = enhancedCapping;
         }
 
         /// <summary>
@@ -205,6 +209,18 @@ namespace Adviverse.Api.Model
         public decimal TcfVendorId { get; set; }
 
         /// <summary>
+        /// Gets or Sets ContextualWithoutConsent
+        /// </summary>
+        [DataMember(Name = "contextualWithoutConsent", EmitDefaultValue = true)]
+        public bool ContextualWithoutConsent { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EnhancedCapping
+        /// </summary>
+        [DataMember(Name = "enhancedCapping", EmitDefaultValue = true)]
+        public bool EnhancedCapping { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -225,6 +241,8 @@ namespace Adviverse.Api.Model
             sb.Append("  ConsentGrantValue: ").Append(ConsentGrantValue).Append("\n");
             sb.Append("  TcfPurpose: ").Append(TcfPurpose).Append("\n");
             sb.Append("  TcfVendorId: ").Append(TcfVendorId).Append("\n");
+            sb.Append("  ContextualWithoutConsent: ").Append(ContextualWithoutConsent).Append("\n");
+            sb.Append("  EnhancedCapping: ").Append(EnhancedCapping).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

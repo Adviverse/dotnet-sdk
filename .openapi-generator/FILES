@@ -68,7 +68,6 @@ src/Adviverse.Api/Model/AdminControllerConfig200ResponseInner.cs
 src/Adviverse.Api/Model/AdminControllerProcessPayout201Response.cs
 src/Adviverse.Api/Model/AdminControllerQuality200ResponseInner.cs
 src/Adviverse.Api/Model/AdminControllerRescan201Response.cs
-src/Adviverse.Api/Model/AdminControllerSetStatus201Response.cs
 src/Adviverse.Api/Model/AdminTrustDto.cs
 src/Adviverse.Api/Model/AdvAdSetSummary.cs
 src/Adviverse.Api/Model/AdvAudience.cs
@@ -187,6 +186,7 @@ src/Adviverse.Api/Model/ComboControllerListPresets200Response.cs
 src/Adviverse.Api/Model/ComboUnitDto.cs
 src/Adviverse.Api/Model/CompanionDto.cs
 src/Adviverse.Api/Model/ComplianceConsentConfig.cs
+src/Adviverse.Api/Model/ComplianceControllerComplete201Response.cs
 src/Adviverse.Api/Model/ComplianceControllerConsent201Response.cs
 src/Adviverse.Api/Model/ComplianceControllerConsentLog200ResponseInner.cs
 src/Adviverse.Api/Model/ComplianceControllerSellers200Response.cs
@@ -338,6 +338,7 @@ src/Adviverse.Api/Model/PublisherControllerDomainConnect201Response.cs
 src/Adviverse.Api/Model/PublisherControllerRotateSigningSecret201Response.cs
 src/Adviverse.Api/Model/PublisherControllerTag200Response.cs
 src/Adviverse.Api/Model/PublisherControllerVerify201Response.cs
+src/Adviverse.Api/Model/PublisherControllerVerify201ResponseCheck.cs
 src/Adviverse.Api/Model/PublisherControllerVerifyServingDomain201Response.cs
 src/Adviverse.Api/Model/PublisherInsightsControllerClearing200Response.cs
 src/Adviverse.Api/Model/PublisherInsightsControllerClearing200ResponsePointsInner.cs
