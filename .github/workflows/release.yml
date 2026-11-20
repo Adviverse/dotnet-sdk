@@ -22,6 +22,7 @@ jobs:
       - if: vars.NUGET_PUBLISH == 'true'
         id: nuget
         uses: NuGet/login@v1
-        with: { user: ${{ vars.NUGET_USER }} }
+        with:
+          user: ${{ vars.NUGET_USER }}
       - if: vars.NUGET_PUBLISH == 'true'
         run: dotnet nuget push 'out/*.nupkg' -k ${{ steps.nuget.outputs.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
