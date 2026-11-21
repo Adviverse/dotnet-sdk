@@ -128,7 +128,8 @@ namespace Adviverse.Api.Model
         /// <param name="appStoreId">appStoreId.</param>
         /// <param name="category">category.</param>
         /// <param name="ctvMeta">ctvMeta.</param>
-        public CreateAppDto(KindEnum kind = default(KindEnum), string name = default(string), string bundleId = default(string), PlatformEnum platform = default(PlatformEnum), string storeUrl = default(string), string appStoreId = default(string), decimal category = default(decimal), Object ctvMeta = default(Object))
+        /// <param name="developerPropertyId">developerPropertyId.</param>
+        public CreateAppDto(KindEnum kind = default(KindEnum), string name = default(string), string bundleId = default(string), PlatformEnum platform = default(PlatformEnum), string storeUrl = default(string), string appStoreId = default(string), decimal category = default(decimal), Object ctvMeta = default(Object), string developerPropertyId = default(string))
         {
             this.Kind = kind;
             // to ensure "name" is required (not null)
@@ -148,6 +149,7 @@ namespace Adviverse.Api.Model
             this.AppStoreId = appStoreId;
             this.Category = category;
             this.CtvMeta = ctvMeta;
+            this.DeveloperPropertyId = developerPropertyId;
         }
 
         /// <summary>
@@ -187,6 +189,12 @@ namespace Adviverse.Api.Model
         public Object CtvMeta { get; set; }
 
         /// <summary>
+        /// Gets or Sets DeveloperPropertyId
+        /// </summary>
+        [DataMember(Name = "developerPropertyId", EmitDefaultValue = false)]
+        public string DeveloperPropertyId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -202,6 +210,7 @@ namespace Adviverse.Api.Model
             sb.Append("  AppStoreId: ").Append(AppStoreId).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  CtvMeta: ").Append(CtvMeta).Append("\n");
+            sb.Append("  DeveloperPropertyId: ").Append(DeveloperPropertyId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

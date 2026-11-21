@@ -13,6 +13,7 @@ src/Adviverse.Api/Api/ComboApi.cs
 src/Adviverse.Api/Api/ComplianceApi.cs
 src/Adviverse.Api/Api/ConversionsApi.cs
 src/Adviverse.Api/Api/DealsApi.cs
+src/Adviverse.Api/Api/DeviceAuthApi.cs
 src/Adviverse.Api/Api/DoohApi.cs
 src/Adviverse.Api/Api/EdgeApi.cs
 src/Adviverse.Api/Api/ExportsApi.cs
@@ -227,6 +228,13 @@ src/Adviverse.Api/Model/DealsControllerLookupAdvertiser200Response.cs
 src/Adviverse.Api/Model/DealsControllerPreviewClaim200Response.cs
 src/Adviverse.Api/Model/DealsControllerStatus201Response.cs
 src/Adviverse.Api/Model/DepositDto.cs
+src/Adviverse.Api/Model/DeviceApproveDto.cs
+src/Adviverse.Api/Model/DeviceAuthControllerApprove201Response.cs
+src/Adviverse.Api/Model/DeviceAuthControllerCode200Response.cs
+src/Adviverse.Api/Model/DeviceAuthControllerDescribe200Response.cs
+src/Adviverse.Api/Model/DeviceAuthControllerToken200Response.cs
+src/Adviverse.Api/Model/DeviceCodeDto.cs
+src/Adviverse.Api/Model/DeviceTokenDto.cs
 src/Adviverse.Api/Model/DoohControllerList200ResponseInner.cs
 src/Adviverse.Api/Model/DoohControllerSaveSetup201Response.cs
 src/Adviverse.Api/Model/DoohSetupDto.cs
@@ -478,7 +486,7 @@ src/Adviverse.Api/Model/SettingsControllerBidRec200Response.cs
 src/Adviverse.Api/Model/SettingsControllerCreateTerminalToken201Response.cs
 src/Adviverse.Api/Model/SettingsControllerCreateTerminalToken201ResponseSwitch.cs
 src/Adviverse.Api/Model/SettingsControllerListTerminalTokens200ResponseInner.cs
-src/Adviverse.Api/Model/SettingsControllerRevokeKey200Response.cs
+src/Adviverse.Api/Model/SettingsControllerRevokeCurrentKey200Response.cs
 src/Adviverse.Api/Model/SettingsControllerRotateTerminalToken201Response.cs
 src/Adviverse.Api/Model/SettingsControllerSetTerminalTokenPolicy200Response.cs
 src/Adviverse.Api/Model/SettingsControllerUpdateNetwork200Response.cs
@@ -518,6 +526,7 @@ src/Adviverse.Api/Model/UpdateScreenDto.cs
 src/Adviverse.Api/Model/UpdateSurfaceDto.cs
 src/Adviverse.Api/Model/UpdateWebhookDto.cs
 src/Adviverse.Api/Model/VerificationControllerCategories200ResponseInner.cs
+src/Adviverse.Api/Model/VerifyAppDto.cs
 src/Adviverse.Api/Model/WebhookDelivery.cs
 src/Adviverse.Api/Model/WebhookDeliveryResult.cs
 src/Adviverse.Api/Model/WebhookEndpoint.cs

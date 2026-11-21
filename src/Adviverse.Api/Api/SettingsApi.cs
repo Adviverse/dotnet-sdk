@@ -154,6 +154,25 @@ namespace Adviverse.Api.Api
         /// <returns>ApiResponse of List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;</returns>
         ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>> SettingsControllerListTerminalTokensWithHttpInfo();
         /// <summary>
+        /// Revoke the API key making this request
+        /// </summary>
+        /// <remarks>
+        /// Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>SettingsControllerRevokeCurrentKey200Response</returns>
+        SettingsControllerRevokeCurrentKey200Response SettingsControllerRevokeCurrentKey();
+
+        /// <summary>
+        /// Revoke the API key making this request
+        /// </summary>
+        /// <remarks>
+        /// Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of SettingsControllerRevokeCurrentKey200Response</returns>
+        ApiResponse<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeCurrentKeyWithHttpInfo();
+        /// <summary>
         /// Revoke an API key
         /// </summary>
         /// <remarks>
@@ -161,8 +180,8 @@ namespace Adviverse.Api.Api
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>SettingsControllerRevokeKey200Response</returns>
-        SettingsControllerRevokeKey200Response SettingsControllerRevokeKey(string id);
+        /// <returns>SettingsControllerRevokeCurrentKey200Response</returns>
+        SettingsControllerRevokeCurrentKey200Response SettingsControllerRevokeKey(string id);
 
         /// <summary>
         /// Revoke an API key
@@ -172,8 +191,8 @@ namespace Adviverse.Api.Api
         /// </remarks>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of SettingsControllerRevokeKey200Response</returns>
-        ApiResponse<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyWithHttpInfo(string id);
+        /// <returns>ApiResponse of SettingsControllerRevokeCurrentKey200Response</returns>
+        ApiResponse<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeKeyWithHttpInfo(string id);
         /// <summary>
         /// Revoke a terminal serve token
         /// </summary>
@@ -408,6 +427,27 @@ namespace Adviverse.Api.Api
         /// <returns>Task of ApiResponse (List&lt;SettingsControllerListTerminalTokens200ResponseInner&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<SettingsControllerListTerminalTokens200ResponseInner>>> SettingsControllerListTerminalTokensWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
+        /// Revoke the API key making this request
+        /// </summary>
+        /// <remarks>
+        /// Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SettingsControllerRevokeCurrentKey200Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeCurrentKeyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Revoke the API key making this request
+        /// </summary>
+        /// <remarks>
+        /// Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </remarks>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SettingsControllerRevokeCurrentKey200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerRevokeCurrentKey200Response>> SettingsControllerRevokeCurrentKeyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
         /// Revoke an API key
         /// </summary>
         /// <remarks>
@@ -416,8 +456,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SettingsControllerRevokeKey200Response</returns>
-        System.Threading.Tasks.Task<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of SettingsControllerRevokeCurrentKey200Response</returns>
+        System.Threading.Tasks.Task<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Revoke an API key
@@ -428,8 +468,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SettingsControllerRevokeKey200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SettingsControllerRevokeKey200Response>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SettingsControllerRevokeCurrentKey200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SettingsControllerRevokeCurrentKey200Response>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Revoke a terminal serve token
         /// </summary>
@@ -1566,14 +1606,137 @@ namespace Adviverse.Api.Api
         }
 
         /// <summary>
+        /// Revoke the API key making this request Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>SettingsControllerRevokeCurrentKey200Response</returns>
+        public SettingsControllerRevokeCurrentKey200Response SettingsControllerRevokeCurrentKey()
+        {
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response> localVarResponse = SettingsControllerRevokeCurrentKeyWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Revoke the API key making this request Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of SettingsControllerRevokeCurrentKey200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeCurrentKeyWithHttpInfo()
+        {
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<SettingsControllerRevokeCurrentKey200Response>("/v1/keys/current", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SettingsControllerRevokeCurrentKey", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Revoke the API key making this request Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SettingsControllerRevokeCurrentKey200Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeCurrentKeyAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response> localVarResponse = await SettingsControllerRevokeCurrentKeyWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Revoke the API key making this request Revokes the key sent in &#x60;x-api-key&#x60; (used by &#x60;adviverse logout&#x60;) and removes it from the engine&#39;s Redis credential map. 400 when called with a session token instead of an API key.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
+        /// </summary>
+        /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SettingsControllerRevokeCurrentKey200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response>> SettingsControllerRevokeCurrentKeyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            Adviverse.Api.Client.RequestOptions localVarRequestOptions = new Adviverse.Api.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Adviverse.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Adviverse.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (apiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+            // authentication (bearer) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<SettingsControllerRevokeCurrentKey200Response>("/v1/keys/current", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SettingsControllerRevokeCurrentKey", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Revoke an API key Marks the key revoked and removes it from the engine&#39;s Redis credential map, so it stops working everywhere. Revoking an unknown or foreign id is a silent no-op.  Auth: session bearer token, or API key (x-api-key) with scope &#x60;write&#x60; (or &#x60;*&#x60;).
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>SettingsControllerRevokeKey200Response</returns>
-        public SettingsControllerRevokeKey200Response SettingsControllerRevokeKey(string id)
+        /// <returns>SettingsControllerRevokeCurrentKey200Response</returns>
+        public SettingsControllerRevokeCurrentKey200Response SettingsControllerRevokeKey(string id)
         {
-            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response> localVarResponse = SettingsControllerRevokeKeyWithHttpInfo(id);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response> localVarResponse = SettingsControllerRevokeKeyWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
@@ -1582,8 +1745,8 @@ namespace Adviverse.Api.Api
         /// </summary>
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of SettingsControllerRevokeKey200Response</returns>
-        public Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyWithHttpInfo(string id)
+        /// <returns>ApiResponse of SettingsControllerRevokeCurrentKey200Response</returns>
+        public Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeKeyWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1620,7 +1783,7 @@ namespace Adviverse.Api.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<SettingsControllerRevokeKey200Response>("/v1/keys/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<SettingsControllerRevokeCurrentKey200Response>("/v1/keys/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1637,10 +1800,10 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SettingsControllerRevokeKey200Response</returns>
-        public async System.Threading.Tasks.Task<SettingsControllerRevokeKey200Response> SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of SettingsControllerRevokeCurrentKey200Response</returns>
+        public async System.Threading.Tasks.Task<SettingsControllerRevokeCurrentKey200Response> SettingsControllerRevokeKeyAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response> localVarResponse = await SettingsControllerRevokeKeyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response> localVarResponse = await SettingsControllerRevokeKeyWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1650,8 +1813,8 @@ namespace Adviverse.Api.Api
         /// <exception cref="Adviverse.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SettingsControllerRevokeKey200Response)</returns>
-        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeKey200Response>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SettingsControllerRevokeCurrentKey200Response)</returns>
+        public async System.Threading.Tasks.Task<Adviverse.Api.Client.ApiResponse<SettingsControllerRevokeCurrentKey200Response>> SettingsControllerRevokeKeyWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1691,7 +1854,7 @@ namespace Adviverse.Api.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<SettingsControllerRevokeKey200Response>("/v1/keys/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<SettingsControllerRevokeCurrentKey200Response>("/v1/keys/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

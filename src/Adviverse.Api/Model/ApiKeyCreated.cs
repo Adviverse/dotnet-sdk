@@ -40,11 +40,12 @@ namespace Adviverse.Api.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyCreated" /> class.
         /// </summary>
+        /// <param name="id">The key id (for DELETE /v1/keys/{id})..</param>
         /// <param name="key">Full key, shown only once. (required).</param>
         /// <param name="prefix">prefix (required).</param>
         /// <param name="scopes">scopes (required).</param>
         /// <param name="expiresAt">expiresAt (required).</param>
-        public ApiKeyCreated(string key = default(string), string prefix = default(string), List<string> scopes = default(List<string>), DateTime? expiresAt = default(DateTime?))
+        public ApiKeyCreated(Guid id = default(Guid), string key = default(string), string prefix = default(string), List<string> scopes = default(List<string>), DateTime? expiresAt = default(DateTime?))
         {
             // to ensure "key" is required (not null)
             if (key == null)
@@ -70,7 +71,15 @@ namespace Adviverse.Api.Model
                 throw new ArgumentNullException("expiresAt is a required property for ApiKeyCreated and cannot be null");
             }
             this.ExpiresAt = expiresAt;
+            this.Id = id;
         }
+
+        /// <summary>
+        /// The key id (for DELETE /v1/keys/{id}).
+        /// </summary>
+        /// <value>The key id (for DELETE /v1/keys/{id}).</value>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Full key, shown only once.
@@ -108,6 +117,7 @@ namespace Adviverse.Api.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ApiKeyCreated {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("  Prefix: ").Append(Prefix).Append("\n");
             sb.Append("  Scopes: ").Append(Scopes).Append("\n");

@@ -41,7 +41,7 @@ namespace Adviverse.Api.Model
         /// Initializes a new instance of the <see cref="PublisherControllerVerify201ResponseCheck" /> class.
         /// </summary>
         /// <param name="method">method (required).</param>
-        /// <param name="target">URL fetched (file/meta) or DNS name queried (dns) (required).</param>
+        /// <param name="target">URL fetched (file/meta/app-ads.txt/store listing) or DNS name queried (dns) (required).</param>
         /// <param name="status">status.</param>
         /// <param name="finalUrl">finalUrl.</param>
         /// <param name="age">age.</param>
@@ -77,9 +77,9 @@ namespace Adviverse.Api.Model
         public string Method { get; set; }
 
         /// <summary>
-        /// URL fetched (file/meta) or DNS name queried (dns)
+        /// URL fetched (file/meta/app-ads.txt/store listing) or DNS name queried (dns)
         /// </summary>
-        /// <value>URL fetched (file/meta) or DNS name queried (dns)</value>
+        /// <value>URL fetched (file/meta/app-ads.txt/store listing) or DNS name queried (dns)</value>
         [DataMember(Name = "target", IsRequired = true, EmitDefaultValue = true)]
         public string Target { get; set; }
 

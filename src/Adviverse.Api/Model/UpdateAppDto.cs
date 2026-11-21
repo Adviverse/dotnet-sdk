@@ -95,13 +95,15 @@ namespace Adviverse.Api.Model
         /// <param name="ctvMeta">ctvMeta.</param>
         /// <param name="storeUrl">storeUrl.</param>
         /// <param name="platform">platform.</param>
-        public UpdateAppDto(List<AppAdsTxtEntryDto> appAdsTxt = default(List<AppAdsTxtEntryDto>), List<string> skadnetworkIds = default(List<string>), Object ctvMeta = default(Object), string storeUrl = default(string), PlatformEnum? platform = default(PlatformEnum?))
+        /// <param name="developerPropertyId">developerPropertyId.</param>
+        public UpdateAppDto(List<AppAdsTxtEntryDto> appAdsTxt = default(List<AppAdsTxtEntryDto>), List<string> skadnetworkIds = default(List<string>), Object ctvMeta = default(Object), string storeUrl = default(string), PlatformEnum? platform = default(PlatformEnum?), string developerPropertyId = default(string))
         {
             this.AppAdsTxt = appAdsTxt;
             this.SkadnetworkIds = skadnetworkIds;
             this.CtvMeta = ctvMeta;
             this.StoreUrl = storeUrl;
             this.Platform = platform;
+            this.DeveloperPropertyId = developerPropertyId;
         }
 
         /// <summary>
@@ -129,6 +131,12 @@ namespace Adviverse.Api.Model
         public string StoreUrl { get; set; }
 
         /// <summary>
+        /// Gets or Sets DeveloperPropertyId
+        /// </summary>
+        [DataMember(Name = "developerPropertyId", EmitDefaultValue = true)]
+        public string DeveloperPropertyId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -141,6 +149,7 @@ namespace Adviverse.Api.Model
             sb.Append("  CtvMeta: ").Append(CtvMeta).Append("\n");
             sb.Append("  StoreUrl: ").Append(StoreUrl).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  DeveloperPropertyId: ").Append(DeveloperPropertyId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -175,10 +175,11 @@ namespace Adviverse.Api.Model
         /// <param name="appAdsTxt">appAdsTxt.</param>
         /// <param name="skadnetworkIds">skadnetworkIds.</param>
         /// <param name="ctvMeta">ctvMeta.</param>
+        /// <param name="developerPropertyId">Apps: the website property whose /app-ads.txt verifies the app.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
         /// <param name="deletedAt">deletedAt.</param>
-        public PubProperty(Guid id = default(Guid), Guid publisherId = default(Guid), string kind = default(string), string name = default(string), string domain = default(string), int? category = default(int?), CategorySourceEnum? categorySource = default(CategorySourceEnum?), List<PubPropertyCategoriesInner> categories = default(List<PubPropertyCategoriesInner>), DateTime? classifiedAt = default(DateTime?), string classifyError = default(string), TrustTierEnum? trustTier = default(TrustTierEnum?), bool trustLocked = default(bool), DateTime? verifiedAt = default(DateTime?), TrustProgress trustProgress = default(TrustProgress), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), string verificationMethod = default(string), string verificationToken = default(string), StatusEnum? status = default(StatusEnum?), string qualityScore = default(string), bool crossFill = default(bool), bool contextualWithoutConsent = default(bool), bool enhancedCapping = default(bool), string servingDomain = default(string), bool servingDomainVerified = default(bool), DateTime? servingDomainCheckedAt = default(DateTime?), string bundleId = default(string), string storeUrl = default(string), string platform = default(string), string appStoreId = default(string), List<Dictionary<string, Object>> appAdsTxt = default(List<Dictionary<string, Object>>), List<string> skadnetworkIds = default(List<string>), Dictionary<string, Object> ctvMeta = default(Dictionary<string, Object>), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
+        public PubProperty(Guid id = default(Guid), Guid publisherId = default(Guid), string kind = default(string), string name = default(string), string domain = default(string), int? category = default(int?), CategorySourceEnum? categorySource = default(CategorySourceEnum?), List<PubPropertyCategoriesInner> categories = default(List<PubPropertyCategoriesInner>), DateTime? classifiedAt = default(DateTime?), string classifyError = default(string), TrustTierEnum? trustTier = default(TrustTierEnum?), bool trustLocked = default(bool), DateTime? verifiedAt = default(DateTime?), TrustProgress trustProgress = default(TrustProgress), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), string verificationMethod = default(string), string verificationToken = default(string), StatusEnum? status = default(StatusEnum?), string qualityScore = default(string), bool crossFill = default(bool), bool contextualWithoutConsent = default(bool), bool enhancedCapping = default(bool), string servingDomain = default(string), bool servingDomainVerified = default(bool), DateTime? servingDomainCheckedAt = default(DateTime?), string bundleId = default(string), string storeUrl = default(string), string platform = default(string), string appStoreId = default(string), List<Dictionary<string, Object>> appAdsTxt = default(List<Dictionary<string, Object>>), List<string> skadnetworkIds = default(List<string>), Dictionary<string, Object> ctvMeta = default(Dictionary<string, Object>), Guid? developerPropertyId = default(Guid?), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), DateTime? deletedAt = default(DateTime?))
         {
             this.Id = id;
             this.PublisherId = publisherId;
@@ -212,6 +213,7 @@ namespace Adviverse.Api.Model
             this.AppAdsTxt = appAdsTxt;
             this.SkadnetworkIds = skadnetworkIds;
             this.CtvMeta = ctvMeta;
+            this.DeveloperPropertyId = developerPropertyId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.DeletedAt = deletedAt;
@@ -393,6 +395,13 @@ namespace Adviverse.Api.Model
         public Dictionary<string, Object> CtvMeta { get; set; }
 
         /// <summary>
+        /// Apps: the website property whose /app-ads.txt verifies the app
+        /// </summary>
+        /// <value>Apps: the website property whose /app-ads.txt verifies the app</value>
+        [DataMember(Name = "developer_property_id", EmitDefaultValue = true)]
+        public Guid? DeveloperPropertyId { get; set; }
+
+        /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         [DataMember(Name = "created_at", EmitDefaultValue = false)]
@@ -456,6 +465,7 @@ namespace Adviverse.Api.Model
             sb.Append("  AppAdsTxt: ").Append(AppAdsTxt).Append("\n");
             sb.Append("  SkadnetworkIds: ").Append(SkadnetworkIds).Append("\n");
             sb.Append("  CtvMeta: ").Append(CtvMeta).Append("\n");
+            sb.Append("  DeveloperPropertyId: ").Append(DeveloperPropertyId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  DeletedAt: ").Append(DeletedAt).Append("\n");

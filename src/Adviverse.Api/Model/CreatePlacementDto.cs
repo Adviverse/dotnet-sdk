@@ -40,7 +40,8 @@ namespace Adviverse.Api.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePlacementDto" /> class.
         /// </summary>
-        /// <param name="propertyId">propertyId (required).</param>
+        /// <param name="propertyId">propertyId.</param>
+        /// <param name="appId">appId.</param>
         /// <param name="name">name (required).</param>
         /// <param name="format">format (required).</param>
         /// <param name="width">width.</param>
@@ -56,14 +57,8 @@ namespace Adviverse.Api.Model
         /// <param name="houseShare">houseShare.</param>
         /// <param name="houseBackfill">houseBackfill.</param>
         /// <param name="floorFallback">floorFallback.</param>
-        public CreatePlacementDto(string propertyId = default(string), string name = default(string), string format = default(string), decimal width = default(decimal), decimal height = default(decimal), bool responsive = default(bool), decimal floorCpm = default(decimal), decimal revShare = default(decimal), string auctionType = default(string), string passbackUrl = default(string), Object frequencyCap = default(Object), Object settings = default(Object), bool houseOnly = default(bool), decimal houseShare = default(decimal), bool houseBackfill = default(bool), bool floorFallback = default(bool))
+        public CreatePlacementDto(string propertyId = default(string), string appId = default(string), string name = default(string), string format = default(string), decimal width = default(decimal), decimal height = default(decimal), bool responsive = default(bool), decimal floorCpm = default(decimal), decimal revShare = default(decimal), string auctionType = default(string), string passbackUrl = default(string), Object frequencyCap = default(Object), Object settings = default(Object), bool houseOnly = default(bool), decimal houseShare = default(decimal), bool houseBackfill = default(bool), bool floorFallback = default(bool))
         {
-            // to ensure "propertyId" is required (not null)
-            if (propertyId == null)
-            {
-                throw new ArgumentNullException("propertyId is a required property for CreatePlacementDto and cannot be null");
-            }
-            this.PropertyId = propertyId;
             // to ensure "name" is required (not null)
             if (name == null)
             {
@@ -76,6 +71,8 @@ namespace Adviverse.Api.Model
                 throw new ArgumentNullException("format is a required property for CreatePlacementDto and cannot be null");
             }
             this.Format = format;
+            this.PropertyId = propertyId;
+            this.AppId = appId;
             this.Width = width;
             this.Height = height;
             this.Responsive = responsive;
@@ -94,8 +91,14 @@ namespace Adviverse.Api.Model
         /// <summary>
         /// Gets or Sets PropertyId
         /// </summary>
-        [DataMember(Name = "propertyId", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "propertyId", EmitDefaultValue = false)]
         public string PropertyId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AppId
+        /// </summary>
+        [DataMember(Name = "appId", EmitDefaultValue = false)]
+        public string AppId { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -196,6 +199,7 @@ namespace Adviverse.Api.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreatePlacementDto {\n");
             sb.Append("  PropertyId: ").Append(PropertyId).Append("\n");
+            sb.Append("  AppId: ").Append(AppId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
             sb.Append("  Width: ").Append(Width).Append("\n");
